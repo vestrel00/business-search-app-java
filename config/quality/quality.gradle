@@ -1,0 +1,140 @@
+/*
+ * Copyright 2017 Vandolf Estrellado
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+def configDir = "$rootDir/config/quality"
+def reportsDir = "$buildDir/reports"
+
+// CHECK QUALITY TASK
+check.dependsOn 'checkQuality'
+
+class CheckQuality extends DefaultTask {}
+
+task checkQuality(type: CheckQuality) {
+    group = "Static Analysis"
+    description = "Runs all static analysis checks on all build variants."
+}
+
+android.applicationVariants.all { variant ->
+    def buildVariant = variant.name.capitalize();
+    def checkQualityVariant = "check${buildVariant}Quality";
+
+    task(checkQualityVariant, type: CheckQuality,
+            dependsOn: ['checkstyle', 'pmd', "lint${buildVariant}", "findbugs${buildVariant}"]) {
+        group = "Static Analysis"
+        description = "Runs all static analysis checks on the ${buildVariant} build."
+    }
+
+    checkQuality.dependsOn "${checkQualityVariant}"
+}
+
+// CHECKSTYLE
+task checkstyle(type: Checkstyle) {
+    group = "Static Analysis"
+    description = "Checks style of source code"
+
+    configFile file("$configDir/checkstyle/checkstyle.xml")
+    configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
+    configProperties.checkstyleJavaHeaderPath = file("$configDir/checkstyle/java.header").absolutePath
+    configProperties.checkstyleXmlHeaderPath = file("$configDir/checkstyle/xml.header").absolutePath
+    source 'src'
+    include '**/*.java'
+    include '**/*.xml'
+    exclude '**/gen/**'
+    classpath = files()
+}
+
+// FINDBUGS
+task findbugs(type: FindBugs) {
+    group = "Static Analysis"
+    description = "Finds bugs in bytecode on all build variants."
+}
+
+android.applicationVariants.all { variant ->
+    def buildVariant = variant.name.capitalize();
+    def findBugsDependency = "assemble${buildVariant}";
+    def findBugsVariant = "findbugs${buildVariant}";
+
+    task("${findBugsVariant}", type: FindBugs, dependsOn: "${findBugsDependency}") {
+        group = "Static Analysis"
+        description = "Finds bugs in bytecode on the ${buildVariant} build."
+
+        ignoreFailures = false
+        effort = "max"
+        reportLevel = "high"
+        excludeFilter = new File("$configDir/findbugs/findbugs-filter.xml")
+        classes = files("$rootDir/app/build/intermediates/classes")
+
+        source 'src'
+        include '**/*.java'
+        exclude '**/gen/**'
+
+        reports {
+            xml.enabled = true
+            html.enabled = false
+            xml {
+                destination "$reportsDir/findbugs/${buildVariant}/findbugs.xml"
+            }
+            html {
+                destination "$reportsDir/findbugs/${buildVariant}/findbugs.html"
+            }
+        }
+
+        classpath = files()
+    }
+
+    tasks.findbugs.dependsOn "${findBugsVariant}"
+}
+
+// PMD
+task pmd(type: Pmd) {
+    group = "Static Analysis"
+    description = "Finds bugs in source code on all build variants"
+
+    ignoreFailures = false
+    ruleSetFiles = files("$configDir/pmd/pmd-ruleset.xml")
+    ruleSets = []
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        xml {
+            destination "$reportsDir/pmd/pmd.xml"
+        }
+        html {
+            destination "$reportsDir/pmd/pmd.html"
+        }
+    }
+}
+
+// LINT
+android {
+    lintOptions {
+        abortOnError true
+        xmlReport false
+        htmlReport true
+        lintConfig file("$configDir/lint/lint.xml")
+        htmlOutput file("$reportsDir/lint/lint-result.html")
+        xmlOutput file("$reportsDir/lint/lint-result.xml")
+    }
+}

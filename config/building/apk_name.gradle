@@ -14,4 +14,18 @@
  * limitations under the License.
  */
 
-include ':app'
+/**
+ * Purpose: Produce better named Android APKs and remove unnecessary unaligned APKs.
+ *
+ * Reference:
+ * http://www.jayway.com/2015/03/13/producing-better-named-android-apks-with-gradle/
+ * https://code.google.com/p/android/issues/detail?id=212591
+ */
+
+android.applicationVariants.all { variant ->
+    // rename output apk based on build variant, version name, and version code
+    variant.outputs.each { output ->
+        def newApkName = "${output.baseName}-v${variant.versionName}-b${variant.versionCode}.apk"
+        output.outputFile = new File(output.outputFile.parent, newApkName)
+    }
+}

@@ -8,6 +8,9 @@ The goal is to showcases my knowledge of Java object oriented programming in And
 - Reactive programming with [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) and 
   [RxAndroid 2](https://github.com/ReactiveX/RxAndroid/tree/2.x)
 - Dependency injection with [Dagger 2](https://github.com/google/dagger/tree/dagger-2.10-rc4)
+- View binding with [Butterknife](https://github.com/JakeWharton/butterknife/tree/butterknife-parent-7.0.1)
+- Networking with [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
+- Mapping with [Google Maps APIs](https://developers.google.com/maps/documentation/android-api/)
 - Testing with [JUnit 4](https://github.com/junit-team/junit4/blob/master/doc/ReleaseNotes4.12.md), 
   [Mockito 2](https://github.com/mockito/mockito/tree/release/2.x), 
   [Robolectric 3](https://github.com/robolectric/robolectric/tree/robolectric-3.3.2), and
@@ -15,10 +18,9 @@ The goal is to showcases my knowledge of Java object oriented programming in And
 - [Clean, modular architecture](https://github.com/android10/Android-CleanArchitecture)
 - [Model-View-Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP) pattern
 - [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (MVVM) pattern
-- Networking with [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
-- Mapping with [Google Maps APIs](https://developers.google.com/maps/documentation/android-api/)
 - Java and Android best practices, including programming patterns/styles
 - Creating readable, focused, and well-documented pull requests
+
 
 ## Application and Features
 
@@ -32,6 +34,39 @@ I kept the application short and simple with no advanced UI for brevity. I am no
 [Yelp Android API](https://github.com/Yelp/yelp-android) so that I am able to demonstrate my knowledge of 
 [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
 
-## Code and Architecture
+
+## Architecture
+
+TODO
+
+
+## Building and Development
+
+A set of tools and scripts are used in this project to keep the code quality high and the building process 
+simple and focused.
+
+#### Static analysis
+
+The following static analysis checks are used to enforce high code quality and compliance to standard Java (and Android) 
+code style and patterns:
+
+- [Checkstyle](http://checkstyle.sourceforge.net/)
+- [Findbugs](http://findbugs.sourceforge.net/)
+- [PMD](https://pmd.github.io/)
+- [Android lint](http://tools.android.com/tips/lint)
+
+You can read more about these tools in this 
+[blog post](http://vincentbrison.com/2014/07/19/how-to-improve-quality-and-syntax-of-your-android-code/).
+
+#### IDE
+
+TODO
+
+#### Gradle
+
+TODO
+
+
+## LICENSE
 
 TODO
