@@ -6,7 +6,6 @@ Thumbs.db
 
 # built application files
 *.apk
-*.ap_
 
 # files for the dex VM
 *.dex
@@ -32,7 +31,6 @@ local.properties
 /*/local.properties
 /*/out
 /*/*/build
-build
 /*/*/production
 *.iml
 *.iws
