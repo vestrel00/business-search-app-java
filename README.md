@@ -103,6 +103,7 @@ For example, to generate Javadocs for MVP Debug build variant,
 ./gradlew generateMvpDebugJavaDoc
 ```
 
+
 ## Code Styling
 
 Read *STYLE.md* 
