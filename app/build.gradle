@@ -16,6 +16,8 @@
 
 apply plugin: 'com.android.application'
 apply from: "$rootDir/config/building/apk_name.gradle"
+apply from: "$rootDir/config/documentation/javadoc.gradle"
+apply from: "$rootDir/config/coverage/jacoco.gradle"
 apply from: "$rootDir/config/quality/quality.gradle"
 
 android {

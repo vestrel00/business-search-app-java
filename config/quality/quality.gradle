@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+/**
+ * Checks quality and style of code.
+ *
+ * Reference: http://vincentbrison.com/2014/07/19/how-to-improve-quality-and-syntax-of-your-android-code/
+ */
+
 apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'

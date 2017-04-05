@@ -40,12 +40,16 @@ I kept the application short and simple with no advanced UI for brevity. I am no
 TODO
 
 
-## Building and Development
+## Tests
 
-A set of tools and scripts are used in this project to keep the code quality high and the building process 
-simple and focused.
+TODO
 
-#### Static analysis
+#### Jacoco Test Report
+
+TODO
+
+
+## Static Analysis
 
 The following static analysis checks are used to enforce high code quality and compliance to standard Java (and Android) 
 code style and patterns:
@@ -58,15 +62,47 @@ code style and patterns:
 You can read more about these tools in this 
 [blog post](http://vincentbrison.com/2014/07/19/how-to-improve-quality-and-syntax-of-your-android-code/).
 
-#### IDE
+To run all static analysis checks for all build variants,
 
-TODO
+```
+./gradlew checkQuality
+```
 
-#### Gradle
+The above will run checkstyle, findbugs, PMD, and lint for all build variants. 
+To run build variant specific static analysis checks,
 
-TODO
+```
+./gradlew check<build_variant>Quality
+```
+
+For example, to run static analysis checks for the MVP Debug build variant,
+
+```
+./gradlew checkMvpDebugQuality
+```
+
+You may run individual static analysis checks separately. 
+To see the list of all gradle tasks,
+
+```
+./gradlew tasks
+```
 
 
-## LICENSE
+## Javadoc
 
-TODO
+Javadoc is available. To generate the Javadocs, 
+
+```
+./gradlew generate<build_variant>JavaDoc
+```
+
+For example, to generate Javadocs for MVP Debug build variant,
+
+```
+./gradlew generateMvpDebugJavaDoc
+```
+
+## Code Styling
+
+Read *STYLE.md* 

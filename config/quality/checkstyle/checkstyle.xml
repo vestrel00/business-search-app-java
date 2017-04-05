@@ -40,12 +40,11 @@
     </module>
 
     <module name="TreeWalker">
-
-        <!-- See http://checkstyle.sf.net/config_sizes.html !-->
         <!-- Checks for long lines. !-->
+        <!-- See http://checkstyle.sf.net/config_sizes.html !-->
         <module name="LineLength">
             <property name="ignorePattern" value="^$"/>
-            <property name="max" value="120"/>
+            <property name="max" value="100"/>
         </module>
 
         <!-- Checks the number of methods declared in each type. This includes the number of each scope !-->
@@ -456,8 +455,5 @@
         <!-- Checks for unused import statements. !-->
         <!-- See http://checkstyle.sf.net/config_import.html !-->
         <module name="UnusedImports"/>
-
     </module>
-
-
 </module>

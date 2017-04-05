@@ -15,9 +15,9 @@
  */
 
 /**
- * Purpose: Produce better named Android APKs and remove unnecessary unaligned APKs.
+ * Produces better named Android APKs and remove unnecessary unaligned APKs.
  *
- * Reference:
+ * References:
  * http://www.jayway.com/2015/03/13/producing-better-named-android-apks-with-gradle/
  * https://code.google.com/p/android/issues/detail?id=212591
  */
