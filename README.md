@@ -25,14 +25,51 @@ The goal is to showcases my knowledge of Java object oriented programming in And
 ## Application and Features
 
 Using the [Yelp Fusion (v3) REST API](https://www.yelp.com/developers/documentation/v3), 
-I have created a simple Yelp search application with the following features:
+I have created a simple Yelp search application that is able to:
 
-- Display places around the user's current location in a list and map views
-- Show more details on a specific place when clicking on a list or map item
+- display places around the user's current location in a list and map views
+- show more details on a specific place when clicking on a list or map item
 
-I kept the application short and simple with no advanced UI for brevity. I am not using the 
-[Yelp Android API](https://github.com/Yelp/yelp-android) so that I am able to demonstrate my knowledge of 
-[Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
+**Notes**
+
+- I kept the application short and simple with no styling and no advanced UI for brevity. 
+- I am not using the [Yelp Android API](https://github.com/Yelp/yelp-android) so that I am able to 
+  demonstrate my knowledge of [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
+
+#### Building and Running the Application
+
+There are several ways to build and run the application.
+
+**Using Gradle**
+
+You may build the application binary (APK) using gradle in the command line,
+
+```
+./gradlew assemble<build_variant>
+```
+
+For example, to build the MVP Debug build variant,
+
+```
+./gradlew assembleMvpDebug
+```
+
+Then install the build using adb,
+
+```
+adb install <path_to_apk>
+```
+
+For example, to install the MVP Debug build variant,
+
+```
+adb install app/build/outputs/apk/mvp-debug-v0.0.1-b1.apk
+```
+
+**Using Android Studio**
+
+You may *open* this project in Android Studio (v2.x) and run the application by selecting
+Run -> Run 'app'
 
 
 ## Architecture
@@ -42,11 +79,66 @@ TODO
 
 ## Tests
 
-TODO
+#### Unit Tests
+
+JUnit4, Mockito2, and Robolectric3 are used for unit testing Android and pure Java classes.
+
+You may run build variant specific unit tests,
+
+```
+./gradlew test<build_variant>UnitTest
+```
+
+For example, to run unit tests for the MVP Debug build variant,
+
+```
+./gradlew testMvpDebugUnitTest
+```
+You may run all unit tests,
+
+```
+./gradlew test
+```
+
+#### Instrumentation Tests
+
+Espresso is used for instrumentation tests.
+
+You may run build variant specific instrumentation tests,
+
+```
+./gradlew connected<build_variant>AndroidTest
+```
+
+For example, to run instrumentation tests for the MVP Debug build variant,
+
+```
+./gradlew connectedMvpDebugAndroidTest
+```
+
+You may run all instrumentation tests,
+
+```
+./gradlew connectedAndroidTest
+```
+
+Note that only debug build types support Android instrumentations tests.
 
 #### Jacoco Test Report
 
-TODO
+Code coverage is available through the use of the jacoco plugin.
+
+You may generate build variant specific test reports,
+
+```
+.gradlew jacoco<build_variant>TestReport
+```
+
+For example, to test reports for the MVP Debug build variant,
+
+```
+./gradlew jacocoMvpDebugTestReport
+```
 
 
 ## Static Analysis
@@ -62,14 +154,8 @@ code style and patterns:
 You can read more about these tools in this 
 [blog post](http://vincentbrison.com/2014/07/19/how-to-improve-quality-and-syntax-of-your-android-code/).
 
-To run all static analysis checks for all build variants,
-
-```
-./gradlew checkQuality
-```
-
 The above will run checkstyle, findbugs, PMD, and lint for all build variants. 
-To run build variant specific static analysis checks,
+You may run build variant specific static analysis checks,
 
 ```
 ./gradlew check<build_variant>Quality
@@ -79,6 +165,13 @@ For example, to run static analysis checks for the MVP Debug build variant,
 
 ```
 ./gradlew checkMvpDebugQuality
+```
+
+
+You may also run all static analysis checks for all build variants,
+
+```
+./gradlew checkQuality
 ```
 
 You may run individual static analysis checks separately. 

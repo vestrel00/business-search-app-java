@@ -32,6 +32,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    /**
+     * Defines the mvp and mvvm flavors. These flavors are functionally exactly the same except
+     * they are written using a different pattern/architecture. Understood that this is not what
+     * flavors are for. This is just for educational purposes only. I could have created separate
+     * main git branches for mvp and mvvm but this allowed me to include all source in 1 main branch.
+     */
     productFlavors {
         /**
          * App flavor written using MVP pattern
