@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-include ':presentation-core'
-include ':presentation-mvp'
-include ':presentation-mvvm'
-include ':domain'
-include ':data'
+apply from: "$rootDir/config/building/apk_name.gradle"
+
+android.applicationVariants.all { variant ->
+    renameApkForVariant(variant)
+}

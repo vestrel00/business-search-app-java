@@ -24,8 +24,8 @@ apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
-def configDir = "$rootDir/config/quality"
-def reportsDir = "$buildDir/reports"
+ext.configDir = "$rootDir/config/quality"
+ext.reportsDir = "$buildDir/reports"
 
 // CHECK QUALITY TASK
 check.dependsOn 'checkQuality'
@@ -37,7 +37,7 @@ task checkQuality(type: CheckQuality) {
     description = "Runs all static analysis checks on all build variants."
 }
 
-android.applicationVariants.all { variant ->
+def checkQualityTaskForVariant(variant) {
     def buildVariant = variant.name.capitalize();
     def checkQualityVariant = "check${buildVariant}Quality";
 
@@ -72,7 +72,7 @@ task findbugs(type: FindBugs) {
     description = "Finds bugs in bytecode on all build variants."
 }
 
-android.applicationVariants.all { variant ->
+def findbugsTaskForVariant(variant) {
     def buildVariant = variant.name.capitalize();
     def findBugsDependency = "assemble${buildVariant}";
     def findBugsVariant = "findbugs${buildVariant}";
@@ -85,7 +85,7 @@ android.applicationVariants.all { variant ->
         effort = "max"
         reportLevel = "high"
         excludeFilter = new File("$configDir/findbugs/findbugs-filter.xml")
-        classes = files("$rootDir/app/build/intermediates/classes")
+        classes = files("$buildDir/intermediates/classes")
 
         source 'src'
         include '**/*.java'
@@ -143,4 +143,9 @@ android {
         htmlOutput file("$reportsDir/lint/lint-result.html")
         xmlOutput file("$reportsDir/lint/lint-result.xml")
     }
+}
+
+ext {
+    checkQualityTaskForVariant = this.&checkQualityTaskForVariant
+    findbugsTaskForVariant = this.&findbugsTaskForVariant
 }

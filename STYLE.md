@@ -184,57 +184,6 @@ public class MyClassTest {
 }
 ```
 
-#### Testing Private Fields
-
-Reflection is used to get a privately declared and constructed member variable instead of
-providing getters or modifying the access modifier of the field to be tested 
-(and annotating with @VisibleForTesting). 
-
-```java
-public class MyClass {
-    private final MyCallback myCallback = new MyCallback() {
-        @Override
-        public void onSuccess() {
-            ...
-        }
-    };
-}
-
-public class MyClassTest {
-
-    @InjectMocks
-    private MyClass testSubject;
-    
-    private MyCallback myCallback;
-    
-    @Before
-    public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
-        myCallback = (MyCallback) Whitebox.getInternalState(testSubject, "myCallback");
-    }
-    
-    @Test
-    public void myCallback_onSuccess_whenThisIsTheCase_thenDoesThis() {...}
-}
-```
-
-This is done in order to keep the codebase cleaner and shorter. The caveat is that renaming these fields
-may break tests. However, this is a small price to pay for a better world. 
-
-A couple of things to note:
-
-- "Why do we need to test private members?" -> "Saying that private methods do not need testing is 
-  like saying a car is fine as long as it drives okay" :)
-- This is not a question about access modifiers. Rather, the whole point of using the Whitebox is 
-  simply to avoid increasing visibility solely for testing purposes. 
-
-The test method names of private field method tests are prepended with the name of the private field.
-
-```java
-@Test
-public void myCallback_onSuccess_whenThisIsTheCase_thenDoesThis() {...}
-```
-
 
 ## Checkstyle Style Enforcement and Static Analysis
 

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+apply from: "$rootDir/config/dependencies/dependencies.gradle"
+
 buildscript {
     repositories {
         jcenter()
@@ -27,8 +29,10 @@ buildscript {
 }
 
 allprojects {
-    repositories {
-        jcenter()
-        mavenCentral()
+    ext {
+        androidApplicationId = 'com.vestrel00.yelpsearch'
+        androidVersionCode = 1
+        androidVersionName = "1.0.0"
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
 }

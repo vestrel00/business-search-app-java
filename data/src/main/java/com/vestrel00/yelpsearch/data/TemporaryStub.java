@@ -14,8 +14,14 @@
  * limitations under the License.
  */
 
-include ':presentation-core'
-include ':presentation-mvp'
-include ':presentation-mvvm'
-include ':domain'
-include ':data'
+package com.vestrel00.yelpsearch.data;
+
+/**
+ * Created by estrellv on 4/6/17.
+ */
+public class TemporaryStub {
+
+    public int data() {
+        return 1;
+    }
+}

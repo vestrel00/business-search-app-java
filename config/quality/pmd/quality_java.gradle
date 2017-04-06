@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-include ':presentation-core'
-include ':presentation-mvp'
-include ':presentation-mvvm'
-include ':domain'
-include ':data'
+apply from: "$rootDir/config/quality/quality.gradle"
+
+android.applicationVariants.all { variant ->
+    checkQualityTaskForVariant(variant)
+    findbugsTaskForVariant(variant)
+}

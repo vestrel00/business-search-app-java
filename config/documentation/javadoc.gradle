@@ -28,7 +28,7 @@ if (JavaVersion.current().isJava8Compatible()) {
     }
 }
 
-android.applicationVariants.all { variant ->
+def javadocTaskForVariant(variant) {
     task("generate${variant.name.capitalize()}JavaDoc", type: Javadoc) {
         group = "Documentation"
         description = "Generates Javadoc for $variant.name."
@@ -37,4 +37,8 @@ android.applicationVariants.all { variant ->
         ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
         classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
     }
+}
+
+ext{
+    javadocTaskForVariant = this.&javadocTaskForVariant
 }

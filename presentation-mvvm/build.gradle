@@ -1,0 +1,80 @@
+/*
+ * Copyright 2017 Vandolf Estrellado
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+apply from: "$rootDir/config/building/apk_name_application.gradle"
+apply from: "$rootDir/config/documentation/javadoc_application.gradle"
+apply from: "$rootDir/config/coverage/jacoco_application.gradle"
+apply from: "$rootDir/config/quality/quality_application.gradle"
+apply from: "$rootDir/config/signing/signing.gradle"
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode rootProject.ext.androidVersionCode
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+}
+
+dependencies {
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+
+    compile project(':presentation-core')
+    compile project(':domain')
+    compile project(':data')
+
+    apt presentationDependencies.daggerCompiler
+
+    compile presentationDependencies.dagger
+    compile presentationDependencies.butterKnife
+    compile presentationDependencies.appCompat
+    compile presentationDependencies.recyclerView
+    compile presentationDependencies.rxJava
+    compile presentationDependencies.rxAndroid
+
+    provided presentationDependencies.javaxAnnotation
+
+    androidTestCompile presentationTestDependencies.mockitoCore
+    androidTestCompile presentationTestDependencies.mockitoAndroid
+    androidTestCompile(presentationTestDependencies.espressoCore) {
+        exclude group: 'com.android.support'
+    }
+    androidTestCompile(presentationTestDependencies.espressoRunner) {
+        exclude group: 'com.android.support'
+    }
+
+    // Development
+    compile developmentDependencies.leakCanary
+}

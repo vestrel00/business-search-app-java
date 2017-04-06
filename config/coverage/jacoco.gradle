@@ -15,7 +15,7 @@
  */
 
 /**
- * Produces code coverage reports.
+ * Generate code coverage reports.
  *
  * Reference: https://docs.gradle.org/current/userguide/jacoco_plugin.html
  */
@@ -26,40 +26,52 @@ jacoco {
     toolVersion = "0.7.6.201602180812"
 }
 
-def excluded = [
-        '**/di/*',
-        '**/R.class',
-        '**/R$*.class',
-        '**/*$ViewBinder*.*',
-        '**/*_*MembersInjector*',
-        '**/*_*Factory*',
-        '**/Dagger*',
-        '**/AutoParcel_*',
-        '**/BuildConfig*',
-        '**/Manifest*.*',
-]
-
-android.applicationVariants.all { variant ->
-    def buildVariant = variant.name.capitalize();
-    def jacocoTestReportDependency = "test${buildVariant}UnitTest";
-    def jacocoVariant = "jacoco${buildVariant}TestReport";
+def jacocoTaskFor(String flavor, String buildType, String buildVariant) {
+    def jacocoTestReportDependency = !buildType.isEmpty() ? "test${buildVariant}UnitTest" : "test";
+    def jacocoVariant = "jacoco${buildVariant.capitalize()}TestReport";
 
     task(jacocoVariant, type: JacocoReport, dependsOn: "${jacocoTestReportDependency}") {
         group = "Code Coverage"
         description = "Generate Jacoco test reports for the ${buildVariant} build variant."
 
-        def classesFlavorDir = "${buildDir}/intermediates/classes/${variant.flavorName}/${variant.buildType.name}";
+        def classesDir;
+
+        if (!buildType.isEmpty() && !flavor.isEmpty()) {
+            classesDir = "${buildDir}/intermediates/classes/${flavor}/${buildType}"
+        } else if (!buildType.isEmpty()) {
+            classesDir = "${buildDir}/intermediates/classes/${buildType}"
+        } else {
+            classesDir = "${buildDir}/classes/${buildVariant}"
+        }
+
         classDirectories = fileTree(
-                dir: classesFlavorDir,
-                excludes: excluded
+                dir: classesDir,
+                excludes: [
+                        '**/di/*',
+                        '**/R.class',
+                        '**/R$*.class',
+                        '**/*$ViewBinder*.*',
+                        '**/*_*MembersInjector*',
+                        '**/*_*Factory*',
+                        '**/Dagger*',
+                        '**/AutoParcel_*',
+                        '**/BuildConfig*',
+                        '**/Manifest*.*',
+                ]
         )
 
         def coverageSourceDirs = [
                 "${projectDir}/src/main/java",
-                "${projectDir}/src/${variant.flavorName}/java",
-                "${projectDir}/src/${variant.buildType.name}/java",
-                "${projectDir}/src/${buildVariant}/java",
+                "${projectDir}/src/${buildVariant}/java"
         ]
+
+        if (!buildType.isEmpty()) {
+            coverageSourceDirs += "${projectDir}/src/${buildType}/java";
+            if (!flavor.isEmpty()) {
+                coverageSourceDirs += "${projectDir}/src/${flavor}/java";
+            }
+        }
+
         additionalSourceDirs = files(coverageSourceDirs)
         sourceDirectories = files(coverageSourceDirs)
         executionData = files("${buildDir}/jacoco/${jacocoTestReportDependency}.exec")
@@ -69,8 +81,24 @@ android.applicationVariants.all { variant ->
             xml.enabled = false
             html.enabled = true
             html {
-                destination "${buildDir}/reports/jacoco/${buildVariant}/jacoco${buildVariant}TestReport.html"
+                destination "${buildDir}/reports/jacoco/${buildVariant}/jacoco${buildVariant.capitalize()}TestReport.html"
             }
         }
     }
+}
+
+def jacocoTaskForVariant(variant) {
+    def flavor = variant.flavorName
+    def buildType = variant.buildType.name
+    def buildVariant = flavor.capitalize() + buildType.capitalize()
+    jacocoTaskFor(flavor, buildType, buildVariant)
+}
+
+def jacocoTaskForBuildVariant(buildVariant) {
+    jacocoTaskFor("", "", buildVariant)
+}
+
+ext {
+    jacocoTaskForVariant = this.&jacocoTaskForVariant
+    jacocoTaskForBuildVariant = this.&jacocoTaskForBuildVariant
 }
