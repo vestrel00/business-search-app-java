@@ -26,7 +26,7 @@ jacoco {
     toolVersion = "0.7.6.201602180812"
 }
 
-def jacocoTaskFor(String flavor, String buildType, String buildVariant) {
+def generateJacocoTask(String flavor, String buildType, String buildVariant) {
     def jacocoTestReportDependency = !buildType.isEmpty() ? "test${buildVariant}UnitTest" : "test";
     def jacocoVariant = "jacoco${buildVariant.capitalize()}TestReport";
 
@@ -87,18 +87,18 @@ def jacocoTaskFor(String flavor, String buildType, String buildVariant) {
     }
 }
 
-def jacocoTaskForVariant(variant) {
+def generateJacocoTaskForVariant(variant) {
     def flavor = variant.flavorName
     def buildType = variant.buildType.name
     def buildVariant = flavor.capitalize() + buildType.capitalize()
-    jacocoTaskFor(flavor, buildType, buildVariant)
+    generateJacocoTask(flavor, buildType, buildVariant)
 }
 
-def jacocoTaskForBuildVariant(buildVariant) {
-    jacocoTaskFor("", "", buildVariant)
+def generateJacocoTaskForBuildVariant(buildVariant) {
+    generateJacocoTask("", "", buildVariant)
 }
 
 ext {
-    jacocoTaskForVariant = this.&jacocoTaskForVariant
-    jacocoTaskForBuildVariant = this.&jacocoTaskForBuildVariant
+    generateJacocoTaskForVariant = this.&generateJacocoTaskForVariant
+    generateJacocoTaskForBuildVariant = this.&generateJacocoTaskForBuildVariant
 }

@@ -15,9 +15,7 @@
  */
 
 /**
- * Generates Javadocs.
- *
- * Reference: https://mtdevuk.com/2014/10/23/how-to-generate-javadoc-for-android-using-gradle/
+ * Generates Javadoc.
  */
 
 if (JavaVersion.current().isJava8Compatible()) {
@@ -28,17 +26,17 @@ if (JavaVersion.current().isJava8Compatible()) {
     }
 }
 
-def javadocTaskForVariant(variant) {
-    task("generate${variant.name.capitalize()}JavaDoc", type: Javadoc) {
+def generateJavadocTaskForVariant(variant) {
+    task("${variant.name}JavaDoc", type: Javadoc) {
         group = "Documentation"
-        description = "Generates Javadoc for $variant.name."
+        description = "Generates Javadoc for ${variant.name}."
 
         source = variant.javaCompile.source
-        ext.androidJar = "${android.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+        classpath = files(variant.javaCompile.classpath.files)
+        destinationDir = file("$buildDir/docs/javadoc/${variant.name}")
     }
 }
 
 ext{
-    javadocTaskForVariant = this.&javadocTaskForVariant
+    generateJavadocTaskForVariant = this.&generateJavadocTaskForVariant
 }

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/documentation/javadoc.gradle"
+apply from: "$rootDir/config/building/apk_name_android.gradle"
 
 android.applicationVariants.all { variant ->
-    javadocTaskForVariant(variant)
+    renameApkForVariant(variant)
 }

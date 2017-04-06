@@ -17,5 +17,5 @@
 apply from: "$rootDir/config/coverage/jacoco.gradle"
 
 android.applicationVariants.all { variant ->
-    jacocoTaskForVariant(variant)
+    generateJacocoTaskForVariant(variant)
 }

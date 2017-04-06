@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/quality/quality.gradle"
+apply from: "$rootDir/config/documentation/javadoc.gradle"
 
 android.applicationVariants.all { variant ->
-    checkQualityTaskForVariant(variant)
-    findbugsTaskForVariant(variant)
+    generateJavadocTaskForVariant(variant)
 }

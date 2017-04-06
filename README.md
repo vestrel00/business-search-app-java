@@ -187,13 +187,13 @@ To see the list of all gradle tasks,
 Javadoc is available. To generate the Javadocs, 
 
 ```
-./gradlew generate<build_variant>JavaDoc
+./gradlew <build_variant>JavaDoc
 ```
 
 For example, to generate Javadocs for MVP Debug build variant,
 
 ```
-./gradlew generateMvpDebugJavaDoc
+./gradlew mvpDebugJavaDoc
 ```
 
 

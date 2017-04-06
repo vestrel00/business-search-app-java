@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/documentation/javadoc.gradle"
+apply from: "$rootDir/config/coverage/jacoco.gradle"
 
 android.libraryVariants.all { variant ->
-    javadocTaskForVariant(variant)
+    generateJacocoTaskForVariant(variant)
 }

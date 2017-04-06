@@ -17,10 +17,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
-apply from: "$rootDir/config/building/apk_name_application.gradle"
-apply from: "$rootDir/config/documentation/javadoc_application.gradle"
-apply from: "$rootDir/config/coverage/jacoco_application.gradle"
-apply from: "$rootDir/config/quality/quality_application.gradle"
+apply from: "$rootDir/config/building/apk_name_android_application.gradle"
+apply from: "$rootDir/config/documentation/javadoc_android_application.gradle"
+apply from: "$rootDir/config/coverage/jacoco_android_application.gradle"
+apply from: "$rootDir/config/quality/quality_android_application.gradle"
 apply from: "$rootDir/config/signing/signing.gradle"
 
 android {

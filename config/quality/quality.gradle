@@ -15,7 +15,7 @@
  */
 
 /**
- * Checks quality and style of code.
+ * Checks quality and style of Java code.
  *
  * Reference: http://vincentbrison.com/2014/07/19/how-to-improve-quality-and-syntax-of-your-android-code/
  */
@@ -86,6 +86,7 @@ def findbugsTaskForVariant(variant) {
         reportLevel = "high"
         excludeFilter = new File("$configDir/findbugs/findbugs-filter.xml")
         classes = files("$buildDir/intermediates/classes")
+        // TODO "${buildDir}/intermediates/classes/${flavor}/${buildType}"
 
         source 'src'
         include '**/*.java'
@@ -130,18 +131,6 @@ task pmd(type: Pmd) {
         html {
             destination "$reportsDir/pmd/pmd.html"
         }
-    }
-}
-
-// LINT
-android {
-    lintOptions {
-        abortOnError true
-        xmlReport false
-        htmlReport true
-        lintConfig file("$configDir/lint/lint.xml")
-        htmlOutput file("$reportsDir/lint/lint-result.html")
-        xmlOutput file("$reportsDir/lint/lint-result.xml")
     }
 }
 

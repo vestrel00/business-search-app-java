@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/coverage/jacoco.gradle"
+apply from: "$rootDir/config/quality/quality.gradle"
+apply from: "$rootDir/config/quality/quality_android.gradle"
 
-generateJacocoTaskForBuildVariant("main")
+android.libraryVariants.all { variant ->
+    checkQualityTaskForVariant(variant)
+    findbugsTaskForVariant(variant)
+}
