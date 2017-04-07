@@ -27,7 +27,7 @@ jacoco {
 }
 
 def generateJacocoTask(String flavor, String buildType, String buildVariant) {
-    def jacocoTestReportDependency = !buildType.isEmpty() ? "test${buildVariant.capitalize()}UnitTest" : "test";
+    def jacocoTestReportDependency = buildType.isEmpty() ?  "test" : "test${buildVariant.capitalize()}UnitTest";
     def jacocoVariant = "jacoco${buildVariant.capitalize()}TestReport";
 
     task(jacocoVariant, type: JacocoReport, dependsOn: "${jacocoTestReportDependency}") {
@@ -35,7 +35,6 @@ def generateJacocoTask(String flavor, String buildType, String buildVariant) {
         description = "Generate Jacoco test reports for the ${buildVariant} build variant."
 
         def classesDir;
-
         if (!buildType.isEmpty() && !flavor.isEmpty()) {
             classesDir = "${buildDir}/intermediates/classes/${flavor}/${buildType}"
         } else if (!buildType.isEmpty()) {
@@ -94,11 +93,7 @@ def generateJacocoTaskForVariant(variant) {
     generateJacocoTask(flavor, buildType, buildVariant)
 }
 
-def generateJacocoTaskForBuildVariant(buildVariant) {
-    generateJacocoTask("", "", buildVariant)
-}
-
 ext {
+    generateJacocoTask = this.&generateJacocoTask
     generateJacocoTaskForVariant = this.&generateJacocoTaskForVariant
-    generateJacocoTaskForBuildVariant = this.&generateJacocoTaskForBuildVariant
 }

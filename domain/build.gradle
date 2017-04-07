@@ -18,6 +18,7 @@ apply plugin: 'java'
 
 apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
 apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
+apply from: "$rootDir/config/quality/quality_java_main.gradle"
 
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.7

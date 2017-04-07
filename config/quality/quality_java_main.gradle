@@ -14,17 +14,7 @@
  * limitations under the License.
  */
 
-/**
- * Checks quality and style of Android code.
- */
+apply from: "$rootDir/config/quality/quality.gradle"
 
-android {
-    lintOptions {
-        abortOnError true
-        xmlReport false
-        htmlReport true
-        lintConfig file("$rootDir/config/quality/lint/lint.xml")
-        htmlOutput file("$buildDir/reports/lint/lint-result.html")
-        xmlOutput file("$buildDir/reports/lint/lint-result.xml")
-    }
-}
+generateFindbugsTask("", "", "main")
+generateCheckQualityTask("main", false)

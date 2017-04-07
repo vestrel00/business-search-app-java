@@ -16,8 +16,6 @@
 
 /**
  * Checks quality and style of Java code.
- *
- * Reference: http://vincentbrison.com/2014/07/19/how-to-improve-quality-and-syntax-of-your-android-code/
  */
 
 apply plugin: 'checkstyle'
@@ -37,17 +35,25 @@ task checkQuality(type: CheckQuality) {
     description = "Runs all static analysis checks on all build variants."
 }
 
-def checkQualityTaskForVariant(variant) {
-    def buildVariant = variant.name.capitalize();
-    def checkQualityVariant = "check${buildVariant}Quality";
+def generateCheckQualityTask(String buildVariant, boolean withLint) {
+    buildVariant = buildVariant.capitalize();
 
-    task(checkQualityVariant, type: CheckQuality,
-            dependsOn: ['checkstyle', 'pmd', "lint${buildVariant}", "findbugs${buildVariant}"]) {
+    def checkQualityVariant = "check${buildVariant}Quality";
+    def checkQualityVariantTaskDependencies = ['checkstyle', 'pmd', "findbugs${buildVariant}"]
+    if (withLint) {
+        checkQualityVariantTaskDependencies += "lint${buildVariant}"
+    }
+
+    task(checkQualityVariant, type: CheckQuality, dependsOn: checkQualityVariantTaskDependencies) {
         group = "Static Analysis"
-        description = "Runs all static analysis checks on the ${buildVariant} build."
+        description = "Runs all static analysis checks on the ${buildVariant} build variant."
     }
 
     checkQuality.dependsOn "${checkQualityVariant}"
+}
+
+def generateCheckQualityTaskForVariant(variant) {
+    generateCheckQualityTask(variant.name, true)
 }
 
 // CHECKSTYLE
@@ -72,22 +78,33 @@ task findbugs(type: FindBugs) {
     description = "Finds bugs in bytecode on all build variants."
 }
 
-def findbugsTaskForVariant(variant) {
-    def buildVariant = variant.name.capitalize();
-    def findBugsDependency = "assemble${buildVariant}";
-    def findBugsVariant = "findbugs${buildVariant}";
+// Findbugs requires the binary to be assembled first, which takes time. This is why it should
+// be broken up into separate tasks per build variant to give the option to avoid executing
+// this for all build variants
+def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
+    def findBugsDependency = buildType.isEmpty() ? "assemble" : "assemble${buildVariant.capitalize()}";
+    def findBugsVariant = "findbugs${buildVariant.capitalize()}";
 
-    task("${findBugsVariant}", type: FindBugs, dependsOn: "${findBugsDependency}") {
+    task("${findBugsVariant}", type: FindBugs, dependsOn: "${findBugsDependency}", overwrite: true) {
         group = "Static Analysis"
-        description = "Finds bugs in bytecode on the ${buildVariant} build."
+        description = "Finds bugs in bytecode on the ${buildVariant} build variant."
 
         ignoreFailures = false
         effort = "max"
         reportLevel = "high"
         excludeFilter = new File("$configDir/findbugs/findbugs-filter.xml")
-        classes = files("$buildDir/intermediates/classes")
-        // TODO "${buildDir}/intermediates/classes/${flavor}/${buildType}"
 
+        def classesDir;
+        if (!buildType.isEmpty() && !flavor.isEmpty()) {
+            classesDir = "${buildDir}/intermediates/classes/${flavor}/${buildType}"
+        } else if (!buildType.isEmpty()) {
+            classesDir = "${buildDir}/intermediates/classes/${buildType}"
+        } else {
+            classesDir = "${buildDir}/classes/${buildVariant}"
+        }
+
+        classes = files(classesDir)
+        classpath = files(classesDir)
         source 'src'
         include '**/*.java'
         exclude '**/gen/**'
@@ -102,11 +119,16 @@ def findbugsTaskForVariant(variant) {
                 destination "$reportsDir/findbugs/${buildVariant}/findbugs.html"
             }
         }
-
-        classpath = files()
     }
 
     tasks.findbugs.dependsOn "${findBugsVariant}"
+}
+
+def generateFindbugsTaskForVariant(variant) {
+    def flavor = variant.flavorName
+    def buildType = variant.buildType.name
+    def buildVariant = flavor + (flavor.isEmpty() ? buildType : buildType.capitalize())
+    generateFindbugsTask(flavor, buildType, buildVariant)
 }
 
 // PMD
@@ -135,6 +157,8 @@ task pmd(type: Pmd) {
 }
 
 ext {
-    checkQualityTaskForVariant = this.&checkQualityTaskForVariant
-    findbugsTaskForVariant = this.&findbugsTaskForVariant
+    generateCheckQualityTask = this.&generateCheckQualityTask
+    generateCheckQualityTaskForVariant = this.&generateCheckQualityTaskForVariant
+    generateFindbugsTask = this.&generateFindbugsTask
+    generateFindbugsTaskForVariant = this.&generateFindbugsTaskForVariant
 }

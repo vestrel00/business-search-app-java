@@ -314,10 +314,10 @@
             !-->
             <property name="allowUndeclaredRTE" value="false"/>
             <property name="allowThrowsTagsForSubclasses" value="false"/>
-            <property name="allowMissingParamTags" value="false"/>
+            <property name="allowMissingParamTags" value="true"/>
             <property name="allowMissingThrowsTags" value="false"/>
             <property name="allowMissingReturnTag" value="false"/>
-            <property name="allowMissingJavadoc" value="false"/>
+            <property name="allowMissingJavadoc" value="true"/>
             <property name="allowMissingPropertyJavadoc" value="true"/>
             <property name="logLoadErrors" value="true"/>
             <property name="suppressLoadErrors" value="false"/>
