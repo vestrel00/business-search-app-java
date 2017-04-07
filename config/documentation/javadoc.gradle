@@ -26,17 +26,25 @@ if (JavaVersion.current().isJava8Compatible()) {
     }
 }
 
-def generateJavadocTaskForVariant(variant) {
-    task("${variant.name}JavaDoc", type: Javadoc) {
+def generateJavadocTask(buildVariant, sourceSets, classpathFiles) {
+    task("${buildVariant}JavaDoc", type: Javadoc) {
         group = "Documentation"
-        description = "Generates Javadoc for ${variant.name}."
+        description = "Generates Javadoc for ${buildVariant}."
 
-        source = variant.javaCompile.source
-        classpath = files(variant.javaCompile.classpath.files)
-        destinationDir = file("$buildDir/docs/javadoc/${variant.name}")
+        source = sourceSets
+        destinationDir = file("$buildDir/docs/javadoc/${buildVariant}")
+
+        if (classpathFiles != null) {
+            classpath = files(classpathFiles)
+        }
     }
 }
 
+def generateJavadocTaskForVariant(variant) {
+    generateJavadocTask(variant.name, variant.javaCompile.source, variant.javaCompile.classpath.files)
+}
+
 ext{
+    generateJavadocTask = this.&generateJavadocTask
     generateJavadocTaskForVariant = this.&generateJavadocTaskForVariant
 }
