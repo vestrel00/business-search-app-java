@@ -16,6 +16,12 @@
 
 apply plugin: 'application'
 
+apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
+apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
+apply from: "$rootDir/config/quality/quality_java_main.gradle"
+
+mainClassName = "com.vestrel00.yelpsearch.presentation.noui.Application"
+
 dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
     def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies

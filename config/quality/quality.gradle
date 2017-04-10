@@ -106,6 +106,7 @@ def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
         classes = files(classesDir)
         classpath = files(classesDir)
         source 'src'
+
         include '**/*.java'
         exclude '**/gen/**'
 
