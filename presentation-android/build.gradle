@@ -27,6 +27,7 @@ dependencies {
     def presentationAndroidDependencies = rootProject.ext.presentationAndroidDependencies
     def presentationAndroidTestDependencies = rootProject.ext.presentationAndroidTestDependencies
 
+    apt presentationAndroidDependencies.autoValue
     apt presentationAndroidDependencies.butterKnifeAnnotationProcessor
 
     compile project(':domain')
@@ -39,6 +40,7 @@ dependencies {
     compile presentationAndroidDependencies.butterKnife
 
     provided presentationAndroidDependencies.javaxAnnotation
+    provided presentationAndroidDependencies.autoValue
 
     testCompile presentationAndroidTestDependencies.junit
     testCompile presentationAndroidTestDependencies.assertj

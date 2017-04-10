@@ -15,6 +15,7 @@
  */
 
 apply plugin: 'application'
+apply plugin: "net.ltgt.apt"
 
 apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
 apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
