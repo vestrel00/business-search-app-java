@@ -21,14 +21,14 @@
 android {
     signingConfigs {
         debug {
-            storeFile rootProject.file('config/signing/keystore/debug.jks')
+            storeFile rootProject.file('config/android/signing/keystore/debug.jks')
             storePassword 'androiddebug'
             keyAlias 'androiddebug'
             keyPassword 'androiddebug'
         }
 
         release {
-            storeFile rootProject.file('config/signing/keystore/release.jks')
+            storeFile rootProject.file('config/android/signing/keystore/release.jks')
             storePassword 'androidrelease'
             keyAlias 'androidrelease'
             keyPassword 'androidrelease'

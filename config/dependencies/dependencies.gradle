@@ -39,7 +39,7 @@ ext {
 
     // Android Libraries
     rxAndroidVersion = '2.0.1'
-    butterKnifeVersion = '7.0.1'
+    butterKnifeVersion = '8.5.1'
     androidSupportVersion = '25.2.0'
 
     // Java Testing
@@ -55,8 +55,6 @@ ext {
     // Android Development
     leakCanaryVersion = '1.5'
 
-    // TODO configure proguard for dependencies
-
     presentationJavaDependencies = [
             rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
@@ -66,15 +64,16 @@ ext {
     presentationJavaTestDependencies = [
             junit      : "junit:junit:${jUnitVersion}",
             assertj    : "org.assertj:assertj-core:${assertJVersion}",
-            mockitoCore   : "org.mockito:mockito-core:${mockitoVersion}",
+            mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
     ]
 
     presentationAndroidDependencies = presentationJavaDependencies + [
-            rxAndroid      : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            appCompat      : "com.android.support:appcompat-v7:$androidSupportVersion",
-            recyclerView   : "com.android.support:recyclerview-v7:${androidSupportVersion}",
-            butterKnife    : "com.jakewharton:butterknife:${butterKnifeVersion}",
-            leakCanary     : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+            rxAndroid                     : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            appCompat                     : "com.android.support:appcompat-v7:$androidSupportVersion",
+            recyclerView                  : "com.android.support:recyclerview-v7:${androidSupportVersion}",
+            butterKnife                   : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterKnifeAnnotationProcessor: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+            leakCanary                    : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
     ]
 
     presentationAndroidTestDependencies = presentationJavaTestDependencies + [

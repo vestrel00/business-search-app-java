@@ -25,30 +25,7 @@ android {
 }
 
 dependencies {
-    def presentationAndroidDependencies = rootProject.ext.presentationAndroidDependencies
-    def presentationAndroidTestDependencies = rootProject.ext.presentationAndroidTestDependencies
-
     compile project(':presentation-android')
     compile project(':domain')
     compile project(':data')
-
-    compile presentationAndroidDependencies.butterKnife
-    compile presentationAndroidDependencies.appCompat
-    compile presentationAndroidDependencies.recyclerView
-    compile presentationAndroidDependencies.rxJava
-    compile presentationAndroidDependencies.rxAndroid
-
-    provided presentationAndroidDependencies.javaxAnnotation
-
-    androidTestCompile presentationAndroidTestDependencies.mockitoCore
-    androidTestCompile presentationAndroidTestDependencies.mockitoAndroid
-    androidTestCompile(presentationAndroidTestDependencies.espressoCore) {
-        exclude group: 'com.android.support'
-    }
-    androidTestCompile(presentationAndroidTestDependencies.espressoRunner) {
-        exclude group: 'com.android.support'
-    }
-
-    // Development (Debug Only)
-    debugCompile presentationAndroidDependencies.leakCanary
 }

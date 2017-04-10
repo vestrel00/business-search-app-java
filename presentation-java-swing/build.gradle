@@ -16,7 +16,7 @@
 
 apply from: "$rootDir/config/java/application.gradle"
 
-mainClassName = "com.vestrel00.yelpsearch.presentation.noui.Application"
+mainClassName = "com.vestrel00.yelpsearch.presentation.swing.Application"
 
 dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies

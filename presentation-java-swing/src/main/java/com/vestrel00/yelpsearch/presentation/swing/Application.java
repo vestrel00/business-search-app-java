@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/quality/quality.gradle"
-apply from: "$rootDir/config/quality/quality_android.gradle"
+package com.vestrel00.yelpsearch.presentation.noui;
 
-android.libraryVariants.all { variant ->
-    generateCheckstyleTaskForVariant(variant)
-    generatePMDTaskForVariant(variant)
-    generateFindbugsTaskForVariant(variant)
-    generateCheckQualityTaskForVariant(variant)
+/**
+ * Created by estrellv on 4/10/17.
+ */
+public final class Application {
+
+    private Application() {
+    }
+
+    public static void main(String[] args) {
+    }
 }

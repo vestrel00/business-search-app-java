@@ -22,6 +22,8 @@ apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
+apply from: "$rootDir/config/building/utils.gradle"
+
 ext.configDir = "$rootDir/config/quality"
 ext.reportsDir = "$buildDir/reports"
 
@@ -39,7 +41,11 @@ def generateCheckQualityTask(String buildVariant, boolean withLint) {
     buildVariant = buildVariant.capitalize();
 
     def checkQualityVariant = "check${buildVariant}Quality";
-    def checkQualityVariantTaskDependencies = ['checkstyle', 'pmd', "findbugs${buildVariant}"]
+    def checkQualityVariantTaskDependencies = [
+            "check${buildVariant}Style",
+            "pmd${buildVariant}",
+            "find${buildVariant}Bugs"
+    ]
     if (withLint) {
         checkQualityVariantTaskDependencies += "lint${buildVariant}"
     }
@@ -56,36 +62,105 @@ def generateCheckQualityTaskForVariant(variant) {
     generateCheckQualityTask(variant.name, true)
 }
 
-// CHECKSTYLE TODO flavorize
-task checkstyle(type: Checkstyle) {
+// CHECKSTYLE
+task checkstyle(type: Checkstyle, overwrite: true) {
     group = "Static Analysis"
-    description = "Checks style of source code"
+    description = "Checks style of source code of all build variants."
+}
 
-    configFile file("$configDir/checkstyle/checkstyle.xml")
-    configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
-    configProperties.checkstyleJavaHeaderPath = file("$configDir/checkstyle/java.header").absolutePath
-    configProperties.checkstyleXmlHeaderPath = file("$configDir/checkstyle/xml.header").absolutePath
-    source 'src/main', 'src/test'
-    include '**/*.java'
-    include '**/*.xml'
-    exclude '**/gen/**'
-    classpath = files()
+def generateCheckstyleTask(String flavor, String buildType, String buildVariant) {
+    def checkstyleVariant = "check${buildVariant.capitalize()}Style";
+
+    task(checkstyleVariant, type: Checkstyle, overwrite: true) {
+        group = "Static Analysis"
+        description = "Checks style of source code for ${buildVariant} build variant."
+
+        configFile file("$configDir/checkstyle/checkstyle.xml")
+        configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
+        configProperties.checkstyleJavaHeaderPath = file("$configDir/checkstyle/java.header").absolutePath
+        configProperties.checkstyleXmlHeaderPath = file("$configDir/checkstyle/xml.header").absolutePath
+
+        source resolveSourceDirs(flavor, buildType, buildVariant)
+        classpath = files(resolveClassesDir(flavor, buildType, buildVariant))
+        include '**/*.java'
+        include '**/*.xml'
+        exclude '**/gen/**'
+
+        reports {
+            xml.enabled = false
+            html.enabled = true
+            xml {
+                destination "$reportsDir/checkstyle/${buildVariant}/${checkstyleVariant}.xml"
+            }
+            html {
+                destination "$reportsDir/checkstyle/${buildVariant}/${checkstyleVariant}.html"
+            }
+        }
+    }
+
+    tasks.checkstyle.dependsOn checkstyleVariant
+}
+
+def generateCheckstyleTaskForVariant(variant) {
+    def flavor = variant.flavorName
+    def buildType = variant.buildType.name
+    def buildVariant = flavor + (flavor.isEmpty() ? buildType : buildType.capitalize())
+    generateCheckstyleTask(flavor, buildType, buildVariant)
+}
+
+// PMD
+task pmd(type: Pmd, overwrite: true) {
+    group = "Static Analysis"
+    description = "Finds bugs in source code on all build variants."
+}
+
+def generatePMDTask(String flavor, String buildType, String buildVariant) {
+    def pmdVariant = "pmd${buildVariant.capitalize()}";
+
+    task(pmdVariant, type: Pmd, overwrite: true) {
+        group = "Static Analysis"
+        description = "Finds bugs in source code on the {$buildVariant} build variant."
+
+        ignoreFailures = false
+        ruleSetFiles = files("$configDir/pmd/pmd-ruleset.xml")
+        ruleSets = []
+
+        source resolveSourceDirs(flavor, buildType, buildVariant)
+        classpath = files(resolveClassesDir(flavor, buildType, buildVariant))
+        include '**/*.java'
+        exclude '**/gen/**'
+
+        reports {
+            xml.enabled = false
+            html.enabled = true
+            xml {
+                destination "$reportsDir/pmd/${buildVariant}/${pmdVariant}.xml"
+            }
+            html {
+                destination "$reportsDir/pmd/${buildVariant}/${pmdVariant}.html"
+            }
+        }
+    }
+}
+
+def generatePMDTaskForVariant(variant) {
+    def flavor = variant.flavorName
+    def buildType = variant.buildType.name
+    def buildVariant = flavor + (flavor.isEmpty() ? buildType : buildType.capitalize())
+    generatePMDTask(flavor, buildType, buildVariant)
 }
 
 // FINDBUGS
-task findbugs(type: FindBugs) {
+task findbugs(type: FindBugs, overwrite: true) {
     group = "Static Analysis"
     description = "Finds bugs in bytecode on all build variants."
 }
 
-// Findbugs requires the binary to be assembled first, which takes time. This is why it should
-// be broken up into separate tasks per build variant to give the option to avoid executing
-// this for all build variants
 def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
     def findBugsDependency = buildType.isEmpty() ? "assemble" : "assemble${buildVariant.capitalize()}";
-    def findBugsVariant = "findbugs${buildVariant.capitalize()}";
+    def findBugsVariant = "find${buildVariant.capitalize()}Bugs";
 
-    task("${findBugsVariant}", type: FindBugs, dependsOn: "${findBugsDependency}", overwrite: true) {
+    task(findBugsVariant, type: FindBugs, dependsOn: "${findBugsDependency}", overwrite: true) {
         group = "Static Analysis"
         description = "Finds bugs in bytecode on the ${buildVariant} build variant."
 
@@ -114,15 +189,15 @@ def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
             xml.enabled = true
             html.enabled = false
             xml {
-                destination "$reportsDir/findbugs/${buildVariant}/findbugs.xml"
+                destination "$reportsDir/findbugs/${buildVariant}/${findBugsVariant}.xml"
             }
             html {
-                destination "$reportsDir/findbugs/${buildVariant}/findbugs.html"
+                destination "$reportsDir/findbugs/${buildVariant}/${findBugsVariant}.html"
             }
         }
     }
 
-    tasks.findbugs.dependsOn "${findBugsVariant}"
+    tasks.findbugs.dependsOn findBugsVariant
 }
 
 def generateFindbugsTaskForVariant(variant) {
@@ -132,34 +207,13 @@ def generateFindbugsTaskForVariant(variant) {
     generateFindbugsTask(flavor, buildType, buildVariant)
 }
 
-// PMD TODO flavorize
-task pmd(type: Pmd) {
-    group = "Static Analysis"
-    description = "Finds bugs in source code on all build variants"
-
-    ignoreFailures = false
-    ruleSetFiles = files("$configDir/pmd/pmd-ruleset.xml")
-    ruleSets = []
-
-    source 'src'
-    include '**/*.java'
-    exclude '**/gen/**'
-
-    reports {
-        xml.enabled = false
-        html.enabled = true
-        xml {
-            destination "$reportsDir/pmd/pmd.xml"
-        }
-        html {
-            destination "$reportsDir/pmd/pmd.html"
-        }
-    }
-}
-
 ext {
     generateCheckQualityTask = this.&generateCheckQualityTask
     generateCheckQualityTaskForVariant = this.&generateCheckQualityTaskForVariant
+    generateCheckstyleTask = this.&generateCheckstyleTask
+    generateCheckstyleTaskForVariant = this.&generateCheckstyleTaskForVariant
+    generatePMDTask = this.&generatePMDTask
+    generatePMDTaskForVariant = this.&generatePMDTaskForVariant
     generateFindbugsTask = this.&generateFindbugsTask
     generateFindbugsTaskForVariant = this.&generateFindbugsTaskForVariant
 }

@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 
-apply plugin: 'java-library'
-
-apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
-apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
-apply from: "$rootDir/config/quality/quality_java_main.gradle"
+apply from: "$rootDir/config/java/library.gradle"
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies

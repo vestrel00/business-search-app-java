@@ -28,11 +28,19 @@ jacoco {
     toolVersion = "0.7.6.201602180812"
 }
 
+task jacocoTestReport(type: JacocoReport, overwrite: true) {
+    group = "Code Coverage"
+    description = "Generate Jacoco test reports for all build variants."
+
+    // required to avoid null pointer in this tasks' constructor
+    executionData = files()
+}
+
 def generateJacocoTask(String flavor, String buildType, String buildVariant, Collection<String> excludeClassDirs) {
-    def jacocoTestReportDependency = buildType.isEmpty() ?  "test" : "test${buildVariant.capitalize()}UnitTest";
+    def jacocoTestReportDependency = buildType.isEmpty() ? "test" : "test${buildVariant.capitalize()}UnitTest";
     def jacocoVariant = "jacoco${buildVariant.capitalize()}TestReport";
 
-    task(jacocoVariant, type: JacocoReport, dependsOn: "${jacocoTestReportDependency}") {
+    task(jacocoVariant, type: JacocoReport, dependsOn: "${jacocoTestReportDependency}", overwrite: true) {
         group = "Code Coverage"
         description = "Generate Jacoco test reports for the ${buildVariant} build variant."
 
@@ -45,17 +53,19 @@ def generateJacocoTask(String flavor, String buildType, String buildVariant, Col
         )
         additionalSourceDirs = files(coverageSourceDirs)
         sourceDirectories = files(coverageSourceDirs)
-        executionData = files("${buildDir}/jacoco/${jacocoTestReportDependency}.exec")
+        executionData = files("${buildDir}/jacoco/${buildVariant}/${jacocoVariant}.exec")
 
         reports {
             csv.enabled = false
             xml.enabled = false
             html.enabled = true
             html {
-                destination "${buildDir}/reports/jacoco/${buildVariant}/jacoco${buildVariant.capitalize()}TestReport.html"
+                destination "${buildDir}/reports/jacoco/${buildVariant}/${jacocoVariant}.html"
             }
         }
     }
+
+    tasks.jacocoTestReport.dependsOn jacocoVariant
 }
 
 def generateJacocoTaskForVariant(variant, excludeClassDirs) {

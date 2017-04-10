@@ -27,6 +27,8 @@ dependencies {
     def presentationAndroidDependencies = rootProject.ext.presentationAndroidDependencies
     def presentationAndroidTestDependencies = rootProject.ext.presentationAndroidTestDependencies
 
+    apt presentationAndroidDependencies.butterKnifeAnnotationProcessor
+
     compile project(':domain')
     compile project(':data')
 
@@ -38,6 +40,10 @@ dependencies {
 
     provided presentationAndroidDependencies.javaxAnnotation
 
+    testCompile presentationAndroidTestDependencies.junit
+    testCompile presentationAndroidTestDependencies.assertj
+    testCompile presentationAndroidTestDependencies.mockitoCore
+
     androidTestCompile presentationAndroidTestDependencies.mockitoCore
     androidTestCompile presentationAndroidTestDependencies.mockitoAndroid
     androidTestCompile(presentationAndroidTestDependencies.espressoCore) {
@@ -46,4 +52,7 @@ dependencies {
     androidTestCompile(presentationAndroidTestDependencies.espressoRunner) {
         exclude group: 'com.android.support'
     }
+
+    // Development (Debug Only)
+    debugCompile presentationAndroidDependencies.leakCanary
 }

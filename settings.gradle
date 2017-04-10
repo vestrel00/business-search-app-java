@@ -15,6 +15,7 @@
  */
 
 include ':presentation-java-noui'
+include ':presentation-java-swing'
 include ':presentation-android'
 include ':presentation-android-mvp'
 include ':presentation-android-mvvm'

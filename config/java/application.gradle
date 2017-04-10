@@ -14,12 +14,8 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/quality/quality.gradle"
-apply from: "$rootDir/config/quality/quality_android.gradle"
+apply plugin: 'application'
 
-android.libraryVariants.all { variant ->
-    generateCheckstyleTaskForVariant(variant)
-    generatePMDTaskForVariant(variant)
-    generateFindbugsTaskForVariant(variant)
-    generateCheckQualityTaskForVariant(variant)
-}
+apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
+apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
+apply from: "$rootDir/config/quality/quality_java_main.gradle"
