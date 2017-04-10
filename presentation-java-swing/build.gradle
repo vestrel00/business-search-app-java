@@ -22,12 +22,15 @@ dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
     def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
 
-    implementation presentationJavaDependencies.rxJava
-    implementation presentationJavaDependencies.javaxInject
+    compile project(':domain')
+    compile project(':data')
+
+    compile presentationJavaDependencies.rxJava
+    compile presentationJavaDependencies.javaxInject
 
     compileOnly presentationJavaDependencies.javaxAnnotation
 
-    testImplementation presentationJavaTestDependencies.junit
-    testImplementation presentationJavaTestDependencies.assertj
-    testImplementation presentationJavaTestDependencies.mockitoCore
+    testCompile presentationJavaTestDependencies.junit
+    testCompile presentationJavaTestDependencies.assertj
+    testCompile presentationJavaTestDependencies.mockitoCore
 }

@@ -31,6 +31,7 @@ ext {
     javaxInjectVersion = '1'
     javaxAnnotationVersion = '1.3'
     autoValueVersion = '1.4.1'
+    retrofitVersion = '2.2.0'
 
     // Android
     androidBuildToolsVersion = "25.0.2"
@@ -60,7 +61,7 @@ ext {
             rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
-            autoValue : "com.google.auto.value:auto-value:${autoValueVersion}"
+            autoValue      : "com.google.auto.value:auto-value:${autoValueVersion}"
     ]
 
     domainTestDependencies = [
@@ -69,7 +70,9 @@ ext {
             mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
     ]
 
-    dataDependencies = domainDependencies
+    dataDependencies = domainDependencies + [
+            retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    ]
 
     dataTestDependencies = domainTestDependencies
 

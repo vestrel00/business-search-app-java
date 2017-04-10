@@ -18,6 +18,7 @@ The goal is to showcases my knowledge of Java object oriented programming in And
 - [Clean, modular architecture](https://github.com/android10/Android-CleanArchitecture)
 - [Model-View-Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP) pattern
 - [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (MVVM) pattern
+- [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
 - Java and Android best practices, including programming patterns/styles
 - Creating readable, focused, and well-documented pull requests
 

@@ -18,18 +18,19 @@ apply from: "$rootDir/config/java/library.gradle"
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
-    def testDependencies = rootProject.ext.dataTestDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
 
     apt dataDependencies.autoValue
 
     implementation project(':domain')
     implementation dataDependencies.rxJava
     implementation dataDependencies.javaxInject
+    implementation dataDependencies.retrofit
 
     compileOnly dataDependencies.javaxAnnotation
     compileOnly dataDependencies.autoValue
 
-    testImplementation testDependencies.junit
-    testImplementation testDependencies.assertj
-    testImplementation testDependencies.mockitoCore
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.assertj
+    testImplementation dataTestDependencies.mockitoCore
 }
