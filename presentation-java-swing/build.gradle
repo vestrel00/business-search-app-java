@@ -16,14 +16,13 @@
 
 apply from: "$rootDir/config/java/application.gradle"
 
-mainClassName = "com.vestrel00.yelpsearch.presentation.swing.Application"
+mainClassName = "com.vestrel00.yelpsearch.presentation.java.swing.Application"
 
 dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
     def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
 
-    compile project(':domain')
-    compile project(':data')
+    compile project(':presentation-java')
 
     compile presentationJavaDependencies.rxJava
     compile presentationJavaDependencies.javaxInject

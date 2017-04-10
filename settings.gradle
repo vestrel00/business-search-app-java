@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+include ':presentation-java'
 include ':presentation-java-noui'
 include ':presentation-java-swing'
 include ':presentation-android'

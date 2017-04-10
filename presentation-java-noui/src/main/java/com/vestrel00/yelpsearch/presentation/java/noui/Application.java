@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.yelpsearch.presentation.noui;
+package com.vestrel00.yelpsearch.presentation.java.noui;
 
 /**
  * Created by estrellv on 4/10/17.

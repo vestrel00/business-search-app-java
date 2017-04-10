@@ -26,6 +26,4 @@ android {
 
 dependencies {
     compile project(':presentation-android')
-    compile project(':domain')
-    compile project(':data')
 }

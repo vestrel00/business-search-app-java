@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/java/application.gradle"
-
-mainClassName = "com.vestrel00.yelpsearch.presentation.java.noui.Application"
+apply from: "$rootDir/config/java/library.gradle"
 
 dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
     def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
 
-    compile project(':presentation-java')
+    apt presentationJavaDependencies.autoValue
 
-    compile presentationJavaDependencies.rxJava
-    compile presentationJavaDependencies.javaxInject
+    api project(':domain')
+    api project(':data')
+
+    implementation presentationJavaDependencies.rxJava
+    implementation presentationJavaDependencies.javaxInject
 
     compileOnly presentationJavaDependencies.javaxAnnotation
+    compileOnly presentationJavaDependencies.autoValue
 
-    testCompile presentationJavaTestDependencies.junit
-    testCompile presentationJavaTestDependencies.assertj
-    testCompile presentationJavaTestDependencies.mockitoCore
+    testImplementation presentationJavaTestDependencies.junit
+    testImplementation presentationJavaTestDependencies.assertj
+    testImplementation presentationJavaTestDependencies.mockitoCore
 }

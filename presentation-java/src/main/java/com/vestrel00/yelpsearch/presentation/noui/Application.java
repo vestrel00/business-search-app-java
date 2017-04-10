@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/android/application.gradle"
+package com.vestrel00.yelpsearch.presentation.java;
 
-android {
-    defaultConfig {
-        applicationId "com.vestrel00.yelpsearch.presentation.mvvm"
-        versionCode 1
-        versionName '1.0.0'
+/**
+ * Created by estrellv on 4/10/17.
+ */
+public final class Application {
+
+    private Application() {
     }
-}
 
-dependencies {
-    compile project(':presentation-android')
+    public static void main(String[] args) {
+    }
 }
