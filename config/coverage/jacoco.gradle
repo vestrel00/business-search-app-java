@@ -22,11 +22,13 @@
 
 apply plugin: 'jacoco'
 
+apply from: "$rootDir/config/building/utils.gradle"
+
 jacoco {
     toolVersion = "0.7.6.201602180812"
 }
 
-def generateJacocoTask(String flavor, String buildType, String buildVariant) {
+def generateJacocoTask(String flavor, String buildType, String buildVariant, Collection<String> excludeClassDirs) {
     def jacocoTestReportDependency = buildType.isEmpty() ?  "test" : "test${buildVariant.capitalize()}UnitTest";
     def jacocoVariant = "jacoco${buildVariant.capitalize()}TestReport";
 
@@ -34,43 +36,13 @@ def generateJacocoTask(String flavor, String buildType, String buildVariant) {
         group = "Code Coverage"
         description = "Generate Jacoco test reports for the ${buildVariant} build variant."
 
-        def classesDir;
-        if (!buildType.isEmpty() && !flavor.isEmpty()) {
-            classesDir = "${buildDir}/intermediates/classes/${flavor}/${buildType}"
-        } else if (!buildType.isEmpty()) {
-            classesDir = "${buildDir}/intermediates/classes/${buildType}"
-        } else {
-            classesDir = "${buildDir}/classes/${buildVariant}"
-        }
+        def coverageSourceDirs = resolveSourceDirs(flavor, buildType, buildVariant)
+        def classesDir = resolveClassesDir(flavor, buildType, buildVariant)
 
         classDirectories = fileTree(
                 dir: classesDir,
-                excludes: [
-                        '**/di/*',
-                        '**/R.class',
-                        '**/R$*.class',
-                        '**/*$ViewBinder*.*',
-                        '**/*_*MembersInjector*',
-                        '**/*_*Factory*',
-                        '**/Dagger*',
-                        '**/AutoParcel_*',
-                        '**/BuildConfig*',
-                        '**/Manifest*.*',
-                ]
+                excludes: excludeClassDirs
         )
-
-        def coverageSourceDirs = [
-                "${projectDir}/src/main/java",
-                "${projectDir}/src/${buildVariant}/java"
-        ]
-
-        if (!buildType.isEmpty()) {
-            coverageSourceDirs += "${projectDir}/src/${buildType}/java";
-            if (!flavor.isEmpty()) {
-                coverageSourceDirs += "${projectDir}/src/${flavor}/java";
-            }
-        }
-
         additionalSourceDirs = files(coverageSourceDirs)
         sourceDirectories = files(coverageSourceDirs)
         executionData = files("${buildDir}/jacoco/${jacocoTestReportDependency}.exec")
@@ -86,11 +58,11 @@ def generateJacocoTask(String flavor, String buildType, String buildVariant) {
     }
 }
 
-def generateJacocoTaskForVariant(variant) {
+def generateJacocoTaskForVariant(variant, excludeClassDirs) {
     def flavor = variant.flavorName
     def buildType = variant.buildType.name
     def buildVariant = flavor + (flavor.isEmpty() ? buildType : buildType.capitalize())
-    generateJacocoTask(flavor, buildType, buildVariant)
+    generateJacocoTask(flavor, buildType, buildVariant, excludeClassDirs)
 }
 
 ext {

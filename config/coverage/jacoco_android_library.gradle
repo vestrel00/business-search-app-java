@@ -17,5 +17,16 @@
 apply from: "$rootDir/config/coverage/jacoco.gradle"
 
 android.libraryVariants.all { variant ->
-    generateJacocoTaskForVariant(variant)
+    generateJacocoTaskForVariant(variant, [
+            '**/di/*',
+            '**/R.class',
+            '**/R$*.class',
+            '**/*$ViewBinder*.*',
+            '**/*_*MembersInjector*',
+            '**/*_*Factory*',
+            '**/Dagger*',
+            '**/AutoParcel_*',
+            '**/BuildConfig*',
+            '**/Manifest*.*',
+    ])
 }

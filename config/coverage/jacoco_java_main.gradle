@@ -16,4 +16,4 @@
 
 apply from: "$rootDir/config/coverage/jacoco.gradle"
 
-generateJacocoTask("", "", "main")
+generateJacocoTask("", "", "main", [])
