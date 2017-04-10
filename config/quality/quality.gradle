@@ -56,7 +56,7 @@ def generateCheckQualityTaskForVariant(variant) {
     generateCheckQualityTask(variant.name, true)
 }
 
-// CHECKSTYLE
+// CHECKSTYLE TODO flavorize
 task checkstyle(type: Checkstyle) {
     group = "Static Analysis"
     description = "Checks style of source code"
@@ -65,7 +65,7 @@ task checkstyle(type: Checkstyle) {
     configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
     configProperties.checkstyleJavaHeaderPath = file("$configDir/checkstyle/java.header").absolutePath
     configProperties.checkstyleXmlHeaderPath = file("$configDir/checkstyle/xml.header").absolutePath
-    source 'src'
+    source 'src/main', 'src/test'
     include '**/*.java'
     include '**/*.xml'
     exclude '**/gen/**'
@@ -131,7 +131,7 @@ def generateFindbugsTaskForVariant(variant) {
     generateFindbugsTask(flavor, buildType, buildVariant)
 }
 
-// PMD
+// PMD TODO flavorize
 task pmd(type: Pmd) {
     group = "Static Analysis"
     description = "Finds bugs in source code on all build variants"

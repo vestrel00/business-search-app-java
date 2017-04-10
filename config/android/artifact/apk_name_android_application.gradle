@@ -14,21 +14,8 @@
  * limitations under the License.
  */
 
-buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
+apply from: "$rootDir/config/android/artifact/apk_name_android.gradle"
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        // FIXME migrate to using Android Studio 2.4 support for lambdas
-        // See https://developer.android.com/studio/preview/features/java8-support.html
-        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
-    }
+android.applicationVariants.all { variant ->
+    renameApkForVariant(variant)
 }
-
-apply plugin: 'me.tatarka.retrolambda'
-
-apply from: "$rootDir/config/dependencies/dependencies.gradle"

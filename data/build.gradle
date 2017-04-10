@@ -14,66 +14,23 @@
  * limitations under the License.
  */
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        // FIXME migrate to using Android Studio 2.4 support for lambdas
-        // See https://developer.android.com/studio/preview/features/java8-support.html
-        classpath 'me.tatarka:gradle-retrolambda:3.5.0'
-    }
-}
+apply plugin: 'java-library'
 
-apply plugin: 'com.android.library'
-apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: 'me.tatarka.retrolambda'
-
-apply from: "$rootDir/config/documentation/javadoc_android_library.gradle"
-apply from: "$rootDir/config/coverage/jacoco_android_library.gradle"
-apply from: "$rootDir/config/quality/quality_android_library.gradle"
-
-android {
-    defaultPublishConfig "debug"
-
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
-
-    defaultConfig {
-        minSdkVersion rootProject.ext.androidMinSdkVersion
-        targetSdkVersion rootProject.ext.androidTargetSdkVersion
-        versionCode rootProject.ext.androidVersionCode
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    packagingOptions {
-        exclude 'LICENSE.txt'
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/LICENSE'
-    }
-}
+apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
+apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
+apply from: "$rootDir/config/quality/quality_java_main.gradle"
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
     def testDependencies = rootProject.ext.dataTestDependencies
 
-    compile project(':domain')
+    implementation project(':domain')
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.javaxInject
 
-    compile dataDependencies.javaxInject
-    compile dataDependencies.rxJava
-    compile dataDependencies.rxAndroid
-    compile dataDependencies.androidAnnotations
+    compileOnly dataDependencies.javaxAnnotation
 
-    provided dataDependencies.javaxAnnotation
-
-    testCompile testDependencies.junit
-    testCompile testDependencies.assertj
-    testCompile testDependencies.mockitoCore
-    testCompile testDependencies.robolectric
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.assertj
+    testImplementation testDependencies.mockitoCore
 }

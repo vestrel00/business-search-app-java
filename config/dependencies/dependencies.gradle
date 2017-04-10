@@ -26,80 +26,68 @@ allprojects {
 }
 
 ext {
+    // Java
+    rxJavaVersion = '2.0.8'
+    javaxInjectVersion = '1'
+    javaxAnnotationVersion = '1.3'
+
     // Android
     androidBuildToolsVersion = "25.0.2"
     androidMinSdkVersion = 19
     androidTargetSdkVersion = 25
     androidCompileSdkVersion = 25
 
-    // Libraries
-    daggerVersion = '2.9'
-    butterKnifeVersion = '7.0.1'
-    rxJavaVersion = '2.0.8'
+    // Android Libraries
     rxAndroidVersion = '2.0.1'
-    javaxAnnotationVersion = '1.0'
-    javaxInjectVersion = '1'
+    butterKnifeVersion = '7.0.1'
     androidSupportVersion = '25.2.0'
 
-    // Testing
-    robolectricVersion = '3.3.2'
+    // Java Testing
     jUnitVersion = '4.12'
     assertJVersion = '2.6.0'
     mockitoVersion = '2.7.21'
+
+    // Android Testing
+    robolectricVersion = '3.3.2'
     espressoCoreVersion = '2.2.2'
     espressoRunnerVersion = '0.5'
 
-    // Development
+    // Android Development
     leakCanaryVersion = '1.5'
 
-    presentationDependencies = [
-            daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
-            dagger         : "com.google.dagger:dagger:${daggerVersion}",
-            butterKnife    : "com.jakewharton:butterknife:${butterKnifeVersion}",
-            appCompat      : "com.android.support:appcompat-v7:$androidSupportVersion",
-            recyclerView   : "com.android.support:recyclerview-v7:${androidSupportVersion}",
+    // TODO configure proguard for dependencies
+
+    presentationJavaDependencies = [
             rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            rxAndroid      : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
-    ]
-
-    presentationTestDependencies = [
-            mockitoCore   : "org.mockito:mockito-core:${mockitoVersion}",
-            mockitoAndroid: "org.mockito:mockito-android:${mockitoVersion}",
-            espressoCore  : "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}",
-            espressoRunner: "com.android.support.test:runner:${espressoRunnerVersion}",
-    ]
-
-    domainDependencies = [
-            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
-            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
     ]
 
-    domainTestDependencies = [
-            junit      : "junit:junit:${jUnitVersion}",
-            mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
-            assertj    : "org.assertj:assertj-core:${assertJVersion}"
-    ]
-
-    dataDependencies = [
-            daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
-            dagger            : "com.google.dagger:dagger:${daggerVersion}",
-            rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
-            androidAnnotations: "com.android.support:support-annotations:${androidSupportVersion}"
-    ]
-
-    dataTestDependencies = [
+    presentationJavaTestDependencies = [
             junit      : "junit:junit:${jUnitVersion}",
             assertj    : "org.assertj:assertj-core:${assertJVersion}",
-            mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
-            robolectric: "org.robolectric:robolectric:${robolectricVersion}",
+            mockitoCore   : "org.mockito:mockito-core:${mockitoVersion}",
     ]
 
-    developmentDependencies = [
-            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+    presentationAndroidDependencies = presentationJavaDependencies + [
+            rxAndroid      : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            appCompat      : "com.android.support:appcompat-v7:$androidSupportVersion",
+            recyclerView   : "com.android.support:recyclerview-v7:${androidSupportVersion}",
+            butterKnife    : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            leakCanary     : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
     ]
+
+    presentationAndroidTestDependencies = presentationJavaTestDependencies + [
+            mockitoAndroid: "org.mockito:mockito-android:${mockitoVersion}",
+            espressoCore  : "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}",
+            espressoRunner: "com.android.support.test:runner:${espressoRunnerVersion}"
+    ]
+
+    domainDependencies = presentationJavaDependencies
+
+    domainTestDependencies = presentationJavaTestDependencies
+
+    dataDependencies = presentationJavaDependencies
+
+    dataTestDependencies = presentationJavaTestDependencies
 }

@@ -14,21 +14,14 @@
  * limitations under the License.
  */
 
-buildscript {
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
+package com.vestrel00.yelpsearch.presentation.android;
 
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.0'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        // FIXME migrate to using Android Studio 2.4 support for lambdas
-        // See https://developer.android.com/studio/preview/features/java8-support.html
-        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+/**
+ * Created by estrellv on 4/6/17.
+ */
+public class TemporaryStub {
+
+    public int core() {
+        return 1;
     }
 }
-
-apply plugin: 'me.tatarka.retrolambda'
-
-apply from: "$rootDir/config/dependencies/dependencies.gradle"

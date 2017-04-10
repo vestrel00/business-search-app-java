@@ -14,37 +14,22 @@
  * limitations under the License.
  */
 
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
 apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
 apply from: "$rootDir/config/quality/quality_java_main.gradle"
 
-//noinspection GroovyUnusedAssignment
-sourceCompatibility = 1.7
-//noinspection GroovyUnusedAssignment
-targetCompatibility = 1.7
-
-configurations {
-    provided
-}
-
-sourceSets {
-    main {
-        compileClasspath += configurations.provided
-    }
-}
-
 dependencies {
     def domainDependencies = rootProject.ext.domainDependencies
     def domainTestDependencies = rootProject.ext.domainTestDependencies
 
-    provided domainDependencies.javaxAnnotation
+    implementation domainDependencies.rxJava
+    implementation domainDependencies.javaxInject
 
-    compile domainDependencies.javaxInject
-    compile domainDependencies.rxJava
+    compileOnly domainDependencies.javaxAnnotation
 
-    testCompile domainTestDependencies.junit
-    testCompile domainTestDependencies.mockitoCore
-    testCompile domainTestDependencies.assertj
+    testImplementation domainTestDependencies.junit
+    testImplementation domainTestDependencies.assertj
+    testImplementation domainTestDependencies.mockitoCore
 }

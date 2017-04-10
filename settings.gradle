@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-include ':presentation-core'
-include ':presentation-mvp'
-include ':presentation-mvvm'
+include ':presentation-java-noui'
+include ':presentation-android'
+include ':presentation-android-mvp'
+include ':presentation-android-mvvm'
 include ':domain'
 include ':data'
