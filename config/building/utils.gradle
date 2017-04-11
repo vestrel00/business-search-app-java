@@ -44,7 +44,27 @@ def resolveClassesDir(String flavor, String buildType, String buildVariant) {
     }
 }
 
+def removeCheckTaskIf(taskName, taskType) {
+    def checkDependencyTaskName = "${taskName}Test"
+    def checkDependencyTask = tasks.findByName(checkDependencyTaskName)
+
+    // remove all instances of the task
+    tasks.removeIf { task ->
+        task.name.contains(taskName)
+    }
+
+    // redefine deprecated check dependency task (for VerificationTasks)
+    if (checkDependencyTask != null) {
+        // deprecate this check task (unfortunately we are unable to remove it)
+        task(checkDependencyTaskName, type: taskType, overwrite: true) {
+            group = null
+            description = "Deprecated. This does nothing"
+        }
+    }
+}
+
 ext {
     resolveSourceDirs = this.&resolveSourceDirs
     resolveClassesDir = this.&resolveClassesDir
+    removeCheckTaskIf = this.&removeCheckTaskIf
 }

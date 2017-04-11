@@ -28,7 +28,10 @@ jacoco {
     toolVersion = "0.7.6.201602180812"
 }
 
-task jacocoTestReport(type: JacocoReport, overwrite: true) {
+// Remove existing plugin task definitions for Java only modules
+removeCheckTaskIf("jacoco", JacocoReport)
+
+task jacocoTestReport(type: JacocoReport) {
     group = "Code Coverage"
     description = "Generate Jacoco test reports for all build variants."
 
@@ -40,7 +43,7 @@ def generateJacocoTask(String flavor, String buildType, String buildVariant, Col
     def jacocoTestReportDependency = buildType.isEmpty() ? "test" : "test${buildVariant.capitalize()}UnitTest";
     def jacocoVariant = "jacoco${buildVariant.capitalize()}TestReport";
 
-    task(jacocoVariant, type: JacocoReport, dependsOn: "${jacocoTestReportDependency}", overwrite: true) {
+    task(jacocoVariant, type: JacocoReport, dependsOn: "${jacocoTestReportDependency}") {
         group = "Code Coverage"
         description = "Generate Jacoco test reports for the ${buildVariant} build variant."
 

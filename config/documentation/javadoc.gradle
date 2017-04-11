@@ -18,6 +18,8 @@
  * Generates Javadoc.
  */
 
+apply from: "$rootDir/config/building/utils.gradle"
+
 if (JavaVersion.current().isJava8Compatible()) {
     allprojects {
         tasks.withType(Javadoc) {
@@ -26,7 +28,10 @@ if (JavaVersion.current().isJava8Compatible()) {
     }
 }
 
-task javadoc(type: Javadoc, overwrite: true) {
+// Remove existing plugin task definitions for Java only modules
+removeCheckTaskIf("javadoc", Javadoc)
+
+task javadoc(type: Javadoc) {
     group = "Documentation"
     description = "Generates Javadoc for all build variants."
 }
@@ -34,7 +39,7 @@ task javadoc(type: Javadoc, overwrite: true) {
 def generateJavadocTask(buildVariant, sourceSets, classpathFiles) {
     def javadocVariant = "${buildVariant}Javadoc"
 
-    task(javadocVariant, type: Javadoc, overwrite: true) {
+    task(javadocVariant, type: Javadoc) {
         group = "Documentation"
         description = "Generates Javadoc for the ${buildVariant} build variant."
 

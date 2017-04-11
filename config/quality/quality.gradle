@@ -1,3 +1,5 @@
+import java.util.function.Predicate
+
 /*
  * Copyright 2017 Vandolf Estrellado
  *
@@ -40,11 +42,11 @@ task checkQuality(type: CheckQuality) {
 def generateCheckQualityTask(String buildVariant, boolean withLint) {
     buildVariant = buildVariant.capitalize();
 
-    def checkQualityVariant = "check${buildVariant}Quality";
+    def checkQualityVariant = "checkQuality${buildVariant}";
     def checkQualityVariantTaskDependencies = [
-            "check${buildVariant}Style",
+            "checkstyle${buildVariant}",
             "pmd${buildVariant}",
-            "find${buildVariant}Bugs"
+            "findbugs${buildVariant}"
     ]
     if (withLint) {
         checkQualityVariantTaskDependencies += "lint${buildVariant}"
@@ -63,15 +65,18 @@ def generateCheckQualityTaskForVariant(variant) {
 }
 
 // CHECKSTYLE
-task checkstyle(type: Checkstyle, overwrite: true) {
+// Remove existing plugin task definitions for Java only modules
+removeCheckTaskIf("checkstyle", Checkstyle)
+
+task checkstyle(type: Checkstyle) {
     group = "Static Analysis"
     description = "Checks style of source code of all build variants."
 }
 
 def generateCheckstyleTask(String flavor, String buildType, String buildVariant) {
-    def checkstyleVariant = "check${buildVariant.capitalize()}Style";
+    def checkstyleVariant = "checkstyle${buildVariant.capitalize()}";
 
-    task(checkstyleVariant, type: Checkstyle, overwrite: true) {
+    task(checkstyleVariant, type: Checkstyle) {
         group = "Static Analysis"
         description = "Checks style of source code for ${buildVariant} build variant."
 
@@ -109,7 +114,10 @@ def generateCheckstyleTaskForVariant(variant) {
 }
 
 // PMD
-task pmd(type: Pmd, overwrite: true) {
+// Remove existing plugin task definitions for Java only modules
+removeCheckTaskIf("pmd", Pmd)
+
+task pmd(type: Pmd) {
     group = "Static Analysis"
     description = "Finds bugs in source code on all build variants."
 }
@@ -117,7 +125,7 @@ task pmd(type: Pmd, overwrite: true) {
 def generatePMDTask(String flavor, String buildType, String buildVariant) {
     def pmdVariant = "pmd${buildVariant.capitalize()}";
 
-    task(pmdVariant, type: Pmd, overwrite: true) {
+    task(pmdVariant, type: Pmd) {
         group = "Static Analysis"
         description = "Finds bugs in source code on the {$buildVariant} build variant."
 
@@ -151,16 +159,19 @@ def generatePMDTaskForVariant(variant) {
 }
 
 // FINDBUGS
-task findbugs(type: FindBugs, overwrite: true) {
+// Remove existing plugin task definitions for Java only modules
+removeCheckTaskIf("findbugs", FindBugs)
+
+task findbugs(type: FindBugs) {
     group = "Static Analysis"
     description = "Finds bugs in bytecode on all build variants."
 }
 
 def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
-    def findBugsDependency = buildType.isEmpty() ? "assemble" : "assemble${buildVariant.capitalize()}";
-    def findBugsVariant = "find${buildVariant.capitalize()}Bugs";
+    def findbugsDependency = buildType.isEmpty() ? "assemble" : "assemble${buildVariant.capitalize()}";
+    def findbugsVariant = "findbugs${buildVariant.capitalize()}";
 
-    task(findBugsVariant, type: FindBugs, dependsOn: "${findBugsDependency}", overwrite: true) {
+    task(findbugsVariant, type: FindBugs, dependsOn: "${findbugsDependency}") {
         group = "Static Analysis"
         description = "Finds bugs in bytecode on the ${buildVariant} build variant."
 
@@ -189,15 +200,15 @@ def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
             xml.enabled = true
             html.enabled = false
             xml {
-                destination "$reportsDir/findbugs/${buildVariant}/${findBugsVariant}.xml"
+                destination "$reportsDir/findbugs/${buildVariant}/${findbugsVariant}.xml"
             }
             html {
-                destination "$reportsDir/findbugs/${buildVariant}/${findBugsVariant}.html"
+                destination "$reportsDir/findbugs/${buildVariant}/${findbugsVariant}.html"
             }
         }
     }
 
-    tasks.findbugs.dependsOn findBugsVariant
+    tasks.findbugs.dependsOn findbugsVariant
 }
 
 def generateFindbugsTaskForVariant(variant) {
