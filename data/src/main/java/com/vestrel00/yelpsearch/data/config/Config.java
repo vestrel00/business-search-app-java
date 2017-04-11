@@ -25,8 +25,7 @@ import com.google.auto.value.AutoValue;
 public abstract class Config {
 
     /**
-     * YOLO
-     * @return s
+     * @return a new {@link Builder}
      */
     public static Builder builder() {
         return new AutoValue_Config.Builder();
@@ -43,7 +42,7 @@ public abstract class Config {
     abstract String apiAuthClientSecret();
 
     /**
-     * osd
+     * Builder used to create instances of {@link Config}
      */
     @AutoValue.Builder
     public abstract static class Builder {

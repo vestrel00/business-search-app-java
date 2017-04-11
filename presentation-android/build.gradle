@@ -27,8 +27,8 @@ dependencies {
     def presentationAndroidDependencies = rootProject.ext.presentationAndroidDependencies
     def presentationAndroidTestDependencies = rootProject.ext.presentationAndroidTestDependencies
 
-    apt presentationAndroidDependencies.autoValue
-    apt presentationAndroidDependencies.butterKnifeAnnotationProcessor
+    annotationProcessor presentationAndroidDependencies.autoValue
+    annotationProcessor presentationAndroidDependencies.butterKnifeAnnotationProcessor
 
     compile project(':domain')
     compile project(':data')

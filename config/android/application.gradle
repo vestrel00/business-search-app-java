@@ -15,7 +15,6 @@
  */
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 apply from: "$rootDir/config/android/artifact/apk_name_android_application.gradle"
 apply from: "$rootDir/config/documentation/javadoc_android_application.gradle"

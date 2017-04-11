@@ -15,7 +15,6 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.neenbedankt.android-apt'
 
 apply from: "$rootDir/config/documentation/javadoc_android_library.gradle"
 apply from: "$rootDir/config/coverage/jacoco_android_library.gradle"
