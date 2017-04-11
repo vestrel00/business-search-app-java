@@ -17,7 +17,7 @@
 apply plugin: 'com.android.library'
 
 apply from: "$rootDir/config/documentation/javadoc_android_library.gradle"
-apply from: "$rootDir/config/coverage/jacoco_android_library.gradle"
+apply from: "$projectDir/config/coverage/jacoco.gradle"
 apply from: "$rootDir/config/quality/quality_android_library.gradle"
 
 android {

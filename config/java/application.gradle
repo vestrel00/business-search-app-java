@@ -18,6 +18,6 @@ apply plugin: 'application'
 apply plugin: 'idea' // required for net.ltgt.apt plugin
 apply plugin: "net.ltgt.apt"
 
-apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
+apply from: "$projectDir/config/coverage/jacoco.gradle"
 apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
 apply from: "$rootDir/config/quality/quality_java_main.gradle"

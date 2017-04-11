@@ -56,7 +56,7 @@ def generateJacocoTask(String flavor, String buildType, String buildVariant, Col
         )
         additionalSourceDirs = files(coverageSourceDirs)
         sourceDirectories = files(coverageSourceDirs)
-        executionData = files("${buildDir}/jacoco/${buildVariant}/${jacocoVariant}.exec")
+        executionData = files("${buildDir}/jacoco/${jacocoTestReportDependency}.exec")
 
         reports {
             csv.enabled = false
