@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/android/application.gradle"
+package com.vestrel00.business.search.presentation.android;
 
-android {
-    defaultConfig {
-        applicationId "com.vestrel00.business.search.presentation.mvp"
-        versionCode 1
-        versionName '1.0.0'
+/**
+ * Created by estrellv on 4/6/17.
+ */
+public class TemporaryStub {
+
+    public int core() {
+        return 1;
     }
-}
-
-dependencies {
-    compile project(':presentation-android')
 }

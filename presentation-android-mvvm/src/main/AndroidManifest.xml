@@ -15,4 +15,4 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.vestrel00.yelpsearch.presentation.android.mvvm"/>
+<manifest package="com.vestrel00.business.search.presentation.android.mvvm"/>

@@ -1,4 +1,4 @@
-# Yelp Search
+# Business Search
 
 The purpose of this project is to demonstrate how I build Android applications from the ground up.
 It is less about the application content and more about the code (and processes). 
@@ -26,9 +26,10 @@ The goal is to showcases my knowledge of Java object oriented programming in And
 ## Application and Features
 
 Using the [Yelp Fusion (v3) REST API](https://www.yelp.com/developers/documentation/v3/get_started), 
-I have created a simple Yelp search application that is able to:
+I have created a simple business search application that is able to:
 
-- display places around the user's current location in a list and map views
+- display businesses around the user's current location in a list and map views
+- display businesses around a given location in a list and map views
 - show more details on a specific place when clicking on a list or map item
 
 **Notes**

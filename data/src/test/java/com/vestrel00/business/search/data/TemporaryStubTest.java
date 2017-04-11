@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/android/application.gradle"
+package com.vestrel00.business.search.data;
 
-android {
-    defaultConfig {
-        applicationId "com.vestrel00.business.search.presentation.mvp"
-        versionCode 1
-        versionName '1.0.0'
+import org.junit.Test;
+
+/**
+ * Created by estrellv on 4/6/17.
+ */
+public class TemporaryStubTest {
+
+    @Test
+    public void name() throws Exception {
+        // GIVEN
+        // WHEN
+        new TemporaryStub().data();
+        // THEN
     }
-}
-
-dependencies {
-    compile project(':presentation-android')
 }

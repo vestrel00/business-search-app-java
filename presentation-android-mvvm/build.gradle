@@ -18,7 +18,7 @@ apply from: "$rootDir/config/android/application.gradle"
 
 android {
     defaultConfig {
-        applicationId "com.vestrel00.yelpsearch.presentation.mvvm"
+        applicationId "com.vestrel00.business.search.presentation.mvvm"
         versionCode 1
         versionName '1.0.0'
     }
