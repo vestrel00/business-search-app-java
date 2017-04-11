@@ -27,8 +27,6 @@ dependencies {
     compile presentationJavaDependencies.rxJava
     compile presentationJavaDependencies.javaxInject
 
-    compileOnly presentationJavaDependencies.javaxAnnotation
-
     testCompile presentationJavaTestDependencies.junit
     testCompile presentationJavaTestDependencies.assertj
     testCompile presentationJavaTestDependencies.mockitoCore

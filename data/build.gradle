@@ -27,7 +27,6 @@ dependencies {
     implementation dataDependencies.javaxInject
     implementation dataDependencies.retrofit
 
-    compileOnly dataDependencies.javaxAnnotation
     compileOnly dataDependencies.autoValue
 
     testImplementation dataTestDependencies.junit

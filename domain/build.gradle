@@ -25,7 +25,6 @@ dependencies {
     implementation domainDependencies.rxJava
     implementation domainDependencies.javaxInject
 
-    compileOnly domainDependencies.javaxAnnotation
     compileOnly domainDependencies.autoValue
 
     testImplementation domainTestDependencies.junit
