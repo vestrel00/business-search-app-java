@@ -78,7 +78,6 @@ Run -> Run 'app'
 
 TODO
 
-
 ## Tests
 
 #### Unit Tests
@@ -201,4 +200,4 @@ For example, to generate Javadocs for MVP Debug build variant,
 
 ## Code Styling
 
-Read *STYLE.md* 
+For information on code styling and conventions, see *docs/STYLE.md* 

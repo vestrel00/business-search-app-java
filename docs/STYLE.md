@@ -77,7 +77,7 @@ class MyActivity extends Activity {
 
 #### Classes
 
-1. mVar pattern for member variables is not required.
+1. mVar pattern for member variables are not required or recommended.
 2. In each class their organization of declarations should be as follows in order
 
     - Member vars, starting with static finals, static, public, private

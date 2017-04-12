@@ -14,20 +14,15 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data;
+package com.vestrel00.business.search.domain.interactor;
 
-import org.junit.Test;
+import io.reactivex.Single;
 
 /**
- * Created by estrellv on 4/6/17.
+ * A {@link UseCase} that returns a {@link Single} on {@link #execute(K)}.
+ *
+ * @param <K> the type of the input passed as a parameter to {@link #execute(K)}
+ * @param <V> the type of the output of the work done
  */
-public class TemporaryStubTest {
-
-    @Test
-    public void name() throws Exception {
-        // GIVEN
-        // WHEN
-        new TemporaryStub().data();
-        // THEN
-    }
+public interface SingleUseCase<K, V> extends UseCase<K, Single<V>> {
 }

@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.swing;
+package com.vestrel00.business.search.domain.interactor;
 
 /**
- * Created by estrellv on 4/10/17.
+ * Use cases are interactors in terms of "clean architecture", which encapsulate a focused unit of
+ * work. These do not, by themselves, determine where (what thread) the work will be done.
+ *
+ * @param <K> the type of the input passed as a parameter to {@link #execute(K)}
+ * @param <V> the type {@link #execute(V)} returns. E.G. Single, Observable, etc
  */
-public final class Application {
+public interface UseCase<K, V> {
 
-    private Application() {
-    }
-
-    public static void main(String[] args) {
-    }
+    V execute(K params);
 }

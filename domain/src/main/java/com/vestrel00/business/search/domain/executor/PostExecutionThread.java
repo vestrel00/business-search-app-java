@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data;
+package com.vestrel00.business.search.domain.executor;
+
+import io.reactivex.Scheduler;
 
 /**
- * Created by estrellv on 4/6/17.
+ * Provides the scheduler for the post execution thread where the use case output is processed.
+ * This scheduler is typically the main thread.
  */
-public class TemporaryStub {
+public interface PostExecutionThread {
 
-    public int data() {
-        return 1;
-    }
+    Scheduler scheduler();
 }

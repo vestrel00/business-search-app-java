@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search"
+package com.vestrel00.business.search.domain.executor;
 
-include ':presentation-java'
-include ':presentation-java-noui'
-include ':presentation-java-swing-mvp'
-include ':presentation-android'
-include ':presentation-android-mvp'
-include ':presentation-android-mvvm'
-include ':domain'
-include ':data'
+import io.reactivex.Scheduler;
+
+/**
+ * Provides the scheduler for the execution thread where the use case is executed.
+ * This scheduler is typically any background thread.
+ */
+public interface ExecutionThread {
+
+    Scheduler scheduler();
+}

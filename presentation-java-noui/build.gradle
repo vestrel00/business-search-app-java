@@ -25,7 +25,6 @@ dependencies {
     compile project(':presentation-java')
 
     compile presentationJavaDependencies.rxJava
-    compile presentationJavaDependencies.javaxInject
 
     testCompile presentationJavaTestDependencies.junit
     testCompile presentationJavaTestDependencies.assertj

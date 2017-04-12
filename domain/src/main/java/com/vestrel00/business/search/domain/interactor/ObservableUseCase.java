@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search"
+package com.vestrel00.business.search.domain.interactor;
 
-include ':presentation-java'
-include ':presentation-java-noui'
-include ':presentation-java-swing-mvp'
-include ':presentation-android'
-include ':presentation-android-mvp'
-include ':presentation-android-mvvm'
-include ':domain'
-include ':data'
+import io.reactivex.Observable;
+
+/**
+ * A {@link UseCase} that returns an {@link Observable} on {@link #execute(K)}.
+ *
+ * @param <K> the type of the input passed as a parameter to {@link #execute(K)}
+ * @param <V> the type of the output of the work done
+ */
+public interface ObservableUseCase<K, V> extends UseCase<K, Observable<V>> {
+}

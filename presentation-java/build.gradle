@@ -24,7 +24,6 @@ dependencies {
     api project(':data')
 
     implementation presentationJavaDependencies.rxJava
-    implementation presentationJavaDependencies.javaxInject
 
     testImplementation presentationJavaTestDependencies.junit
     testImplementation presentationJavaTestDependencies.assertj

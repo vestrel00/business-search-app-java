@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.domain;
+package com.vestrel00.business.search.presentation.java.swing.mvp;
 
 /**
- * Created by estrellv on 4/6/17.
+ * Created by estrellv on 4/10/17.
  */
-public class TemporaryStub {
+public final class Application {
 
-    public int domain() {
-        return 1;
+    private Application() {
     }
 
+    public static void main(String[] args) {
+    }
 }

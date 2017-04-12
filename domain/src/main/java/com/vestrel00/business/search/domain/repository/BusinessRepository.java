@@ -14,13 +14,24 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search"
+package com.vestrel00.business.search.domain.repository;
 
-include ':presentation-java'
-include ':presentation-java-noui'
-include ':presentation-java-swing-mvp'
-include ':presentation-android'
-include ':presentation-android-mvp'
-include ':presentation-android-mvvm'
-include ':domain'
-include ':data'
+import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.Coordinates;
+import com.vestrel00.business.search.domain.Location;
+
+import java.util.List;
+
+import io.reactivex.Single;
+
+/**
+ * Represents repository for retrieving business data.
+ */
+public interface BusinessRepository {
+
+    Single<List<Business>> aroundCurrentLocation();
+
+    Single<List<Business>> aroundLocation(Location location);
+
+    Single<List<Business>> aroundCoordinates(Coordinates coordinates);
+}
