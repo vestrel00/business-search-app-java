@@ -78,6 +78,18 @@ Run -> Run 'app'
 
 TODO
 
+
+## Development Logs
+
+I have logged all of the work I have done for this project, including:
+
+- the steps taken in creating this project from start to finish (current code) in chronological order
+- my thought process for each step; "why do it this way?", "why use that library?", etc
+- references to issues and pull requests for each step
+ 
+See more in *docs/DEV_LOGS.md*.
+
+
 ## Tests
 
 #### Unit Tests
@@ -200,4 +212,6 @@ For example, to generate Javadocs for MVP Debug build variant,
 
 ## Code Styling
 
-For information on code styling and conventions, see *docs/STYLE.md* 
+Styling is very important in maintaining a codebase with multiple (and large amounts) of contributors.
+A set of code style guidelines are enforced by this project, most of which are checked by
+the static analysis tool checkstyle. Read more in *docs/STYLE.md*.
