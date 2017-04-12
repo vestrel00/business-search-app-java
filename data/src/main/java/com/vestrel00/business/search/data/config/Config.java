@@ -31,9 +31,7 @@ public abstract class Config {
         return new AutoValue_Config.Builder();
     }
 
-    public abstract String apiEndpoint();
-
-    public abstract String apiAuthTokenUrlPath();
+    public abstract String apiBaseUrl();
 
     public abstract String apiAuthGrantType();
 
@@ -46,9 +44,7 @@ public abstract class Config {
      */
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder apiEndpoint(String apiEndpoint);
-
-        public abstract Builder apiAuthTokenUrlPath(String apiAuthTokenUrlPath);
+        public abstract Builder apiBaseUrl(String apiBaseUrl);
 
         public abstract Builder apiAuthGrantType(String apiAuthGrantType);
 

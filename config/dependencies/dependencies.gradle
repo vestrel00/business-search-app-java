@@ -31,6 +31,7 @@ ext {
     javaxInjectVersion = '1'
     autoValueVersion = '1.4.1'
     retrofitVersion = '2.2.0'
+    gsonVersion = '2.8.0'
 
     // Android
     androidBuildToolsVersion = "25.0.2"
@@ -88,7 +89,10 @@ ext {
     domainTestDependencies = javaTestDependencies
 
     dataDependencies = javaDependencies + [
-            retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+            retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitGsonConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitRxJavaAdapter: "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            gson                 : "com.google.code.gson:gson:${gsonVersion}"
     ]
 
     dataTestDependencies = javaTestDependencies
