@@ -29,8 +29,7 @@ dependencies {
 
     annotationProcessor presentationAndroidDependencies.butterKnifeAnnotationProcessor
 
-    compile project(':domain')
-    compile project(':data')
+    compile project(':presentation-java')
 
     compile presentationAndroidDependencies.rxJava
     compile presentationAndroidDependencies.rxAndroid
