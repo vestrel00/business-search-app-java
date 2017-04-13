@@ -26,9 +26,11 @@ dependencies {
     implementation dataDependencies.rxJava
     implementation dataDependencies.javaxInject
     implementation dataDependencies.retrofit
-    implementation dataDependencies.retrofitGsonConverter
     implementation dataDependencies.retrofitRxJavaAdapter
-    implementation dataDependencies.gson
+    implementation dataDependencies.retrofitJacksonConverter
+    implementation dataDependencies.jacksonCore
+    implementation dataDependencies.jacksonDatabind
+    implementation dataDependencies.jacksonAnnotations
 
     compileOnly dataDependencies.autoValue
 

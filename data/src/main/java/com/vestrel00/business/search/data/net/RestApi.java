@@ -14,37 +14,24 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.repository;
+package com.vestrel00.business.search.data.net;
 
-import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
-import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
 import java.util.List;
-
-import javax.inject.Singleton;
 
 import io.reactivex.Single;
 
 /**
- * An implementation of {@link BusinessRepository}.
+ * Client API to the backend REST API.
  */
-@Singleton
-public final class BusinessDataRepository implements BusinessRepository {
+public interface RestApi {
 
-    @Override
-    public Single<List<Business>> aroundCurrentLocation() {
-        return null;
-    }
+    Single<List<BusinessEntity>> aroundCurrentLocation();
 
-    @Override
-    public Single<List<Business>> aroundLocation(Location location) {
-        return null;
-    }
+    Single<List<BusinessEntity>> aroundLocation(Location location);
 
-    @Override
-    public Single<List<Business>> aroundCoordinates(Coordinates coordinates) {
-        return null;
-    }
+    Single<List<BusinessEntity>> aroundCoordinates(Coordinates coordinates);
 }

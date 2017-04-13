@@ -22,16 +22,18 @@ import com.google.auto.value.AutoValue;
  * Contains configuration values used throughout the data module.
  */
 @AutoValue
-public abstract class Config {
+public abstract class DataConfig {
 
     /**
      * @return a new {@link Builder}
      */
     public static Builder builder() {
-        return new AutoValue_Config.Builder();
+        return new AutoValue_DataConfig.Builder();
     }
 
     public abstract String apiBaseUrl();
+
+    public abstract String apiAuthTokenUrlPath();
 
     public abstract String apiAuthGrantType();
 
@@ -40,11 +42,13 @@ public abstract class Config {
     public abstract String apiAuthClientSecret();
 
     /**
-     * Builder used to create instances of {@link Config}
+     * Builder used to create instances of {@link DataConfig}
      */
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder apiBaseUrl(String apiBaseUrl);
+        public abstract Builder apiBaseUrl(String apiEndpoint);
+
+        public abstract Builder apiAuthTokenUrlPath(String apiAuthTokenUrlPath);
 
         public abstract Builder apiAuthGrantType(String apiAuthGrantType);
 
@@ -52,6 +56,6 @@ public abstract class Config {
 
         public abstract Builder apiAuthClientSecret(String apiAuthClientSecret);
 
-        public abstract Config build();
+        public abstract DataConfig build();
     }
 }
