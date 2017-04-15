@@ -16,6 +16,10 @@
 
 package com.vestrel00.business.search.data.repository;
 
+import com.vestrel00.business.search.data.entity.mapper.BusinessEntityMapper;
+import com.vestrel00.business.search.data.entity.mapper.CoordinatesEntityMapper;
+import com.vestrel00.business.search.data.entity.mapper.LocationEntityMapper;
+import com.vestrel00.business.search.data.repository.datasource.BusinessDataStoreProvider;
 import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
@@ -23,6 +27,7 @@ import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Single;
@@ -33,18 +38,35 @@ import io.reactivex.Single;
 @Singleton
 public final class BusinessDataRepository implements BusinessRepository {
 
-    @Override
-    public Single<List<Business>> aroundCurrentLocation() {
-        return null;
+    private final BusinessDataStoreProvider dataStoreProvider;
+    private final BusinessEntityMapper businessEntityMapper;
+    private final LocationEntityMapper locationEntityMapper;
+    private final CoordinatesEntityMapper coordinatesEntityMapper;
+
+    @Inject
+    public BusinessDataRepository(BusinessDataStoreProvider dataStoreProvider,
+                                  BusinessEntityMapper businessEntityMapper,
+                                  LocationEntityMapper locationEntityMapper,
+                                  CoordinatesEntityMapper coordinatesEntityMapper) {
+        this.dataStoreProvider = dataStoreProvider;
+        this.businessEntityMapper = businessEntityMapper;
+        this.locationEntityMapper = locationEntityMapper;
+        this.coordinatesEntityMapper = coordinatesEntityMapper;
     }
 
     @Override
     public Single<List<Business>> aroundLocation(Location location) {
-        return null;
+        return dataStoreProvider.get()
+                .aroundLocation(locationEntityMapper.map(location))
+                .map(businessEntityMapper::map)
+                .toList();
     }
 
     @Override
     public Single<List<Business>> aroundCoordinates(Coordinates coordinates) {
-        return null;
+        return dataStoreProvider.get()
+                .aroundCoordinates(coordinatesEntityMapper.map(coordinates))
+                .map(businessEntityMapper::map)
+                .toList();
     }
 }

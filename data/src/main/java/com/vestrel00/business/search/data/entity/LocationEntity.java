@@ -16,6 +16,8 @@
 
 package com.vestrel00.business.search.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 
 /**
@@ -27,6 +29,7 @@ import com.google.auto.value.AutoValue;
  * </ul>
  */
 @AutoValue
+@JsonDeserialize(builder = AutoValue_LocationEntity.Builder.class)
 public abstract class LocationEntity {
 
     /**
@@ -36,14 +39,19 @@ public abstract class LocationEntity {
         return new AutoValue_LocationEntity.Builder();
     }
 
+    @JsonProperty("address1")
     public abstract String address();
 
+    @JsonProperty("city")
     public abstract String city();
 
+    @JsonProperty("state")
     public abstract String state();
 
+    @JsonProperty("zip_code")
     public abstract String zipCode();
 
+    @JsonProperty("country")
     public abstract String country();
 
     /**
@@ -52,14 +60,19 @@ public abstract class LocationEntity {
     @AutoValue.Builder
     public abstract static class Builder {
 
+        @JsonProperty("address1")
         public abstract Builder address(String address);
 
+        @JsonProperty("city")
         public abstract Builder city(String city);
 
+        @JsonProperty("state")
         public abstract Builder state(String state);
 
+        @JsonProperty("zip_code")
         public abstract Builder zipCode(String zipCode);
 
+        @JsonProperty("country")
         public abstract Builder country(String country);
 
         public abstract LocationEntity build();

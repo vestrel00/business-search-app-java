@@ -28,13 +28,13 @@ import javax.inject.Singleton;
  * Transforms from {@link BusinessEntity} to {@link Business} and vice versa.
  */
 @Singleton
-final class LocationEntityMapper {
+public final class LocationEntityMapper {
 
     @Inject
-    LocationEntityMapper() {
+    public LocationEntityMapper() {
     }
 
-    Location map(LocationEntity locationEntity) {
+    public Location map(LocationEntity locationEntity) {
         return Location.builder()
                 .address(locationEntity.address())
                 .city(locationEntity.city())
@@ -44,7 +44,7 @@ final class LocationEntityMapper {
                 .build();
     }
 
-    LocationEntity map(Location location) {
+    public LocationEntity map(Location location) {
         return LocationEntity.builder()
                 .address(location.address())
                 .city(location.city())

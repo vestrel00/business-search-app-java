@@ -28,20 +28,20 @@ import javax.inject.Singleton;
  * Transforms from {@link BusinessEntity} to {@link Business} and vice versa.
  */
 @Singleton
-final class CoordinatesEntityMapper {
+public final class CoordinatesEntityMapper {
 
     @Inject
-    CoordinatesEntityMapper() {
+    public CoordinatesEntityMapper() {
     }
 
-    Coordinates map(CoordinatesEntity coordinatesEntity) {
+    public Coordinates map(CoordinatesEntity coordinatesEntity) {
         return Coordinates.builder()
                 .latitude(coordinatesEntity.latitude())
                 .longitude(coordinatesEntity.longitude())
                 .build();
     }
 
-    CoordinatesEntity map(Coordinates coordinates) {
+    public CoordinatesEntity map(Coordinates coordinates) {
         return CoordinatesEntity.builder()
                 .latitude(coordinates.latitude())
                 .longitude(coordinates.longitude())

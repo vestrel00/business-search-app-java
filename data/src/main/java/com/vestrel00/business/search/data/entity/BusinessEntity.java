@@ -16,19 +16,17 @@
 
 package com.vestrel00.business.search.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
+
+import java.util.List;
 
 /**
  * Contains business information.
- * <p>
- * Objects that are not marked with Nullable will have non-null default values.
- * <ul>
- * <li>String -> ""</li>
- * <li>Location -> non null Location object with default values</li>
- * <li>Coordinates -> non null Coordinates object with default values</li>
- * </ul>
  */
 @AutoValue
+@JsonDeserialize(builder = AutoValue_BusinessEntity.Builder.class)
 public abstract class BusinessEntity {
 
     /**
@@ -38,12 +36,33 @@ public abstract class BusinessEntity {
         return new AutoValue_BusinessEntity.Builder();
     }
 
+    public abstract String id();
+
+    @JsonProperty("name")
     public abstract String name();
 
+    @JsonProperty("display_phone")
     public abstract String phoneNumber();
 
+    @JsonProperty("image_url")
+    public abstract String imageUrl();
+
+    @JsonProperty("price")
+    public abstract String price();
+
+    @JsonProperty("categories")
+    public abstract List<String> categories();
+
+    @JsonProperty("rating")
+    public abstract float rating();
+
+    @JsonProperty("is_closed")
+    public abstract boolean closed();
+
+    @JsonProperty("location")
     public abstract LocationEntity location();
 
+    @JsonProperty("coordinates")
     public abstract CoordinatesEntity coordinates();
 
     /**
@@ -52,12 +71,36 @@ public abstract class BusinessEntity {
     @AutoValue.Builder
     public abstract static class Builder {
 
+        @JsonProperty("id")
+        public abstract Builder id(String id);
+
+        @JsonProperty("name")
         public abstract Builder name(String name);
 
+        @JsonProperty("display_phone")
         public abstract Builder phoneNumber(String phoneNumber);
 
+        @JsonProperty("image_url")
+        public abstract Builder imageUrl(String imageUrl);
+
+        @JsonProperty("price")
+        public abstract Builder price(String price);
+
+        @JsonProperty("categories")
+        public abstract Builder categories(List<String> categories);
+
+        @JsonProperty("rating")
+        public abstract Builder rating(float rating);
+
+        @JsonProperty("is_closed")
+        public abstract Builder closed(boolean closed);
+
+        @JsonProperty("location")
+        @JsonDeserialize(builder = LocationEntity.Builder.class)
         public abstract Builder location(LocationEntity location);
 
+        @JsonProperty("coordinates")
+        @JsonDeserialize(builder = CoordinatesEntity.Builder.class)
         public abstract Builder coordinates(CoordinatesEntity coordinates);
 
         public abstract BusinessEntity build();

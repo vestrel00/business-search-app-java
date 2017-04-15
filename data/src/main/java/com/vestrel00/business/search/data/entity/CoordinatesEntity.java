@@ -16,12 +16,15 @@
 
 package com.vestrel00.business.search.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 
 /**
  * Contains coordinates.
  */
 @AutoValue
+@JsonDeserialize(builder = AutoValue_CoordinatesEntity.Builder.class)
 public abstract class CoordinatesEntity {
 
     /**
@@ -31,8 +34,10 @@ public abstract class CoordinatesEntity {
         return new AutoValue_CoordinatesEntity.Builder();
     }
 
+    @JsonProperty("latitude")
     public abstract double latitude();
 
+    @JsonProperty("longitude")
     public abstract double longitude();
 
     /**
@@ -41,8 +46,10 @@ public abstract class CoordinatesEntity {
     @AutoValue.Builder
     public abstract static class Builder {
 
+        @JsonProperty("latitude")
         public abstract Builder latitude(double latitude);
 
+        @JsonProperty("longitude")
         public abstract Builder longitude(double latitude);
 
         public abstract CoordinatesEntity build();

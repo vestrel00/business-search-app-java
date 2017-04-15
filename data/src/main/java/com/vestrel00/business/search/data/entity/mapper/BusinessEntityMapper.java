@@ -40,19 +40,16 @@ public final class BusinessEntityMapper {
 
     public Business map(BusinessEntity businessEntity) {
         return Business.builder()
+                .id(businessEntity.id())
                 .name(businessEntity.name())
                 .phoneNumber(businessEntity.phoneNumber())
+                .imageUrl(businessEntity.imageUrl())
+                .price(businessEntity.price())
+                .categories(businessEntity.categories())
+                .rating(businessEntity.rating())
+                .closed(businessEntity.closed())
                 .location(locationEntityMapper.map(businessEntity.location()))
                 .coordinates(coordinatesEntityMapper.map(businessEntity.coordinates()))
-                .build();
-    }
-
-    public BusinessEntity map(Business business) {
-        return BusinessEntity.builder()
-                .name(business.name())
-                .phoneNumber(business.phoneNumber())
-                .location(locationEntityMapper.map(business.location()))
-                .coordinates(coordinatesEntityMapper.map(business.coordinates()))
                 .build();
     }
 }

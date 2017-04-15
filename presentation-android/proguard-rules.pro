@@ -27,3 +27,7 @@
 -keepattributes Exceptions
 # For Okio
 -dontwarn okio.**
+
+# Retrolambda 3.6.0 - https://github.com/evant/gradle-retrolambda#proguard
+-dontwarn java.lang.invoke.*
+-dontwarn **$$Lambda$*

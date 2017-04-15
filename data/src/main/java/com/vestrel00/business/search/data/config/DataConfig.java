@@ -33,10 +33,6 @@ public abstract class DataConfig {
 
     public abstract String apiBaseUrl();
 
-    public abstract String apiAuthTokenUrlPath();
-
-    public abstract String apiAuthGrantType();
-
     public abstract String apiAuthClientId();
 
     public abstract String apiAuthClientSecret();
@@ -47,10 +43,6 @@ public abstract class DataConfig {
     @AutoValue.Builder
     public abstract static class Builder {
         public abstract Builder apiBaseUrl(String apiEndpoint);
-
-        public abstract Builder apiAuthTokenUrlPath(String apiAuthTokenUrlPath);
-
-        public abstract Builder apiAuthGrantType(String apiAuthGrantType);
 
         public abstract Builder apiAuthClientId(String apiAuthClientId);
 

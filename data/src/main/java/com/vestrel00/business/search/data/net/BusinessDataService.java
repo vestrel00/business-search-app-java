@@ -17,21 +17,20 @@
 package com.vestrel00.business.search.data.net;
 
 import com.vestrel00.business.search.data.entity.BusinessEntity;
-import com.vestrel00.business.search.domain.Coordinates;
-import com.vestrel00.business.search.domain.Location;
 
-import java.util.List;
-
-import io.reactivex.Single;
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
- * Client API to the backend REST API.
+ * Client API to the backend REST API that provides data from network, or disk using retrofit2.
  */
-public interface RestApi {
+public interface BusinessDataService {
 
-    Single<List<BusinessEntity>> aroundCurrentLocation();
+    @GET("v3/businesses/search")
+    Observable<BusinessEntity> aroundLocation(@Query("location") String location);
 
-    Single<List<BusinessEntity>> aroundLocation(Location location);
-
-    Single<List<BusinessEntity>> aroundCoordinates(Coordinates coordinates);
+    @GET("v3/businesses/search")
+    Observable<BusinessEntity> aroundCoordinates(@Query("latitude") double latitude,
+                                                 @Query("longitude") double longitude);
 }

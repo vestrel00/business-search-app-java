@@ -39,6 +39,4 @@ buildscript {
     }
 }
 
-apply plugin: 'me.tatarka.retrolambda'
-
 apply from: "$rootDir/config/dependencies/dependencies.gradle"

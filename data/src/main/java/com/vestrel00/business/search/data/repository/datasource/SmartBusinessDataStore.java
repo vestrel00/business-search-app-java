@@ -14,14 +14,10 @@
  * limitations under the License.
  */
 
-apply plugin: 'java-library'
-apply plugin: 'idea' // required for net.ltgt.apt plugin
-apply plugin: "net.ltgt.apt"
-apply plugin: 'me.tatarka.retrolambda'
+package com.vestrel00.business.search.data.repository.datasource;
 
-apply from: "$projectDir/config/coverage/jacoco.gradle"
-apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
-apply from: "$rootDir/config/quality/quality_java_main.gradle"
-
-targetCompatibility = '1.8'
-sourceCompatibility = '1.8'
+/**
+ * A {@link BusinessDataStore} that provides data from memory, disk, or network (hence "smart").
+ */
+interface SmartBusinessDataStore extends BusinessDataStore {
+}

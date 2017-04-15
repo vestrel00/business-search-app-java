@@ -37,6 +37,6 @@ public final class GetBusinessesAroundLocation implements SingleUseCase<Location
 
     @Override
     public Single<List<Business>> execute(Location location) {
-        return businessRepository.aroundCurrentLocation();
+        return businessRepository.aroundLocation(location);
     }
 }

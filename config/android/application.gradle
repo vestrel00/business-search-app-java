@@ -15,6 +15,7 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 apply from: "$rootDir/config/android/artifact/apk_name_android_application.gradle"
 apply from: "$rootDir/config/documentation/javadoc_android_application.gradle"
@@ -45,8 +46,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     packagingOptions {

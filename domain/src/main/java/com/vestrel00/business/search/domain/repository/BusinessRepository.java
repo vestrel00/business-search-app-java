@@ -29,8 +29,6 @@ import io.reactivex.Single;
  */
 public interface BusinessRepository {
 
-    Single<List<Business>> aroundCurrentLocation();
-
     Single<List<Business>> aroundLocation(Location location);
 
     Single<List<Business>> aroundCoordinates(Coordinates coordinates);
