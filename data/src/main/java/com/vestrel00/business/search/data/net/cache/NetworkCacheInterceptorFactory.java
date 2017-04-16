@@ -14,28 +14,27 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.repository.datasource;
+package com.vestrel00.business.search.data.net.cache;
+
+import com.vestrel00.business.search.data.config.DataConfig;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Provides business data stores that stores business data in memory, disk, or network.
- * <p>
- * Currently, this uses the {@link SmartBusinessDataStore}, which provides data from memory, disk,
- * or network (hence "smart").
+ * Provides instances of {@link NetworkCacheInterceptor}.
  */
 @Singleton
-public final class BusinessDataStoreProvider {
+public final class NetworkCacheInterceptorFactory {
 
-    private final SmartBusinessDataStore smartDataStore;
+    private final DataConfig config;
 
     @Inject
-    BusinessDataStoreProvider(SmartBusinessDataStore smartDataStore) {
-        this.smartDataStore = smartDataStore;
+    NetworkCacheInterceptorFactory(DataConfig config) {
+        this.config = config;
     }
 
-    public BusinessDataStore get() {
-        return smartDataStore;
+    public NetworkCacheInterceptor create() {
+        return new NetworkCacheInterceptor(config);
     }
 }

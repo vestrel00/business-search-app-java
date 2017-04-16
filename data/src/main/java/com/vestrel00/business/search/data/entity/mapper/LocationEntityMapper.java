@@ -31,7 +31,7 @@ import javax.inject.Singleton;
 public final class LocationEntityMapper {
 
     @Inject
-    public LocationEntityMapper() {
+    LocationEntityMapper() {
     }
 
     public Location map(LocationEntity locationEntity) {

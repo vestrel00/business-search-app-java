@@ -31,7 +31,7 @@ import javax.inject.Singleton;
 public final class CoordinatesEntityMapper {
 
     @Inject
-    public CoordinatesEntityMapper() {
+    CoordinatesEntityMapper() {
     }
 
     public Coordinates map(CoordinatesEntity coordinatesEntity) {

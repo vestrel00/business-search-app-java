@@ -22,6 +22,8 @@ import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Single;
 
 /**
@@ -31,6 +33,7 @@ public final class GetBusinessesAroundCoordinates implements SingleUseCase<Coord
 
     private final BusinessRepository businessRepository;
 
+    @Inject
     public GetBusinessesAroundCoordinates(BusinessRepository businessRepository) {
         this.businessRepository = businessRepository;
     }

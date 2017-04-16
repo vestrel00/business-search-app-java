@@ -32,8 +32,8 @@ public final class BusinessEntityMapper {
     private final CoordinatesEntityMapper coordinatesEntityMapper;
 
     @Inject
-    public BusinessEntityMapper(LocationEntityMapper locationEntityMapper,
-                                CoordinatesEntityMapper coordinatesEntityMapper) {
+    BusinessEntityMapper(LocationEntityMapper locationEntityMapper,
+                         CoordinatesEntityMapper coordinatesEntityMapper) {
         this.locationEntityMapper = locationEntityMapper;
         this.coordinatesEntityMapper = coordinatesEntityMapper;
     }

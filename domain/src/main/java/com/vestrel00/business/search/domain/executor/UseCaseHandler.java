@@ -30,7 +30,8 @@ import io.reactivex.observers.DisposableSingleObserver;
 /**
  * Provides default handling of use cases.
  * <p>
- * This handler executes a use cases in the background and then returns results in the main thread.
+ * This handler executes a use cases in the given {@link ExecutionThread} and then publishes results
+ * in the given {@link PostExecutionThread}.
  */
 @Singleton
 public final class UseCaseHandler implements Disposable {

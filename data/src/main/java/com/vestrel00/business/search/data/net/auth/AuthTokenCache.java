@@ -16,8 +16,49 @@
 
 package com.vestrel00.business.search.data.net.auth;
 
+import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import io.reactivex.annotations.Nullable;
+
 /**
  * Caches an {@link AuthToken} for as long as it is valid (not expired).
+ * <p>
+ * Note that the token is not cached in disk so that we can revalidate the validity of the token
+ * during the first call to our api. It may be that even though a token has not yet reached its
+ * expiration date that the api may arbitrarily invalidate the token.
  */
-public interface AuthTokenCache {
+@Singleton
+final class AuthTokenCache {
+
+    @Nullable
+    private AuthToken authToken;
+
+    private long authTokenExpirationTimeMillis;
+
+    @Inject
+    AuthTokenCache() {
+    }
+
+    @Nullable
+    synchronized AuthToken get() {
+        return authToken;
+    }
+
+    synchronized void set(AuthToken authToken) {
+        this.authToken = authToken;
+        authTokenExpirationTimeMillis = System.currentTimeMillis()
+                + TimeUnit.SECONDS.toMillis(authToken.expiresInSeconds());
+    }
+
+    synchronized void clear() {
+        authToken = null;
+        authTokenExpirationTimeMillis = 0;
+    }
+
+    synchronized boolean hasValidTokenCached() {
+        return authToken != null && authTokenExpirationTimeMillis < System.currentTimeMillis();
+    }
 }

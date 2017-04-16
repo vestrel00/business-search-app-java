@@ -14,28 +14,25 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.repository.datasource;
+package com.vestrel00.business.search.data.net.auth;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Provides business data stores that stores business data in memory, disk, or network.
- * <p>
- * Currently, this uses the {@link SmartBusinessDataStore}, which provides data from memory, disk,
- * or network (hence "smart").
+ * Provides instances of {@link AuthRequestInterceptor}.
  */
 @Singleton
-public final class BusinessDataStoreProvider {
+public final class AuthRequestInterceptorFactory {
 
-    private final SmartBusinessDataStore smartDataStore;
+    private final AuthTokenProvider authTokenProvider;
 
     @Inject
-    BusinessDataStoreProvider(SmartBusinessDataStore smartDataStore) {
-        this.smartDataStore = smartDataStore;
+    AuthRequestInterceptorFactory(AuthTokenProvider authTokenProvider) {
+        this.authTokenProvider = authTokenProvider;
     }
 
-    public BusinessDataStore get() {
-        return smartDataStore;
+    public AuthRequestInterceptor get() {
+        return new AuthRequestInterceptor(authTokenProvider);
     }
 }

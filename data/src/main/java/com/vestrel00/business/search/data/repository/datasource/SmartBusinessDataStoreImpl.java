@@ -20,7 +20,9 @@ import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.data.net.BusinessDataService;
+import com.vestrel00.business.search.data.net.DataServiceProvider;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
@@ -29,24 +31,28 @@ import io.reactivex.Observable;
  * An implementation of {@link SmartBusinessDataStore}.
  */
 @Singleton
-final class SmartBusinessDataStoreImpl implements SmartBusinessDataStore {
+public final class SmartBusinessDataStoreImpl implements SmartBusinessDataStore {
 
-    private final BusinessDataService dataService;
+    private final DataServiceProvider serviceProvider;
 
-    @Singleton
-    SmartBusinessDataStoreImpl(BusinessDataService dataService) {
-        this.dataService = dataService;
+    @Inject
+    SmartBusinessDataStoreImpl(DataServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
     }
 
     @Override
     public Observable<BusinessEntity> aroundLocation(LocationEntity location) {
-        return dataService.aroundLocation(formatLocation(location));
+        return businessDataService().aroundLocation(formatLocation(location));
     }
 
     @Override
     public Observable<BusinessEntity> aroundCoordinates(CoordinatesEntity coordinates) {
-        return dataService.aroundCoordinates(coordinates.latitude(),
+        return businessDataService().aroundCoordinates(coordinates.latitude(),
                 coordinates.longitude());
+    }
+
+    private BusinessDataService businessDataService() {
+        return serviceProvider.getWithAuth(BusinessDataService.class);
     }
 
     private static String formatLocation(LocationEntity location) {

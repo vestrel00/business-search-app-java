@@ -25,7 +25,7 @@ import com.google.auto.value.AutoValue;
  */
 @AutoValue
 @JsonDeserialize(builder = AuthToken.Builder.class)
-public abstract class AuthToken {
+abstract class AuthToken {
 
     @JsonProperty("access_token")
     public abstract String accessToken();
@@ -34,13 +34,13 @@ public abstract class AuthToken {
     public abstract String tokenType();
 
     @JsonProperty("expires_in")
-    public abstract String expiresIn();
+    public abstract long expiresInSeconds();
 
     /**
      * Builder used to create instances of {@link AuthToken}.
      */
     @AutoValue.Builder
-    public abstract static class Builder {
+    abstract static class Builder {
 
         @JsonProperty("access_token")
         public abstract Builder accessToken(String accessToken);
@@ -49,7 +49,7 @@ public abstract class AuthToken {
         public abstract Builder tokenType(String tokenType);
 
         @JsonProperty("expires_in")
-        public abstract Builder expiresIn(String expiresIn);
+        public abstract Builder expiresInSeconds(long expiresInSeconds);
 
         public abstract AuthToken build();
     }

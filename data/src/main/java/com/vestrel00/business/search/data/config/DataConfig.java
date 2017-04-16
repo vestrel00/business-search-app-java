@@ -18,10 +18,13 @@ package com.vestrel00.business.search.data.config;
 
 import com.google.auto.value.AutoValue;
 
+import javax.inject.Singleton;
+
 /**
  * Contains configuration values used throughout the data module.
  */
 @AutoValue
+@Singleton
 public abstract class DataConfig {
 
     /**
@@ -31,22 +34,39 @@ public abstract class DataConfig {
         return new AutoValue_DataConfig.Builder();
     }
 
-    public abstract String apiBaseUrl();
+    public abstract String baseUrl();
 
-    public abstract String apiAuthClientId();
+    public abstract String authGrantType();
 
-    public abstract String apiAuthClientSecret();
+    public abstract String authClientId();
+
+    public abstract String authClientSecret();
+
+    public abstract String cacheDir();
+
+    public abstract int cacheMaxSizeMb();
+
+    public abstract int networkCacheTimeSeconds();
 
     /**
      * Builder used to create instances of {@link DataConfig}
      */
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder apiBaseUrl(String apiEndpoint);
 
-        public abstract Builder apiAuthClientId(String apiAuthClientId);
+        public abstract Builder baseUrl(String baseUrl);
 
-        public abstract Builder apiAuthClientSecret(String apiAuthClientSecret);
+        public abstract Builder authGrantType(String authGrantType);
+
+        public abstract Builder authClientId(String authClientId);
+
+        public abstract Builder authClientSecret(String authClientSecret);
+
+        public abstract Builder cacheDir(String cacheDir);
+
+        public abstract Builder cacheMaxSizeMb(int cacheMaxSizeMb);
+
+        public abstract Builder networkCacheTimeSeconds(int networkCacheTimeSeconds);
 
         public abstract DataConfig build();
     }

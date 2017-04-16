@@ -1,5 +1,7 @@
 # Business Search
 
+TODO: REMOVE USAGE of "I"
+
 The purpose of this project is to demonstrate how I build Android applications from the ground up.
 It is less about the application content and more about the code (and processes). 
 
