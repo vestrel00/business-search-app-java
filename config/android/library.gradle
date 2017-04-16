@@ -15,7 +15,6 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 
 apply from: "$rootDir/config/documentation/javadoc_android_library.gradle"
 apply from: "$projectDir/config/coverage/jacoco.gradle"

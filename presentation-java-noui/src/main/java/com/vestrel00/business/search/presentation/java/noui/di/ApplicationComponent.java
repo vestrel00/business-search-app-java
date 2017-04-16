@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java;
+package com.vestrel00.business.search.presentation.java.noui.di;
+
+import javax.inject.Singleton;
+
+import dagger.Component;
 
 /**
- * Created by estrellv on 4/10/17.
+ * Created by estrellv on 4/16/17.
  */
-public final class Application {
-
-    private Application() {
-    }
-
-    public static void main(String[] args) {
-    }
+public interface ApplicationComponent {
 }

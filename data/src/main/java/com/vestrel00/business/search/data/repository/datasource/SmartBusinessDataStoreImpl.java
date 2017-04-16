@@ -62,7 +62,7 @@ final class SmartBusinessDataStoreImpl implements SmartBusinessDataStore {
         addToFormattedLocation(formattedLocation, location.state());
         addToFormattedLocation(formattedLocation, location.zipCode());
         addToFormattedLocation(formattedLocation, location.country());
-        return formattedLocation.toString();
+        return formattedLocation.toString().trim();
     }
 
     private static void addToFormattedLocation(StringBuilder formattedLocation, String locationItem) {

@@ -17,7 +17,6 @@
 apply plugin: 'application'
 apply plugin: 'idea' // required for net.ltgt.apt plugin to work in IntelliJ/Android Studio
 apply plugin: "net.ltgt.apt"
-apply plugin: 'me.tatarka.retrolambda'
 
 apply from: "$projectDir/config/coverage/jacoco.gradle"
 apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"

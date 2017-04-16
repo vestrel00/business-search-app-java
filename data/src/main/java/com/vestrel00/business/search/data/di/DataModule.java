@@ -18,11 +18,14 @@ package com.vestrel00.business.search.data.di;
 
 import com.vestrel00.business.search.data.config.DataConfig;
 
+import dagger.Module;
+
 /**
  * A dagger module that provides clients dependencies from the data layer.
  * <p>
  * This must be initialized with a {@link DataConfig}.
  */
+@Module
 public final class DataModule {
 
     private final DataConfig config;

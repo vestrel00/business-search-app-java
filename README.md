@@ -42,6 +42,8 @@ I have created a simple business search application that is able to:
 
 #### Building and Running the Application
 
+Before being able to build and run the application, you must have installed 
+[JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
 There are several ways to build and run the application.
 
 **Using Gradle**
