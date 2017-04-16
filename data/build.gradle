@@ -21,10 +21,12 @@ dependencies {
     def dataTestDependencies = rootProject.ext.dataTestDependencies
 
     apt dataDependencies.autoValue
+    apt dataDependencies.daggerCompiler
 
     implementation project(':domain')
     implementation dataDependencies.rxJava
     implementation dataDependencies.javaxInject
+    implementation dataDependencies.dagger
     implementation dataDependencies.retrofit
     implementation dataDependencies.retrofitRxJavaAdapter
     implementation dataDependencies.retrofitJacksonConverter

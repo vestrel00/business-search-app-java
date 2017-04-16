@@ -15,7 +15,7 @@
  */
 
 apply plugin: 'application'
-apply plugin: 'idea' // required for net.ltgt.apt plugin
+apply plugin: 'idea' // required for net.ltgt.apt plugin to work in IntelliJ/Android Studio
 apply plugin: "net.ltgt.apt"
 apply plugin: 'me.tatarka.retrolambda'
 

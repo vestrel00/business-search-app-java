@@ -15,7 +15,7 @@
  */
 
 apply plugin: 'java-library'
-apply plugin: 'idea' // required for net.ltgt.apt plugin
+apply plugin: 'idea' // required for net.ltgt.apt plugin to work in IntelliJ/Android Studio
 apply plugin: "net.ltgt.apt"
 apply plugin: 'me.tatarka.retrolambda'
 
@@ -25,3 +25,9 @@ apply from: "$rootDir/config/quality/quality_java_main.gradle"
 
 targetCompatibility = '1.8'
 sourceCompatibility = '1.8'
+
+// Required when applying java-library plugin
+// https://github.com/evant/gradle-retrolambda/issues/95
+retrolambda {
+    jvmArgs '-noverify'
+}

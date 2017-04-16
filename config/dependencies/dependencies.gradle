@@ -29,6 +29,7 @@ ext {
     // Java
     rxJavaVersion = '2.0.8'
     javaxInjectVersion = '1'
+    daggerVersion = '2.10-rc4'
     autoValueVersion = '1.4.1'
     retrofitVersion = '2.2.0'
     jacksonVersion = '2.8.8'
@@ -58,9 +59,11 @@ ext {
     leakCanaryVersion = '1.5'
 
     javaDependencies = [
-            rxJava     : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
-            autoValue  : "com.google.auto.value:auto-value:${autoValueVersion}"
+            rxJava        : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            javaxInject   : "javax.inject:javax.inject:${javaxInjectVersion}",
+            dagger        : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
+            autoValue     : "com.google.auto.value:auto-value:${autoValueVersion}"
     ]
 
     javaTestDependencies = [

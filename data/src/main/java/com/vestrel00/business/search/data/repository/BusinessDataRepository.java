@@ -44,10 +44,10 @@ public final class BusinessDataRepository implements BusinessRepository {
     private final CoordinatesEntityMapper coordinatesEntityMapper;
 
     @Inject
-    public BusinessDataRepository(BusinessDataStoreProvider dataStoreProvider,
-                                  BusinessEntityMapper businessEntityMapper,
-                                  LocationEntityMapper locationEntityMapper,
-                                  CoordinatesEntityMapper coordinatesEntityMapper) {
+    BusinessDataRepository(BusinessDataStoreProvider dataStoreProvider,
+                           BusinessEntityMapper businessEntityMapper,
+                           LocationEntityMapper locationEntityMapper,
+                           CoordinatesEntityMapper coordinatesEntityMapper) {
         this.dataStoreProvider = dataStoreProvider;
         this.businessEntityMapper = businessEntityMapper;
         this.locationEntityMapper = locationEntityMapper;

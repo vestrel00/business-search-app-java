@@ -16,7 +16,7 @@
 
 apply from: "$rootDir/config/coverage/jacoco.gradle"
 
-def generateAndroidApplicationJacocoTaskWithExcludes (excludes) {
+def generateAndroidApplicationJacocoTaskWithExcludes(excludes) {
     android.applicationVariants.all { variant ->
         generateJacocoTaskForVariant(variant, excludes + [
                 '**/di/*',
@@ -26,9 +26,9 @@ def generateAndroidApplicationJacocoTaskWithExcludes (excludes) {
                 '**/*_*MembersInjector*',
                 '**/*_*Factory*',
                 '**/Dagger*',
-                '**/AutoParcel_*',
+                '**/AutoValue_*',
                 '**/BuildConfig*',
-                '**/Manifest*.*',
+                '**/Manifest*.*'
         ])
     }
 }

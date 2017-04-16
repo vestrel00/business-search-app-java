@@ -31,7 +31,7 @@ import io.reactivex.Observable;
  * An implementation of {@link SmartBusinessDataStore}.
  */
 @Singleton
-public final class SmartBusinessDataStoreImpl implements SmartBusinessDataStore {
+final class SmartBusinessDataStoreImpl implements SmartBusinessDataStore {
 
     private final DataServiceProvider serviceProvider;
 

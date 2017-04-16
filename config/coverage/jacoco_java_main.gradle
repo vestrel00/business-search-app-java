@@ -16,8 +16,14 @@
 
 apply from: "$rootDir/config/coverage/jacoco.gradle"
 
-def generateJavaMainJacocoTaskWithExcludes (excludes) {
-    generateJacocoTask("", "", "main", excludes)
+def generateJavaMainJacocoTaskWithExcludes(excludes) {
+    generateJacocoTask("", "", "main", excludes + [
+            '**/di/*',
+            '**/*_*MembersInjector*',
+            '**/*_*Factory*',
+            '**/Dagger*',
+            '**/AutoValue_*'
+    ])
 }
 
 ext {
