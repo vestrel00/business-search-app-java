@@ -24,9 +24,9 @@ dependencies {
     apt domainDependencies.autoValue
 
     implementation domainDependencies.rxJava
-    implementation domainDependencies.javaxInject
     implementation domainDependencies.dagger
 
+    compileOnly domainDependencies.javaxAnnotation
     compileOnly domainDependencies.autoValue
 
     testImplementation domainTestDependencies.junit

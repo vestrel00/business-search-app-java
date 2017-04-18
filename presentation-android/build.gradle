@@ -27,15 +27,21 @@ dependencies {
     def presentationAndroidDependencies = rootProject.ext.presentationAndroidDependencies
     def presentationAndroidTestDependencies = rootProject.ext.presentationAndroidTestDependencies
 
+    annotationProcessor presentationAndroidDependencies.daggerCompiler
+    annotationProcessor presentationAndroidDependencies.autoValue
     annotationProcessor presentationAndroidDependencies.butterKnifeAnnotationProcessor
 
     compile project(':presentation-java')
 
     compile presentationAndroidDependencies.rxJava
     compile presentationAndroidDependencies.rxAndroid
+    compile presentationAndroidDependencies.dagger
     compile presentationAndroidDependencies.appCompat
     compile presentationAndroidDependencies.recyclerView
     compile presentationAndroidDependencies.butterKnife
+
+    provided presentationAndroidDependencies.javaxAnnotation
+    provided presentationAndroidDependencies.autoValue
 
     testCompile presentationAndroidTestDependencies.junit
     testCompile presentationAndroidTestDependencies.assertj

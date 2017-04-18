@@ -25,8 +25,10 @@ dependencies {
     api project(':presentation-java')
 
     implementation presentationJavaDependencies.rxJava
-    implementation presentationJavaDependencies.javaxInject
     implementation presentationJavaDependencies.dagger
+
+    compileOnly domainDependencies.javaxAnnotation
+    compileOnly domainDependencies.autoValue
 
     testImplementation presentationJavaTestDependencies.junit
     testImplementation presentationJavaTestDependencies.assertj

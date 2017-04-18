@@ -30,7 +30,6 @@ dependencies {
 
     implementation project(':domain')
     implementation dataDependencies.rxJava
-    implementation dataDependencies.javaxInject
     implementation dataDependencies.dagger
     implementation dataDependencies.retrofitRxJavaAdapter
     implementation dataDependencies.retrofitJacksonConverter
@@ -38,6 +37,7 @@ dependencies {
     implementation dataDependencies.jacksonDatabind
     implementation dataDependencies.jacksonAnnotations
 
+    compileOnly dataDependencies.javaxAnnotation
     compileOnly dataDependencies.autoValue
 
     testImplementation dataTestDependencies.junit

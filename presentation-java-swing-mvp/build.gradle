@@ -22,10 +22,16 @@ dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
     def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
 
+    apt presentationJavaDependencies.daggerCompiler
+    apt presentationJavaDependencies.autoValue
+
     compile project(':presentation-java-mvp')
 
     compile presentationJavaDependencies.rxJava
-    compile presentationJavaDependencies.javaxInject
+    compile presentationJavaDependencies.dagger
+
+    compileOnly presentationJavaDependencies.javaxAnnotation
+    compileOnly presentationJavaDependencies.autoValue
 
     testCompile presentationJavaTestDependencies.junit
     testCompile presentationJavaTestDependencies.assertj

@@ -20,17 +20,17 @@ dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
     def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
 
-    apt domainDependencies.autoValue
     apt presentationJavaDependencies.daggerCompiler
+    apt presentationJavaDependencies.autoValue
 
     api project(':domain')
     api project(':data')
 
     implementation presentationJavaDependencies.rxJava
-    implementation presentationJavaDependencies.javaxInject
     implementation presentationJavaDependencies.dagger
 
-    compileOnly domainDependencies.autoValue
+    compileOnly presentationJavaDependencies.javaxAnnotation
+    compileOnly presentationJavaDependencies.autoValue
 
     testImplementation presentationJavaTestDependencies.junit
     testImplementation presentationJavaTestDependencies.assertj
