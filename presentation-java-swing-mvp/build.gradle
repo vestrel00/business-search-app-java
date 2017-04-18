@@ -16,15 +16,16 @@
 
 apply from: "$rootDir/config/java/application.gradle"
 
-mainClassName = "com.vestrel00.business.search.presentation.java.swing.mvp.Application"
+mainClassName = "com.vestrel00.business.search.presentation.java.swing.mvp.ApplicationRunner"
 
 dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
     def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
 
-    compile project(':presentation-java')
+    compile project(':presentation-java-mvp')
 
     compile presentationJavaDependencies.rxJava
+    compile presentationJavaDependencies.javaxInject
 
     testCompile presentationJavaTestDependencies.junit
     testCompile presentationJavaTestDependencies.assertj

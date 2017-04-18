@@ -32,6 +32,10 @@ buildscript {
 
         // apt for Java: https://plugins.gradle.org/plugin/net.ltgt.apt
         classpath "net.ltgt.gradle:gradle-apt-plugin:0.10"
+
+        // FIXME migrate to using Android Studio 2.4 support for lambdas
+        // See https://developer.android.com/studio/preview/features/java8-support.html
+        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
     }
 }
 

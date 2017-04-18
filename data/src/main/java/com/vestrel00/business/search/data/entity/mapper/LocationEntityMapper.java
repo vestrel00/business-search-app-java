@@ -16,32 +16,20 @@
 
 package com.vestrel00.business.search.data.entity.mapper;
 
-import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
-import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.Location;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Transforms from {@link BusinessEntity} to {@link Business} and vice versa.
+ * Transforms from {@link LocationEntity} to {@link Location} and vice versa.
  */
 @Singleton
 public final class LocationEntityMapper {
 
     @Inject
     LocationEntityMapper() {
-    }
-
-    public Location map(LocationEntity locationEntity) {
-        return Location.builder()
-                .address(locationEntity.address())
-                .city(locationEntity.city())
-                .state(locationEntity.state())
-                .zipCode(locationEntity.zipCode())
-                .country(locationEntity.country())
-                .build();
     }
 
     public LocationEntity map(Location location) {
@@ -51,6 +39,16 @@ public final class LocationEntityMapper {
                 .state(location.state())
                 .zipCode(location.zipCode())
                 .country(location.country())
+                .build();
+    }
+
+    Location map(LocationEntity locationEntity) {
+        return Location.builder()
+                .address(locationEntity.address())
+                .city(locationEntity.city())
+                .state(locationEntity.state())
+                .zipCode(locationEntity.zipCode())
+                .country(locationEntity.country())
                 .build();
     }
 }

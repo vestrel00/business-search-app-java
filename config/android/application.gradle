@@ -15,6 +15,7 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 apply from: "$rootDir/config/android/artifact/apk_name_android_application.gradle"
 apply from: "$rootDir/config/documentation/javadoc_android_application.gradle"
@@ -31,12 +32,6 @@ android {
         targetSdkVersion rootProject.ext.androidTargetSdkVersion
 
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
-
-        // FIXME Remove this block. Jack will be deprecated starting with Android Studio 2.4 Preview 4
-        // See https://developer.android.com/studio/preview/features/java8-support.html
-        jackOptions {
-            enabled true
-        }
     }
 
     buildTypes {

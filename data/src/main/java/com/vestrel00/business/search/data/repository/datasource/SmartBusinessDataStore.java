@@ -16,8 +16,38 @@
 
 package com.vestrel00.business.search.data.repository.datasource;
 
+import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.CoordinatesEntity;
+import com.vestrel00.business.search.data.entity.LocationEntity;
+import com.vestrel00.business.search.data.net.BusinessDataService;
+import com.vestrel00.business.search.data.util.LocationFormatter;
+
+import dagger.Lazy;
+import io.reactivex.Observable;
+
 /**
  * A {@link BusinessDataStore} that provides data from memory, disk, or network (hence "smart").
  */
-interface SmartBusinessDataStore extends BusinessDataStore {
+final class SmartBusinessDataStore implements BusinessDataStore {
+
+    private final Lazy<BusinessDataService> businessDataServiceProvider;
+    private final LocationFormatter locationFormatter;
+
+    SmartBusinessDataStore(Lazy<BusinessDataService> businessDataServiceProvider,
+                           LocationFormatter locationFormatter) {
+        this.businessDataServiceProvider = businessDataServiceProvider;
+        this.locationFormatter = locationFormatter;
+    }
+
+    @Override
+    public Observable<BusinessEntity> aroundLocation(LocationEntity location) {
+        String formattedLocation = locationFormatter.formatLocation(location);
+        return businessDataServiceProvider.get().aroundLocation(formattedLocation);
+    }
+
+    @Override
+    public Observable<BusinessEntity> aroundCoordinates(CoordinatesEntity coordinates) {
+        return businessDataServiceProvider.get().aroundCoordinates(coordinates.latitude(),
+                coordinates.longitude());
+    }
 }

@@ -16,16 +16,14 @@
 
 package com.vestrel00.business.search.data.entity.mapper;
 
-import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
-import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.Coordinates;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Transforms from {@link BusinessEntity} to {@link Business} and vice versa.
+ * Transforms from {@link CoordinatesEntity} to {@link Coordinates} and vice versa.
  */
 @Singleton
 public final class CoordinatesEntityMapper {
@@ -34,17 +32,17 @@ public final class CoordinatesEntityMapper {
     CoordinatesEntityMapper() {
     }
 
-    public Coordinates map(CoordinatesEntity coordinatesEntity) {
-        return Coordinates.builder()
-                .latitude(coordinatesEntity.latitude())
-                .longitude(coordinatesEntity.longitude())
-                .build();
-    }
-
     public CoordinatesEntity map(Coordinates coordinates) {
         return CoordinatesEntity.builder()
                 .latitude(coordinates.latitude())
                 .longitude(coordinates.longitude())
+                .build();
+    }
+
+    Coordinates map(CoordinatesEntity coordinatesEntity) {
+        return Coordinates.builder()
+                .latitude(coordinatesEntity.latitude())
+                .longitude(coordinatesEntity.longitude())
                 .build();
     }
 }

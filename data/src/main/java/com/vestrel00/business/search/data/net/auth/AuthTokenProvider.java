@@ -17,10 +17,11 @@
 package com.vestrel00.business.search.data.net.auth;
 
 import com.vestrel00.business.search.data.config.DataConfig;
-import com.vestrel00.business.search.data.net.DataServiceProvider;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import dagger.Lazy;
 
 /**
  * Provides an {@link AuthToken} from cache or network.
@@ -28,13 +29,14 @@ import javax.inject.Singleton;
 @Singleton
 final class AuthTokenProvider {
 
-    private final DataServiceProvider serviceProvider;
+    private final Lazy<AuthTokenService> authTokenService;
     private final AuthTokenCache cache;
     private final DataConfig config;
 
     @Inject
-    AuthTokenProvider(DataServiceProvider serviceProvider, AuthTokenCache cache, DataConfig config) {
-        this.serviceProvider = serviceProvider;
+    AuthTokenProvider(Lazy<AuthTokenService> authTokenService, AuthTokenCache cache,
+                      DataConfig config) {
+        this.authTokenService = authTokenService;
         this.cache = cache;
         this.config = config;
     }
@@ -45,14 +47,10 @@ final class AuthTokenProvider {
         }
 
         cache.clear();
-        AuthToken authToken = authTokenService().getAuthToken(config.authGrantType(),
+        AuthToken authToken = authTokenService.get().getAuthToken(config.authGrantType(),
                 config.authClientId(), config.authClientSecret());
         cache.set(authToken);
 
         return authToken;
-    }
-
-    private AuthTokenService authTokenService() {
-        return serviceProvider.get(AuthTokenService.class);
     }
 }

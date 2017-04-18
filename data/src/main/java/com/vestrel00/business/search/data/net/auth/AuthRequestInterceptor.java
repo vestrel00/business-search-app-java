@@ -18,6 +18,9 @@ package com.vestrel00.business.search.data.net.auth;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -26,10 +29,12 @@ import okhttp3.Response;
  * Injects authorization into the request header. Uses auth token from cache or retrieves it
  * from network.
  */
-final class AuthRequestInterceptor implements Interceptor {
+@Singleton
+public final class AuthRequestInterceptor implements Interceptor {
 
     private final AuthTokenProvider authTokenProvider;
 
+    @Inject
     AuthRequestInterceptor(AuthTokenProvider authTokenProvider) {
         this.authTokenProvider = authTokenProvider;
     }

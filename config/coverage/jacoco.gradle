@@ -40,8 +40,8 @@ task jacocoTestReport(type: JacocoReport) {
 }
 
 def generateJacocoTask(String flavor, String buildType, String buildVariant, Collection<String> excludeClassDirs) {
-    def jacocoTestReportDependency = buildType.isEmpty() ? "test" : "test${buildVariant.capitalize()}UnitTest";
-    def jacocoVariant = "jacoco${buildVariant.capitalize()}TestReport";
+    def jacocoTestReportDependency = buildType.isEmpty() ? "test" : "test${buildVariant.capitalize()}UnitTest"
+    def jacocoVariant = "jacoco${buildVariant.capitalize()}TestReport"
 
     task(jacocoVariant, type: JacocoReport, dependsOn: "${jacocoTestReportDependency}") {
         group = "Code Coverage"

@@ -20,6 +20,8 @@ import com.vestrel00.business.search.data.entity.mapper.BusinessEntityMapper;
 import com.vestrel00.business.search.data.entity.mapper.CoordinatesEntityMapper;
 import com.vestrel00.business.search.data.entity.mapper.LocationEntityMapper;
 import com.vestrel00.business.search.data.repository.datasource.BusinessDataStoreProvider;
+import com.vestrel00.business.search.data.validator.CoordinatesEntityValidator;
+import com.vestrel00.business.search.data.validator.LocationEntityValidator;
 import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
@@ -30,6 +32,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 
 /**
@@ -42,30 +45,40 @@ public final class BusinessDataRepository implements BusinessRepository {
     private final BusinessEntityMapper businessEntityMapper;
     private final LocationEntityMapper locationEntityMapper;
     private final CoordinatesEntityMapper coordinatesEntityMapper;
+    private final LocationEntityValidator locationEntityValidator;
+    private final CoordinatesEntityValidator coordinatesEntityValidator;
 
     @Inject
     BusinessDataRepository(BusinessDataStoreProvider dataStoreProvider,
                            BusinessEntityMapper businessEntityMapper,
                            LocationEntityMapper locationEntityMapper,
-                           CoordinatesEntityMapper coordinatesEntityMapper) {
+                           CoordinatesEntityMapper coordinatesEntityMapper,
+                           LocationEntityValidator locationEntityValidator,
+                           CoordinatesEntityValidator coordinatesEntityValidator) {
         this.dataStoreProvider = dataStoreProvider;
         this.businessEntityMapper = businessEntityMapper;
         this.locationEntityMapper = locationEntityMapper;
         this.coordinatesEntityMapper = coordinatesEntityMapper;
+        this.locationEntityValidator = locationEntityValidator;
+        this.coordinatesEntityValidator = coordinatesEntityValidator;
     }
 
     @Override
     public Single<List<Business>> aroundLocation(Location location) {
-        return dataStoreProvider.get()
-                .aroundLocation(locationEntityMapper.map(location))
+        return Observable.just(location)
+                .map(locationEntityMapper::map)
+                .doOnNext(locationEntityValidator::validate)
+                .concatMap(dataStoreProvider.get()::aroundLocation)
                 .map(businessEntityMapper::map)
                 .toList();
     }
 
     @Override
     public Single<List<Business>> aroundCoordinates(Coordinates coordinates) {
-        return dataStoreProvider.get()
-                .aroundCoordinates(coordinatesEntityMapper.map(coordinates))
+        return Observable.just(coordinates)
+                .map(coordinatesEntityMapper::map)
+                .doOnNext(coordinatesEntityValidator::validate)
+                .concatMap(dataStoreProvider.get()::aroundCoordinates)
                 .map(businessEntityMapper::map)
                 .toList();
     }

@@ -23,7 +23,7 @@ import retrofit2.http.POST;
 /**
  * Client API to the backend REST API that provides an {@link AuthToken}.
  */
-interface AuthTokenService {
+public interface AuthTokenService {
 
     @POST("oauth2/token")
     @FormUrlEncoded

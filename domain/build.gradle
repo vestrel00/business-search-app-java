@@ -20,10 +20,12 @@ dependencies {
     def domainDependencies = rootProject.ext.domainDependencies
     def domainTestDependencies = rootProject.ext.domainTestDependencies
 
+    apt domainDependencies.daggerCompiler
     apt domainDependencies.autoValue
 
     implementation domainDependencies.rxJava
     implementation domainDependencies.javaxInject
+    implementation domainDependencies.dagger
 
     compileOnly domainDependencies.autoValue
 

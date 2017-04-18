@@ -61,12 +61,12 @@ public final class UseCaseHandler implements Disposable {
                 .subscribeOn(executionThread.scheduler())
                 .observeOn(postExecutionThread.scheduler())
                 .subscribeWith(observer);
-        disposables.add(disposable);disposables.dispose();
+        disposables.add(disposable);
     }
 
     @Override
     public void dispose() {
-        disposables.dispose();
+        disposables.clear();
     }
 
     @Override

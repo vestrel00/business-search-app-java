@@ -22,11 +22,6 @@ import com.google.auto.value.AutoValue;
 
 /**
  * Contains location information.
- * <p>
- * Objects that are not marked with Nullable will have non-null default values.
- * <ul>
- * <li>String -> ""</li>
- * </ul>
  */
 @AutoValue
 @JsonDeserialize(builder = AutoValue_LocationEntity.Builder.class)

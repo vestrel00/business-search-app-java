@@ -22,13 +22,6 @@ import java.util.List;
 
 /**
  * Contains business information.
- * <p>
- * Objects that are not marked with Nullable will have non-null default values.
- * <ul>
- * <li>String -> ""</li>
- * <li>Location -> non null Location object with default values</li>
- * <li>Coordinates -> non null Coordinates object with default values</li>
- * </ul>
  */
 @AutoValue
 public abstract class Business {

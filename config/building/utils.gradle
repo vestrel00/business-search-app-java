@@ -21,17 +21,21 @@
 def resolveSourceDirs(String flavor, String buildType, String buildVariant) {
     def sourceDirs = [
             "${projectDir}/src/main/java",
-            "${projectDir}/src/${buildVariant}/java"
     ]
 
     if (!buildType.isEmpty()) {
-        sourceDirs += "${projectDir}/src/${buildType}/java";
+        sourceDirs += "${projectDir}/src/${buildType}/java"
         if (!flavor.isEmpty()) {
-            sourceDirs += "${projectDir}/src/${flavor}/java";
+            sourceDirs += "${projectDir}/src/${flavor}/java"
         }
     }
 
-    return sourceDirs;
+    def buildVariantDir = "${projectDir}/src/${buildVariant}/java"
+    if (!sourceDirs.contains(buildVariantDir)) {
+        sourceDirs += buildVariantDir
+    }
+
+    return sourceDirs
 }
 
 def resolveClassesDir(String flavor, String buildType, String buildVariant) {

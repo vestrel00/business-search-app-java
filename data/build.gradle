@@ -20,14 +20,14 @@ dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
     def dataTestDependencies = rootProject.ext.dataTestDependencies
 
-    apt dataDependencies.autoValue
     apt dataDependencies.daggerCompiler
+    apt dataDependencies.autoValue
 
     implementation project(':domain')
     implementation dataDependencies.rxJava
     implementation dataDependencies.javaxInject
     implementation dataDependencies.dagger
-    implementation dataDependencies.retrofit
+    api dataDependencies.retrofit // FIXME set to implementation
     implementation dataDependencies.retrofitRxJavaAdapter
     implementation dataDependencies.retrofitJacksonConverter
     implementation dataDependencies.jacksonCore

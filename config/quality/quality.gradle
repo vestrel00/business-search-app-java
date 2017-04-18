@@ -1,5 +1,3 @@
-import java.util.function.Predicate
-
 /*
  * Copyright 2017 Vandolf Estrellado
  *
@@ -26,8 +24,8 @@ apply plugin: 'pmd'
 
 apply from: "$rootDir/config/building/utils.gradle"
 
-ext.configDir = "$rootDir/config/quality"
-ext.reportsDir = "$buildDir/reports"
+ext.rootConfigDir = "$rootDir/config/quality"
+ext.projectReportsDir = "$buildDir/reports"
 
 // CHECK QUALITY TASK
 check.dependsOn 'checkQuality'
@@ -40,9 +38,9 @@ task checkQuality(type: CheckQuality) {
 }
 
 def generateCheckQualityTask(String buildVariant, boolean withLint) {
-    buildVariant = buildVariant.capitalize();
+    buildVariant = buildVariant.capitalize()
 
-    def checkQualityVariant = "checkQuality${buildVariant}";
+    def checkQualityVariant = "checkQuality${buildVariant}"
     def checkQualityVariantTaskDependencies = [
             "checkstyle${buildVariant}",
             "pmd${buildVariant}",
@@ -74,16 +72,16 @@ task checkstyle(type: Checkstyle) {
 }
 
 def generateCheckstyleTask(String flavor, String buildType, String buildVariant) {
-    def checkstyleVariant = "checkstyle${buildVariant.capitalize()}";
+    def checkstyleVariant = "checkstyle${buildVariant.capitalize()}"
 
     task(checkstyleVariant, type: Checkstyle) {
         group = "Static Analysis"
         description = "Checks style of source code for ${buildVariant} build variant."
 
-        configFile file("$configDir/checkstyle/checkstyle.xml")
-        configProperties.checkstyleSuppressionsPath = file("$configDir/checkstyle/suppressions.xml").absolutePath
-        configProperties.checkstyleJavaHeaderPath = file("$configDir/checkstyle/java.header").absolutePath
-        configProperties.checkstyleXmlHeaderPath = file("$configDir/checkstyle/xml.header").absolutePath
+        configFile file("$rootConfigDir/checkstyle/checkstyle.xml")
+        configProperties.checkstyleSuppressionsPath = file("$rootConfigDir/checkstyle/suppressions.xml").absolutePath
+        configProperties.checkstyleJavaHeaderPath = file("$rootConfigDir/checkstyle/java.header").absolutePath
+        configProperties.checkstyleXmlHeaderPath = file("$rootConfigDir/checkstyle/xml.header").absolutePath
 
         source resolveSourceDirs(flavor, buildType, buildVariant)
         classpath = files(resolveClassesDir(flavor, buildType, buildVariant))
@@ -95,10 +93,10 @@ def generateCheckstyleTask(String flavor, String buildType, String buildVariant)
             xml.enabled = false
             html.enabled = true
             xml {
-                destination "$reportsDir/checkstyle/${buildVariant}/${checkstyleVariant}.xml"
+                destination "$projectReportsDir/checkstyle/${buildVariant}/${checkstyleVariant}.xml"
             }
             html {
-                destination "$reportsDir/checkstyle/${buildVariant}/${checkstyleVariant}.html"
+                destination "$projectReportsDir/checkstyle/${buildVariant}/${checkstyleVariant}.html"
             }
         }
     }
@@ -123,14 +121,14 @@ task pmd(type: Pmd) {
 }
 
 def generatePMDTask(String flavor, String buildType, String buildVariant) {
-    def pmdVariant = "pmd${buildVariant.capitalize()}";
+    def pmdVariant = "pmd${buildVariant.capitalize()}"
 
     task(pmdVariant, type: Pmd) {
         group = "Static Analysis"
         description = "Finds bugs in source code on the {$buildVariant} build variant."
 
         ignoreFailures = false
-        ruleSetFiles = files("$configDir/pmd/pmd-ruleset.xml")
+        ruleSetFiles = files("$rootConfigDir/pmd/pmd-ruleset.xml")
         ruleSets = []
 
         source resolveSourceDirs(flavor, buildType, buildVariant)
@@ -142,10 +140,10 @@ def generatePMDTask(String flavor, String buildType, String buildVariant) {
             xml.enabled = false
             html.enabled = true
             xml {
-                destination "$reportsDir/pmd/${buildVariant}/${pmdVariant}.xml"
+                destination "$projectReportsDir/pmd/${buildVariant}/${pmdVariant}.xml"
             }
             html {
-                destination "$reportsDir/pmd/${buildVariant}/${pmdVariant}.html"
+                destination "$projectReportsDir/pmd/${buildVariant}/${pmdVariant}.html"
             }
         }
     }
@@ -168,8 +166,8 @@ task findbugs(type: FindBugs) {
 }
 
 def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
-    def findbugsDependency = buildType.isEmpty() ? "assemble" : "assemble${buildVariant.capitalize()}";
-    def findbugsVariant = "findbugs${buildVariant.capitalize()}";
+    def findbugsDependency = buildType.isEmpty() ? "assemble" : "assemble${buildVariant.capitalize()}"
+    def findbugsVariant = "findbugs${buildVariant.capitalize()}"
 
     task(findbugsVariant, type: FindBugs, dependsOn: "${findbugsDependency}") {
         group = "Static Analysis"
@@ -178,32 +176,23 @@ def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
         ignoreFailures = false
         effort = "max"
         reportLevel = "high"
-        excludeFilter = new File("$configDir/findbugs/findbugs-filter.xml")
+        excludeFilter = new File("$rootConfigDir/findbugs/findbugs-filter.xml")
 
-        def classesDir;
-        if (!buildType.isEmpty() && !flavor.isEmpty()) {
-            classesDir = "${buildDir}/intermediates/classes/${flavor}/${buildType}"
-        } else if (!buildType.isEmpty()) {
-            classesDir = "${buildDir}/intermediates/classes/${buildType}"
-        } else {
-            classesDir = "${buildDir}/classes/${buildVariant}"
-        }
-
+        def classesDir = resolveClassesDir(flavor, buildType, buildVariant)
+        source resolveSourceDirs(flavor, buildType, buildVariant)
         classes = files(classesDir)
         classpath = files(classesDir)
-        source 'src'
-
         include '**/*.java'
         exclude '**/gen/**'
 
         reports {
-            xml.enabled = true
-            html.enabled = false
+            xml.enabled = false
+            html.enabled = true
             xml {
-                destination "$reportsDir/findbugs/${buildVariant}/${findbugsVariant}.xml"
+                destination "$projectReportsDir/findbugs/${buildVariant}/${findbugsVariant}.xml"
             }
             html {
-                destination "$reportsDir/findbugs/${buildVariant}/${findbugsVariant}.html"
+                destination "$projectReportsDir/findbugs/${buildVariant}/${findbugsVariant}.html"
             }
         }
     }

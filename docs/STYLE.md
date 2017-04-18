@@ -82,6 +82,7 @@ class MyActivity extends Activity {
 
     - Member vars, starting with static finals, static, public, private
     - Member var blocks such as onClickListener definitions
+    - Constructors
     - Static methods
     - @Overrides in groups such as Activity lifecycle
     - Activity @Override methods should be placed in proper lifecycle order
