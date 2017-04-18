@@ -22,5 +22,28 @@ apply from: "$projectDir/config/coverage/jacoco.gradle"
 apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
 apply from: "$rootDir/config/quality/quality_java_main.gradle"
 
-targetCompatibility = '1.8'
-sourceCompatibility = '1.8'
+/*
+ * FIXME (LAMBDA) - Set to 1.8 in order to use lambdas in all Java library modules
+ *
+ * This is currently required to be set to 1.7 for Android Dex:
+ * Dex: Error converting bytecode to dex:
+ * Cause: Dex cannot parse version 52 byte code.
+ * This is caused by library dependencies that have been compiled using Java 8 or above.
+ * If you are using the 'java' gradle plugin in a library submodule add
+ * targetCompatibility = '1.7'
+ * sourceCompatibility = '1.7'
+ * to that submodule's build.gradle file.
+ *
+ * We could apply an android plugin instead of a java plugin to fix this issue.
+ * However, if a library can be pure Java then it should. he data and domain layers
+ * (which use the java-library plugin), especially the domain layer, need to be framework agnostic
+ * as ruled by clean architecture principles. This means that they should not contain references
+ * to frameworks like Android.
+ *
+ * Retrolambda and Jack does not fix this issue. However, this should be fixed soon in the upcoming
+ * Android Studio 2.4 release. See the notes in the root project's *build.gradle*.
+ *
+ * See https://issuetracker.google.com/issues/37101513
+ */
+targetCompatibility = '1.7'
+sourceCompatibility = '1.7'

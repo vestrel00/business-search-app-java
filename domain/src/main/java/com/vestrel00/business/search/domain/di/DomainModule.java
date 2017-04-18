@@ -27,7 +27,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class DomainModule {
 
     @Provides
-    static CompositeDisposable compositeDisposable() {
+    CompositeDisposable compositeDisposable() {
         return new CompositeDisposable();
     }
 }

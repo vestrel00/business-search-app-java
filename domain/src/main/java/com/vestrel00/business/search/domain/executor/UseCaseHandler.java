@@ -41,14 +41,16 @@ public final class UseCaseHandler implements Disposable {
     private final CompositeDisposable disposables;
 
     @Inject
-    public UseCaseHandler(ExecutionThread executionThread, PostExecutionThread postExecutionThread,
+    public UseCaseHandler(ExecutionThread executionThread,
+                          PostExecutionThread postExecutionThread,
                           CompositeDisposable disposables) {
         this.executionThread = executionThread;
         this.postExecutionThread = postExecutionThread;
         this.disposables = disposables;
     }
 
-    public <K, V> void execute(SingleUseCase<K, V> useCase, K params, DisposableSingleObserver<V> observer) {
+    public <K, V> void execute(SingleUseCase<K, V> useCase, K params,
+                               DisposableSingleObserver<V> observer) {
         Disposable disposable = useCase.execute(params)
                 .subscribeOn(executionThread.scheduler())
                 .observeOn(postExecutionThread.scheduler())
@@ -56,7 +58,8 @@ public final class UseCaseHandler implements Disposable {
         disposables.add(disposable);
     }
 
-    public <K, V> void execute(ObservableUseCase<K, V> useCase, K params, DisposableObserver<V> observer) {
+    public <K, V> void execute(ObservableUseCase<K, V> useCase, K params,
+                               DisposableObserver<V> observer) {
         Disposable disposable = useCase.execute(params)
                 .subscribeOn(executionThread.scheduler())
                 .observeOn(postExecutionThread.scheduler())

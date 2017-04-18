@@ -84,7 +84,7 @@ def generateCheckstyleTask(String flavor, String buildType, String buildVariant)
         configProperties.checkstyleXmlHeaderPath = file("$rootConfigDir/checkstyle/xml.header").absolutePath
 
         source resolveSourceDirs(flavor, buildType, buildVariant)
-        classpath = files(resolveClassesDir(flavor, buildType, buildVariant))
+        classpath = files() // intentionally blank to prevent duplicate analysis
         include '**/*.java'
         include '**/*.xml'
         exclude '**/gen/**'
@@ -132,7 +132,6 @@ def generatePMDTask(String flavor, String buildType, String buildVariant) {
         ruleSets = []
 
         source resolveSourceDirs(flavor, buildType, buildVariant)
-        classpath = files(resolveClassesDir(flavor, buildType, buildVariant))
         include '**/*.java'
         exclude '**/gen/**'
 
@@ -181,7 +180,7 @@ def generateFindbugsTask(String flavor, String buildType, String buildVariant) {
         def classesDir = resolveClassesDir(flavor, buildType, buildVariant)
         source resolveSourceDirs(flavor, buildType, buildVariant)
         classes = files(classesDir)
-        classpath = files(classesDir)
+        classpath = files() // intentionally blank to prevent duplicate analysis
         include '**/*.java'
         exclude '**/gen/**'
 

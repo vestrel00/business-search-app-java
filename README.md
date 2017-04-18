@@ -40,13 +40,15 @@ I have created a simple business search application that is able to:
 - I am not using the [Yelp Android API](https://github.com/Yelp/yelp-android) so that I am able to 
   demonstrate my knowledge of [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
 
-#### Building and Running the Application
+## Building and Running the Application
 
 Before being able to build and run the application, you must have installed 
-[JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 
-There are several ways to build and run the application.
+[JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 
-**Using Gradle**
+This project contains 2 Java applications and 2 Android applications. There are several ways to 
+build and run theses applications.
+
+#### Using Gradle
 
 You may build the application binary (APK) using gradle in the command line,
 
@@ -72,10 +74,32 @@ For example, to install the MVP Debug build variant,
 adb install app/build/outputs/apk/mvp-debug-v0.0.1-b1.apk
 ```
 
-**Using Android Studio**
+**Known Issues**
+
+1. If you get the following message
+
+   > Could not initialize class com.android.ide.common.util.ReadWriteProcessLock
+   
+   Then you will need to stop the gradle daemons and try again
+   
+   ```./gradlew --stop```
+
+#### Using Android Studio
 
 You may *open* this project in Android Studio (v2.x) and run the application by selecting
 Run -> Run 'app'
+
+- For plain Java applications, you must run Build -> Make Project in order to build them.
+  There are 2 plain Java applications. You should first Make Project at least once after opening.
+
+  - presentation-java-nogui-mvp
+  - presentation-java-swing-mvp
+
+- For Android applications, Build -> Rebuild Project is enough. However, it will not build Java
+  applications mentioned above. There are 2 Android applications.
+  
+  - presentation-android-mvp
+  - presentation-android-mvvm
 
 
 ## Architecture

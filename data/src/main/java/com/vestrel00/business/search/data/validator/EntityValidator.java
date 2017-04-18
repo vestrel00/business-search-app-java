@@ -18,8 +18,10 @@ package com.vestrel00.business.search.data.validator;
 
 /**
  * Validates entities.
+ *
+ * @param <T> the type of the entity to validate.
  */
-public interface EntityValidator<T> {
+interface EntityValidator<T> {
 
     void validate(T entity) throws InvalidEntityException;
 }

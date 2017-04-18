@@ -44,7 +44,7 @@ public final class LocationFormatter {
     private void addToFormattedLocation(StringBuilder formattedLocation, String locationItem) {
         if (!locationItem.isEmpty()) {
             formattedLocation.append(locationItem);
-            formattedLocation.append(" ");
+            formattedLocation.append(' ');
         }
     }
 }

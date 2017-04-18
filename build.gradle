@@ -19,24 +19,32 @@ buildscript {
         jcenter()
         mavenCentral()
         maven {
-            // required for apt for Java (net.ltgt.gradle:gradle-apt-plugin)
+            // Required for apt for Java (net.ltgt.gradle:gradle-apt-plugin)
             url "https://plugins.gradle.org/m2/"
         }
     }
 
     dependencies {
-        // Note that annotation processors are now included in the Android gradle plugin starting at v2.2
-        // Note that custom android-apt annotation processor is deprecated as of 2.2
-        // See https://bitbucket.org/hvisser/android-apt/wiki/Migration
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        // Note that annotation processors (apt) are now included in the Android gradle plugin
+        // starting with v2.2 (usage is annotationProcessor). This deprecates the custom android-apt
+        // annotation processor: https://bitbucket.org/hvisser/android-apt/wiki/Migration
+        classpath 'com.android.tools.build:gradle:2.3.1'
 
-        // apt for Java: https://plugins.gradle.org/plugin/net.ltgt.apt
+        // Apt for Java: https://plugins.gradle.org/plugin/net.ltgt.apt
         classpath "net.ltgt.gradle:gradle-apt-plugin:0.10"
 
-        // FIXME migrate to using Android Studio 2.4 support for lambdas
+        // FIXME (LAMBDA) - Migrate to using Android Studio 2.4 support for lambdas
+        // (and other Java 8 features)
+        // This will require classpath com.android.tools.build:gradle: to 2.4.x
         // See https://developer.android.com/studio/preview/features/java8-support.html
         classpath 'me.tatarka:gradle-retrolambda:3.6.0'
     }
 }
 
 apply from: "$rootDir/config/dependencies/dependencies.gradle"
+
+// Include cleaning the root build/ dir
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+

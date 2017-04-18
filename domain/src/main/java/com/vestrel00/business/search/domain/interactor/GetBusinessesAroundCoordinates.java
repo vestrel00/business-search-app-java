@@ -29,7 +29,8 @@ import io.reactivex.Single;
 /**
  * Use case for getting businesses around the given coordinates.
  */
-public final class GetBusinessesAroundCoordinates implements SingleUseCase<Coordinates, List<Business>> {
+public final class GetBusinessesAroundCoordinates
+        implements SingleUseCase<Coordinates, List<Business>> {
 
     private final BusinessRepository businessRepository;
 

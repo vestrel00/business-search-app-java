@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.domain.interactor;
+package com.vestrel00.business.search.presentation.java.mvp;
 
 /**
- * Use cases are interactors in terms of "clean architecture", which encapsulate a focused unit of
- * work. These do not, by themselves, determine where (what thread) the work will be done.
- *
- * @param <K> the type of the input passed as a parameter to {@link #execute(K)}
- * @param <V> the type {@link #execute(V)} returns. E.G. Single, Observable, etc
+ * Created by estrellv on 4/6/17.
  */
-public interface UseCase<K, V> {
+public class TemporaryStub {
 
-    V execute(K params);
+    public int core() {
+        return 1;
+    }
 }

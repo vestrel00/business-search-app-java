@@ -16,6 +16,9 @@
 
 package com.vestrel00.business.search.data.repository;
 
+import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.CoordinatesEntity;
+import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.data.entity.mapper.BusinessEntityMapper;
 import com.vestrel00.business.search.data.entity.mapper.CoordinatesEntityMapper;
 import com.vestrel00.business.search.data.entity.mapper.LocationEntityMapper;
@@ -33,7 +36,11 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Single;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 /**
  * An implementation of {@link BusinessRepository}.
@@ -63,6 +70,8 @@ public final class BusinessDataRepository implements BusinessRepository {
         this.coordinatesEntityValidator = coordinatesEntityValidator;
     }
 
+
+    /* FIXME (LAMBDA) - Delete below code and uncomment this code block to use lambdas instead
     @Override
     public Single<List<Business>> aroundLocation(Location location) {
         return Observable.just(location)
@@ -80,6 +89,71 @@ public final class BusinessDataRepository implements BusinessRepository {
                 .doOnNext(coordinatesEntityValidator::validate)
                 .concatMap(dataStoreProvider.get()::aroundCoordinates)
                 .map(businessEntityMapper::map)
+                .toList();
+    }
+    */
+
+    @Override
+    public Single<List<Business>> aroundLocation(Location location) {
+        return Observable.just(location)
+                .map(new Function<Location, LocationEntity>() {
+                    @Override
+                    public LocationEntity apply(@NonNull Location location) throws Exception {
+                        return locationEntityMapper.map(location);
+                    }
+                })
+                .doOnNext(new Consumer<LocationEntity>() {
+                    @Override
+                    public void accept(@NonNull LocationEntity locationEntity) throws Exception {
+                        locationEntityValidator.validate(locationEntity);
+                    }
+                })
+                .concatMap(new Function<LocationEntity, ObservableSource<BusinessEntity>>() {
+                    @Override
+                    public ObservableSource<BusinessEntity>
+                    apply(@NonNull LocationEntity locationEntity) throws Exception {
+                        return dataStoreProvider.get().aroundLocation(locationEntity);
+                    }
+                })
+                .map(new Function<BusinessEntity, Business>() {
+                    @Override
+                    public Business apply(@NonNull BusinessEntity businessEntity) throws Exception {
+                        return businessEntityMapper.map(businessEntity);
+                    }
+                })
+                .toList();
+    }
+
+    @Override
+    public Single<List<Business>> aroundCoordinates(Coordinates coordinates) {
+        return Observable.just(coordinates)
+                .map(new Function<Coordinates, CoordinatesEntity>() {
+                    @Override
+                    public CoordinatesEntity apply(@NonNull Coordinates coordinates)
+                            throws Exception {
+                        return coordinatesEntityMapper.map(coordinates);
+                    }
+                })
+                .doOnNext(new Consumer<CoordinatesEntity>() {
+                    @Override
+                    public void accept(@NonNull CoordinatesEntity coordinatesEntity)
+                            throws Exception {
+                        coordinatesEntityValidator.validate(coordinatesEntity);
+                    }
+                })
+                .concatMap(new Function<CoordinatesEntity, ObservableSource<BusinessEntity>>() {
+                    @Override
+                    public ObservableSource<BusinessEntity>
+                    apply(@NonNull CoordinatesEntity coordinatesEntity) throws Exception {
+                        return dataStoreProvider.get().aroundCoordinates(coordinatesEntity);
+                    }
+                })
+                .map(new Function<BusinessEntity, Business>() {
+                    @Override
+                    public Business apply(@NonNull BusinessEntity businessEntity) throws Exception {
+                        return businessEntityMapper.map(businessEntity);
+                    }
+                })
                 .toList();
     }
 }

@@ -23,11 +23,15 @@ dependencies {
     apt dataDependencies.daggerCompiler
     apt dataDependencies.autoValue
 
+    // FIXME? (DEPENDENCY) - Possible to set to implementation? Retrofit dependencies are not
+    // directly exposed to consumers (though indirectly are). This api scope may already be correct.
+    // E.G. DataServiceFactory includes okhttp3 and retrofit2 symbols in compiled class file.
+    api dataDependencies.retrofit
+
     implementation project(':domain')
     implementation dataDependencies.rxJava
     implementation dataDependencies.javaxInject
     implementation dataDependencies.dagger
-    api dataDependencies.retrofit // FIXME set to implementation
     implementation dataDependencies.retrofitRxJavaAdapter
     implementation dataDependencies.retrofitJacksonConverter
     implementation dataDependencies.jacksonCore
