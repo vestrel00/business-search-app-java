@@ -16,8 +16,6 @@
 
 package com.vestrel00.business.search.data.net;
 
-import com.vestrel00.business.search.data.entity.BusinessEntity;
-
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -28,9 +26,9 @@ import retrofit2.http.Query;
 public interface BusinessDataService {
 
     @GET("v3/businesses/search")
-    Observable<BusinessEntity> aroundLocation(@Query("location") String location);
+    Observable<BusinessListResponse> aroundLocation(@Query("location") String location);
 
     @GET("v3/businesses/search")
-    Observable<BusinessEntity> aroundCoordinates(@Query("latitude") double latitude,
-                                                 @Query("longitude") double longitude);
+    Observable<BusinessListResponse> aroundCoordinates(@Query("latitude") double latitude,
+                                                       @Query("longitude") double longitude);
 }

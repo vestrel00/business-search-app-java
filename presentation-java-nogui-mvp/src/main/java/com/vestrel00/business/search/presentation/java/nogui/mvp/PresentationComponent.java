@@ -14,27 +14,24 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.validator;
+package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.data.entity.CoordinatesEntity;
+import com.vestrel00.business.search.data.DataModule;
+import com.vestrel00.business.search.domain.DomainModule;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import dagger.Component;
+
 /**
- * Validation for {@link CoordinatesEntity}
+ * Injects presentation dependencies.
  */
 @Singleton
-public final class CoordinatesEntityValidator implements EntityValidator<CoordinatesEntity> {
-
-    @Inject
-    CoordinatesEntityValidator() {
-    }
-
-    @Override
-    public void validate(CoordinatesEntity coordinates) throws InvalidEntityException {
-        if (coordinates.latitude() < 0 || coordinates.longitude() < 0) {
-            throw new InvalidEntityException("Coordinate latitude and longitude must be positive.");
-        }
-    }
+@Component(modules = {
+        DataModule.class,
+        DomainModule.class,
+        PresentationModule.class
+})
+interface PresentationComponent {
+    Application application();
 }

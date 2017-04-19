@@ -14,26 +14,14 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.view;
+package com.vestrel00.business.search.data.entity.validator;
 
 /**
- * A view for a no-gui application.
- *
- * @param <T> the type of the value returned by {@link #show()}
+ * Thrown for invalid models.
  */
-public interface NoGuiView<T> {
+final class InvalidEntityException extends RuntimeException {
 
-    /**
-     * Start showing this view's contents.
-     * <p>
-     * This should not be invoked by the presenter, otherwise an infinite call loop may occur.
-     *
-     * @return the result of viewing this view (if any).
-     */
-    T show();
-
-    /**
-     * @param error the error to show.
-     */
-    void showError(Throwable error);
+    InvalidEntityException(String message) {
+        super(message);
+    }
 }

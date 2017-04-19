@@ -49,8 +49,9 @@ final class AuthTokenCache {
 
     synchronized void set(AuthToken authToken) {
         this.authToken = authToken;
-        authTokenExpirationTimeMillis = System.currentTimeMillis()
-                + TimeUnit.SECONDS.toMillis(authToken.expiresInSeconds());
+
+        long expiresInMillis = TimeUnit.SECONDS.toMillis(authToken.expiresInSeconds());
+        authTokenExpirationTimeMillis = System.currentTimeMillis() + expiresInMillis;
     }
 
     synchronized void clear() {

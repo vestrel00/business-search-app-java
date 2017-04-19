@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.validator;
+package com.vestrel00.business.search.data.entity;
+
+import com.vestrel00.business.search.data.entity.validator.DataEntityValidatorModule;
+
+import dagger.Module;
 
 /**
- * Validates entities.
- *
- * @param <T> the type of the entity to validate.
+ * Provides data entity dependencies.
  */
-interface EntityValidator<T> {
-
-    void validate(T entity) throws InvalidEntityException;
+@Module(includes = DataEntityValidatorModule.class)
+public abstract class DataEntityModule {
 }

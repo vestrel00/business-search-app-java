@@ -16,17 +16,30 @@
 
 package com.vestrel00.business.search.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
-
-import java.util.List;
+import com.vestrel00.business.search.data.net.deserialize.BusinessEntityDeserializer;
 
 /**
  * Contains business information.
+ * <p>
+ * <b>DEFAULT VALUES</b>
+ * None of the getter methods defined here return null. If an attribute is missing or null, the
+ * value returned as defaulted to their non-null counterparts:
+ * <ul>
+ * <li>String -> ""</li>
+ * <li>Collection -> empty collection</li>
+ * <li>CustomClass -> non-null CustomClass</li>
+ * <li>Primitives -> default values. E.G. int -> 0</li>
+ * </ul>
+ * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
-@JsonDeserialize(builder = AutoValue_BusinessEntity.Builder.class)
+// FIXME (DATABIND) The generated builder could be used for deserialization. However, Jackson does
+// not yet support setting default values for null or missing properties per setter/getter methods.
+// E.G. Missing (or null) property string -> empty string (instead of the default null)
+// @JsonDeserialize(builder = AutoValue_BusinessEntity.Builder.class)
+@JsonDeserialize(using = BusinessEntityDeserializer.class)
 public abstract class BusinessEntity {
 
     /**
@@ -38,31 +51,20 @@ public abstract class BusinessEntity {
 
     public abstract String id();
 
-    @JsonProperty("name")
     public abstract String name();
 
-    @JsonProperty("display_phone")
     public abstract String phoneNumber();
 
-    @JsonProperty("image_url")
     public abstract String imageUrl();
 
-    @JsonProperty("price")
     public abstract String price();
 
-    @JsonProperty("categories")
-    public abstract List<String> categories();
+    public abstract double rating();
 
-    @JsonProperty("rating")
-    public abstract float rating();
-
-    @JsonProperty("is_closed")
     public abstract boolean closed();
 
-    @JsonProperty("location")
     public abstract LocationEntity location();
 
-    @JsonProperty("coordinates")
     public abstract CoordinatesEntity coordinates();
 
     /**
@@ -71,36 +73,22 @@ public abstract class BusinessEntity {
     @AutoValue.Builder
     public abstract static class Builder {
 
-        @JsonProperty("id")
         public abstract Builder id(String id);
 
-        @JsonProperty("name")
         public abstract Builder name(String name);
 
-        @JsonProperty("display_phone")
         public abstract Builder phoneNumber(String phoneNumber);
 
-        @JsonProperty("image_url")
         public abstract Builder imageUrl(String imageUrl);
 
-        @JsonProperty("price")
         public abstract Builder price(String price);
 
-        @JsonProperty("categories")
-        public abstract Builder categories(List<String> categories);
+        public abstract Builder rating(double rating);
 
-        @JsonProperty("rating")
-        public abstract Builder rating(float rating);
-
-        @JsonProperty("is_closed")
         public abstract Builder closed(boolean closed);
 
-        @JsonProperty("location")
-        @JsonDeserialize(builder = LocationEntity.Builder.class)
         public abstract Builder location(LocationEntity location);
 
-        @JsonProperty("coordinates")
-        @JsonDeserialize(builder = CoordinatesEntity.Builder.class)
         public abstract Builder coordinates(CoordinatesEntity coordinates);
 
         public abstract BusinessEntity build();

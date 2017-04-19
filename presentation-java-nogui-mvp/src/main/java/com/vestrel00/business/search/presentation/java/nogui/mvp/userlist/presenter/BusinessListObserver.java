@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.presenter;
 
 import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.presentation.java.model.mapper.BusinessModelMapper;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListView;
 
 import java.util.List;
 

@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.data.net.auth;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
@@ -24,33 +25,34 @@ import com.google.auto.value.AutoValue;
  * Contains auth information.
  */
 @AutoValue
-@JsonDeserialize(builder = AuthToken.Builder.class)
+@JsonDeserialize(builder = AutoValue_AuthToken.Builder.class)
 abstract class AuthToken {
 
     @JsonProperty("access_token")
-    public abstract String accessToken();
+    abstract String accessToken();
 
     @JsonProperty("token_type")
-    public abstract String tokenType();
+    abstract String tokenType();
 
     @JsonProperty("expires_in")
-    public abstract long expiresInSeconds();
+    abstract long expiresInSeconds();
 
     /**
      * Builder used to create instances of {@link AuthToken}.
      */
     @AutoValue.Builder
+    @JsonIgnoreProperties(ignoreUnknown = true)
     abstract static class Builder {
 
         @JsonProperty("access_token")
-        public abstract Builder accessToken(String accessToken);
+        abstract Builder accessToken(String accessToken);
 
         @JsonProperty("token_type")
-        public abstract Builder tokenType(String tokenType);
+        abstract Builder tokenType(String tokenType);
 
         @JsonProperty("expires_in")
-        public abstract Builder expiresInSeconds(long expiresInSeconds);
+        abstract Builder expiresInSeconds(long expiresInSeconds);
 
-        public abstract AuthToken build();
+        abstract AuthToken build();
     }
 }

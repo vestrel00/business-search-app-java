@@ -34,16 +34,16 @@ import io.reactivex.observers.DisposableSingleObserver;
  * in the given {@link PostExecutionThread}.
  */
 @Singleton
-public final class UseCaseHandler implements Disposable {
+public final class UseCaseHandler {
 
     private final ExecutionThread executionThread;
     private final PostExecutionThread postExecutionThread;
     private final CompositeDisposable disposables;
 
     @Inject
-    public UseCaseHandler(ExecutionThread executionThread,
-                          PostExecutionThread postExecutionThread,
-                          CompositeDisposable disposables) {
+    UseCaseHandler(ExecutionThread executionThread,
+                   PostExecutionThread postExecutionThread,
+                   CompositeDisposable disposables) {
         this.executionThread = executionThread;
         this.postExecutionThread = postExecutionThread;
         this.disposables = disposables;
@@ -67,13 +67,8 @@ public final class UseCaseHandler implements Disposable {
         disposables.add(disposable);
     }
 
-    @Override
-    public void dispose() {
+    public void clear() {
+        // clear only and not dispose the composite to enable composite reuse
         disposables.clear();
-    }
-
-    @Override
-    public boolean isDisposed() {
-        return disposables.isDisposed();
     }
 }

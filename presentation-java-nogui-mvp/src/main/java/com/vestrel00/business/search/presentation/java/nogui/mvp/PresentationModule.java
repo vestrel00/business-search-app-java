@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.domain.di;
+package com.vestrel00.business.search.presentation.java.nogui.mvp;
+
+import com.vestrel00.business.search.presentation.java.nogui.mvp.config.PresentationConfigModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.display.PresentationDisplayModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.PresentationExecutorModule;
 
 import dagger.Module;
-import dagger.Provides;
-import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * A dagger module that provides presentation layers dependencies from the domain layer.
+ * Provides presentation dependencies.
  */
-@Module
-public class DomainModule {
-
-    @Provides
-    CompositeDisposable compositeDisposable() {
-        return new CompositeDisposable();
-    }
+@Module(includes = {
+        PresentationConfigModule.class,
+        PresentationDisplayModule.class,
+        PresentationExecutorModule.class
+})
+abstract class PresentationModule {
 }

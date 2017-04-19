@@ -14,35 +14,22 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.di;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.executor;
 
-import com.vestrel00.business.search.data.config.DataConfig;
 import com.vestrel00.business.search.domain.executor.ExecutionThread;
 import com.vestrel00.business.search.domain.executor.PostExecutionThread;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.config.DataConfigFactory;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.display.DisplayIO;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.BlockingExecutionThread;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.BlockingPostExecutionThread;
 
 import javax.inject.Singleton;
 
 import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
- * Module for {@link ApplicationComponent}.
+ * Provides presentation executor dependencies.
  */
 @Module
-abstract class ApplicationModule {
-
-    @Provides
-    @Singleton
-    static DataConfig dataConfig() {
-        return DataConfigFactory.create();
-    }
-
+public abstract class PresentationExecutorModule {
+    
     @Binds
     @Singleton
     abstract ExecutionThread executionThread(BlockingExecutionThread blockingExecutionThread);
@@ -51,9 +38,4 @@ abstract class ApplicationModule {
     @Singleton
     abstract PostExecutionThread
     postExecutionThread(BlockingPostExecutionThread blockingPostExecutionThread);
-
-    @Binds
-    @Singleton
-    abstract Display display(DisplayIO displayIO);
-
 }

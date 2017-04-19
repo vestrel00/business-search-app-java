@@ -106,6 +106,10 @@ Run -> Run 'app'
 
 TODO
 
+#### Code Organization
+
+- Dagger package module setup
+
 
 ## Development Logs
 

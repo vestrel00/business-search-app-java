@@ -34,7 +34,7 @@ public final class GetBusinessesAroundLocation implements SingleUseCase<Location
     private final BusinessRepository businessRepository;
 
     @Inject
-    public GetBusinessesAroundLocation(BusinessRepository businessRepository) {
+    GetBusinessesAroundLocation(BusinessRepository businessRepository) {
         this.businessRepository = businessRepository;
     }
 

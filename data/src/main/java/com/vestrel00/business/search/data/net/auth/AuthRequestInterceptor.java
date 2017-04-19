@@ -29,7 +29,6 @@ import okhttp3.Response;
  * Injects authorization into the request header. Uses auth token from cache or retrieves it
  * from network.
  */
-@Singleton
 public final class AuthRequestInterceptor implements Interceptor {
 
     private final AuthTokenProvider authTokenProvider;

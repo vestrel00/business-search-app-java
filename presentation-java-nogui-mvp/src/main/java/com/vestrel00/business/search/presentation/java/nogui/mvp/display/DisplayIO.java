@@ -24,7 +24,7 @@ import javax.inject.Singleton;
  * displaying messages.
  */
 @Singleton
-public final class DisplayIO implements Display {
+final class DisplayIO implements Display {
 
     private final DisplayInput displayInput;
     private final DisplayOutput displayOutput;

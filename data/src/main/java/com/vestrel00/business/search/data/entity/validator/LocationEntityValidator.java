@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.validator;
+package com.vestrel00.business.search.data.entity.validator;
 
 import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.data.util.StringUtils;
@@ -26,7 +26,7 @@ import javax.inject.Singleton;
  * Validation for {@link LocationEntity}.
  */
 @Singleton
-public final class LocationEntityValidator implements EntityValidator<LocationEntity> {
+final class LocationEntityValidator implements EntityValidator<LocationEntity> {
 
     private final StringUtils stringUtils;
 
@@ -37,9 +37,14 @@ public final class LocationEntityValidator implements EntityValidator<LocationEn
 
     @Override
     public void validate(LocationEntity location) throws InvalidEntityException {
-        if (stringUtils.allEmpty(location.address(), location.city(), location.state(),
-                location.zipCode(), location.country())) {
+        if (!isValid(location)) {
             throw new InvalidEntityException("One or more attributes must not be null or empty.");
         }
+    }
+
+    @Override
+    public boolean isValid(LocationEntity location) {
+        return !stringUtils.allEmpty(location.address(), location.city(), location.state(),
+                location.zipCode(), location.country());
     }
 }

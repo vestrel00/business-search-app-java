@@ -24,7 +24,7 @@ import com.vestrel00.business.search.data.config.DataConfig;
  * Note that we could retrieve the config values here from a resource/config file or from a
  * remote config endpoint. The values are statically defined here for simplicity and brevity.
  */
-public final class DataConfigFactory {
+final class DataConfigFactory {
 
     private DataConfigFactory() {
     }

@@ -32,30 +32,25 @@ import dagger.Lazy;
  * or network (hence "smart").
  * <p>
  * Note that it is understood that this provider is not needed in the current implementation as we
- * only have 1 data store that handles memory, disk, or network storage. We could get rid of this
+ * only have 1 data store that handles memory, disk, or network storage. We could create rid of this
  * and just inject the {@link SmartBusinessDataStore} directly into consumers. However, we may
  * decide to provide different data stores given a circumstance. Hence, the purpose of this class.
  */
 @Singleton
-public final class BusinessDataStoreProvider {
+public final class BusinessDataStoreFactory {
 
     private final Lazy<BusinessDataService> businessDataServiceProvider;
     private final LocationFormatter locationFormatter;
 
-    private SmartBusinessDataStore smartDataStore;
-
     @Inject
-    BusinessDataStoreProvider(Lazy<BusinessDataService> businessDataServiceProvider,
-                              LocationFormatter locationFormatter) {
+    BusinessDataStoreFactory(Lazy<BusinessDataService> businessDataServiceProvider,
+                             LocationFormatter locationFormatter) {
         this.businessDataServiceProvider = businessDataServiceProvider;
         this.locationFormatter = locationFormatter;
     }
 
-    public BusinessDataStore get() {
-        if (smartDataStore == null) {
-            smartDataStore = new SmartBusinessDataStore(businessDataServiceProvider,
-                    locationFormatter);
-        }
-        return smartDataStore;
+    public BusinessDataStore create() {
+        return new SmartBusinessDataStore(businessDataServiceProvider,
+                locationFormatter);
     }
 }

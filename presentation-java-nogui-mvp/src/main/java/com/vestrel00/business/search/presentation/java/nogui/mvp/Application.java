@@ -16,7 +16,8 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.BusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewResult;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -36,8 +37,24 @@ public final class Application implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            String businessId = businessListView.show();
+        businessListView.initialize();
+
+        boolean run = true;
+        while (run) {
+            BusinessListViewResult result = businessListView.showOptions();
+            run = handleBusinessListViewResult(result);
+        }
+    }
+
+    private boolean handleBusinessListViewResult(BusinessListViewResult result) {
+        switch (result.code()) {
+            case SHOW_BUSINESS_DETAILS:
+                // TODO
+                return true;
+            case QUIT:
+                return false;
+            default:
+                return true;
         }
     }
 }

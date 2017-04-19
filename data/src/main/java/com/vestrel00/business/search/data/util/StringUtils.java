@@ -35,10 +35,10 @@ public final class StringUtils {
 
     public boolean allEmpty(String... strings) {
         for (String string : strings) {
-            if (isEmpty(string)) {
-                return true;
+            if (!isEmpty(string)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

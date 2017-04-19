@@ -14,27 +14,32 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist;
+package com.vestrel00.business.search.data.entity.validator;
 
-import com.vestrel00.business.search.presentation.java.model.mapper.BusinessModelMapper;
+import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Creates instances of {@link BusinessListObserver}.
+ * Validation for {@link CoordinatesEntity}
  */
 @Singleton
-final class BusinessListObserverFactory {
-
-    private final BusinessModelMapper businessModelMapper;
+final class CoordinatesEntityValidator implements EntityValidator<CoordinatesEntity> {
 
     @Inject
-    BusinessListObserverFactory(BusinessModelMapper businessModelMapper) {
-        this.businessModelMapper = businessModelMapper;
+    CoordinatesEntityValidator() {
     }
 
-    BusinessListObserver create(BusinessListView view) {
-        return new BusinessListObserver(view, businessModelMapper);
+    @Override
+    public void validate(CoordinatesEntity coordinates) throws InvalidEntityException {
+        if (!isValid(coordinates)) {
+            throw new InvalidEntityException("Latitude and longitude must not be 0.");
+        }
+    }
+
+    @Override
+    public boolean isValid(CoordinatesEntity coordinates) {
+        return coordinates.latitude() != 0 && coordinates.longitude() != 0;
     }
 }

@@ -18,10 +18,19 @@ package com.vestrel00.business.search.domain;
 
 import com.google.auto.value.AutoValue;
 
-import java.util.List;
-
 /**
  * Contains business information.
+ * <p>
+ * <b>DEFAULT VALUES</b>
+ * None of the getter methods defined here return null. If an attribute is missing or null, the
+ * value returned as defaulted to their non-null counterparts:
+ * <ul>
+ * <li>String -> ""</li>
+ * <li>Collection -> empty collection</li>
+ * <li>CustomClass -> non-null CustomClass</li>
+ * <li>Primitives -> default values. E.G. int -> 0</li>
+ * </ul>
+ * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
 public abstract class Business {
@@ -43,9 +52,7 @@ public abstract class Business {
 
     public abstract String price();
 
-    public abstract List<String> categories();
-
-    public abstract float rating();
+    public abstract double rating();
 
     public abstract boolean closed();
 
@@ -69,9 +76,7 @@ public abstract class Business {
 
         public abstract Builder price(String price);
 
-        public abstract Builder categories(List<String> categories);
-
-        public abstract Builder rating(float rating);
+        public abstract Builder rating(double rating);
 
         public abstract Builder closed(boolean closed);
 

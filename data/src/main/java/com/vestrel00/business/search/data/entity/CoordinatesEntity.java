@@ -16,15 +16,27 @@
 
 package com.vestrel00.business.search.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
 
 /**
  * Contains coordinates.
+ * <p>
+ * <b>DEFAULT VALUES</b>
+ * None of the getter methods defined here return null. If an attribute is missing or null, the
+ * value returned as defaulted to their non-null counterparts:
+ * <ul>
+ * <li>String -> ""</li>
+ * <li>Collection -> empty collection</li>
+ * <li>CustomClass -> non-null CustomClass</li>
+ * <li>Primitives -> default values. E.G. int -> 0</li>
+ * </ul>
+ * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
-@JsonDeserialize(builder = AutoValue_CoordinatesEntity.Builder.class)
+// FIXME (DATABIND) The generated builder could be used for deserialization. However, Jackson does
+// not yet support setting default values for null or missing properties per setter/getter methods.
+// E.G. Missing (or null) property string -> empty string (instead of the default null)
+// @JsonDeserialize(builder = AutoValue_CoordinatesEntity.Builder.class)
 public abstract class CoordinatesEntity {
 
     /**
@@ -34,10 +46,8 @@ public abstract class CoordinatesEntity {
         return new AutoValue_CoordinatesEntity.Builder();
     }
 
-    @JsonProperty("latitude")
     public abstract double latitude();
 
-    @JsonProperty("longitude")
     public abstract double longitude();
 
     /**
@@ -46,10 +56,8 @@ public abstract class CoordinatesEntity {
     @AutoValue.Builder
     public abstract static class Builder {
 
-        @JsonProperty("latitude")
         public abstract Builder latitude(double latitude);
 
-        @JsonProperty("longitude")
         public abstract Builder longitude(double latitude);
 
         public abstract CoordinatesEntity build();

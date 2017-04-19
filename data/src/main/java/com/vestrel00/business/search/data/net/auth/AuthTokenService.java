@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.data.net.auth;
 
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -23,11 +24,11 @@ import retrofit2.http.POST;
 /**
  * Client API to the backend REST API that provides an {@link AuthToken}.
  */
-public interface AuthTokenService {
+interface AuthTokenService {
 
     @POST("oauth2/token")
     @FormUrlEncoded
-    AuthToken getAuthToken(@Field("grant_type") String grantType,
-                           @Field("client_id") String clientId,
-                           @Field("client_secret") String clientSecret);
+    Call<AuthToken> getAuthToken(@Field("grant_type") String grantType,
+                                 @Field("client_id") String clientId,
+                                 @Field("client_secret") String clientSecret);
 }

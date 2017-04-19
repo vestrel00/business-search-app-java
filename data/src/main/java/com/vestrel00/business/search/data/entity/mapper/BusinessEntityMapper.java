@@ -45,7 +45,6 @@ public final class BusinessEntityMapper {
                 .phoneNumber(businessEntity.phoneNumber())
                 .imageUrl(businessEntity.imageUrl())
                 .price(businessEntity.price())
-                .categories(businessEntity.categories())
                 .rating(businessEntity.rating())
                 .closed(businessEntity.closed())
                 .location(locationEntityMapper.map(businessEntity.location()))

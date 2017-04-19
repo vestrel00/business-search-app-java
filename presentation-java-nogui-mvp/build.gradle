@@ -16,7 +16,30 @@
 
 apply from: "$rootDir/config/java/application.gradle"
 
+version '1.0.0'
+
+// Required when running as an application: ./gradlew run
 mainClassName = "com.vestrel00.business.search.presentation.java.nogui.mvp.ApplicationRunner"
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Business Search NoGUI',
+                'Implementation-Version': version,
+                'Manifest-Version': version,
+                'Main-Class': mainClassName
+    }
+
+    from {
+        // Pack all dependencies into jar.
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+run {
+    // Required for System.in to block for getting user input.
+    // See https://discuss.gradle.org/t/why-doesnt-system-in-read-block-when-im-using-gradle/3308
+    standardInput = System.in
+}
 
 dependencies {
     def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies

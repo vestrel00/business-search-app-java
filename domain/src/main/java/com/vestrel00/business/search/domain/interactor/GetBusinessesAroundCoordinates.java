@@ -35,7 +35,7 @@ public final class GetBusinessesAroundCoordinates
     private final BusinessRepository businessRepository;
 
     @Inject
-    public GetBusinessesAroundCoordinates(BusinessRepository businessRepository) {
+    GetBusinessesAroundCoordinates(BusinessRepository businessRepository) {
         this.businessRepository = businessRepository;
     }
 

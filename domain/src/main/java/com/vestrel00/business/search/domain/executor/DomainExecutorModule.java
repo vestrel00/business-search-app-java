@@ -14,25 +14,20 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.di;
+package com.vestrel00.business.search.domain.executor;
 
-import com.vestrel00.business.search.data.di.DataModule;
-import com.vestrel00.business.search.domain.di.DomainModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.Application;
-
-import javax.inject.Singleton;
-
-import dagger.Component;
+import dagger.Module;
+import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * Component for providing an {@link Application}
+ * Provides domain executor dependencies.
  */
-@Singleton
-@Component(modules = {
-        DataModule.class,
-        DomainModule.class,
-        ApplicationModule.class
-})
-public interface ApplicationComponent {
-    Application application();
+@Module
+public final class DomainExecutorModule {
+
+    @Provides
+    CompositeDisposable compositeDisposable() {
+        return new CompositeDisposable();
+    }
 }

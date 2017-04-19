@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.validator;
+package com.vestrel00.business.search.data;
+
+import com.vestrel00.business.search.data.entity.DataEntityModule;
+import com.vestrel00.business.search.data.net.DataNetModule;
+import com.vestrel00.business.search.data.repository.DataRepositoryModule;
+
+import dagger.Module;
 
 /**
- * Thrown for invalid models.
+ * Provides data dependencies.
  */
-public final class InvalidEntityException extends RuntimeException {
-
-    public InvalidEntityException(String message) {
-        super(message);
-    }
+@Module(includes = {
+        DataEntityModule.class,
+        DataNetModule.class,
+        DataRepositoryModule.class
+})
+public abstract class DataModule {
 }

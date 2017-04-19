@@ -14,34 +14,37 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view;
 
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.view.NoGuiView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.presenter.BusinessListPresenter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.QUIT;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.SHOW_AROUND_COORDINATES;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.SHOW_AROUND_LOCATION;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.SHOW_BUSINESS_DETAILS;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.UNKNOWN;
+
 /**
  * Shows the user list, including user-prompts related to the user-list. This view completes when
  * a business id has been entered by the user.
  */
 @Singleton
-public final class BusinessListView implements NoGuiView<String> {
+public final class BusinessListView {
 
-    private static final String OPTIONS = "You may display a list of businesses using the "
-            + "following options:\n"
-            + "l: list by location (address, city, state, zip, and/or country)\n"
-            + "c: list by coordinates (latitude, longitude)\n"
-            + "s: enter a business id to view more details for that business\n";
-    private static final String OPTION_LOCATION = "l";
-    private static final String OPTION_COORDINATES = "c";
-    private static final String OPTION_SELECT = "s";
+    private static final String OPTION_MESSAGE = "\nYou have the following options:\n"
+            + "l: list businesses around a location (address, city, state, zip, and/or country)\n"
+            + "c: list businesses around coordinates (latitude, longitude)\n"
+            + "s: show more business details\n"
+            + "q: quit\n";
 
     private final BusinessListPresenter presenter;
     private final Display display;
@@ -52,37 +55,35 @@ public final class BusinessListView implements NoGuiView<String> {
         this.display = display;
     }
 
-    /**
-     * @return the business id entered by the user.
-     */
-    @Override
-    public String show() {
+    public void initialize() {
         presenter.setView(this);
-
-        String businessId = "";
-        while (businessId.isEmpty()) {
-            businessId = Observable.just(OPTIONS)
-                    .map(display::getUserInput)
-                    .doOnNext(this::validateOption)
-                    .map(this::handleOption)
-                    .onErrorReturnItem("")
-                    .blockingSingle();
-        }
-        return businessId;
     }
 
-    @Override
+    /**
+     * Start showing this view's options.
+     * <p>
+     * This should not be invoked by the presenter, otherwise an infinite call loop may occur.
+     *
+     * @return the {@link BusinessListViewResult} of showing this.
+     */
+    public BusinessListViewResult showOptions() {
+        return Observable.just(OPTION_MESSAGE)
+                .map(display::getUserInput)
+                .map(this::parseOption)
+                .map(presenter::handleOption)
+                .blockingSingle();
+    }
+
     public void showError(Throwable error) {
         display.showError(error);
     }
 
-    void showBusiness(BusinessModel business) {
+    public void showBusiness(BusinessModel business) {
         display.showMessage(business.name() + ", id: " + business.id());
     }
 
-    private LocationModel getLocation() {
-        // Use an observable to build the LocationModel in order to wrap any exceptions that may
-        // occur when retrieving user input
+    public LocationModel getLocation() {
+        // Use an observable to build the LocationModel for more granular code
         return Observable.just("Enter the address or just enter to skip:")
                 .map(display::getUserInput)
                 .map(address -> LocationModel.builder().address(address))
@@ -101,15 +102,15 @@ public final class BusinessListView implements NoGuiView<String> {
                 .blockingSingle();
     }
 
-    private CoordinatesModel getCoordinates() {
+    public CoordinatesModel getCoordinates() {
         // Use an observable to build the CoordinatesModel in order to wrap any exceptions that may
         // occur when retrieving user input
         return Observable.just("Enter latitude:")
                 .map(display::getUserInput)
-                .map(Long::valueOf)
+                .map(Double::valueOf)
                 .map(latitude -> CoordinatesModel.builder().latitude(latitude))
                 .doOnNext(coordinatesBuilder -> coordinatesBuilder.longitude(
-                        Long.valueOf(display.getUserInput("Enter longitude:")))
+                        Double.valueOf(display.getUserInput("Enter longitude:")))
                 )
                 .map(CoordinatesModel.Builder::build)
                 .doOnError(this::showError)
@@ -117,30 +118,22 @@ public final class BusinessListView implements NoGuiView<String> {
                 .blockingSingle();
     }
 
-    private void validateOption(String option) throws IllegalArgumentException {
-        if (OPTION_LOCATION.equalsIgnoreCase(option)
-                || OPTION_COORDINATES.equalsIgnoreCase(option)
-                || OPTION_SELECT.equalsIgnoreCase(option)) {
-            return;
-        }
-        throw new IllegalArgumentException("Invalid option: " + option);
+    public String getBusinessId() {
+        return display.getUserInput("Enter business id:");
     }
 
-    private String handleOption(String option) {
-        switch (option) {
-            case OPTION_LOCATION:
-                presenter.showBusinessesAroundLocation(getLocation());
-                break;
-            case OPTION_COORDINATES:
-                presenter.showBusinessesAroundCoordinates(getCoordinates());
-                break;
-            case OPTION_SELECT:
-                return display.getUserInput();
+    private BusinessListViewOption parseOption(String userInput) {
+        switch (userInput.toLowerCase()) {
+            case "l":
+                return SHOW_AROUND_LOCATION;
+            case "c":
+                return SHOW_AROUND_COORDINATES;
+            case "s":
+                return SHOW_BUSINESS_DETAILS;
+            case "q":
+                return QUIT;
             default:
-                // Should never get here. This is for checkstyle and paranoia
-                throw new IllegalArgumentException("Invalid option: " + option);
+                return UNKNOWN;
         }
-
-        return "";
     }
 }

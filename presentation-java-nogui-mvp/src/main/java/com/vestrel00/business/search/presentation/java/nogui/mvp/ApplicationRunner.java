@@ -16,9 +16,6 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.di.ApplicationComponent;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.di.DaggerApplicationComponent;
-
 /**
  * ApplicationRunner class of this presentation layer. This simply runs the {@link Application}.
  */
@@ -28,7 +25,7 @@ public final class ApplicationRunner {
     }
 
     public static void main(String[] args) {
-        ApplicationComponent appComponent = DaggerApplicationComponent.create();
-        appComponent.application().run();
+        Application app = DaggerPresentationComponent.create().application();
+        app.run();
     }
 }

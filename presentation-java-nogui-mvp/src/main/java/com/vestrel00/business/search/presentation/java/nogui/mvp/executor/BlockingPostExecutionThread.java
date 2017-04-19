@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
  * a {@link PostExecutionThread} that provides a scheduler to the current thread.
  */
 @Singleton
-public final class BlockingPostExecutionThread implements PostExecutionThread {
+final class BlockingPostExecutionThread implements PostExecutionThread {
 
     private final BlockingExecutor blockingExecutor;
 

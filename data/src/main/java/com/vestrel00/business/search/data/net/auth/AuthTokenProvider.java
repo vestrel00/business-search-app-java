@@ -18,6 +18,8 @@ package com.vestrel00.business.search.data.net.auth;
 
 import com.vestrel00.business.search.data.config.DataConfig;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -41,14 +43,17 @@ final class AuthTokenProvider {
         this.config = config;
     }
 
-    synchronized AuthToken get() {
+    synchronized AuthToken get() throws IOException {
         if (cache.hasValidTokenCached()) {
             return cache.get();
         }
 
         cache.clear();
-        AuthToken authToken = authTokenService.get().getAuthToken(config.authGrantType(),
-                config.authClientId(), config.authClientSecret());
+        AuthToken authToken = authTokenService.get()
+                .getAuthToken(config.authGrantType(), config.authClientId(),
+                        config.authClientSecret())
+                .execute()
+                .body();
         cache.set(authToken);
 
         return authToken;

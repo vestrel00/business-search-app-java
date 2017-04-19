@@ -16,14 +16,18 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.display;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Uses {@link Logger} for displaying messages to the output stream.
+ * Uses {@link Logger} for displaying messages to the console.
  */
 @Singleton
 final class DisplayOutput {
@@ -32,6 +36,18 @@ final class DisplayOutput {
     private static final Logger LOGGER = Logger.getLogger("Application");
 
     static {
+        // ConsoleHandler outputs to System.err but it is simpler and more functional
+        // than StreamHandler
+        Handler handler = new ConsoleHandler();
+        handler.setLevel(Level.FINE);
+        handler.setFormatter(new Formatter() {
+            @Override
+            public String format(LogRecord logRecord) {
+                return logRecord.getMessage();
+            }
+        });
+
+        LOGGER.addHandler(handler);
         LOGGER.setLevel(Level.FINE);
     }
 
