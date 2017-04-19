@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.data.entity;
 
+import com.vestrel00.business.search.data.entity.mapper.DataEntityMapperModule;
 import com.vestrel00.business.search.data.entity.validator.DataEntityValidatorModule;
 
 import dagger.Module;
@@ -23,6 +24,9 @@ import dagger.Module;
 /**
  * Provides data entity dependencies.
  */
-@Module(includes = DataEntityValidatorModule.class)
+@Module(includes = {
+        DataEntityMapperModule.class,
+        DataEntityValidatorModule.class
+})
 public abstract class DataEntityModule {
 }

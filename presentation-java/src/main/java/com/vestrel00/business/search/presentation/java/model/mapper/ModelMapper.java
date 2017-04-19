@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.display;
+package com.vestrel00.business.search.presentation.java.model.mapper;
 
-import javax.inject.Singleton;
-
-import dagger.Binds;
-import dagger.Module;
+import com.vestrel00.business.search.presentation.java.model.Model;
 
 /**
- * Provides presentation display dependencies.
+ * Maps model K to V and vice versa.
  */
-@Module
-public abstract class PresentationDisplayModule {
+public interface ModelMapper<K extends Model, V> {
 
-    @Binds
-    @Singleton
-    abstract Display display(DisplayIO displayIO);
+    V map(K k);
+
+    K map(V v);
 }

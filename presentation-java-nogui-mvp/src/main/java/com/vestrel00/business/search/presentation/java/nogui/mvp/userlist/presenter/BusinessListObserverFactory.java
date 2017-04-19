@@ -16,7 +16,7 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.presenter;
 
-import com.vestrel00.business.search.presentation.java.model.mapper.BusinessModelMapper;
+import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListView;
 
 import javax.inject.Inject;
@@ -28,14 +28,14 @@ import javax.inject.Singleton;
 @Singleton
 final class BusinessListObserverFactory {
 
-    private final BusinessModelMapper businessModelMapper;
+    private final ModelMapperFactory modelMapperFactory;
 
     @Inject
-    BusinessListObserverFactory(BusinessModelMapper businessModelMapper) {
-        this.businessModelMapper = businessModelMapper;
+    BusinessListObserverFactory(ModelMapperFactory modelMapperFactory) {
+        this.modelMapperFactory = modelMapperFactory;
     }
 
     BusinessListObserver create(BusinessListView view) {
-        return new BusinessListObserver(view, businessModelMapper);
+        return new BusinessListObserver(view, modelMapperFactory);
     }
 }

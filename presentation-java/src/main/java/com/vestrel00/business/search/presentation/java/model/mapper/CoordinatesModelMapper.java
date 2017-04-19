@@ -23,15 +23,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Transforms from {@link CoordinatesModel} to {@link Coordinates} and vice versa.
+ * Maps {@link CoordinatesModel} to {@link Coordinates} and vice versa.
  */
 @Singleton
-public final class CoordinatesModelMapper {
+final class CoordinatesModelMapper implements ModelMapper<CoordinatesModel, Coordinates> {
 
     @Inject
     CoordinatesModelMapper() {
     }
 
+    @Override
     public Coordinates map(CoordinatesModel coordinatesModel) {
         return Coordinates.builder()
                 .latitude(coordinatesModel.latitude())
@@ -39,7 +40,8 @@ public final class CoordinatesModelMapper {
                 .build();
     }
 
-    CoordinatesModel map(Coordinates coordinates) {
+    @Override
+    public CoordinatesModel map(Coordinates coordinates) {
         return CoordinatesModel.builder()
                 .latitude(coordinates.latitude())
                 .longitude(coordinates.longitude())

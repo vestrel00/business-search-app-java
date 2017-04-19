@@ -16,9 +16,10 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.config.PresentationConfigModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.display.PresentationDisplayModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.PresentationExecutorModule;
+import com.vestrel00.business.search.presentation.java.model.PresentationJavaModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.config.PresentationJavaNoGuiConfigModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.display.PresentationJavaNoGuiDisplayModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.PresentationJavaNoGuiExecutorModule;
 
 import dagger.Module;
 
@@ -26,9 +27,10 @@ import dagger.Module;
  * Provides presentation dependencies.
  */
 @Module(includes = {
-        PresentationConfigModule.class,
-        PresentationDisplayModule.class,
-        PresentationExecutorModule.class
+        PresentationJavaModule.class,
+        PresentationJavaNoGuiConfigModule.class,
+        PresentationJavaNoGuiDisplayModule.class,
+        PresentationJavaNoGuiExecutorModule.class
 })
-abstract class PresentationModule {
+abstract class PresentationJavaNoGuiModule {
 }

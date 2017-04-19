@@ -16,12 +16,14 @@
 
 package com.vestrel00.business.search.data.entity.validator;
 
+import com.vestrel00.business.search.data.entity.Entity;
+
 /**
  * Validates entities.
  *
  * @param <T> the type of the entity to validate.
  */
-public interface EntityValidator<T> {
+public interface EntityValidator<T extends Entity> {
 
     void validate(T entity) throws InvalidEntityException;
 

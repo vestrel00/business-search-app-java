@@ -23,15 +23,27 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Transforms from {@link LocationEntity} to {@link Location} and vice versa.
+ * Maps {@link LocationEntity} to {@link Location} and vice versa.
  */
 @Singleton
-public final class LocationEntityMapper {
+final class LocationEntityMapper implements EntityMapper<LocationEntity, Location> {
 
     @Inject
     LocationEntityMapper() {
     }
 
+    @Override
+    public Location map(LocationEntity locationEntity) {
+        return Location.builder()
+                .address(locationEntity.address())
+                .city(locationEntity.city())
+                .state(locationEntity.state())
+                .zipCode(locationEntity.zipCode())
+                .country(locationEntity.country())
+                .build();
+    }
+
+    @Override
     public LocationEntity map(Location location) {
         return LocationEntity.builder()
                 .address(location.address())
@@ -39,16 +51,6 @@ public final class LocationEntityMapper {
                 .state(location.state())
                 .zipCode(location.zipCode())
                 .country(location.country())
-                .build();
-    }
-
-    Location map(LocationEntity locationEntity) {
-        return Location.builder()
-                .address(locationEntity.address())
-                .city(locationEntity.city())
-                .state(locationEntity.state())
-                .zipCode(locationEntity.zipCode())
-                .country(locationEntity.country())
                 .build();
     }
 }

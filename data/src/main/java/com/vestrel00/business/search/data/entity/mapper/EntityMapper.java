@@ -14,24 +14,16 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.config;
+package com.vestrel00.business.search.data.entity.mapper;
 
-import com.vestrel00.business.search.data.config.DataConfig;
-
-import javax.inject.Singleton;
-
-import dagger.Module;
-import dagger.Provides;
+import com.vestrel00.business.search.data.entity.Entity;
 
 /**
- * Provides presentation config dependencies.
+ * Maps entity K to V and vice versa.
  */
-@Module
-public final class PresentationConfigModule {
+public interface EntityMapper<K extends Entity, V> {
 
-    @Provides
-    @Singleton
-    static DataConfig dataConfig() {
-        return DataConfigFactory.create();
-    }
+    V map(K k);
+
+    K map(V v);
 }

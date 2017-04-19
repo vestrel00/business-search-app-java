@@ -17,27 +17,32 @@
 package com.vestrel00.business.search.data.entity.mapper;
 
 import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.CoordinatesEntity;
+import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.Coordinates;
+import com.vestrel00.business.search.domain.Location;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Transforms from {@link BusinessEntity} to {@link Business} and vice versa.
+ * Maps {@link BusinessEntity} to {@link Business} and vice versa.
  */
 @Singleton
-public final class BusinessEntityMapper {
+final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Business> {
 
-    private final LocationEntityMapper locationEntityMapper;
-    private final CoordinatesEntityMapper coordinatesEntityMapper;
+    private final EntityMapper<LocationEntity, Location> locationEntityMapper;
+    private final EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper;
 
     @Inject
-    BusinessEntityMapper(LocationEntityMapper locationEntityMapper,
-                         CoordinatesEntityMapper coordinatesEntityMapper) {
+    BusinessEntityMapper(EntityMapper<LocationEntity, Location> locationEntityMapper,
+                         EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper) {
         this.locationEntityMapper = locationEntityMapper;
         this.coordinatesEntityMapper = coordinatesEntityMapper;
     }
 
+    @Override
     public Business map(BusinessEntity businessEntity) {
         return Business.builder()
                 .id(businessEntity.id())
@@ -49,6 +54,21 @@ public final class BusinessEntityMapper {
                 .closed(businessEntity.closed())
                 .location(locationEntityMapper.map(businessEntity.location()))
                 .coordinates(coordinatesEntityMapper.map(businessEntity.coordinates()))
+                .build();
+    }
+
+    @Override
+    public BusinessEntity map(Business business) {
+        return BusinessEntity.builder()
+                .id(business.id())
+                .name(business.name())
+                .phoneNumber(business.phoneNumber())
+                .imageUrl(business.imageUrl())
+                .price(business.price())
+                .rating(business.rating())
+                .closed(business.closed())
+                .location(locationEntityMapper.map(business.location()))
+                .coordinates(coordinatesEntityMapper.map(business.coordinates()))
                 .build();
     }
 }

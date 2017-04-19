@@ -17,10 +17,10 @@
 package com.vestrel00.business.search.data.repository.datasource;
 
 import com.vestrel00.business.search.data.entity.BusinessEntity;
-import com.vestrel00.business.search.data.net.BusinessListResponse;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.data.net.BusinessDataService;
+import com.vestrel00.business.search.data.net.BusinessListResponse;
 import com.vestrel00.business.search.data.util.LocationFormatter;
 
 import dagger.Lazy;
@@ -57,6 +57,12 @@ final class SmartBusinessDataStore implements BusinessDataStore {
                 .aroundCoordinates(coordinates.latitude(), coordinates.longitude())
                 // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMapIterable(toList());
+    }
+
+    @Override
+    public Observable<BusinessEntity> withId(String businessId) {
+        return businessDataServiceProvider.get()
+                .withId(businessId);
     }
 
     // FIXME (LAMBDA) - Use lambdas instead

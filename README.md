@@ -12,7 +12,7 @@ The goal is to showcases my knowledge of Java object oriented programming in And
 - Dependency injection with [Dagger 2](https://github.com/google/dagger/tree/dagger-2.10-rc4)
 - View binding with [Butterknife](https://github.com/JakeWharton/butterknife/tree/butterknife-parent-7.0.1)
 - Networking with [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
-- Databinding with [Jackson Databind 2](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.8.8.1)
+- Databinding with [Jackson Databind 2](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.8.8)
 - Mapping with [Google Maps APIs](https://developers.google.com/maps/documentation/android-api/)
 - Testing with [JUnit 4](https://github.com/junit-team/junit4/blob/master/doc/ReleaseNotes4.12.md), 
   [Mockito 2](https://github.com/mockito/mockito/tree/release/2.x), 
@@ -24,7 +24,6 @@ The goal is to showcases my knowledge of Java object oriented programming in And
 - [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
 - Java and Android best practices, including programming patterns/styles
 - Creating readable, focused, and well-documented pull requests
-
 
 ## Application and Features
 

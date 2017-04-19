@@ -17,13 +17,14 @@
 package com.vestrel00.business.search.data.net.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.vestrel00.business.search.data.entity.Entity;
 
 /**
  * Parses {@link JsonNode} into the output type.
  *
- * @param <T> the type of the output of {@link #parse(JsonNode)}
+ * @param <T> the type of the {@link Entity} the output of {@link #parse(JsonNode)}
  */
-public interface Parser<T> {
+public interface Parser<T extends Entity> {
 
     T parse(JsonNode node);
 }

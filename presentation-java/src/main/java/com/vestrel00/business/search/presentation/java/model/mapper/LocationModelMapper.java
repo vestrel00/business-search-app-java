@@ -23,15 +23,16 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Transforms from {@link LocationModel} to {@link Location} and vice versa.
+ * Maps {@link LocationModel} to {@link Location} and vice versa.
  */
 @Singleton
-public final class LocationModelMapper {
+final class LocationModelMapper implements ModelMapper<LocationModel, Location> {
 
     @Inject
     LocationModelMapper() {
     }
 
+    @Override
     public Location map(LocationModel locationModel) {
         return Location.builder()
                 .address(locationModel.address())
@@ -42,7 +43,8 @@ public final class LocationModelMapper {
                 .build();
     }
 
-    LocationModel map(Location location) {
+    @Override
+    public LocationModel map(Location location) {
         return LocationModel.builder()
                 .address(location.address())
                 .city(location.city())

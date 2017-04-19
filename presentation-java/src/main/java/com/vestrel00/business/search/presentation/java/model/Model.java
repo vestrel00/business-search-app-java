@@ -14,14 +14,10 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.mvp;
+package com.vestrel00.business.search.presentation.java.model;
 
 /**
- * Created by estrellv on 4/6/17.
+ * Type of all models.
  */
-public class TemporaryStub {
-
-    public int core() {
-        return 1;
-    }
+public interface Model {
 }

@@ -33,7 +33,7 @@ import com.google.auto.value.AutoValue;
  * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
-public abstract class LocationModel {
+public abstract class LocationModel implements Model {
 
     /**
      * @return a new {@link Builder}

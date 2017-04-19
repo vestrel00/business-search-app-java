@@ -48,7 +48,7 @@ dependencies {
     apt presentationJavaDependencies.daggerCompiler
     apt presentationJavaDependencies.autoValue
 
-    compile project(':presentation-java-mvp')
+    compile project(':presentation-java')
 
     compile presentationJavaDependencies.rxJava
     compile presentationJavaDependencies.dagger

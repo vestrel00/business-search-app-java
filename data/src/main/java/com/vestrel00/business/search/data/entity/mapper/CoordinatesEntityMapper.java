@@ -23,26 +23,28 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Transforms from {@link CoordinatesEntity} to {@link Coordinates} and vice versa.
+ * Maps {@link CoordinatesEntity} to {@link Coordinates} and vice versa.
  */
 @Singleton
-public final class CoordinatesEntityMapper {
+final class CoordinatesEntityMapper implements EntityMapper<CoordinatesEntity, Coordinates> {
 
     @Inject
     CoordinatesEntityMapper() {
     }
 
+    @Override
+    public Coordinates map(CoordinatesEntity coordinatesEntity) {
+        return Coordinates.builder()
+                .latitude(coordinatesEntity.latitude())
+                .longitude(coordinatesEntity.longitude())
+                .build();
+    }
+
+    @Override
     public CoordinatesEntity map(Coordinates coordinates) {
         return CoordinatesEntity.builder()
                 .latitude(coordinates.latitude())
                 .longitude(coordinates.longitude())
-                .build();
-    }
-
-    Coordinates map(CoordinatesEntity coordinatesEntity) {
-        return Coordinates.builder()
-                .latitude(coordinatesEntity.latitude())
-                .longitude(coordinatesEntity.longitude())
                 .build();
     }
 }

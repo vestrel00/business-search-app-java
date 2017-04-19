@@ -37,4 +37,10 @@ public interface BusinessDataStore {
      * @return an observable of 0 or more businesses
      */
     Observable<BusinessEntity> aroundCoordinates(CoordinatesEntity coordinates);
+
+    /**
+     * @param businessId the business id
+     * @return an observable of a business
+     */
+    Observable<BusinessEntity> withId(String businessId);
 }

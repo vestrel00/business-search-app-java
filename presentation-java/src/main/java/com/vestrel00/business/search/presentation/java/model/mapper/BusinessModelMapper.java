@@ -17,19 +17,23 @@
 package com.vestrel00.business.search.presentation.java.model.mapper;
 
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.Coordinates;
+import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
+import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
+import com.vestrel00.business.search.presentation.java.model.LocationModel;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Transforms from {@link BusinessModel} to {@link Business} and vice versa.
+ * Maps {@link BusinessModel} to {@link Business} and vice versa.
  */
 @Singleton
-public final class BusinessModelMapper {
+final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> {
 
-    private final LocationModelMapper locationModelMapper;
-    private final CoordinatesModelMapper coordinatesEntityMapper;
+    private final ModelMapper<LocationModel, Location> locationModelMapper;
+    private final ModelMapper<CoordinatesModel, Coordinates> coordinatesEntityMapper;
 
     @Inject
     BusinessModelMapper(LocationModelMapper locationModelMapper,
@@ -38,6 +42,22 @@ public final class BusinessModelMapper {
         this.coordinatesEntityMapper = coordinatesEntityMapper;
     }
 
+    @Override
+    public Business map(BusinessModel businessModel) {
+        return Business.builder()
+                .id(businessModel.id())
+                .name(businessModel.name())
+                .phoneNumber(businessModel.phoneNumber())
+                .imageUrl(businessModel.imageUrl())
+                .price(businessModel.price())
+                .rating(businessModel.rating())
+                .closed(businessModel.closed())
+                .location(locationModelMapper.map(businessModel.location()))
+                .coordinates(coordinatesEntityMapper.map(businessModel.coordinates()))
+                .build();
+    }
+
+    @Override
     public BusinessModel map(Business business) {
         return BusinessModel.builder()
                 .id(business.id())
@@ -49,20 +69,6 @@ public final class BusinessModelMapper {
                 .closed(business.closed())
                 .location(locationModelMapper.map(business.location()))
                 .coordinates(coordinatesEntityMapper.map(business.coordinates()))
-                .build();
-    }
-
-    Business map(BusinessModel businessModel) {
-        return Business.builder()
-                .id(businessModel.id())
-                .name(businessModel.name())
-                .phoneNumber(businessModel.phoneNumber())
-                .imageUrl(businessModel.imageUrl())
-                .price(businessModel.price())
-                .rating(businessModel.rating())
-                .closed(businessModel.closed())
-                .location(locationModelMapper.map(businessModel.location()))
-                .coordinates(coordinatesEntityMapper.map(businessModel.coordinates()))
                 .build();
     }
 }

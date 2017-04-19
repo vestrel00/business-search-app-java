@@ -14,14 +14,10 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.mvvm;
+package com.vestrel00.business.search.data.entity;
 
 /**
- * Created by estrellv on 4/6/17.
+ * Type of all entities.
  */
-public class TemporaryStub {
-
-    public int core() {
-        return 1;
-    }
+public interface Entity {
 }

@@ -17,8 +17,6 @@
 rootProject.name = "business-search"
 
 include ':presentation-java'
-include ':presentation-java-mvp'
-include ':presentation-java-mvvm'
 include ':presentation-java-nogui-mvp'
 include ':presentation-java-swing-mvp'
 include ':presentation-android'

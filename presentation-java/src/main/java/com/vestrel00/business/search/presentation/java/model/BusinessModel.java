@@ -33,7 +33,7 @@ import com.google.auto.value.AutoValue;
  * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
-public abstract class BusinessModel {
+public abstract class BusinessModel implements Model {
 
     /**
      * @return a new {@link Builder}

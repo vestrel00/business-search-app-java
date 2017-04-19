@@ -40,7 +40,7 @@ import com.vestrel00.business.search.data.net.deserialize.BusinessEntityDeserial
 // E.G. Missing (or null) property string -> empty string (instead of the default null)
 // @JsonDeserialize(builder = AutoValue_BusinessEntity.Builder.class)
 @JsonDeserialize(using = BusinessEntityDeserializer.class)
-public abstract class BusinessEntity {
+public abstract class BusinessEntity implements Entity {
 
     /**
      * @return a new {@link Builder}

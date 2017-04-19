@@ -14,6 +14,24 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
+package com.vestrel00.business.search.presentation.java.nogui.mvp.config;
 
-generateJavaMainJacocoTaskWithExcludes([])
+import com.vestrel00.business.search.data.config.DataConfig;
+
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+
+/**
+ * Provides presentation config dependencies.
+ */
+@Module
+public final class PresentationJavaNoGuiConfigModule {
+
+    @Provides
+    @Singleton
+    static DataConfig dataConfig() {
+        return DataConfigFactory.create();
+    }
+}

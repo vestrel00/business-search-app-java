@@ -16,8 +16,11 @@
 
 package com.vestrel00.business.search.data.net;
 
+import com.vestrel00.business.search.data.entity.BusinessEntity;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -31,4 +34,7 @@ public interface BusinessDataService {
     @GET("v3/businesses/search")
     Observable<BusinessListResponse> aroundCoordinates(@Query("latitude") double latitude,
                                                        @Query("longitude") double longitude);
+
+    @GET("v3/businesses/{id}")
+    Observable<BusinessEntity> withId(@Path("id") String businessId);
 }

@@ -14,10 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.executor;
-
-import com.vestrel00.business.search.domain.executor.ExecutionThread;
-import com.vestrel00.business.search.domain.executor.PostExecutionThread;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.display;
 
 import javax.inject.Singleton;
 
@@ -25,17 +22,12 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides presentation executor dependencies.
+ * Provides presentation display dependencies.
  */
 @Module
-public abstract class PresentationExecutorModule {
-    
-    @Binds
-    @Singleton
-    abstract ExecutionThread executionThread(BlockingExecutionThread blockingExecutionThread);
+public abstract class PresentationJavaNoGuiDisplayModule {
 
     @Binds
     @Singleton
-    abstract PostExecutionThread
-    postExecutionThread(BlockingPostExecutionThread blockingPostExecutionThread);
+    abstract Display display(DisplayIO displayIO);
 }
