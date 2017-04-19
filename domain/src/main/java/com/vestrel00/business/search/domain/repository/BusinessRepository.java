@@ -40,4 +40,10 @@ public interface BusinessRepository {
      * @return an single containing a list that contains 0 or more businesses
      */
     Single<List<Business>> aroundCoordinates(Coordinates coordinates);
+
+    /**
+     * @param businessId the business id
+     * @return a single containing a business with the given id
+     */
+    Single<Business> withId(String businessId);
 }

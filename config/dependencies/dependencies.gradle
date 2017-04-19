@@ -32,7 +32,7 @@ ext {
     daggerVersion = '2.10-rc4'
     autoValueVersion = '1.4.1'
     retrofitVersion = '2.2.0'
-    jacksonVersion = '2.8.8'
+    jacksonVersion = '2.8.8.1'
 
     // Android
     androidBuildToolsVersion = "25.0.2"
