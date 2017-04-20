@@ -14,24 +14,16 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp;
-
-import com.vestrel00.business.search.data.DataModule;
-import com.vestrel00.business.search.domain.DomainModule;
-
-import javax.inject.Singleton;
-
-import dagger.Component;
+package com.vestrel00.business.search.presentation.java.swing.mvvm;
 
 /**
- * Injects java no gui presentation dependencies.
+ * Runs the application.
  */
-@Singleton
-@Component(modules = {
-        DataModule.class,
-        DomainModule.class,
-        PresentationJavaNoGuiModule.class
-})
-interface PresentationJavaNoGuiComponent {
-    Application application();
+public final class ApplicationRunner {
+
+    private ApplicationRunner() {
+    }
+
+    public static void main(String[] args) {
+    }
 }
