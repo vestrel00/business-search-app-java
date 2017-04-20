@@ -14,28 +14,29 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view;
 
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.presenter.BusinessListPresenter;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.presenter.BusinessListPresenter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.QUIT;
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.SHOW_AROUND_COORDINATES;
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.SHOW_AROUND_LOCATION;
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.SHOW_BUSINESS_DETAILS;
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption.UNKNOWN;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.QUIT;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.SHOW_AROUND_COORDINATES;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.SHOW_AROUND_LOCATION;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.SHOW_BUSINESS_DETAILS;
+import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.UNKNOWN;
 
 /**
- * Shows the user list, including user-prompts related to the user-list. This view completes when
- * a business id has been entered by the user.
+ * Shows the business list.
+ * <p>
+ * FIXME (IMPLEMENTATION) - Extract into separate options view-presenter pair.
  */
 @Singleton
 public final class BusinessListView {
@@ -68,35 +69,35 @@ public final class BusinessListView {
      */
     public BusinessListViewResult showOptions() {
         return Observable.just(OPTION_MESSAGE)
-                .map(display::getUserInput)
+                .map(display::promptInput)
                 .map(this::parseOption)
                 .map(presenter::handleOption)
                 .blockingSingle();
-    }
-
-    public void showError(Throwable error) {
-        display.showError(error);
     }
 
     public void showBusiness(BusinessModel business) {
         display.showMessage(business.name() + ", id: " + business.id());
     }
 
+    public void showError(Throwable error) {
+        display.showError(error);
+    }
+
     public LocationModel getLocation() {
         // Use an observable to build the LocationModel for more granular code
         return Observable.just("Enter the address or just enter to skip:")
-                .map(display::getUserInput)
+                .map(display::promptInput)
                 .map(address -> LocationModel.builder().address(address))
                 .doOnNext(locationBuilder -> locationBuilder.city(
-                        display.getUserInput("Enter the city or just enter to skip:")))
+                        display.promptInput("Enter the city or just enter to skip:")))
                 .doOnNext(locationBuilder -> locationBuilder.state(
-                        display.getUserInput("Enter the state or just enter to skip:"))
+                        display.promptInput("Enter the state or just enter to skip:"))
                 )
                 .doOnNext(locationBuilder -> locationBuilder.zipCode(
-                        display.getUserInput("Enter the zip or just enter to skip:"))
+                        display.promptInput("Enter the zip or just enter to skip:"))
                 )
                 .doOnNext(locationBuilder -> locationBuilder.country(
-                        display.getUserInput("Enter the country or just enter to skip:"))
+                        display.promptInput("Enter the country or just enter to skip:"))
                 )
                 .map(LocationModel.Builder::build)
                 .blockingSingle();
@@ -104,13 +105,13 @@ public final class BusinessListView {
 
     public CoordinatesModel getCoordinates() {
         // Use an observable to build the CoordinatesModel in order to wrap any exceptions that may
-        // occur when retrieving user input
+        // occur when retrieving input
         return Observable.just("Enter latitude:")
-                .map(display::getUserInput)
+                .map(display::promptInput)
                 .map(Double::valueOf)
                 .map(latitude -> CoordinatesModel.builder().latitude(latitude))
                 .doOnNext(coordinatesBuilder -> coordinatesBuilder.longitude(
-                        Double.valueOf(display.getUserInput("Enter longitude:")))
+                        Double.valueOf(display.promptInput("Enter longitude:")))
                 )
                 .map(CoordinatesModel.Builder::build)
                 .doOnError(this::showError)
@@ -119,11 +120,11 @@ public final class BusinessListView {
     }
 
     public String getBusinessId() {
-        return display.getUserInput("Enter business id:");
+        return display.promptInput("Enter business id:");
     }
 
-    private BusinessListViewOption parseOption(String userInput) {
-        switch (userInput.toLowerCase()) {
+    private BusinessListViewOption parseOption(String option) {
+        switch (option.toLowerCase()) {
             case "l":
                 return SHOW_AROUND_LOCATION;
             case "c":

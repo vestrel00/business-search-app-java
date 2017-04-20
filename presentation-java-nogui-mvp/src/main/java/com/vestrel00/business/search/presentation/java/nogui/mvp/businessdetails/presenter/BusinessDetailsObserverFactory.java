@@ -14,28 +14,28 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.presenter;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.presenter;
 
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.view.BusinessDetailsView;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Creates instances of {@link BusinessListObserver}.
+ * Creates instances of {@link BusinessDetailsObserver}.
  */
 @Singleton
-final class BusinessListObserverFactory {
+final class BusinessDetailsObserverFactory {
 
     private final ModelMapperFactory modelMapperFactory;
 
     @Inject
-    BusinessListObserverFactory(ModelMapperFactory modelMapperFactory) {
+    BusinessDetailsObserverFactory(ModelMapperFactory modelMapperFactory) {
         this.modelMapperFactory = modelMapperFactory;
     }
 
-    BusinessListObserver create(BusinessListView view) {
-        return new BusinessListObserver(view, modelMapperFactory);
+    BusinessDetailsObserver create(BusinessDetailsView view) {
+        return new BusinessDetailsObserver(view, modelMapperFactory);
     }
 }

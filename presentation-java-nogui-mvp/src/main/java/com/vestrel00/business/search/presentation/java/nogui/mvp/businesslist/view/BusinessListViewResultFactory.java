@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view;
-
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewResult.Code;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -32,14 +30,14 @@ public final class BusinessListViewResultFactory {
     }
 
     public BusinessListViewResult showBusinessDetails(String businessId) {
-        return new BusinessListViewResult(Code.SHOW_BUSINESS_DETAILS, businessId);
+        return new BusinessListViewResult(BusinessListViewResult.Code.SHOW_BUSINESS_DETAILS, businessId);
     }
 
     public BusinessListViewResult showOptions() {
-        return new BusinessListViewResult(Code.SHOW_OPTIONS, null);
+        return new BusinessListViewResult(BusinessListViewResult.Code.SHOW_OPTIONS, null);
     }
 
     public BusinessListViewResult quit() {
-        return new BusinessListViewResult(Code.QUIT, null);
+        return new BusinessListViewResult(BusinessListViewResult.Code.QUIT, null);
     }
 }

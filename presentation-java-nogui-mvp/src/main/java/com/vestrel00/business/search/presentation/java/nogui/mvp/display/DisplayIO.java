@@ -20,7 +20,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * A {@link Display} using {@link DisplayInput} for user input and {@link DisplayOutput} for
+ * A {@link Display} using {@link DisplayInput} for input prompts and {@link DisplayOutput} for
  * displaying messages.
  */
 @Singleton
@@ -46,13 +46,13 @@ final class DisplayIO implements Display {
     }
 
     @Override
-    public String getUserInput() {
+    public String promptInput() {
         return displayInput.getInput();
     }
 
     @Override
-    public String getUserInput(String inputPrompt) {
+    public String promptInput(String inputPrompt) {
         displayOutput.printMessage(inputPrompt + " ");
-        return getUserInput();
+        return promptInput();
     }
 }

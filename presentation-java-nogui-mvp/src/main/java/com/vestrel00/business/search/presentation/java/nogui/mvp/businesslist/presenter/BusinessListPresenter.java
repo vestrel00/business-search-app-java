@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.presenter;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.presenter;
 
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
@@ -24,10 +24,10 @@ import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocati
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewOption;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewResult;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewResultFactory;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewResult;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewResultFactory;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -35,7 +35,7 @@ import javax.inject.Singleton;
 import io.reactivex.annotations.NonNull;
 
 /**
- * Presents the user list.
+ * Presents the business list.
  */
 @Singleton
 public final class BusinessListPresenter {

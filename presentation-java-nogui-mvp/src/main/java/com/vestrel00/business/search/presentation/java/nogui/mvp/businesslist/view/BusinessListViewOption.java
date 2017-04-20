@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view;
 
 /**
  * Contains options for {@link BusinessListView}.

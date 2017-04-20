@@ -16,28 +16,34 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.userlist.view.BusinessListViewResult;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.view.BusinessDetailsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewResult;
+
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * An application with no UI. Communications are done through the command line.
+ * An application with no GUI. Communications are done through the command line (the UI).
  */
 @Singleton
-public final class Application implements Runnable {
+final class Application implements Runnable {
 
     private final BusinessListView businessListView;
+    private final BusinessDetailsView businessDetailsView;
 
     @Inject
-    Application(BusinessListView businessListView) {
+    Application(BusinessListView businessListView, BusinessDetailsView businessDetailsView) {
         this.businessListView = businessListView;
+        this.businessDetailsView = businessDetailsView;
     }
 
     @Override
     public void run() {
         businessListView.initialize();
+        businessDetailsView.initialize();
 
         boolean run = true;
         while (run) {
@@ -49,12 +55,20 @@ public final class Application implements Runnable {
     private boolean handleBusinessListViewResult(BusinessListViewResult result) {
         switch (result.code()) {
             case SHOW_BUSINESS_DETAILS:
-                // TODO
+                businessDetailsView.showBusinessDetails(getResultValue(result));
                 return true;
             case QUIT:
                 return false;
             default:
                 return true;
         }
+    }
+
+    private String getResultValue(BusinessListViewResult result) {
+        Optional<String> resultValue = result.value();
+        if (resultValue.isPresent()) {
+            return resultValue.get();
+        }
+        throw new IllegalStateException("Must have value for result " + result);
     }
 }

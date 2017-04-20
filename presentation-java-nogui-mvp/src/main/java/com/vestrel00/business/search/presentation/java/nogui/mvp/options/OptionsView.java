@@ -14,18 +14,13 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.display;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.options;
+
+import javax.inject.Singleton;
 
 /**
- * The display for a no-gui application.
+ * Shows the options.
  */
-public interface Display {
-
-    void showMessage(String message);
-
-    void showError(Throwable error);
-
-    String promptInput();
-
-    String promptInput(String inputPrompt);
+@Singleton
+public final class OptionsView {
 }
