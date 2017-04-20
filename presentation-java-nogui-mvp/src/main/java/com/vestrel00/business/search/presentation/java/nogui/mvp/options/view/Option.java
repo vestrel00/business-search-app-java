@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.options.view;
 
 /**
- * Contains options for {@link BusinessListView}.
+ * Contains options.
  */
-public enum BusinessListViewOption {
+public enum Option {
     /**
      * Option to show businesses around a location.
      */
-    SHOW_AROUND_LOCATION,
+    SHOW_BUSINESSES_AROUND_LOCATION,
 
     /**
      * Option to show businesses around a given coordinates.
      */
-    SHOW_AROUND_COORDINATES,
+    SHOW_BUSINESSES_AROUND_COORDINATES,
 
     /**
      * Option to show business details.

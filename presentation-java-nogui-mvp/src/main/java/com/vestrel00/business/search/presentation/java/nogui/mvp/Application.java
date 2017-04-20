@@ -18,9 +18,8 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
 import com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.view.BusinessDetailsView;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewResult;
-
-import java.util.Optional;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.options.view.Option;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.options.view.OptionsView;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -31,44 +30,44 @@ import javax.inject.Singleton;
 @Singleton
 final class Application implements Runnable {
 
+    private final OptionsView optionsView;
     private final BusinessListView businessListView;
     private final BusinessDetailsView businessDetailsView;
 
     @Inject
-    Application(BusinessListView businessListView, BusinessDetailsView businessDetailsView) {
+    Application(OptionsView optionsView, BusinessListView businessListView,
+                BusinessDetailsView businessDetailsView) {
+        this.optionsView = optionsView;
         this.businessListView = businessListView;
         this.businessDetailsView = businessDetailsView;
     }
 
     @Override
     public void run() {
+        optionsView.initialize();
         businessListView.initialize();
         businessDetailsView.initialize();
 
         boolean run = true;
         while (run) {
-            BusinessListViewResult result = businessListView.showOptions();
-            run = handleBusinessListViewResult(result);
+            Option option = optionsView.chooseOption();
+            run = handleOption(option);
         }
     }
 
-    private boolean handleBusinessListViewResult(BusinessListViewResult result) {
-        switch (result.code()) {
+    private boolean handleOption(Option option) {
+        switch (option) {
+            case SHOW_BUSINESSES_AROUND_LOCATION:
+                businessListView.showBusinessesAroundLocation();
+                return true;
+            case SHOW_BUSINESSES_AROUND_COORDINATES:
+                businessListView.showBusinessesAroundCoordinates();
+                return true;
             case SHOW_BUSINESS_DETAILS:
-                businessDetailsView.showBusinessDetails(getResultValue(result));
+                businessDetailsView.showBusinessDetails();
                 return true;
-            case QUIT:
-                return false;
             default:
-                return true;
+                return false;
         }
-    }
-
-    private String getResultValue(BusinessListViewResult result) {
-        Optional<String> resultValue = result.value();
-        if (resultValue.isPresent()) {
-            return resultValue.get();
-        }
-        throw new IllegalStateException("Must have value for result " + result);
     }
 }

@@ -37,3 +37,8 @@ local.properties
 *.ipr
 *~
 *.swp
+
+# Retrofit/OkHttp cache
+journal
+*.0
+*.1

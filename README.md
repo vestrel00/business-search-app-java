@@ -1,11 +1,10 @@
 # Business Search
 
-TODO: REMOVE USAGE of "I"
+The purpose of this project is to demonstrate how to build Android applications from the ground up
+using clean architecture principles, Java best practices, and design patterns. It is less about the 
+application content and more about the code (and processes). 
 
-The purpose of this project is to demonstrate how I build Android applications from the ground up.
-It is less about the application content and more about the code (and processes). 
-
-The goal is to showcases my knowledge of Java object oriented programming in Android, including my knowledge of:
+The goal is to showcase Java object oriented programming in Android, including:
 
 - Reactive programming with [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) and 
   [RxAndroid 2](https://github.com/ReactiveX/RxAndroid/tree/2.x)
@@ -22,13 +21,13 @@ The goal is to showcases my knowledge of Java object oriented programming in And
 - [Model-View-Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP) pattern
 - [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (MVVM) pattern
 - [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
-- Java and Android best practices, including programming patterns/styles
+- Java and Android best practices, including design patterns/styles
 - Creating readable, focused, and well-documented pull requests
 
 ## Application and Features
 
 Using the [Yelp Fusion (v3) REST API](https://www.yelp.com/developers/documentation/v3/get_started), 
-I have created a simple business search application that is able to:
+This simple business search application is able to:
 
 - display businesses around the user's current location in a list and map views
 - display businesses around a given location in a list and map views
@@ -36,9 +35,9 @@ I have created a simple business search application that is able to:
 
 **Notes**
 
-- I kept the application short and simple with no styling and no advanced UI for brevity. 
-- I am not using the [Yelp Android API](https://github.com/Yelp/yelp-android) so that I am able to 
-  demonstrate my knowledge of [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
+- The application short and simple with no styling and no advanced UI for brevity. 
+- The [Yelp Android API](https://github.com/Yelp/yelp-android) is not used in order to showcase 
+  usage of [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
 
 ## Building and Running the Application
 
@@ -78,12 +77,17 @@ adb install app/build/outputs/apk/mvp-debug-v0.0.1-b1.apk
 
 1. If building fails due to a read/write process lock or any file related error, this may be due to
    org.gradle.parallel set to true in gradle.properties. This allows for parallel tasks which
-   could result in several gradle processes accessing the same files at the same time.  
+   could result in several gradle processes accessing the same files at the same time. 
    
-   You will need to stop the existing gradle daemons and try again (try just building a specific 
-   project instead of multiple projects)
+   For example, ```./gradlew build``` builds all projects in parallel.
+   
+   You will need to stop the existing gradle daemons and try again.
    
    ```./gradlew --stop```
+   
+   You may build a specific project to avoid this synchronization issues.
+   
+   ```./gradlew presentation-java-nogui-mvp:build```
 
 #### Using Android Studio
 
@@ -114,10 +118,10 @@ TODO
 
 ## Development Logs
 
-I have logged all of the work I have done for this project, including:
+All work has been logged, including:
 
 - the steps taken in creating this project from start to finish (current code) in chronological order
-- my thought process for each step; "why do it this way?", "why use that library?", etc
+- thought process for each step; "why do it this way?", "why use that library?", etc
 - references to issues and pull requests for each step
  
 See more in *docs/DEV_LOGS.md*.

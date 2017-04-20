@@ -27,25 +27,11 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.QUIT;
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.SHOW_AROUND_COORDINATES;
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.SHOW_AROUND_LOCATION;
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.SHOW_BUSINESS_DETAILS;
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption.UNKNOWN;
-
 /**
- * Shows the business list.
- * <p>
- * FIXME (IMPLEMENTATION) - Extract into separate options view-presenter pair.
+ * Shows businesses around a location or coordinates.
  */
 @Singleton
 public final class BusinessListView {
-
-    private static final String OPTION_MESSAGE = "\nYou have the following options:\n"
-            + "l: list businesses around a location (address, city, state, zip, and/or country)\n"
-            + "c: list businesses around coordinates (latitude, longitude)\n"
-            + "s: show more business details\n"
-            + "q: quit\n";
 
     private final BusinessListPresenter presenter;
     private final Display display;
@@ -60,19 +46,12 @@ public final class BusinessListView {
         presenter.setView(this);
     }
 
-    /**
-     * Start showing this view's options.
-     * <p>
-     * This should not be invoked by the presenter, otherwise an infinite call loop may occur.
-     *
-     * @return the {@link BusinessListViewResult} of showing this.
-     */
-    public BusinessListViewResult showOptions() {
-        return Observable.just(OPTION_MESSAGE)
-                .map(display::promptInput)
-                .map(this::parseOption)
-                .map(presenter::handleOption)
-                .blockingSingle();
+    public void showBusinessesAroundLocation() {
+        presenter.showBusinessesAroundLocation();
+    }
+
+    public void showBusinessesAroundCoordinates() {
+        presenter.showBusinessesAroundCoordinates();
     }
 
     public void showBusiness(BusinessModel business) {
@@ -117,24 +96,5 @@ public final class BusinessListView {
                 .doOnError(this::showError)
                 .retry()
                 .blockingSingle();
-    }
-
-    public String getBusinessId() {
-        return display.promptInput("Enter business id:");
-    }
-
-    private BusinessListViewOption parseOption(String option) {
-        switch (option.toLowerCase()) {
-            case "l":
-                return SHOW_AROUND_LOCATION;
-            case "c":
-                return SHOW_AROUND_COORDINATES;
-            case "s":
-                return SHOW_BUSINESS_DETAILS;
-            case "q":
-                return QUIT;
-            default:
-                return UNKNOWN;
-        }
     }
 }

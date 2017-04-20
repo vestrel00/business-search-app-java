@@ -42,8 +42,8 @@ public final class BusinessDetailsView {
         presenter.setView(this);
     }
 
-    public void showBusinessDetails(String businessId) {
-        presenter.showBusinessDetails(businessId);
+    public void showBusinessDetails() {
+        presenter.showBusinessDetails();
     }
 
     public void showBusiness(BusinessModel business) {
@@ -52,5 +52,9 @@ public final class BusinessDetailsView {
 
     public void showError(Throwable error) {
         display.showError(error);
+    }
+
+    public String getBusinessId() {
+        return display.promptInput("Enter a business id:");
     }
 }

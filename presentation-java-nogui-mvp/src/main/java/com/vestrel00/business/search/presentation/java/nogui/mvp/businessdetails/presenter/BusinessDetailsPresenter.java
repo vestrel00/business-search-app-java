@@ -51,7 +51,12 @@ public final class BusinessDetailsPresenter {
         this.view = view;
     }
 
-    public void showBusinessDetails(String businessId) {
+    public void showBusinessDetails() {
+        String businessId = view.getBusinessId();
+        showBusinessDetails(businessId);
+    }
+
+    private void showBusinessDetails(String businessId) {
         BusinessDetailsObserver observer = businessDetailsObserverFactory.create(view);
         useCaseHandler.execute(getBusinessWithId, businessId, observer);
     }

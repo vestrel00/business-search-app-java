@@ -25,9 +25,6 @@ import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewOption;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewResult;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListViewResultFactory;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -45,7 +42,6 @@ public final class BusinessListPresenter {
     private final ModelMapperFactory modelMapperFactory;
     private final BusinessListObserverFactory businessListObserverFactory;
     private final UseCaseHandler useCaseHandler;
-    private final BusinessListViewResultFactory viewResultFactory;
 
     @NonNull
     private BusinessListView view;
@@ -55,35 +51,26 @@ public final class BusinessListPresenter {
                           GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
                           ModelMapperFactory modelMapperFactory,
                           BusinessListObserverFactory businessListObserverFactory,
-                          UseCaseHandler useCaseHandler,
-                          BusinessListViewResultFactory viewResultFactory) {
+                          UseCaseHandler useCaseHandler) {
         this.getBusinessesAroundLocation = getBusinessesAroundLocation;
         this.getBusinessesAroundCoordinates = getBusinessesAroundCoordinates;
         this.modelMapperFactory = modelMapperFactory;
         this.businessListObserverFactory = businessListObserverFactory;
         this.useCaseHandler = useCaseHandler;
-        this.viewResultFactory = viewResultFactory;
     }
 
     public void setView(@NonNull BusinessListView view) {
         this.view = view;
     }
 
-    public BusinessListViewResult handleOption(BusinessListViewOption option) {
-        switch (option) {
-            case SHOW_AROUND_LOCATION:
-                showBusinessesAroundLocation(view.getLocation());
-                return viewResultFactory.showOptions();
-            case SHOW_AROUND_COORDINATES:
-                showBusinessesAroundCoordinates(view.getCoordinates());
-                return viewResultFactory.showOptions();
-            case SHOW_BUSINESS_DETAILS:
-                return viewResultFactory.showBusinessDetails(view.getBusinessId());
-            case QUIT:
-                return viewResultFactory.quit();
-            default:
-                return viewResultFactory.showOptions();
-        }
+    public void showBusinessesAroundLocation() {
+        LocationModel locationModel = view.getLocation();
+        showBusinessesAroundLocation(locationModel);
+    }
+
+    public void showBusinessesAroundCoordinates() {
+        CoordinatesModel coordinatesModel = view.getCoordinates();
+        showBusinessesAroundCoordinates(coordinatesModel);
     }
 
     private void showBusinessesAroundLocation(LocationModel locationModel) {
