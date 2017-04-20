@@ -30,7 +30,8 @@ public final class BusinessListViewResultFactory {
     }
 
     public BusinessListViewResult showBusinessDetails(String businessId) {
-        return new BusinessListViewResult(BusinessListViewResult.Code.SHOW_BUSINESS_DETAILS, businessId);
+        return new BusinessListViewResult(BusinessListViewResult.Code.SHOW_BUSINESS_DETAILS,
+                businessId);
     }
 
     public BusinessListViewResult showOptions() {

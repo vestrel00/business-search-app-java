@@ -44,6 +44,19 @@ public final class BusinessListViewResult {
     }
 
     public enum Code {
-        SHOW_BUSINESS_DETAILS, SHOW_OPTIONS, QUIT
+        /**
+         * Result code for showing business details.
+         */
+        SHOW_BUSINESS_DETAILS,
+
+        /**
+         * Result code for showing the options.
+         */
+        SHOW_OPTIONS,
+
+        /**
+         * Result code for quitting.
+         */
+        QUIT
     }
 }

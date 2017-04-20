@@ -20,6 +20,9 @@ import com.vestrel00.business.search.data.entity.Entity;
 
 /**
  * Maps entity K to V and vice versa.
+ *
+ * @param <K> the type of the {@link Entity}
+ * @param <V> the type of the output
  */
 public interface EntityMapper<K extends Entity, V> {
 

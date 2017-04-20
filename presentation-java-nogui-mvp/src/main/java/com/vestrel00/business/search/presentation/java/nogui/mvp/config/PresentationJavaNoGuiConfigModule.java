@@ -27,7 +27,7 @@ import dagger.Provides;
  * Provides presentation config dependencies.
  */
 @Module
-public final class PresentationJavaNoGuiConfigModule {
+public abstract class PresentationJavaNoGuiConfigModule {
 
     @Provides
     @Singleton

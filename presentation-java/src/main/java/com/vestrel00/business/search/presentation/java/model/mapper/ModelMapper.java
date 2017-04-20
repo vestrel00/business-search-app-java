@@ -20,6 +20,9 @@ import com.vestrel00.business.search.presentation.java.model.Model;
 
 /**
  * Maps model K to V and vice versa.
+ *
+ * @param <K> the type of the {@link Model}
+ * @param <V> the type of the output
  */
 public interface ModelMapper<K extends Model, V> {
 

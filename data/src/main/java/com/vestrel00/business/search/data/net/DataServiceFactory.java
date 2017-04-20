@@ -52,7 +52,7 @@ public final class DataServiceFactory {
         return retrofit(okHttpClientBuilder()).create(serviceClass);
     }
 
-    public <T> T createWithAuth(Class<T> serviceClass,
+    <T> T createWithAuth(Class<T> serviceClass,
                                 AuthRequestInterceptor authRequestInterceptor) {
         // AuthRequestInterceptor has to be passed in as a parameter to avoid dependency cycle
         OkHttpClient.Builder okHttpClientBuilder = okHttpClientBuilder();

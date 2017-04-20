@@ -19,7 +19,6 @@ package com.vestrel00.business.search.data.net.auth;
 import java.io.IOException;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;

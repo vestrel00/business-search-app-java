@@ -69,7 +69,8 @@ final class SmartBusinessDataStore implements BusinessDataStore {
     private Function<BusinessListResponse, Iterable<BusinessEntity>> toList() {
         return new Function<BusinessListResponse, Iterable<BusinessEntity>>() {
             @Override
-            public Iterable<BusinessEntity> apply(@NonNull BusinessListResponse businessListResponse)
+            public Iterable<BusinessEntity>
+            apply(@NonNull BusinessListResponse businessListResponse)
                     throws Exception {
                 return businessListResponse.businesses();
             }

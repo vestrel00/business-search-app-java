@@ -20,5 +20,28 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.v
  * Contains options for {@link BusinessListView}.
  */
 public enum BusinessListViewOption {
-    SHOW_AROUND_LOCATION, SHOW_AROUND_COORDINATES, SHOW_BUSINESS_DETAILS, QUIT, UNKNOWN
+    /**
+     * Option to show businesses around a location.
+     */
+    SHOW_AROUND_LOCATION,
+
+    /**
+     * Option to show businesses around a given coordinates.
+     */
+    SHOW_AROUND_COORDINATES,
+
+    /**
+     * Option to show business details.
+     */
+    SHOW_BUSINESS_DETAILS,
+
+    /**
+     * Option to quit.
+     */
+    QUIT,
+
+    /**
+     * Unknown option.
+     */
+    UNKNOWN
 }

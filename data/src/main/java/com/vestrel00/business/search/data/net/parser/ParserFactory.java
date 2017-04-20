@@ -25,11 +25,11 @@ import com.vestrel00.business.search.data.entity.LocationEntity;
  */
 public final class ParserFactory {
 
+    private ParserFactory() {
+    }
+    
     public static ParserFactory create() {
         return new ParserFactory();
-    }
-
-    private ParserFactory() {
     }
 
     public Parser<BusinessEntity> businessEntityParser() {
