@@ -6,7 +6,7 @@ BEWARE OF THE FOLLOWING:
 2. THIS PROJECT IS UNDER HEAVY DEVELOPMENT. BY NO MEANS IS IT CLOSE TO DONE.   
 3. THIS REPOSITORY WILL REMAIN PRIVATE UNTIL IT HAS BEEN COMPLETED.  
 4. COMMITS HAVE BEEN PUSHED DIRECTLY INTO THE DEVELOP BRANCH INSTEAD OF THROUGH PULL REQUESTS.  
-5. DEVELOP BRANCH IS EXTREMELY DIRTY.  
+5. DEVELOP BRANCH COMMIT HISTORY IS EXTREMELY DIRTY.  
 6. ONCE COMPLETED, ALL CODE WILL BE RE-DONE PROPERLY WITH FEATURE BRANCHES, ISSUES, AND PULL REQUESTS.
 7. AT THAT POINT ALL WORK WILL BE LOGGED IN DOCS/DEV_LOGS.MD AND MERGED THROUGH WELL-DOCUMENTED 
    PULL REQUESTS. IT WILL BE LIKE A HOW-TO / GUIDE TO CLEAN ARCHITECTURE.
@@ -146,7 +146,7 @@ For example, to list all tasks for the *presentation-java-nogui-mvp* module,
 - For plain Java applications,
 
   ```
-  ./gradlew :<presentation-module>:run
+  ./gradlew :<java-presentation-module>:run
   ```
 
   For example, to run the *presentation-java-nogui-mvp* application,
@@ -158,8 +158,8 @@ For example, to list all tasks for the *presentation-java-nogui-mvp* module,
   You may also generate and run via jar,
 
   ```
-  ./gradlew :<presentation-module>:jar
-  java -jar <presentation-module>/build/libs/<name-of-jar>.jar 
+  ./gradlew :<java-presentation-module>:jar
+  java -jar <java-presentation-module>/build/libs/<name-of-jar>.jar 
   ```
 
   For example, to generate and run the jar of the *presentation-java-nogui-mvp* application,
@@ -172,7 +172,7 @@ For example, to list all tasks for the *presentation-java-nogui-mvp* module,
 - For Android applications,
 
   ```
-  ./gradlew :<presentation-module>:install<build_variant>
+  ./gradlew :<android-presentation-module>:install<build_variant>
   ```
 
   For example, to install the *presentation-android-mvp* debug application,
@@ -253,7 +253,7 @@ To run all instrumentation tests,
 To run all instrumentation tests for a specific Android module,
 
 ```
-./gradlew :<presentation-module>:connectedAndroidTest
+./gradlew :<android-presentation-module>:connectedAndroidTest
 ```
 
 Note that only debug build types support Android instrumentations tests.
