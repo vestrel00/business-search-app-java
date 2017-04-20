@@ -1,77 +1,185 @@
+# IMPORTANT!
+
+BEWARE OF THE FOLLOWING:
+
+1. THE ONLY PRESENTATION APPLICATION THAT IS FULLY FUNCTIONAL IS *presentation-java-nogui-mvp*
+2. THIS PROJECT IS UNDER HEAVY DEVELOPMENT. BY NO MEANS IS IT CLOSE TO DONE.   
+3. THIS REPOSITORY WILL REMAIN PRIVATE UNTIL IT HAS BEEN COMPLETED.  
+4. COMMITS HAVE BEEN PUSHED DIRECTLY INTO THE DEVELOP BRANCH INSTEAD OF THROUGH PULL REQUESTS.  
+5. DEVELOP BRANCH IS EXTREMELY DIRTY.  
+6. ONCE COMPLETED, ALL CODE WILL BE RE-DONE PROPERLY WITH FEATURE BRANCHES, ISSUES, AND PULL REQUESTS.
+7. AT THAT POINT ALL WORK WILL BE LOGGED IN DOCS/DEV_LOGS.MD AND MERGED THROUGH WELL-DOCUMENTED 
+   PULL REQUESTS. IT WILL BE LIKE A HOW-TO / GUIDE TO CLEAN ARCHITECTURE.
+8. TRAVIS CI IS COMING SOON.
+
+
 # Business Search
 
 The purpose of this project is to demonstrate how to build Android applications from the ground up
 using clean architecture principles, Java best practices, and design patterns. It is less about the 
-application content and more about the code (and processes). 
+application content and more about the code and architecture. 
 
-The goal is to showcase Java object oriented programming in Android, including:
+The goal is to showcase Java object oriented programming in Java and Android, including:
 
 - Reactive programming with [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) and 
   [RxAndroid 2](https://github.com/ReactiveX/RxAndroid/tree/2.x)
 - Dependency injection with [Dagger 2](https://github.com/google/dagger/tree/dagger-2.10-rc4)
 - View binding with [Butterknife](https://github.com/JakeWharton/butterknife/tree/butterknife-parent-7.0.1)
 - Networking with [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
-- Databinding with [Jackson Databind 2](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.8.8)
+- De/serialization with [Jackson Databind 2](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.8.8)
 - Mapping with [Google Maps APIs](https://developers.google.com/maps/documentation/android-api/)
 - Testing with [JUnit 4](https://github.com/junit-team/junit4/blob/master/doc/ReleaseNotes4.12.md), 
+  [AssertJ](http://joel-costigliola.github.io/assertj/),
   [Mockito 2](https://github.com/mockito/mockito/tree/release/2.x), 
   [Robolectric 3](https://github.com/robolectric/robolectric/tree/robolectric-3.3.2), and
   [Espresso](https://google.github.io/android-testing-support-library/docs/espresso/index.html)
-- [Clean, modular architecture](https://github.com/android10/Android-CleanArchitecture)
+- [Clean architecture](https://github.com/android10/Android-CleanArchitecture)
 - [Model-View-Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP) pattern
 - [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (MVVM) pattern
 - [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
-- Java and Android best practices, including design patterns/styles
+- Mobile application development [Android](https://developer.android.com/training/index.html)
+- Desktop application development using [Java Swing](http://docs.oracle.com/javase/tutorial/uiswing/)
+- Java best practices and design patterns
 - Creating readable, focused, and well-documented pull requests
 
 ## Application and Features
 
-Using the [Yelp Fusion (v3) REST API](https://www.yelp.com/developers/documentation/v3/get_started), 
+A simple business search application using the
+[Yelp Fusion (v3) REST API](https://www.yelp.com/developers/documentation/v3/get_started).
+
 This simple business search application is able to:
 
-- display businesses around the user's current location in a list and map views
-- display businesses around a given location in a list and map views
-- show more details on a specific place when clicking on a list or map item
+- display businesses around a location
+- display businesses around a set of coordinates
+- display business details
 
 **Notes**
 
-- The application short and simple with no styling and no advanced UI for brevity. 
+- The application is kept short and simple with no styling and no advanced UI for brevity. 
 - The [Yelp Android API](https://github.com/Yelp/yelp-android) is not used in order to showcase 
   usage of [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
 
-## Building and Running the Application
+## Applications
 
-Before being able to build and run the application, you must have installed 
-[JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
+The application has several different presentations. In other words, there are several different
+applications that present the application in different platforms.
 
-This project contains 2 Java applications and 2 Android applications. There are several ways to 
-build and run theses applications.
+1. presentation-android-mvp: Android app written using the MVP pattern.
+2. presentation-android-mvvm: Android app written using the MVVM pattern.
+3. presentation-java-nogui-mvp: Plain Java command line / console app written using the MVP pattern.
+4. presentation-java-swing-mvp: Java Swing app written using the MVP pattern.
+5. presentation-java-swing-mvvm: Java Swing app written using the MVVM pattern.
+
+All of the above presentations use the same domain and data layer.
+
+
+## Building and Running the Applications
+
+**[JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)** is 
+required to build and run this project.
+
+#### Using Android Studio
+
+You may **open** this project in [Android Studio](https://developer.android.com/studio/index.html) 
+(v2.3.1).
+
+- For plain Java applications, you must Build -> Make Project in order to build them.
+  There are several plain Java applications:
+
+  - presentation-java-nogui-mvp
+  - presentation-java-swing-mvp
+  - presentation-java-swing-mvvm
+
+- For Android applications, click Build -> Rebuild Project is enough. However, it will not build 
+  plain Java applications as mentioned above. There are several Android applications:
+  
+  - presentation-android-mvp
+  - presentation-android-mvvm
+
+**Running the applications**
+
+- For plain Java applications, navigate to the *ApplicationRunner.java* file, right click, and
+  select Run 'ApplicationRunner.main()'.
+- For Android applications, select the desired run configuration and 
+  select Run -> Run '<presentation-module>'
 
 #### Using Gradle
 
-You may build the application binary (APK) using gradle in the command line,
+To build all applications,
 
 ```
-./gradlew assemble<build_variant>
+./gradlew build
 ```
 
-For example, to build the MVP Debug build variant,
+To build all variants of a specific application,
 
 ```
-./gradlew assembleMvpDebug
+./gradlew :<presentation-module>:build
 ```
 
-Then install the build using adb,
+For example, to build the *presentation-java-nogui-mvp* application,
 
 ```
-adb install <path_to_apk>
+./gradlew :presentation-java-nogui-mvp:build
 ```
 
-For example, to install the MVP Debug build variant,
+To list all tasks for this project,
 
 ```
-adb install app/build/outputs/apk/mvp-debug-v0.0.1-b1.apk
+./gradlew tasks
 ```
+
+To list all tasks for a specific module,
+
+```
+./gradlew :<presentation-module>:tasks
+```
+
+For example, to list all tasks for the *presentation-java-nogui-mvp* module,
+
+```
+./gradlew :presentation-java-nogui-mvp:tasks
+```
+
+**Running the applications**
+
+- For plain Java applications,
+
+  ```
+  ./gradlew :<presentation-module>:run
+  ```
+
+  For example, to run the *presentation-java-nogui-mvp* application,
+
+  ```
+  ./gradlew :presentation-java-nogui-mvp:run
+  ```
+
+  You may also generate and run via jar,
+
+  ```
+  ./gradlew :<presentation-module>:jar
+  java -jar <presentation-module>/build/libs/<name-of-jar>.jar 
+  ```
+
+  For example, to generate and run the jar of the *presentation-java-nogui-mvp* application,
+
+  ```
+  ./gradlew :presentation-java-nogui-mvp:jar
+  java -jar presentation-java-nogui-mvp/build/libs/presentation-java-nogui-mvp-1.0.0.jar 
+  ```
+  
+- For Android applications,
+
+  ```
+  ./gradlew :<presentation-module>:install<build_variant>
+  ```
+
+  For example, to install the *presentation-android-mvp* debug application,
+
+  ```
+  ./gradlew :presentation-android-mvp:installDebug
+  ```
 
 **Known Issues**
 
@@ -87,33 +195,20 @@ adb install app/build/outputs/apk/mvp-debug-v0.0.1-b1.apk
    
    You may build a specific project to avoid this synchronization issues.
    
-   ```./gradlew presentation-java-nogui-mvp:build```
+   ```./gradlew :<presentation-module>:build```
+   
+2. If anything unexpected occurs, clean the project first and try again.
 
-#### Using Android Studio
-
-You may *open* this project in Android Studio (v2.x) and run the application by selecting
-Run -> Run 'app'
-
-- For plain Java applications, you must run Build -> Make Project in order to build them.
-  There are 2 plain Java applications. You should first Make Project at least once after opening.
-
-  - presentation-java-nogui-mvp
-  - presentation-java-swing-mvp
-
-- For Android applications, Build -> Rebuild Project is enough. However, it will not build Java
-  applications mentioned above. There are 2 Android applications.
-  
-  - presentation-android-mvp
-  - presentation-android-mvvm
+    ```./gradlew clean```
 
 
 ## Architecture
 
-TODO
+TODO - Data, Domain, Presentation (MVP & MVVM)
 
 #### Code Organization
 
-- Dagger package module setup
+TODO Dagger package module setup
 
 
 ## Development Logs
@@ -131,45 +226,34 @@ See more in *docs/DEV_LOGS.md*.
 
 #### Unit Tests
 
-JUnit4, Mockito2, and Robolectric3 are used for unit testing Android and pure Java classes.
+JUnit4, AssertJ, Mockito2, and Robolectric3 are used for unit testing Android and pure Java classes.
 
-You may run build variant specific unit tests,
-
-```
-./gradlew test<build_variant>UnitTest
-```
-
-For example, to run unit tests for the MVP Debug build variant,
-
-```
-./gradlew testMvpDebugUnitTest
-```
-You may run all unit tests,
+To run all unit tests,
 
 ```
 ./gradlew test
 ```
 
+To run all unit tests for a specific module,
+
+```
+./gradlew :<presentation-module>:test
+```
+
 #### Instrumentation Tests
 
-Espresso is used for instrumentation tests.
+Espresso is used for Android instrumentation tests.
 
-You may run build variant specific instrumentation tests,
-
-```
-./gradlew connected<build_variant>AndroidTest
-```
-
-For example, to run instrumentation tests for the MVP Debug build variant,
-
-```
-./gradlew connectedMvpDebugAndroidTest
-```
-
-You may run all instrumentation tests,
+To run all instrumentation tests,
 
 ```
 ./gradlew connectedAndroidTest
+```
+
+To run all instrumentation tests for a specific Android module,
+
+```
+./gradlew :<presentation-module>:connectedAndroidTest
 ```
 
 Note that only debug build types support Android instrumentations tests.
@@ -178,16 +262,16 @@ Note that only debug build types support Android instrumentations tests.
 
 Code coverage is available through the use of the jacoco plugin.
 
-You may generate build variant specific test reports,
+To generate test reports for all modules,
 
 ```
-.gradlew jacoco<build_variant>TestReport
+./gradlew jacocoTestReport
 ```
 
-For example, to test reports for the MVP Debug build variant,
+To generate test reports for a specific module,
 
 ```
-./gradlew jacocoMvpDebugTestReport
+./gradlew :<module>:jacocoTestReport
 ```
 
 
@@ -204,46 +288,33 @@ code style and patterns:
 You can read more about these tools in this 
 [blog post](http://vincentbrison.com/2014/07/19/how-to-improve-quality-and-syntax-of-your-android-code/).
 
-The above will run checkstyle, findbugs, PMD, and lint for all build variants. 
-You may run build variant specific static analysis checks,
-
-```
-./gradlew check<build_variant>Quality
-```
-
-For example, to run static analysis checks for the MVP Debug build variant,
-
-```
-./gradlew checkMvpDebugQuality
-```
-
-
-You may also run all static analysis checks for all build variants,
+To run all static analysis checks for all modules,
 
 ```
 ./gradlew checkQuality
 ```
 
-You may run individual static analysis checks separately. 
-To see the list of all gradle tasks,
+
+To run all static analysis checks for a specific module,
 
 ```
-./gradlew tasks
+./gradlew :<module>:checkQuality
 ```
-
 
 ## Javadoc
 
 Javadoc is available. To generate the Javadocs, 
 
-```
-./gradlew <build_variant>JavaDoc
-```
-
-For example, to generate Javadocs for MVP Debug build variant,
+To generate Javadocs for all modules,
 
 ```
-./gradlew mvpDebugJavaDoc
+./gradlew javadoc
+```
+
+To generate Javadocs for a specific module,
+
+```
+./gradlew :<module>:javadoc
 ```
 
 

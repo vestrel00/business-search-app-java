@@ -6,3 +6,4 @@ I have logged all of the work I have done for this project, including:
 - my thought process for each step; "why do it this way?", "why use that library?", etc
 - references to issues and pull requests for each step
 
+TODO
