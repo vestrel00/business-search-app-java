@@ -76,11 +76,12 @@ adb install app/build/outputs/apk/mvp-debug-v0.0.1-b1.apk
 
 **Known Issues**
 
-1. If you get the following message
-
-   > Could not initialize class com.android.ide.common.util.ReadWriteProcessLock
+1. If building fails due to a read/write process lock or any file related error, this may be due to
+   org.gradle.parallel set to true in gradle.properties. This allows for parallel tasks which
+   could result in several gradle processes accessing the same files at the same time.  
    
-   Then you will need to stop the gradle daemons and try again
+   You will need to stop the existing gradle daemons and try again (try just building a specific 
+   project instead of multiple projects)
    
    ```./gradlew --stop```
 
