@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
+package com.vestrel00.business.search.java;
 
-generateJavaMainJacocoTaskWithExcludes([
-        '**/config/DataConfigFactory.class',
-        '**/executor/BlockingPostExecutionThread.class',
-        '**/executor/view/BlockingExecutionThread.class',
-        '**/options/view/Option.class',
-        '**/ApplicationRunner.class'
-])
+import org.junit.Before;
+import org.mockito.MockitoAnnotations;
+
+/**
+ * Abstract test case that all plain Java tests using JUnit, AssertJ, and Mockito extends.
+ */
+public abstract class AbstractJavaTestCase {
+
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+    }
+}

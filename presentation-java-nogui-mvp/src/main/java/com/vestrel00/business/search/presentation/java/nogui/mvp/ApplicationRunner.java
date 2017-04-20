@@ -17,7 +17,7 @@
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
 /**
- * ApplicationRunner class of this presentation layer. This simply runs the {@link Application}.
+ * Runs the application.
  */
 public final class ApplicationRunner {
 

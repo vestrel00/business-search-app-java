@@ -14,12 +14,26 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
+package com.vestrel00.business.search.presentation.android;
 
-generateJavaMainJacocoTaskWithExcludes([
-        '**/config/DataConfigFactory.class',
-        '**/executor/BlockingPostExecutionThread.class',
-        '**/executor/view/BlockingExecutionThread.class',
-        '**/options/view/Option.class',
-        '**/ApplicationRunner.class'
-])
+import com.vestrel00.business.search.java.AbstractJavaTestCase;
+
+import org.junit.Test;
+import org.mockito.InjectMocks;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public final class TemporaryStubTest extends AbstractJavaTestCase {
+
+    @InjectMocks
+    private TemporaryStub testSubject;
+
+    @Test
+    public void stub_returns1() throws Exception {
+        // WHEN
+        int actual = testSubject.stub();
+
+        // THEN
+        assertThat(actual).isEqualTo(1);
+    }
+}

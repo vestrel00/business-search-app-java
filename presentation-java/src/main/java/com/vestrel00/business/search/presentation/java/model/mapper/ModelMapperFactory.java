@@ -53,7 +53,7 @@ public final class ModelMapperFactory {
         return locationModelMapper;
     }
 
-    public ModelMapper<CoordinatesModel, Coordinates> coordinatesEntityMapper() {
+    public ModelMapper<CoordinatesModel, Coordinates> coordinatesModelMapper() {
         return coordinatesEntityMapper;
     }
 }

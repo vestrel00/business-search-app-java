@@ -81,7 +81,7 @@ public final class BusinessListPresenter {
     }
 
     private void showBusinessesAroundCoordinates(CoordinatesModel coordinatesModel) {
-        Coordinates coordinates = modelMapperFactory.coordinatesEntityMapper()
+        Coordinates coordinates = modelMapperFactory.coordinatesModelMapper()
                 .map(coordinatesModel);
         BusinessListObserver observer = businessListObserverFactory.create(view);
         useCaseHandler.execute(getBusinessesAroundCoordinates, coordinates, observer);

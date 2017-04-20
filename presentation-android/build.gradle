@@ -43,6 +43,7 @@ dependencies {
     provided presentationAndroidDependencies.javaxAnnotation
     provided presentationAndroidDependencies.autoValue
 
+    testCompile project(path: ':presentation-java', configuration: 'testOutput')
     testCompile presentationAndroidTestDependencies.junit
     testCompile presentationAndroidTestDependencies.assertj
     testCompile presentationAndroidTestDependencies.mockitoCore

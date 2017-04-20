@@ -56,6 +56,7 @@ dependencies {
     compileOnly presentationJavaDependencies.javaxAnnotation
     compileOnly presentationJavaDependencies.autoValue
 
+    testCompile project(path: ':presentation-java', configuration: 'testOutput')
     testCompile presentationJavaTestDependencies.junit
     testCompile presentationJavaTestDependencies.assertj
     testCompile presentationJavaTestDependencies.mockitoCore

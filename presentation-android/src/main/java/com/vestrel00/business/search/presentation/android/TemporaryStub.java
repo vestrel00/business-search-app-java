@@ -21,7 +21,7 @@ package com.vestrel00.business.search.presentation.android;
  */
 public class TemporaryStub {
 
-    public int core() {
+    public int stub() {
         return 1;
     }
 }
