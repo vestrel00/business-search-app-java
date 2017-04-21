@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.presenter;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businessdetails.presenter;
 
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
 import com.vestrel00.business.search.domain.interactor.GetBusinessWithId;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.view.BusinessDetailsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businessdetails.view.BusinessDetailsView;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -57,7 +57,7 @@ public final class BusinessDetailsPresenter {
     }
 
     private void showBusinessDetails(String businessId) {
-        BusinessDetailsObserver observer = businessDetailsObserverFactory.create(view);
+        com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businessdetails.presenter.BusinessDetailsObserver observer = businessDetailsObserverFactory.create(view);
         useCaseHandler.execute(getBusinessWithId, businessId, observer);
     }
 }

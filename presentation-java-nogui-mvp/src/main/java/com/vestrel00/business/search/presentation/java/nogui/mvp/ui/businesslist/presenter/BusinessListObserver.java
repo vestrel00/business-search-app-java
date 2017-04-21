@@ -14,32 +14,34 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.presenter;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businesslist.presenter;
 
 import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.view.BusinessDetailsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businesslist.view.BusinessListView;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.observers.DisposableSingleObserver;
 
 /**
- * Observer for business details obtained from a use case.
+ * Observer for business lists obtained from a use case.
  */
-final class BusinessDetailsObserver extends DisposableSingleObserver<Business> {
+final class BusinessListObserver extends DisposableSingleObserver<List<Business>> {
 
-    private final BusinessDetailsView view;
+    private final BusinessListView view;
     private final ModelMapperFactory modelMapperFactory;
 
-    BusinessDetailsObserver(BusinessDetailsView view, ModelMapperFactory modelMapperFactory) {
+    BusinessListObserver(BusinessListView view, ModelMapperFactory modelMapperFactory) {
         this.view = view;
         this.modelMapperFactory = modelMapperFactory;
     }
 
     @Override
-    public void onSuccess(@NonNull Business businesses) {
-        Observable.just(businesses)
+    public void onSuccess(@NonNull List<Business> businesses) {
+        Observable.fromIterable(businesses)
                 .map(modelMapperFactory.businessModelMapper()::map)
                 .doOnNext(view::showBusiness)
                 .subscribe();

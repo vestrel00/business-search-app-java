@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.options.presenter;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.presenter;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.options.view.Option;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.options.view.OptionsView;
+
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.Option;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.OptionsView;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.annotations.NonNull;
-
-import static com.vestrel00.business.search.presentation.java.nogui.mvp.options.view.Option.UNKNOWN;
 
 /**
  * Presents the options.
@@ -44,7 +43,7 @@ public final class OptionsPresenter {
     }
 
     public Option handleOption(Option option) {
-        if (option == UNKNOWN) {
+        if (option == Option.UNKNOWN) {
             view.showError(new IllegalArgumentException("You must choose a valid option."));
         }
         return option;

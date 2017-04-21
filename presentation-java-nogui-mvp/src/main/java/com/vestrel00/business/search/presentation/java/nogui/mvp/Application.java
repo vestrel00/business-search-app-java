@@ -16,10 +16,10 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.businessdetails.view.BusinessDetailsView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.businesslist.view.BusinessListView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.options.view.Option;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.options.view.OptionsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businessdetails.view.BusinessDetailsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businesslist.view.BusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.Option;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.OptionsView;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
