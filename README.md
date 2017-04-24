@@ -187,15 +187,19 @@ For example, to list all tasks for the *presentation-java-nogui-mvp* module,
    org.gradle.parallel set to true in gradle.properties. This allows for parallel tasks which
    could result in several gradle processes accessing the same files at the same time. 
    
-   For example, ```./gradlew build``` builds all projects in parallel.
+   For example, ```./gradlew build``` builds all projects in parallel, which may result in the 
+   following error,
    
-   You will need to stop the existing gradle daemons and try again.
+   > :presentation-android-mvp:transformClassesAndResourcesWithProguardForRelease FAILED
+     :presentation-android-mvvm:transformClassesAndResourcesWithProguardForRelease FAILED
+   
+   You will need to stop the existing gradle daemons and try again (without cleaning).
    
    ```./gradlew --stop```
    
-   You may build a specific project to avoid this synchronization issues.
+   You may want to build a specific variant of a specific module to avoid this synchronization issue.
    
-   ```./gradlew :<presentation-module>:build```
+   ```./gradlew :<presentation-module>:build<build_variant>```
    
 2. If anything unexpected occurs, clean the project first and try again.
 

@@ -57,7 +57,7 @@ public final class BusinessDetailsPresenter {
     }
 
     private void showBusinessDetails(String businessId) {
-        com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businessdetails.presenter.BusinessDetailsObserver observer = businessDetailsObserverFactory.create(view);
+        BusinessDetailsObserver observer = businessDetailsObserverFactory.create(view);
         useCaseHandler.execute(getBusinessWithId, businessId, observer);
     }
 }
