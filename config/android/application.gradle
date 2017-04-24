@@ -30,7 +30,7 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.androidMinSdkVersion
         targetSdkVersion rootProject.ext.androidTargetSdkVersion
-        multiDexEnabled true
+
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
 
