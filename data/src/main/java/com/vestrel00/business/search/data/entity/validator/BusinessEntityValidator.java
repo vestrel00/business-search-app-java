@@ -44,16 +44,22 @@ final class BusinessEntityValidator implements EntityValidator<BusinessEntity> {
     }
 
     @Override
-    public void validate(BusinessEntity business) throws InvalidEntityException {
-        if (!isValid(business)) {
-            throw new InvalidEntityException("Business must not be missing.");
+    public void validate(BusinessEntity businessEntity) throws InvalidEntityException {
+        if (isValidBare(businessEntity)) {
+            throw new InvalidEntityException("Business id must not be missing.");
         }
+        locationEntityValidator.validate(businessEntity.locationEntity());
+        coordinatesEntityValidator.validate(businessEntity.coordinatesEntity());
     }
 
     @Override
-    public boolean isValid(BusinessEntity business) {
-        return !stringUtils.isEmpty(business.id())
-                && locationEntityValidator.isValid(business.location())
-                && coordinatesEntityValidator.isValid(business.coordinates());
+    public boolean isValid(BusinessEntity businessEntity) {
+        return isValidBare(businessEntity)
+                && locationEntityValidator.isValid(businessEntity.locationEntity())
+                && coordinatesEntityValidator.isValid(businessEntity.coordinatesEntity());
+    }
+
+    private boolean isValidBare(BusinessEntity businessEntity) {
+        return !stringUtils.isEmpty(businessEntity.id());
     }
 }

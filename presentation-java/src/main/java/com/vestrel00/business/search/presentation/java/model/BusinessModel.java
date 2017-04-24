@@ -56,9 +56,9 @@ public abstract class BusinessModel implements Model {
 
     public abstract boolean closed();
 
-    public abstract LocationModel location();
+    public abstract LocationModel locationModel();
 
-    public abstract CoordinatesModel coordinates();
+    public abstract CoordinatesModel coordinatesModel();
 
     /**
      * Builder used to create instances of {@link BusinessModel}.
@@ -80,9 +80,9 @@ public abstract class BusinessModel implements Model {
 
         public abstract Builder closed(boolean closed);
 
-        public abstract Builder location(LocationModel location);
+        public abstract Builder locationModel(LocationModel locationModel);
 
-        public abstract Builder coordinates(CoordinatesModel coordinates);
+        public abstract Builder coordinatesModel(CoordinatesModel coordinatesModel);
 
         public abstract BusinessModel build();
     }

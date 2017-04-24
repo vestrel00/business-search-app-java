@@ -49,13 +49,6 @@ public final class OptionsView {
         presenter.setView(this);
     }
 
-    /**
-     * Shows the options to choose from.
-     * <p>
-     * This should not be invoked by the presenter, otherwise an infinite call loop may occur.
-     *
-     * @return the chosen {@link Option}.
-     */
     public Option chooseOption() {
         return Observable.just(OPTIONS)
                 .map(display::promptInput)

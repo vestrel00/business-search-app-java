@@ -28,22 +28,22 @@ import java.util.List;
  * Consists of a list of businesses.
  */
 @AutoValue
-@JsonDeserialize(builder = AutoValue_BusinessListResponse.Builder.class)
-public abstract class BusinessListResponse {
+@JsonDeserialize(builder = AutoValue_BusinessEntityListResponse.Builder.class)
+public abstract class BusinessEntityListResponse {
 
     @JsonProperty("businesses")
-    public abstract List<BusinessEntity> businesses();
+    public abstract List<BusinessEntity> businessEntities();
 
     /**
-     * Builder used to create instances of {@link BusinessListResponse}.
+     * Builder used to create instances of {@link BusinessEntityListResponse}.
      */
     @AutoValue.Builder
     @JsonIgnoreProperties(ignoreUnknown = true)
     abstract static class Builder {
 
         @JsonProperty("businesses")
-        abstract Builder businesses(List<BusinessEntity> businesses);
+        abstract Builder businessEntities(List<BusinessEntity> businessEntities);
 
-        abstract BusinessListResponse build();
+        abstract BusinessEntityListResponse build();
     }
 }

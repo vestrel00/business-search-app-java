@@ -29,11 +29,11 @@ import retrofit2.http.Query;
 public interface BusinessDataService {
 
     @GET("v3/businesses/search")
-    Observable<BusinessListResponse> aroundLocation(@Query("location") String location);
+    Observable<BusinessEntityListResponse> aroundLocation(@Query("location") String location);
 
     @GET("v3/businesses/search")
-    Observable<BusinessListResponse> aroundCoordinates(@Query("latitude") double latitude,
-                                                       @Query("longitude") double longitude);
+    Observable<BusinessEntityListResponse> aroundCoordinates(@Query("latitude") double latitude,
+                                                             @Query("longitude") double longitude);
 
     @GET("v3/businesses/{id}")
     Observable<BusinessEntity> withId(@Path("id") String businessId);

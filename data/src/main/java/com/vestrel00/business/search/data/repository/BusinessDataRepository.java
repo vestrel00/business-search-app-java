@@ -45,7 +45,7 @@ import io.reactivex.functions.Predicate;
  * An implementation of {@link BusinessRepository}.
  */
 @Singleton
-public final class BusinessDataRepository implements BusinessRepository {
+final class BusinessDataRepository implements BusinessRepository {
 
     private final BusinessDataStoreFactory dataStoreFactory;
     private final EntityMapperFactory entityMapperFactory;

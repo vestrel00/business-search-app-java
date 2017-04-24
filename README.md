@@ -204,11 +204,11 @@ For example, to list all tasks for the *presentation-java-nogui-mvp* module,
 
 ## Architecture
 
-TODO - Data, Domain, Presentation (MVP & MVVM)
+TODO (Documentation) - Data, Domain, Presentation (MVP & MVVM)
 
 #### Code Organization
 
-TODO Dagger package module setup
+TODO (Documentation) - Dagger package module setup
 
 
 ## Development Logs

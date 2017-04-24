@@ -40,7 +40,7 @@ task checkQuality(type: CheckQuality) {
 def generateCheckQualityTask(String buildVariant, boolean withLint) {
     buildVariant = buildVariant.capitalize()
 
-    def checkQualityVariant = "checkQuality${buildVariant}"
+    def checkQualityVariant = "check${buildVariant}Quality"
     def checkQualityVariantTaskDependencies = [
             "checkstyle${buildVariant}",
             "pmd${buildVariant}",

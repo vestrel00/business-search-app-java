@@ -20,7 +20,7 @@ import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.data.net.BusinessDataService;
-import com.vestrel00.business.search.data.net.BusinessListResponse;
+import com.vestrel00.business.search.data.net.BusinessEntityListResponse;
 import com.vestrel00.business.search.data.util.LocationFormatter;
 
 import dagger.Lazy;
@@ -66,13 +66,13 @@ final class SmartBusinessDataStore implements BusinessDataStore {
     }
 
     // FIXME (LAMBDA) - Use lambdas instead
-    private Function<BusinessListResponse, Iterable<BusinessEntity>> toList() {
-        return new Function<BusinessListResponse, Iterable<BusinessEntity>>() {
+    private Function<BusinessEntityListResponse, Iterable<BusinessEntity>> toList() {
+        return new Function<BusinessEntityListResponse, Iterable<BusinessEntity>>() {
             @Override
             public Iterable<BusinessEntity>
-            apply(@NonNull BusinessListResponse businessListResponse)
+            apply(@NonNull BusinessEntityListResponse businessEntityListResponse)
                     throws Exception {
-                return businessListResponse.businesses();
+                return businessEntityListResponse.businessEntities();
             }
         };
     }

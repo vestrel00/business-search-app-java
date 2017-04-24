@@ -36,7 +36,7 @@ apply from: "$rootDir/config/testing/share_tests_java_library.gradle"
  * to that submodule's build.gradle file.
  *
  * We could apply an android plugin instead of a java plugin to fix this issue.
- * However, if a library can be pure Java then it should. he data and domain layers
+ * However, if a library can be pure Java then it should. The data and domain layers
  * (which use the java-library plugin), especially the domain layer, need to be framework agnostic
  * as ruled by clean architecture principles. This means that they should not contain references
  * to frameworks like Android.

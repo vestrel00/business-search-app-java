@@ -35,7 +35,7 @@ import com.vestrel00.business.search.data.net.deserialize.BusinessEntityDeserial
  * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
-// FIXME (DATABIND) The generated builder could be used for deserialization. However, Jackson does
+// FIXME (DATABIND) - The generated builder could be used for deserialization. However, Jackson does
 // not yet support setting default values for null or missing properties per setter/getter methods.
 // E.G. Missing (or null) property string -> empty string (instead of the default null)
 // @JsonDeserialize(builder = AutoValue_BusinessEntity.Builder.class)
@@ -63,9 +63,9 @@ public abstract class BusinessEntity implements Entity {
 
     public abstract boolean closed();
 
-    public abstract LocationEntity location();
+    public abstract LocationEntity locationEntity();
 
-    public abstract CoordinatesEntity coordinates();
+    public abstract CoordinatesEntity coordinatesEntity();
 
     /**
      * Builder used to create instances of {@link BusinessEntity}.
@@ -87,9 +87,9 @@ public abstract class BusinessEntity implements Entity {
 
         public abstract Builder closed(boolean closed);
 
-        public abstract Builder location(LocationEntity location);
+        public abstract Builder locationEntity(LocationEntity locationEntity);
 
-        public abstract Builder coordinates(CoordinatesEntity coordinates);
+        public abstract Builder coordinatesEntity(CoordinatesEntity coordinatesEntity);
 
         public abstract BusinessEntity build();
     }

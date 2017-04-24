@@ -36,15 +36,15 @@ final class LocationEntityValidator implements EntityValidator<LocationEntity> {
     }
 
     @Override
-    public void validate(LocationEntity location) throws InvalidEntityException {
-        if (!isValid(location)) {
+    public void validate(LocationEntity locationEntity) throws InvalidEntityException {
+        if (!isValid(locationEntity)) {
             throw new InvalidEntityException("One or more attributes must not be null or empty.");
         }
     }
 
     @Override
-    public boolean isValid(LocationEntity location) {
-        return !stringUtils.allEmpty(location.address(), location.city(), location.state(),
-                location.zipCode(), location.country());
+    public boolean isValid(LocationEntity locationEntity) {
+        return !stringUtils.allEmpty(locationEntity.address(), locationEntity.city(),
+                locationEntity.state(), locationEntity.zipCode(), locationEntity.country());
     }
 }

@@ -52,8 +52,8 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .price(businessModel.price())
                 .rating(businessModel.rating())
                 .closed(businessModel.closed())
-                .location(locationModelMapper.map(businessModel.location()))
-                .coordinates(coordinatesEntityMapper.map(businessModel.coordinates()))
+                .location(locationModelMapper.map(businessModel.locationModel()))
+                .coordinates(coordinatesEntityMapper.map(businessModel.coordinatesModel()))
                 .build();
     }
 
@@ -67,8 +67,8 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .price(business.price())
                 .rating(business.rating())
                 .closed(business.closed())
-                .location(locationModelMapper.map(business.location()))
-                .coordinates(coordinatesEntityMapper.map(business.coordinates()))
+                .locationModel(locationModelMapper.map(business.location()))
+                .coordinatesModel(coordinatesEntityMapper.map(business.coordinates()))
                 .build();
     }
 }

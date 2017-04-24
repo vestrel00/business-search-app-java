@@ -66,8 +66,12 @@ final class Application implements Runnable {
             case SHOW_BUSINESS_DETAILS:
                 businessDetailsView.showBusinessDetails();
                 return true;
-            default:
+            case UNKNOWN:
+                return true;
+            case QUIT:
                 return false;
+            default:
+                throw new IllegalArgumentException("Unhandled option " + option);
         }
     }
 }

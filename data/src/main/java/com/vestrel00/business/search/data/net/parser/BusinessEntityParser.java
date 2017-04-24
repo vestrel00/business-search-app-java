@@ -45,8 +45,8 @@ final class BusinessEntityParser implements Parser<BusinessEntity> {
                 .price(node.path("price").asText())
                 .rating(node.path("rating").asDouble())
                 .closed(node.path("is_closed").asBoolean())
-                .location(locationEntityParser.parse(node.path("location")))
-                .coordinates(coordinatesEntityParser.parse(node.path("coordinates")))
+                .locationEntity(locationEntityParser.parse(node.path("location")))
+                .coordinatesEntity(coordinatesEntityParser.parse(node.path("coordinates")))
                 .build();
     }
 }

@@ -211,15 +211,28 @@ To run build variant specific static analysis checks,
 ./gradlew check<build_variant>Quality
 ```
 
-For example, to run static analysis checks for the MVP Debug build variant,
+For example, to run static analysis checks for the presentation-android-mvp debug build variant,
 
 ```
-./gradlew checkMvpDebugQuality
+./gradlew :presentation-android-mvp:checkDebugQuality
 ```
 
 You may run individual static analysis checks separately. 
-To see the list of all gradle tasks,
+
+To list all tasks for this project,
 
 ```
 ./gradlew tasks
+```
+
+To list all tasks for a specific module,
+
+```
+./gradlew :<presentation-module>:tasks
+```
+
+For example, to list all tasks for the *presentation-java-nogui-mvp* module,
+
+```
+./gradlew :presentation-java-nogui-mvp:tasks
 ```

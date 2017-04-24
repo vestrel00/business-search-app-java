@@ -32,14 +32,14 @@ final class CoordinatesEntityValidator implements EntityValidator<CoordinatesEnt
     }
 
     @Override
-    public void validate(CoordinatesEntity coordinates) throws InvalidEntityException {
-        if (!isValid(coordinates)) {
+    public void validate(CoordinatesEntity coordinatesEntity) throws InvalidEntityException {
+        if (!isValid(coordinatesEntity)) {
             throw new InvalidEntityException("Latitude and longitude must not be 0.");
         }
     }
 
     @Override
-    public boolean isValid(CoordinatesEntity coordinates) {
-        return coordinates.latitude() != 0 && coordinates.longitude() != 0;
+    public boolean isValid(CoordinatesEntity coordinatesEntity) {
+        return coordinatesEntity.latitude() != 0 && coordinatesEntity.longitude() != 0;
     }
 }
