@@ -32,7 +32,7 @@ The goal is to showcase Java object oriented programming in Java and Android, in
   [AssertJ](http://joel-costigliola.github.io/assertj/),
   [Mockito 2](https://github.com/mockito/mockito/tree/release/2.x), 
   [Robolectric 3](https://github.com/robolectric/robolectric/tree/robolectric-3.3.2), and
-  [Espresso](https://google.github.io/android-testing-support-library/docs/espresso/index.html)
+  [Espresso 2](https://google.github.io/android-testing-support-library/docs/espresso/index.html)
 - [Clean architecture](https://github.com/android10/Android-CleanArchitecture)
 - [Model-View-Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP) pattern
 - [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (MVVM) pattern
