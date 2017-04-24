@@ -95,6 +95,12 @@ You may **open** this project in [Android Studio](https://developer.android.com/
   
   - presentation-android-mvp
   - presentation-android-mvvm
+  
+Since this project contains a mix of plain Java modules and Android modules, the best way to ensure
+that all modules are built properly is to
+
+  - Build -> Clean Project
+  - Build -> Make Project
 
 **Running the applications**
 

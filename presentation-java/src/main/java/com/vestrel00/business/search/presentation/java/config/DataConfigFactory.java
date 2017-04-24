@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.config;
+package com.vestrel00.business.search.presentation.java.config;
 
 import com.vestrel00.business.search.data.config.DataConfig;
 
@@ -36,7 +36,7 @@ final class DataConfigFactory {
                 .authClientId("pTnZUGJqLM_Q0pQt-jsCXw") // Replace this with your own client id
                 .authClientSecret("zRs7F1e2B3Dc4OBNsp7yF0Jfh5eksGRXroaLE59JCxxwZUDO"
                         + "ppzjn6bQaVPB3bop") // Replace this with your own client secret
-                .cacheDir("presentation-java-nogui-mvp")
+                .cacheDir("business-search-cache")
                 .cacheMaxSizeMb(10)
                 .networkCacheTimeSeconds(60)
                 .build();

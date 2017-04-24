@@ -29,10 +29,10 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides presentation java mapper dependencies.
+ * Provides presentation java model mapper dependencies.
  */
 @Module
-public abstract class PresentationJavaMapperModule {
+public abstract class PresentationJavaModelMapperModule {
 
     @Binds
     @Singleton

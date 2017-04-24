@@ -14,24 +14,28 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.config;
+package com.vestrel00.business.search.presentation.android.executor;
 
-import com.vestrel00.business.search.data.config.DataConfig;
+import com.vestrel00.business.search.domain.executor.ExecutionThread;
+import com.vestrel00.business.search.domain.executor.PostExecutionThread;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
- * Provides presentation config dependencies.
+ * Provides presentation Android executor dependencies.
  */
 @Module
-public abstract class PresentationJavaNoGuiConfigModule {
+public abstract class PresentationAndroidExecutorModule {
 
-    @Provides
+    @Binds
     @Singleton
-    static DataConfig dataConfig() {
-        return DataConfigFactory.create();
-    }
+    abstract ExecutionThread executionThread(IOExecutionThread ioExecutionThread);
+
+    @Binds
+    @Singleton
+    abstract PostExecutionThread
+    postExecutionThread(MainPostExecutionThread mainPostExecutionThread);
 }

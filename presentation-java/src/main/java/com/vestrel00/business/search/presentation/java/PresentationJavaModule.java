@@ -14,14 +14,19 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android;
+package com.vestrel00.business.search.presentation.java;
+
+import com.vestrel00.business.search.presentation.java.config.PresentationJavaConfigModule;
+import com.vestrel00.business.search.presentation.java.model.PresentationJavaModelModule;
+
+import dagger.Module;
 
 /**
- * Created by estrellv on 4/6/17.
+ * Provides presentation java dependencies.
  */
-public class TemporaryStub {
-
-    public int stub() {
-        return 1;
-    }
+@Module(includes = {
+        PresentationJavaConfigModule.class,
+        PresentationJavaModelModule.class
+})
+public abstract class PresentationJavaModule {
 }

@@ -25,7 +25,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides presentation executor dependencies.
+ * Provides presentation Java no gui executor dependencies.
  */
 @Module
 public abstract class PresentationJavaNoGuiExecutorModule {

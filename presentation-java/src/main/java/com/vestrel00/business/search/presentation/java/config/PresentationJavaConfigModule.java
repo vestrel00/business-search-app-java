@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp;
+package com.vestrel00.business.search.presentation.java.config;
 
-import com.vestrel00.business.search.presentation.java.PresentationJavaModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.display.PresentationJavaNoGuiDisplayModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.PresentationJavaNoGuiExecutorModule;
+import com.vestrel00.business.search.data.config.DataConfig;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
+import dagger.Provides;
 
 /**
- * Provides presentation java no gui dependencies.
+ * Provides presentation Java config dependencies.
  */
-@Module(includes = {
-        PresentationJavaModule.class,
-        PresentationJavaNoGuiDisplayModule.class,
-        PresentationJavaNoGuiExecutorModule.class
-})
-abstract class PresentationJavaNoGuiModule {
+@Module
+public abstract class PresentationJavaConfigModule {
+
+    @Provides
+    @Singleton
+    static DataConfig dataConfig() {
+        return DataConfigFactory.create();
+    }
 }

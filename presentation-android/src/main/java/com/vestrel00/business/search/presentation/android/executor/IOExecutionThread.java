@@ -14,26 +14,23 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android;
+package com.vestrel00.business.search.presentation.android.executor;
 
-import com.vestrel00.business.search.java.AbstractJavaTestCase;
+import com.vestrel00.business.search.domain.executor.ExecutionThread;
 
-import org.junit.Test;
-import org.mockito.InjectMocks;
+import javax.inject.Singleton;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.Schedulers;
 
-public final class TemporaryStubTest extends AbstractJavaTestCase {
+/**
+ * An {@link ExecutionThread} that provides the {@link Schedulers#io()} scheduler.
+ */
+@Singleton
+final class IOExecutionThread implements ExecutionThread {
 
-    @InjectMocks
-    private TemporaryStub testSubject;
-
-    @Test
-    public void stub_returns1() throws Exception {
-        // WHEN
-        int actual = testSubject.stub();
-
-        // THEN
-        assertThat(actual).isEqualTo(1);
+    @Override
+    public Scheduler scheduler() {
+        return Schedulers.io();
     }
 }

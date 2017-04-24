@@ -14,15 +14,23 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.model;
+package com.vestrel00.business.search.presentation.android.executor;
 
-import com.vestrel00.business.search.presentation.java.model.mapper.PresentationJavaMapperModule;
+import com.vestrel00.business.search.domain.executor.PostExecutionThread;
 
-import dagger.Module;
+import javax.inject.Singleton;
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
- * Provides presentation java dependencies.
+ * A {@link PostExecutionThread} that provides the {@link AndroidSchedulers#mainThread()} scheduler.
  */
-@Module(includes = PresentationJavaMapperModule.class)
-public abstract class PresentationJavaModule {
+@Singleton
+final class MainPostExecutionThread implements PostExecutionThread {
+
+    @Override
+    public Scheduler scheduler() {
+        return AndroidSchedulers.mainThread();
+    }
 }

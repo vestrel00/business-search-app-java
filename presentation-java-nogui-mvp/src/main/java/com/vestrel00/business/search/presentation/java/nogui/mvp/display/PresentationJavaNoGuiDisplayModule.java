@@ -22,7 +22,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides presentation display dependencies.
+ * Provides presentation Java no gui display dependencies.
  */
 @Module
 public abstract class PresentationJavaNoGuiDisplayModule {
