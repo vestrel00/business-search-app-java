@@ -29,7 +29,7 @@ ext {
     // Java
     rxJavaVersion = '2.0.8'
     javaxAnnotationVersion = '1.0'
-    daggerVersion = '2.10-rc4'
+    daggerVersion = '2.11-rc1'
     autoValueVersion = '1.4.1'
     retrofitVersion = '2.2.0'
     jacksonVersion = '2.8.8'
@@ -73,6 +73,8 @@ ext {
     ]
 
     androidDependencies = javaDependencies + [
+            daggerAndroid                 : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerAndroidProcessor        : "com.google.dagger:dagger-android-processor:${daggerVersion}",
             rxAndroid                     : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             appCompat                     : "com.android.support:appcompat-v7:$androidSupportVersion",
             recyclerView                  : "com.android.support:recyclerview-v7:${androidSupportVersion}",
