@@ -16,11 +16,37 @@
 
 package com.vestrel00.business.search.presentation.android.mvp;
 
+import android.app.Activity;
 import android.app.Application;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 
 /**
  * The Android {@link Application}.
+ * <p>
+ * <b>DEPENDENCY INJECTION</b>
+ * We could extend {@link dagger.android.DaggerApplication} so we can get the boilerplate
+ * dagger code for free. However, we want to avoid inheritance (if possible and it is in this case)
+ * so that we have to option to inherit from something else later on if needed. For example, if
+ * we need to extend the MultidexApplication we can.
  */
-public class AndroidApplication extends Application {
+public class AndroidApplication extends Application implements HasActivityInjector {
 
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // TODO (INJECT) - DaggerAndroidApplicationComponent.create().inject(this);
+    }
+
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
+    }
 }
