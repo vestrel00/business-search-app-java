@@ -16,13 +16,17 @@
 
 package com.vestrel00.business.search.presentation.android;
 
-import com.vestrel00.business.search.presentation.android.executor.PresentationAndroidExecutorModule;
+import com.vestrel00.business.search.presentation.android.executor.ExecutorModule;
+import com.vestrel00.business.search.presentation.java.PresentationJavaModule;
 
 import dagger.Module;
 
 /**
  * Provides presentation Android dependencies.
  */
-@Module(includes = PresentationAndroidExecutorModule.class)
+@Module(includes = {
+        PresentationJavaModule.class,
+        ExecutorModule.class
+})
 public abstract class PresentationAndroidModule {
 }

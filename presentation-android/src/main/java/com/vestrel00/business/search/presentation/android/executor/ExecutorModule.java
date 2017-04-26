@@ -28,7 +28,7 @@ import dagger.Module;
  * Provides presentation Android executor dependencies.
  */
 @Module
-public abstract class PresentationAndroidExecutorModule {
+public abstract class ExecutorModule {
 
     @Binds
     @Singleton
