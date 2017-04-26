@@ -16,8 +16,23 @@
 
 package com.vestrel00.business.search.presentation.java.model;
 
+import java.io.Serializable;
+
 /**
  * Type of all models.
+ * <p>
+ * <b>SERIALIZATION</b>
+ * All model classes are {@link Serializable} so that presentation applications are able
+ * to save/restore these models to retain application/view state during a usage session. These are
+ * not meant to be saved to disk for a prolonged period of time outside of a usage session. Such is
+ * the case for Android applications. Instead of using Android's Parcelable interface, the
+ * Serializable interface is used instead in order for these models to also be used by other
+ * frameworks like Swing (or just plain Java).
+ * <p>
+ * Any additions, removals, or changes to any attributes defined by these models may come at any
+ * time. Therefore, as suggested, do not save these models outside of an app session. If it is saved
+ * to disk outside of an app session, then changes to these models due to an update may result in
+ * null attributes in the new versions.
  */
-public interface Model {
+public interface Model extends Serializable {
 }
