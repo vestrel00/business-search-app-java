@@ -32,7 +32,7 @@ import dagger.Module;
  * Provides data entity mapper dependencies.
  */
 @Module
-public abstract class DataEntityMapperModule {
+public abstract class EntityMapperModule {
 
     @Binds
     @Singleton

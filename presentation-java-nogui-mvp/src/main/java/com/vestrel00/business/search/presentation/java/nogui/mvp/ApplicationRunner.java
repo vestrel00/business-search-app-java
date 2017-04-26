@@ -25,7 +25,7 @@ public final class ApplicationRunner {
     }
 
     public static void main(String[] args) {
-        Application app = DaggerPresentationJavaNoGuiComponent.create().application();
+        Application app = DaggerApplicationComponent.create().application();
         app.run();
     }
 }

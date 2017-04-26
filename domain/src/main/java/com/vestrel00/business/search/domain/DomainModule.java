@@ -16,13 +16,13 @@
 
 package com.vestrel00.business.search.domain;
 
-import com.vestrel00.business.search.domain.executor.DomainExecutorModule;
+import com.vestrel00.business.search.domain.executor.ExecutorModule;
 
 import dagger.Module;
 
 /**
  * Provides domain dependencies.
  */
-@Module(includes = DomainExecutorModule.class)
+@Module(includes = ExecutorModule.class)
 public abstract class DomainModule {
 }

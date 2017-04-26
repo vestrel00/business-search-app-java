@@ -32,7 +32,7 @@ import dagger.Module;
  * Provides presentation java model mapper dependencies.
  */
 @Module
-public abstract class PresentationJavaModelMapperModule {
+public abstract class ModelMapperModule {
 
     @Binds
     @Singleton

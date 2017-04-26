@@ -14,30 +14,28 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net;
+package com.vestrel00.business.search.data.net.cache;
 
-import com.vestrel00.business.search.data.net.auth.AuthRequestInterceptor;
-import com.vestrel00.business.search.data.net.auth.DataNetAuthModule;
-import com.vestrel00.business.search.data.net.cache.DataNetCacheModule;
+import com.vestrel00.business.search.data.config.DataConfig;
+
+import java.io.File;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Cache;
 
 /**
- * Provides data network dependencies.
+ * Provides data network cache dependencies.
  */
-@Module(includes = {
-        DataNetAuthModule.class,
-        DataNetCacheModule.class
-})
-public abstract class DataNetModule {
+@Module
+public abstract class NetCacheModule {
 
     @Provides
     @Singleton
-    static BusinessDataService businessDataService(DataServiceFactory dataServiceFactory,
-                                                   AuthRequestInterceptor authRequestInterceptor) {
-        return dataServiceFactory.createWithAuth(BusinessDataService.class, authRequestInterceptor);
+    static Cache networkCache(DataConfig dataConfig) {
+        return new Cache(new File(dataConfig.cacheDir()),
+                dataConfig.cacheMaxSizeMb() * 1024 * 1024);
     }
 }

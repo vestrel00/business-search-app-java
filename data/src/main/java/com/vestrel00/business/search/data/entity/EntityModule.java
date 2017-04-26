@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp;
+package com.vestrel00.business.search.data.entity;
 
-import com.vestrel00.business.search.presentation.java.PresentationJavaModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.display.PresentationJavaNoGuiDisplayModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.PresentationJavaNoGuiExecutorModule;
+import com.vestrel00.business.search.data.entity.mapper.EntityMapperModule;
+import com.vestrel00.business.search.data.entity.validator.EntityValidatorModule;
 
 import dagger.Module;
 
 /**
- * Provides presentation java no gui dependencies.
+ * Provides data entity dependencies.
  */
 @Module(includes = {
-        PresentationJavaModule.class,
-        PresentationJavaNoGuiDisplayModule.class,
-        PresentationJavaNoGuiExecutorModule.class
+        EntityMapperModule.class,
+        EntityValidatorModule.class
 })
-abstract class PresentationJavaNoGuiModule {
+public abstract class EntityModule {
 }

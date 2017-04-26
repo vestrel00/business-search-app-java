@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.config;
+package com.vestrel00.business.search.data.repository;
 
-import com.vestrel00.business.search.data.config.DataConfig;
+import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
- * Provides presentation Java config dependencies.
+ * Provides data repository dependencies.
  */
 @Module
-public abstract class PresentationJavaConfigModule {
+public abstract class RepositoryModule {
 
-    @Provides
+    @Binds
     @Singleton
-    static DataConfig dataConfig() {
-        return DataConfigFactory.create();
-    }
+    abstract BusinessRepository businessRepository(BusinessDataRepository businessDataRepository);
 }

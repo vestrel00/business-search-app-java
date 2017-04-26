@@ -14,24 +14,20 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp;
-
-import com.vestrel00.business.search.data.DataModule;
-import com.vestrel00.business.search.domain.DomainModule;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.display;
 
 import javax.inject.Singleton;
 
-import dagger.Component;
+import dagger.Binds;
+import dagger.Module;
 
 /**
- * Injects java no gui presentation dependencies.
+ * Provides presentation Java no gui display dependencies.
  */
-@Singleton
-@Component(modules = {
-        DataModule.class,
-        DomainModule.class,
-        PresentationJavaNoGuiModule.class
-})
-interface PresentationJavaNoGuiComponent {
-    Application application();
+@Module
+public abstract class DisplayModule {
+
+    @Binds
+    @Singleton
+    abstract Display display(DisplayIO displayIO);
 }

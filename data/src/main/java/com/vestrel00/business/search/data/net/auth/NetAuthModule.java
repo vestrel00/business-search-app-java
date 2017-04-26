@@ -14,22 +14,24 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.repository;
+package com.vestrel00.business.search.data.net.auth;
 
-import com.vestrel00.business.search.domain.repository.BusinessRepository;
+import com.vestrel00.business.search.data.net.DataServiceFactory;
 
 import javax.inject.Singleton;
 
-import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
 
 /**
- * Provides data repository dependencies.
+ * Provides data network authentication dependencies.
  */
 @Module
-public abstract class DataRepositoryModule {
+public abstract class NetAuthModule {
 
-    @Binds
+    @Provides
     @Singleton
-    abstract BusinessRepository businessRepository(BusinessDataRepository businessDataRepository);
+    static AuthTokenService authTokenService(DataServiceFactory dataServiceFactory) {
+        return dataServiceFactory.create(AuthTokenService.class);
+    }
 }

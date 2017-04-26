@@ -16,9 +16,9 @@
 
 package com.vestrel00.business.search.data;
 
-import com.vestrel00.business.search.data.entity.DataEntityModule;
-import com.vestrel00.business.search.data.net.DataNetModule;
-import com.vestrel00.business.search.data.repository.DataRepositoryModule;
+import com.vestrel00.business.search.data.entity.EntityModule;
+import com.vestrel00.business.search.data.net.NetModule;
+import com.vestrel00.business.search.data.repository.RepositoryModule;
 
 import dagger.Module;
 
@@ -26,9 +26,9 @@ import dagger.Module;
  * Provides data dependencies.
  */
 @Module(includes = {
-        DataEntityModule.class,
-        DataNetModule.class,
-        DataRepositoryModule.class
+        EntityModule.class,
+        NetModule.class,
+        RepositoryModule.class
 })
 public abstract class DataModule {
 }

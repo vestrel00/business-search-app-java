@@ -16,8 +16,8 @@
 
 package com.vestrel00.business.search.presentation.java;
 
-import com.vestrel00.business.search.presentation.java.config.PresentationJavaConfigModule;
-import com.vestrel00.business.search.presentation.java.model.PresentationJavaModelModule;
+import com.vestrel00.business.search.presentation.java.config.ConfigModule;
+import com.vestrel00.business.search.presentation.java.model.ModelModule;
 
 import dagger.Module;
 
@@ -25,8 +25,8 @@ import dagger.Module;
  * Provides presentation java dependencies.
  */
 @Module(includes = {
-        PresentationJavaConfigModule.class,
-        PresentationJavaModelModule.class
+        ConfigModule.class,
+        ModelModule.class
 })
 public abstract class PresentationJavaModule {
 }

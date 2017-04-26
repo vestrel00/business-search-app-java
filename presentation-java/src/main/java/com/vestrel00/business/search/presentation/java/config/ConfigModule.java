@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.auth;
+package com.vestrel00.business.search.presentation.java.config;
 
-import com.vestrel00.business.search.data.net.DataServiceFactory;
+import com.vestrel00.business.search.data.config.DataConfig;
 
 import javax.inject.Singleton;
 
@@ -24,14 +24,14 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Provides data network authentication dependencies.
+ * Provides presentation Java config dependencies.
  */
 @Module
-public abstract class DataNetAuthModule {
+public abstract class ConfigModule {
 
     @Provides
     @Singleton
-    static AuthTokenService authTokenService(DataServiceFactory dataServiceFactory) {
-        return dataServiceFactory.create(AuthTokenService.class);
+    static DataConfig dataConfig() {
+        return DataConfigFactory.create();
     }
 }

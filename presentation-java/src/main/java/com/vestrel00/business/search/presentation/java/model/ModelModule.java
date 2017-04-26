@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.entity;
+package com.vestrel00.business.search.presentation.java.model;
 
-import com.vestrel00.business.search.data.entity.mapper.DataEntityMapperModule;
-import com.vestrel00.business.search.data.entity.validator.DataEntityValidatorModule;
+import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperModule;
 
 import dagger.Module;
 
 /**
- * Provides data entity dependencies.
+ * Provides presentation java model dependencies.
  */
-@Module(includes = {
-        DataEntityMapperModule.class,
-        DataEntityValidatorModule.class
-})
-public abstract class DataEntityModule {
+@Module(includes = ModelMapperModule.class)
+public abstract class ModelModule {
 }

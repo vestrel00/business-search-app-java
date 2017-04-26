@@ -30,7 +30,7 @@ import dagger.Module;
  * Provides data entity validator dependencies.
  */
 @Module
-public abstract class DataEntityValidatorModule {
+public abstract class EntityValidatorModule {
 
     @Binds
     @Singleton

@@ -14,28 +14,20 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.cache;
-
-import com.vestrel00.business.search.data.config.DataConfig;
-
-import java.io.File;
-
-import javax.inject.Singleton;
+package com.vestrel00.business.search.domain.executor;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Cache;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * Provides data network cache dependencies.
+ * Provides domain executor dependencies.
  */
 @Module
-public abstract class DataNetCacheModule {
+public final class ExecutorModule {
 
     @Provides
-    @Singleton
-    static Cache networkCache(DataConfig dataConfig) {
-        return new Cache(new File(dataConfig.cacheDir()),
-                dataConfig.cacheMaxSizeMb() * 1024 * 1024);
+    CompositeDisposable compositeDisposable() {
+        return new CompositeDisposable();
     }
 }

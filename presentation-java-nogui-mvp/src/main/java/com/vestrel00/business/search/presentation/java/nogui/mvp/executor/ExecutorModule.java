@@ -28,8 +28,8 @@ import dagger.Module;
  * Provides presentation Java no gui executor dependencies.
  */
 @Module
-public abstract class PresentationJavaNoGuiExecutorModule {
-    
+public abstract class ExecutorModule {
+
     @Binds
     @Singleton
     abstract ExecutionThread executionThread(BlockingExecutionThread blockingExecutionThread);
