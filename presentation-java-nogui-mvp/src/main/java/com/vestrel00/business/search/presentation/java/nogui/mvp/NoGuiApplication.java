@@ -16,8 +16,8 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businessdetails.view.BusinessDetailsView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businesslist.view.BusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view.BusinessDetailsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.Option;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.OptionsView;
 

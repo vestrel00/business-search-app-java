@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businessdetails.view;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view;
 
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businessdetails.presenter.BusinessDetailsPresenter;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.presenter.BusinessDetailsPresenter;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

@@ -14,28 +14,19 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businesslist.presenter;
-
-import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.businesslist.view.BusinessListView;
+package com.vestrel00.business.search.presentation.android.mvp.navigation;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Creates instances of {@link BusinessListObserver}.
+ * Provides methods to navigate to the different Activities in the application.
  */
 @Singleton
-final class BusinessListObserverFactory {
-
-    private final ModelMapperFactory modelMapperFactory;
+public final class Navigator {
 
     @Inject
-    BusinessListObserverFactory(ModelMapperFactory modelMapperFactory) {
-        this.modelMapperFactory = modelMapperFactory;
+    Navigator() {
     }
 
-    BusinessListObserver create(BusinessListView view) {
-        return new BusinessListObserver(view, modelMapperFactory);
-    }
 }
