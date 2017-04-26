@@ -14,10 +14,18 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
 /**
- * Created by estrellv on 4/6/17.
+ * Runs the application.
  */
-public class TemporaryStub {
+public final class NoGuiApplicationRunner {
+
+    private NoGuiApplicationRunner() {
+    }
+
+    public static void main(String[] args) {
+        NoGuiApplication app = DaggerNoGuiApplicationComponent.create().application();
+        app.run();
+    }
 }

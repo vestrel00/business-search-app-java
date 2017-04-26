@@ -28,15 +28,15 @@ import javax.inject.Singleton;
  * An application with no GUI. Communications are done through the command line (the UI).
  */
 @Singleton
-final class Application implements Runnable {
+final class NoGuiApplication implements Runnable {
 
     private final OptionsView optionsView;
     private final BusinessListView businessListView;
     private final BusinessDetailsView businessDetailsView;
 
     @Inject
-    Application(OptionsView optionsView, BusinessListView businessListView,
-                BusinessDetailsView businessDetailsView) {
+    NoGuiApplication(OptionsView optionsView, BusinessListView businessListView,
+                     BusinessDetailsView businessDetailsView) {
         this.optionsView = optionsView;
         this.businessListView = businessListView;
         this.businessDetailsView = businessDetailsView;

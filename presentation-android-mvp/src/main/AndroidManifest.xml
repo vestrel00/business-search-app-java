@@ -15,4 +15,12 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.vestrel00.business.search.presentation.android.mvp"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vestrel00.business.search.presentation.android.mvp">
+
+    <application
+        android:name=".AndroidApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" />
+</manifest>

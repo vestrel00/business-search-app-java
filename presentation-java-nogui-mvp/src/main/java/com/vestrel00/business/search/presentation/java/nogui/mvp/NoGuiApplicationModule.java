@@ -30,5 +30,5 @@ import dagger.Module;
         DisplayModule.class,
         ExecutorModule.class
 })
-abstract class ApplicationModule {
+abstract class NoGuiApplicationModule {
 }

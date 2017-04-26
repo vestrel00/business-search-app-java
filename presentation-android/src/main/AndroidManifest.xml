@@ -15,4 +15,9 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.vestrel00.business.search.presentation.android"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.vestrel00.business.search.presentation.android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>

@@ -14,18 +14,13 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp;
+package com.vestrel00.business.search.presentation.android.mvp;
+
+import android.app.Application;
 
 /**
- * Runs the application.
+ * The Android {@link Application}.
  */
-public final class ApplicationRunner {
-
-    private ApplicationRunner() {
-    }
-
-    public static void main(String[] args) {
-        Application app = DaggerApplicationComponent.create().application();
-        app.run();
-    }
+public class AndroidApplication extends Application {
+    
 }

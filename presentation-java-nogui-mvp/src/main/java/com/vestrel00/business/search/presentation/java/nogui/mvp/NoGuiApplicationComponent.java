@@ -30,8 +30,8 @@ import dagger.Component;
 @Component(modules = {
         DataModule.class,
         DomainModule.class,
-        ApplicationModule.class
+        NoGuiApplicationModule.class
 })
-interface ApplicationComponent {
-    Application application();
+interface NoGuiApplicationComponent {
+    NoGuiApplication application();
 }
