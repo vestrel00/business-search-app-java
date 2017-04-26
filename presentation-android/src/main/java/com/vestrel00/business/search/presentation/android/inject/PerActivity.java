@@ -14,13 +14,19 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.presentation.android.inject;
 
-import android.app.Application;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+import javax.inject.Scope;
 
 /**
- * The Android {@link Application}.
+ * A custom scoping annotation that specifies that the lifespan of a dependency be the same as that
+ * of an Activity. This is used to annotate dependencies that behave like a singleton within
+ * the lifespan of an Activity instead of the entire Application.
  */
-public class AndroidApplication extends Application {
-
+@Scope
+@Retention(RetentionPolicy.RUNTIME)
+public @interface PerActivity {
 }
