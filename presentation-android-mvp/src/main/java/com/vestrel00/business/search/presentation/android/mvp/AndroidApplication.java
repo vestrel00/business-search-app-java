@@ -37,7 +37,7 @@ import dagger.android.HasActivityInjector;
 public class AndroidApplication extends Application implements HasActivityInjector {
 
     @Inject
-    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+    DispatchingAndroidInjector<Activity> activityInjector;
 
     @Override
     public void onCreate() {
@@ -47,6 +47,6 @@ public class AndroidApplication extends Application implements HasActivityInject
 
     @Override
     public AndroidInjector<Activity> activityInjector() {
-        return dispatchingAndroidInjector;
+        return activityInjector;
     }
 }
