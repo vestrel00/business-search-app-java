@@ -18,11 +18,20 @@ package com.vestrel00.business.search.presentation.android.mvp;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
+
 /**
- * The Android {@link Application}.
+ * The debug Android {@link Application}, which uses {@link LeakCanary} for leak detection.
  */
-public class AndroidApplication extends Application {
+public class DebugAndroidApplication extends AndroidApplication {
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        initializeLeakDetection();
+    }
 
-
+    private void initializeLeakDetection() {
+        LeakCanary.install(this);
+    }
 }
