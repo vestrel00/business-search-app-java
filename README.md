@@ -27,7 +27,8 @@ The goal is to showcase Java object oriented programming in Java and Android, in
 - View binding with [Butterknife](https://github.com/JakeWharton/butterknife/tree/butterknife-parent-7.0.1)
 - Networking with [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
 - De/serialization with [Jackson Databind 2](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.8.8)
-- Mapping with [Google Maps APIs](https://developers.google.com/maps/documentation/android-api/)
+- Automatic code generation with [AutoValue](https://github.com/google/auto/tree/auto-value-1.4.1/value)
+- Maps with [Google Maps APIs](https://developers.google.com/maps/documentation/android-api/)
 - Testing with [JUnit 4](https://github.com/junit-team/junit4/blob/master/doc/ReleaseNotes4.12.md), 
   [AssertJ](http://joel-costigliola.github.io/assertj/),
   [Mockito 2](https://github.com/mockito/mockito/tree/release/2.x), 
