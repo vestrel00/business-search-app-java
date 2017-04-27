@@ -48,7 +48,7 @@ import dagger.android.HasFragmentInjector;
  * @param <T> the type of the {@link Presenter}.
  */
 public abstract class BaseFragment<T extends Presenter> extends Fragment
-        implements MVPView<T>, HasFragmentInjector {
+        implements MVPView, HasFragmentInjector {
 
     @Inject
     protected T presenter;
@@ -68,25 +68,25 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewUnbinder = ButterKnife.bind(this, view);
-        presenter.start();
+        presenter.onStart();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        presenter.resume();
+        presenter.onResume();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        presenter.pause();
+        presenter.onPause();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        presenter.end();
+        presenter.onEnd();
         viewUnbinder.unbind();
     }
 

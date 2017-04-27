@@ -16,36 +16,32 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.MVPView;
-
 /**
  * A presenter that defines its own lifecycle methods.
- *
- * @param <T> the type of the {@link MVPView}.
  */
-public interface Presenter<T extends MVPView> {
+public interface Presenter {
 
     /**
      * Starts the presentation. This should be called in the view's (Activity or Fragment)
      * onCreate() or onViewCreated() method respectively.
      */
-    void start();
+    void onStart();
 
     /**
      * Resumes the presentation. This should be called in the view's (Activity or Fragment)
      * onResume() method.
      */
-    void resume();
+    void onResume();
 
     /**
      * Pauses the presentation. This should be called in the view's Activity or Fragment)
      * onPause() method.
      */
-    void pause();
+    void onPause();
 
     /**
      * Ends the presentation. This should be called in the view's (Activity or Fragment)
      * onDestroy() or onDestroyView() method respectively.
      */
-    void end();
+    void onEnd();
 }

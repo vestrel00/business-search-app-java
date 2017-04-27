@@ -16,14 +16,10 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
-
 /**
  * The type of all views.
  * <p>
  * Note that this is not named "View" because it collides with Android's {@link android.view.View}.
- *
- * @param <T> the type of the {@link Presenter}.
  */
-public interface MVPView<T extends Presenter> {
+public interface MVPView {
 }

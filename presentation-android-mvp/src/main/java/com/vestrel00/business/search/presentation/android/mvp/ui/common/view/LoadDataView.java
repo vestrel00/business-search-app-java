@@ -16,14 +16,10 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
-
 /**
  * A {@link MVPView} that loads data.
- *
- * @param <T> the type of the {@link Presenter}.
  */
-public interface LoadDataView<T extends Presenter> extends MVPView<T> {
+public interface LoadDataView extends MVPView {
 
     void showLoading();
 

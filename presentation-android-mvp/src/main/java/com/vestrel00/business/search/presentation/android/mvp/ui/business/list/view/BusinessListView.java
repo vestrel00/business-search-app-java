@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter.BusinessListPresenter;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.LoadDataView;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
@@ -25,7 +24,7 @@ import java.util.Collection;
 /**
  * The view that displays a list of businesses.
  */
-public interface BusinessListView extends LoadDataView<BusinessListPresenter> {
+public interface BusinessListView extends LoadDataView {
 
     /**
      * Renders a list of businesses in the UI.

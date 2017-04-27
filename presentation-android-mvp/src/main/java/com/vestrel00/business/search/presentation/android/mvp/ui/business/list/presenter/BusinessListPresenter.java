@@ -16,11 +16,10 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListView;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
 
 /**
  * A {@link Presenter} that retrieves and displays a list of businesses.
  */
-public interface BusinessListPresenter extends Presenter<BusinessListView> {
+public interface BusinessListPresenter extends Presenter {
 }

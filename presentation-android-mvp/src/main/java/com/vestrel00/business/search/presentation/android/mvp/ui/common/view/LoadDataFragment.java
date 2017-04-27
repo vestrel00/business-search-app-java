@@ -44,7 +44,7 @@ import butterknife.BindView;
  * @param <T> the type of the {@link Presenter}.
  */
 public abstract class LoadDataFragment<T extends Presenter> extends BaseFragment<T>
-        implements LoadDataView<T> {
+        implements LoadDataView {
 
     @Inject
     protected Context context;

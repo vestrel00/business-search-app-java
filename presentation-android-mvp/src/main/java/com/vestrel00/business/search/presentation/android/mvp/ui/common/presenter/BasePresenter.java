@@ -23,7 +23,7 @@ import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.MVP
  *
  * @param <T> the type of the {@link MVPView}.
  */
-public abstract class BasePresenter<T extends MVPView> implements Presenter<T> {
+public abstract class BasePresenter<T extends MVPView> implements Presenter {
 
     protected final T view;
 
@@ -32,18 +32,18 @@ public abstract class BasePresenter<T extends MVPView> implements Presenter<T> {
     }
 
     @Override
-    public void start() {
+    public void onStart() {
     }
 
     @Override
-    public void resume() {
+    public void onResume() {
     }
 
     @Override
-    public void pause() {
+    public void onPause() {
     }
 
     @Override
-    public void end() {
+    public void onEnd() {
     }
 }
