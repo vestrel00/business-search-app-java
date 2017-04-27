@@ -22,4 +22,8 @@ import com.vestrel00.business.search.presentation.android.mvp.ui.common.presente
  * A {@link Presenter} that retrieves and displays a list of businesses.
  */
 public interface BusinessListPresenter extends Presenter {
+
+    void onListBusinessesAroundLocation(String location);
+
+    void onListBusinessesAroundCurrentCoordinates();
 }
