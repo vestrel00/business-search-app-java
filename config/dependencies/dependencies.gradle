@@ -55,7 +55,7 @@ ext {
     espressoCoreVersion = '2.2.2'
     espressoRunnerVersion = '0.5'
 
-    // Android Development
+    // Android Development (Debug Only)
     leakCanaryVersion = '1.5'
 
     javaDependencies = [
@@ -79,8 +79,7 @@ ext {
             appCompat                     : "com.android.support:appcompat-v7:$androidSupportVersion",
             recyclerView                  : "com.android.support:recyclerview-v7:${androidSupportVersion}",
             butterKnife                   : "com.jakewharton:butterknife:${butterKnifeVersion}",
-            butterKnifeAnnotationProcessor: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
-            leakCanary                    : "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+            butterKnifeAnnotationProcessor: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
     ]
 
     androidTestDependencies = javaTestDependencies + [
@@ -109,6 +108,10 @@ ext {
     presentationJavaTestDependencies = javaTestDependencies
 
     presentationAndroidDependencies = androidDependencies
+
+    presentationAndroidDebugDependencies = [
+            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+    ]
 
     presentationAndroidTestDependencies = androidTestDependencies
 }

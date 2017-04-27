@@ -105,11 +105,13 @@ that all modules are built properly is to
 
 **Running the applications**
 
+After building/making the project, the applications may then be run.
+
 - For plain Java applications, navigate to the *ApplicationRunner.java* file, right click, and
   select Run 'ApplicationRunner.main()'.
 - For Android applications, select the desired run configuration and 
   select Run -> Run '<presentation-module>'
-
+  
 #### Using Gradle
 
 To build all applications,

@@ -22,6 +22,10 @@ apply from: "$projectDir/config/coverage/jacoco.gradle"
 apply from: "$rootDir/config/quality/quality_android_library.gradle"
 
 android {
+    // FIXME (GRADLE) - Enable when publishing all library variants (not just release) is finally supported
+    // See http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Referencing-a-Library
+    // publishNonDefault true
+
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
     buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
