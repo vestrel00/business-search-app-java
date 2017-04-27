@@ -34,6 +34,8 @@ public abstract class ConfigModule {
      * <p>
      * Note that we could retrieve the config values here from a resource/config file or from a
      * remote config endpoint. The values are statically defined here for simplicity and brevity.
+     *
+     * @return a new {@link DataConfig}
      */
     @Provides
     @Singleton
