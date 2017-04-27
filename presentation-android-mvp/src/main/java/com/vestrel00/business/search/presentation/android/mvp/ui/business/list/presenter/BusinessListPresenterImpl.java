@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter;
 
-import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
 import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundCoordinates;
 import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocationString;
@@ -24,12 +23,7 @@ import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListView;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.BasePresenter;
 
-import java.util.List;
-
 import javax.inject.Inject;
-
-import io.reactivex.annotations.NonNull;
-import io.reactivex.observers.DisposableSingleObserver;
 
 /**
  * An implementation of {@link BusinessListPresenter}.
@@ -40,38 +34,34 @@ final class BusinessListPresenterImpl extends BasePresenter<BusinessListView>
 
     private final GetBusinessesAroundLocationString getBusinessesAroundLocation;
     private final GetBusinessesAroundCoordinates getBusinessesAroundCoordinates;
+    private final BusinessListObserverFactory businessListObserverFactory;
     private final UseCaseHandler useCaseHandler;
 
     @Inject
     BusinessListPresenterImpl(BusinessListView view,
-                                     GetBusinessesAroundLocationString getBusinessesAroundLocation,
-                                     GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
-                                     UseCaseHandler useCaseHandler) {
+                              GetBusinessesAroundLocationString getBusinessesAroundLocation,
+                              GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
+                              BusinessListObserverFactory businessListObserverFactory,
+                              UseCaseHandler useCaseHandler) {
         super(view);
         this.getBusinessesAroundLocation = getBusinessesAroundLocation;
         this.getBusinessesAroundCoordinates = getBusinessesAroundCoordinates;
+        this.businessListObserverFactory = businessListObserverFactory;
         this.useCaseHandler = useCaseHandler;
     }
 
     @Override
     public void onListBusinessesAroundLocation(String location) {
         clearUseCases();
-        useCaseHandler.execute(getBusinessesAroundLocation, location, new DisposableSingleObserver<List<Business>>() {
-            @Override
-            public void onSuccess(@NonNull List<Business> businessList) {
-
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-
-            }
-        });
+        useCaseHandler.execute(getBusinessesAroundLocation, location,
+                businessListObserverFactory.create());
     }
 
     @Override
     public void onListBusinessesAroundCurrentCoordinates() {
         clearUseCases();
+        // TODO (IMPLEMENTATION) - onListBusinessesAroundCurrentCoordinates
+        // https://developer.android.com/training/location/retrieve-current.html
     }
 
     private void clearUseCases() {
