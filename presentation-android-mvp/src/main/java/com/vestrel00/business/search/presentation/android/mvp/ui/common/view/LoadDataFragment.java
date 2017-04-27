@@ -16,14 +16,11 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import android.content.Context;
 import android.view.View;
 import android.widget.Toast;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -42,9 +39,6 @@ import butterknife.BindView;
  */
 public abstract class LoadDataFragment<T extends Presenter> extends BaseFragment<T>
         implements LoadDataView {
-
-    @Inject
-    protected Context context;
 
     @BindView(R.id.loading_indicator)
     protected View loadingIndicator;
@@ -74,6 +68,6 @@ public abstract class LoadDataFragment<T extends Presenter> extends BaseFragment
 
     @Override
     public void showError(String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 }
