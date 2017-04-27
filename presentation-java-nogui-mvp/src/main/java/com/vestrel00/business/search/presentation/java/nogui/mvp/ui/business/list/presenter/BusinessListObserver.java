@@ -43,12 +43,11 @@ final class BusinessListObserver extends DisposableSingleObserver<List<Business>
     public void onSuccess(@NonNull List<Business> businesses) {
         Observable.fromIterable(businesses)
                 .map(modelMapperFactory.businessModelMapper()::map)
-                .doOnNext(view::showBusiness)
-                .subscribe();
+                .subscribe(view::showBusiness);
     }
 
     @Override
     public void onError(@NonNull Throwable e) {
-        view.showError(e);
+        view.showError(e.getMessage());
     }
 }

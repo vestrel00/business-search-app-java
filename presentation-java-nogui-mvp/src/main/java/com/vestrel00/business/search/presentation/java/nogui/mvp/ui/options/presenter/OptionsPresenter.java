@@ -44,7 +44,7 @@ public final class OptionsPresenter {
 
     public Option handleOption(Option option) {
         if (option == Option.UNKNOWN) {
-            view.showError(new IllegalArgumentException("You must choose a valid option."));
+            view.showError("You must choose a valid option.");
         }
         return option;
     }

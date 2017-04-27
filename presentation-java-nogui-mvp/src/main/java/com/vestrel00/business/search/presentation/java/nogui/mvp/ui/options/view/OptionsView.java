@@ -57,7 +57,7 @@ public final class OptionsView {
                 .blockingSingle();
     }
 
-    public void showError(Throwable error) {
+    public void showError(String error) {
         display.showError(error);
     }
 

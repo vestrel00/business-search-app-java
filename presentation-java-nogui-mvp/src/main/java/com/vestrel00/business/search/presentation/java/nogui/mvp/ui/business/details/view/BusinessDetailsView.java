@@ -50,7 +50,7 @@ public final class BusinessDetailsView {
         display.showMessage(business.toString().replace(",", "\n"));
     }
 
-    public void showError(Throwable error) {
+    public void showError(String error) {
         display.showError(error);
     }
 

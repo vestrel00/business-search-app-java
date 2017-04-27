@@ -58,7 +58,7 @@ public final class BusinessListView {
         display.showMessage(business.name() + ", id: " + business.id());
     }
 
-    public void showError(Throwable error) {
+    public void showError(String error) {
         display.showError(error);
     }
 
@@ -93,7 +93,7 @@ public final class BusinessListView {
                         Double.valueOf(display.promptInput("Enter longitude:")))
                 )
                 .map(CoordinatesModel.Builder::build)
-                .doOnError(this::showError)
+                .doOnError(throwable -> showError(throwable.getMessage()))
                 .retry()
                 .blockingSingle();
     }

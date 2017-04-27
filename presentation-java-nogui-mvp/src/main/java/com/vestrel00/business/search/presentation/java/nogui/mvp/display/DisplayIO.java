@@ -41,8 +41,8 @@ final class DisplayIO implements Display {
     }
 
     @Override
-    public void showError(Throwable error) {
-        showMessage(error.getMessage());
+    public void showError(String error) {
+        showMessage(error);
     }
 
     @Override

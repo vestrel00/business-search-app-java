@@ -23,7 +23,7 @@ public interface Display {
 
     void showMessage(String message);
 
-    void showError(Throwable error);
+    void showError(String error);
 
     String promptInput();
 
