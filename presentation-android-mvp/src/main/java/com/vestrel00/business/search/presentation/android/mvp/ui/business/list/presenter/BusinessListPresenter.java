@@ -14,20 +14,13 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.common;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter;
+
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListView;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
 
 /**
- * A view that loads data.
+ * A {@link Presenter} that retrieves and displays a list of businesses.
  */
-public interface LoadDataView {
-    
-    void showLoading();
-
-    void hideLoading();
-
-    void showRetry();
-
-    void hideRetry();
-
-    void showError(String message);
+public interface BusinessListPresenter extends Presenter<BusinessListView> {
 }

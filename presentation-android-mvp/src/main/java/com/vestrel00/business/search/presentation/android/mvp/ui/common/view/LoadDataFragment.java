@@ -14,35 +14,37 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.common;
+package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * An abstract {@link BaseFragment} that implements {@link LoadDataView}.
  * <p>
- * This fragment assumes that the following views with the given ids exist in the view returned in
- * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}:
+ * This fragment assumes that the following Android views with the given ids exist in the view
+ * returned in {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}:
  * <ul>
  * <li>R.id.loading_indicator : the loading indicator view</li>
  * <li>R.id.retry_button : the retry button view</li>
  * </ul>
  * This uses a {@link Toast} for showing errors via {@link #showError(String)}.
+ *
+ * @param <T> the type of the {@link Presenter}.
  */
-public abstract class BaseLoadDataFragment extends BaseFragment implements LoadDataView {
+public abstract class LoadDataFragment<T extends Presenter> extends BaseFragment<T>
+        implements LoadDataView<T> {
 
     @Inject
     protected Context context;
@@ -52,12 +54,6 @@ public abstract class BaseLoadDataFragment extends BaseFragment implements LoadD
 
     @BindView(R.id.retry_button)
     protected View retryButton;
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
-    }
 
     @Override
     public void showLoading() {
