@@ -30,16 +30,16 @@ import javax.inject.Singleton;
  * Provides instances of {@link ModelMapper}s.
  */
 @Singleton
-public final class ModelMapperFactory {
+public final class ModelMapperProvider {
 
     private final ModelMapper<BusinessModel, Business> businessModelMapper;
     private final ModelMapper<LocationModel, Location> locationModelMapper;
     private final ModelMapper<CoordinatesModel, Coordinates> coordinatesEntityMapper;
 
     @Inject
-    ModelMapperFactory(ModelMapper<BusinessModel, Business> businessModelMapper,
-                       ModelMapper<LocationModel, Location> locationModelMapper,
-                       ModelMapper<CoordinatesModel, Coordinates> coordinatesEntityMapper) {
+    ModelMapperProvider(ModelMapper<BusinessModel, Business> businessModelMapper,
+                        ModelMapper<LocationModel, Location> locationModelMapper,
+                        ModelMapper<CoordinatesModel, Coordinates> coordinatesEntityMapper) {
         this.businessModelMapper = businessModelMapper;
         this.locationModelMapper = locationModelMapper;
         this.coordinatesEntityMapper = coordinatesEntityMapper;

@@ -23,7 +23,7 @@ import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundCoordi
 import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocation;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
-import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
+import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperProvider;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
 
 import javax.inject.Inject;
@@ -39,7 +39,7 @@ public final class BusinessListPresenter {
 
     private final GetBusinessesAroundLocation getBusinessesAroundLocation;
     private final GetBusinessesAroundCoordinates getBusinessesAroundCoordinates;
-    private final ModelMapperFactory modelMapperFactory;
+    private final ModelMapperProvider modelMapperProvider;
     private final BusinessListObserverFactory businessListObserverFactory;
     private final UseCaseHandler useCaseHandler;
 
@@ -49,12 +49,12 @@ public final class BusinessListPresenter {
     @Inject
     BusinessListPresenter(GetBusinessesAroundLocation getBusinessesAroundLocation,
                           GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
-                          ModelMapperFactory modelMapperFactory,
+                          ModelMapperProvider modelMapperProvider,
                           BusinessListObserverFactory businessListObserverFactory,
                           UseCaseHandler useCaseHandler) {
         this.getBusinessesAroundLocation = getBusinessesAroundLocation;
         this.getBusinessesAroundCoordinates = getBusinessesAroundCoordinates;
-        this.modelMapperFactory = modelMapperFactory;
+        this.modelMapperProvider = modelMapperProvider;
         this.businessListObserverFactory = businessListObserverFactory;
         this.useCaseHandler = useCaseHandler;
     }
@@ -74,14 +74,14 @@ public final class BusinessListPresenter {
     }
 
     private void showBusinessesAroundLocation(LocationModel locationModel) {
-        Location location = modelMapperFactory.locationModelMapper()
+        Location location = modelMapperProvider.locationModelMapper()
                 .map(locationModel);
         BusinessListObserver observer = businessListObserverFactory.create(view);
         useCaseHandler.execute(getBusinessesAroundLocation, location, observer);
     }
 
     private void showBusinessesAroundCoordinates(CoordinatesModel coordinatesModel) {
-        Coordinates coordinates = modelMapperFactory.coordinatesModelMapper()
+        Coordinates coordinates = modelMapperProvider.coordinatesModelMapper()
                 .map(coordinatesModel);
         BusinessListObserver observer = businessListObserverFactory.create(view);
         useCaseHandler.execute(getBusinessesAroundCoordinates, coordinates, observer);

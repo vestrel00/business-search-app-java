@@ -17,7 +17,7 @@
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.presenter;
 
 import com.vestrel00.business.search.domain.Business;
-import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
+import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperProvider;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view.BusinessDetailsView;
 
 import io.reactivex.Observable;
@@ -30,17 +30,17 @@ import io.reactivex.observers.DisposableSingleObserver;
 final class BusinessDetailsObserver extends DisposableSingleObserver<Business> {
 
     private final BusinessDetailsView view;
-    private final ModelMapperFactory modelMapperFactory;
+    private final ModelMapperProvider modelMapperProvider;
 
-    BusinessDetailsObserver(BusinessDetailsView view, ModelMapperFactory modelMapperFactory) {
+    BusinessDetailsObserver(BusinessDetailsView view, ModelMapperProvider modelMapperProvider) {
         this.view = view;
-        this.modelMapperFactory = modelMapperFactory;
+        this.modelMapperProvider = modelMapperProvider;
     }
 
     @Override
     public void onSuccess(@NonNull Business businesses) {
         Observable.just(businesses)
-                .map(modelMapperFactory.businessModelMapper()::map)
+                .map(modelMapperProvider.businessModelMapper()::map)
                 .subscribe(view::showBusiness);
     }
 

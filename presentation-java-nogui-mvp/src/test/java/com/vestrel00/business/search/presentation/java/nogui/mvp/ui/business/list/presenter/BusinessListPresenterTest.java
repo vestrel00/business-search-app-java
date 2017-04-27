@@ -25,7 +25,7 @@ import com.vestrel00.business.search.java.AbstractJavaTestCase;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapper;
-import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
+import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperProvider;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
 
 import org.junit.Test;
@@ -48,7 +48,7 @@ public final class BusinessListPresenterTest extends AbstractJavaTestCase {
     private GetBusinessesAroundCoordinates getBusinessesAroundCoordinates;
 
     @Mock
-    private ModelMapperFactory modelMapperFactory;
+    private ModelMapperProvider modelMapperProvider;
 
     @Mock
     private BusinessListObserverFactory businessListObserverFactory;
@@ -75,7 +75,7 @@ public final class BusinessListPresenterTest extends AbstractJavaTestCase {
         BusinessListObserver observer = mock(BusinessListObserver.class);
 
         when(view.getLocation()).thenReturn(locationModel);
-        when(modelMapperFactory.locationModelMapper()).thenReturn(locationModelMapper);
+        when(modelMapperProvider.locationModelMapper()).thenReturn(locationModelMapper);
         when(locationModelMapper.map(locationModel)).thenReturn(location);
         when(businessListObserverFactory.create(view)).thenReturn(observer);
 
@@ -96,7 +96,7 @@ public final class BusinessListPresenterTest extends AbstractJavaTestCase {
         BusinessListObserver observer = mock(BusinessListObserver.class);
 
         when(view.getCoordinates()).thenReturn(coordinatesModel);
-        when(modelMapperFactory.coordinatesModelMapper()).thenReturn(coordinatesModelMapper);
+        when(modelMapperProvider.coordinatesModelMapper()).thenReturn(coordinatesModelMapper);
         when(coordinatesModelMapper.map(coordinatesModel)).thenReturn(coordinates);
         when(businessListObserverFactory.create(view)).thenReturn(observer);
 

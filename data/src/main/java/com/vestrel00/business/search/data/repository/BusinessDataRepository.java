@@ -19,8 +19,8 @@ package com.vestrel00.business.search.data.repository;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
-import com.vestrel00.business.search.data.entity.mapper.EntityMapperFactory;
-import com.vestrel00.business.search.data.entity.validator.EntityValidatorFactory;
+import com.vestrel00.business.search.data.entity.mapper.EntityMapperProvider;
+import com.vestrel00.business.search.data.entity.validator.EntityValidatorProvider;
 import com.vestrel00.business.search.data.repository.datasource.BusinessDataStoreFactory;
 import com.vestrel00.business.search.data.util.StringUtils;
 import com.vestrel00.business.search.domain.Business;
@@ -48,18 +48,18 @@ import io.reactivex.functions.Predicate;
 final class BusinessDataRepository implements BusinessRepository {
 
     private final BusinessDataStoreFactory dataStoreFactory;
-    private final EntityMapperFactory entityMapperFactory;
-    private final EntityValidatorFactory entityValidatorFactory;
+    private final EntityMapperProvider entityMapperProvider;
+    private final EntityValidatorProvider entityValidatorProvider;
     private final StringUtils stringUtils;
 
     @Inject
     BusinessDataRepository(BusinessDataStoreFactory dataStoreFactory,
-                           EntityMapperFactory entityMapperFactory,
-                           EntityValidatorFactory entityValidatorFactory,
+                           EntityMapperProvider entityMapperProvider,
+                           EntityValidatorProvider entityValidatorProvider,
                            StringUtils stringUtils) {
         this.dataStoreFactory = dataStoreFactory;
-        this.entityMapperFactory = entityMapperFactory;
-        this.entityValidatorFactory = entityValidatorFactory;
+        this.entityMapperProvider = entityMapperProvider;
+        this.entityValidatorProvider = entityValidatorProvider;
         this.stringUtils = stringUtils;
     }
 
@@ -67,12 +67,12 @@ final class BusinessDataRepository implements BusinessRepository {
     @Override
     public Single<List<Business>> aroundLocation(Location location) {
         return Observable.just(location)
-                .map(entityMapperFactory.locationEntityMapper::map)
-                .doOnNext(entityValidatorFactory.locationEntityValidator()::validate)
+                .map(entityMapperProvider.locationEntityMapper::map)
+                .doOnNext(entityValidatorProvider.locationEntityValidator()::validate)
                 // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMap(dataStoreFactory.create()::aroundLocation)
-                .filter(entityValidatorFactory.businessEntityValidator()::isValid)
-                .map(entityMapperFactory.businessEntityMapper::map)
+                .filter(entityValidatorProvider.businessEntityValidator()::isValid)
+                .map(entityMapperProvider.businessEntityMapper::map)
                 .toList();
     }
 
@@ -82,20 +82,20 @@ final class BusinessDataRepository implements BusinessRepository {
                 .doOnNext(this::validateLocationString)
                 // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMap(dataStoreFactory.create()::aroundLocationString)
-                .filter(entityValidatorFactory.businessEntityValidator()::isValid)
-                .map(entityMapperFactory.businessEntityMapper::map)
+                .filter(entityValidatorProvider.businessEntityValidator()::isValid)
+                .map(entityMapperProvider.businessEntityMapper::map)
                 .toList();
     }
 
     @Override
     public Single<List<Business>> aroundCoordinates(Coordinates coordinates) {
         return Observable.just(coordinates)
-                .map(entityMapperFactory.coordinatesEntityMapper::map)
-                .doOnNext(entityValidatorFactory.coordinatesEntityValidator()::validate)
+                .map(entityMapperProvider.coordinatesEntityMapper::map)
+                .doOnNext(entityValidatorProvider.coordinatesEntityValidator()::validate)
                 // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMap(dataStoreFactory.create()::aroundCoordinates)
-                .filter(entityValidatorFactory.businessEntityValidator()::isValid)
-                .map(entityMapperFactory.businessEntityMapper::map)
+                .filter(entityValidatorProvider.businessEntityValidator()::isValid)
+                .map(entityMapperProvider.businessEntityMapper::map)
                 .toList();
     }
 
@@ -105,8 +105,8 @@ final class BusinessDataRepository implements BusinessRepository {
                 .doOnNext(this::validateBusinessId)
                 // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMap(dataStoreFactory.create()::withId)
-                .filter(entityValidatorFactory.businessEntityValidator()::isValid)
-                .map(entityMapperFactory.businessEntityMapper::map)
+                .filter(entityValidatorProvider.businessEntityValidator()::isValid)
+                .map(entityMapperProvider.businessEntityMapper::map)
                 .toList();
     }
     */
@@ -117,13 +117,13 @@ final class BusinessDataRepository implements BusinessRepository {
                 .map(new Function<Location, LocationEntity>() {
                     @Override
                     public LocationEntity apply(@NonNull Location location) throws Exception {
-                        return entityMapperFactory.locationEntityMapper().map(location);
+                        return entityMapperProvider.locationEntityMapper().map(location);
                     }
                 })
                 .doOnNext(new Consumer<LocationEntity>() {
                     @Override
                     public void accept(@NonNull LocationEntity locationEntity) throws Exception {
-                        entityValidatorFactory.locationEntityValidator().validate(locationEntity);
+                        entityValidatorProvider.locationEntityValidator().validate(locationEntity);
                     }
                 })
                 // Ordering via concatMap is unnecessary since the source only emits 1 item
@@ -137,14 +137,14 @@ final class BusinessDataRepository implements BusinessRepository {
                 .filter(new Predicate<BusinessEntity>() {
                     @Override
                     public boolean test(@NonNull BusinessEntity businessEntity) throws Exception {
-                        return entityValidatorFactory.businessEntityValidator()
+                        return entityValidatorProvider.businessEntityValidator()
                                 .isValid(businessEntity);
                     }
                 })
                 .map(new Function<BusinessEntity, Business>() {
                     @Override
                     public Business apply(@NonNull BusinessEntity businessEntity) throws Exception {
-                        return entityMapperFactory.businessEntityMapper().map(businessEntity);
+                        return entityMapperProvider.businessEntityMapper().map(businessEntity);
                     }
                 })
                 .toList();
@@ -170,14 +170,14 @@ final class BusinessDataRepository implements BusinessRepository {
                 .filter(new Predicate<BusinessEntity>() {
                     @Override
                     public boolean test(@NonNull BusinessEntity businessEntity) throws Exception {
-                        return entityValidatorFactory.businessEntityValidator()
+                        return entityValidatorProvider.businessEntityValidator()
                                 .isValid(businessEntity);
                     }
                 })
                 .map(new Function<BusinessEntity, Business>() {
                     @Override
                     public Business apply(@NonNull BusinessEntity businessEntity) throws Exception {
-                        return entityMapperFactory.businessEntityMapper().map(businessEntity);
+                        return entityMapperProvider.businessEntityMapper().map(businessEntity);
                     }
                 })
                 .toList();
@@ -190,14 +190,14 @@ final class BusinessDataRepository implements BusinessRepository {
                     @Override
                     public CoordinatesEntity apply(@NonNull Coordinates coordinates)
                             throws Exception {
-                        return entityMapperFactory.coordinatesEntityMapper().map(coordinates);
+                        return entityMapperProvider.coordinatesEntityMapper().map(coordinates);
                     }
                 })
                 .doOnNext(new Consumer<CoordinatesEntity>() {
                     @Override
                     public void accept(@NonNull CoordinatesEntity coordinatesEntity)
                             throws Exception {
-                        entityValidatorFactory.coordinatesEntityValidator()
+                        entityValidatorProvider.coordinatesEntityValidator()
                                 .validate(coordinatesEntity);
                     }
                 })
@@ -212,14 +212,14 @@ final class BusinessDataRepository implements BusinessRepository {
                 .filter(new Predicate<BusinessEntity>() {
                     @Override
                     public boolean test(@NonNull BusinessEntity businessEntity) throws Exception {
-                        return entityValidatorFactory.businessEntityValidator()
+                        return entityValidatorProvider.businessEntityValidator()
                                 .isValid(businessEntity);
                     }
                 })
                 .map(new Function<BusinessEntity, Business>() {
                     @Override
                     public Business apply(@NonNull BusinessEntity businessEntity) throws Exception {
-                        return entityMapperFactory.businessEntityMapper().map(businessEntity);
+                        return entityMapperProvider.businessEntityMapper().map(businessEntity);
                     }
                 })
                 .toList();
@@ -244,14 +244,14 @@ final class BusinessDataRepository implements BusinessRepository {
                 }).filter(new Predicate<BusinessEntity>() {
                     @Override
                     public boolean test(@NonNull BusinessEntity businessEntity) throws Exception {
-                        return entityValidatorFactory.businessEntityValidator()
+                        return entityValidatorProvider.businessEntityValidator()
                                 .isValid(businessEntity);
                     }
                 })
                 .map(new Function<BusinessEntity, Business>() {
                     @Override
                     public Business apply(@NonNull BusinessEntity businessEntity) throws Exception {
-                        return entityMapperFactory.businessEntityMapper().map(businessEntity);
+                        return entityMapperProvider.businessEntityMapper().map(businessEntity);
                     }
                 })
                 .singleOrError();

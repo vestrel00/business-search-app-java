@@ -18,7 +18,7 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.
 
 import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListView;
-import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperFactory;
+import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperProvider;
 
 import java.util.List;
 
@@ -32,17 +32,17 @@ import io.reactivex.observers.DisposableSingleObserver;
 final class BusinessListObserver extends DisposableSingleObserver<List<Business>> {
 
     private final BusinessListView view;
-    private final ModelMapperFactory modelMapperFactory;
+    private final ModelMapperProvider modelMapperProvider;
 
-    BusinessListObserver(BusinessListView view, ModelMapperFactory modelMapperFactory) {
+    BusinessListObserver(BusinessListView view, ModelMapperProvider modelMapperProvider) {
         this.view = view;
-        this.modelMapperFactory = modelMapperFactory;
+        this.modelMapperProvider = modelMapperProvider;
     }
 
     @Override
     public void onSuccess(@NonNull List<Business> businesses) {
         Observable.fromIterable(businesses)
-                .map(modelMapperFactory.businessModelMapper()::map)
+                .map(modelMapperProvider.businessModelMapper()::map)
                 .toList(businesses.size())
                 .subscribe(view::renderBusinessList);
     }

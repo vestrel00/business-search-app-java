@@ -29,9 +29,24 @@ import dagger.Provides;
 @Module
 public abstract class ConfigModule {
 
+    /**
+     * Constructs an instance of {@link DataConfig}.
+     * <p>
+     * Note that we could retrieve the config values here from a resource/config file or from a
+     * remote config endpoint. The values are statically defined here for simplicity and brevity.
+     */
     @Provides
     @Singleton
     static DataConfig dataConfig() {
-        return DataConfigFactory.create();
+        return DataConfig.builder()
+                .baseUrl("https://api.yelp.com/")
+                .authGrantType("client_credentials")
+                .authClientId("pTnZUGJqLM_Q0pQt-jsCXw") // Replace this with your own client id
+                .authClientSecret("zRs7F1e2B3Dc4OBNsp7yF0Jfh5eksGRXroaLE59JCxxwZUDO"
+                        + "ppzjn6bQaVPB3bop") // Replace this with your own client secret
+                .cacheDir("business-search-cache")
+                .cacheMaxSizeMb(10)
+                .networkCacheTimeSeconds(60)
+                .build();
     }
 }
