@@ -33,7 +33,6 @@ import io.reactivex.observers.DisposableSingleObserver;
  * This handler executes a use cases in the given {@link ExecutionThread} and then publishes results
  * in the given {@link PostExecutionThread}.
  */
-@Singleton
 public final class UseCaseHandler {
 
     private final ExecutionThread executionThread;
