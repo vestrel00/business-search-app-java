@@ -63,7 +63,6 @@ final class BusinessDataRepository implements BusinessRepository {
         this.stringUtils = stringUtils;
     }
 
-
     /* FIXME (LAMBDA) - Delete below code and uncomment this code block to use lambdas instead
     @Override
     public Single<List<Business>> aroundLocation(Location location) {
@@ -72,6 +71,17 @@ final class BusinessDataRepository implements BusinessRepository {
                 .doOnNext(entityValidatorFactory.locationEntityValidator()::validate)
                 // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMap(dataStoreFactory.create()::aroundLocation)
+                .filter(entityValidatorFactory.businessEntityValidator()::isValid)
+                .map(entityMapperFactory.businessEntityMapper::map)
+                .toList();
+    }
+
+    @Override
+    public Single<List<Business>> aroundLocationString(String locationString) {
+        return Observable.just(locationString)
+                .doOnNext(this::validateLocationString)
+                // Ordering via concatMap is unnecessary since the source only emits 1 item
+                .flatMap(dataStoreFactory.create()::aroundLocationString)
                 .filter(entityValidatorFactory.businessEntityValidator()::isValid)
                 .map(entityMapperFactory.businessEntityMapper::map)
                 .toList();
@@ -122,6 +132,39 @@ final class BusinessDataRepository implements BusinessRepository {
                     public ObservableSource<BusinessEntity>
                     apply(@NonNull LocationEntity locationEntity) throws Exception {
                         return dataStoreFactory.create().aroundLocation(locationEntity);
+                    }
+                })
+                .filter(new Predicate<BusinessEntity>() {
+                    @Override
+                    public boolean test(@NonNull BusinessEntity businessEntity) throws Exception {
+                        return entityValidatorFactory.businessEntityValidator()
+                                .isValid(businessEntity);
+                    }
+                })
+                .map(new Function<BusinessEntity, Business>() {
+                    @Override
+                    public Business apply(@NonNull BusinessEntity businessEntity) throws Exception {
+                        return entityMapperFactory.businessEntityMapper().map(businessEntity);
+                    }
+                })
+                .toList();
+    }
+
+    @Override
+    public Single<List<Business>> aroundLocationString(String locationString) {
+        return Observable.just(locationString)
+                .doOnNext(new Consumer<String>() {
+                    @Override
+                    public void accept(@NonNull String locationString) throws Exception {
+                        validateLocationString(locationString);
+                    }
+                })
+                // Ordering via concatMap is unnecessary since the source only emits 1 item
+                .flatMap(new Function<String, ObservableSource<BusinessEntity>>() {
+                    @Override
+                    public ObservableSource<BusinessEntity>
+                    apply(@NonNull String locationString) throws Exception {
+                        return dataStoreFactory.create().aroundLocationString(locationString);
                     }
                 })
                 .filter(new Predicate<BusinessEntity>() {
@@ -212,6 +255,12 @@ final class BusinessDataRepository implements BusinessRepository {
                     }
                 })
                 .singleOrError();
+    }
+
+    private void validateLocationString(String locationString) throws IllegalArgumentException {
+        if (stringUtils.isEmpty(locationString)) {
+            throw new IllegalArgumentException("Location must not be empty.");
+        }
     }
 
     private void validateBusinessId(String businessId) throws IllegalArgumentException {

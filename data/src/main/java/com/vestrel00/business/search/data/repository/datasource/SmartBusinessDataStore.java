@@ -44,9 +44,14 @@ final class SmartBusinessDataStore implements BusinessDataStore {
 
     @Override
     public Observable<BusinessEntity> aroundLocation(LocationEntity location) {
-        String formattedLocation = locationFormatter.formatLocation(location);
+        String locationString = locationFormatter.formatLocation(location);
+        return aroundLocationString(locationString);
+    }
+
+    @Override
+    public Observable<BusinessEntity> aroundLocationString(String locationString) {
         return businessDataServiceProvider.get()
-                .aroundLocation(formattedLocation)
+                .aroundLocation(locationString)
                 // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMapIterable(toList());
     }

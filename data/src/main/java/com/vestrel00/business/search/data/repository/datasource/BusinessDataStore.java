@@ -33,6 +33,12 @@ public interface BusinessDataStore {
     Observable<BusinessEntity> aroundLocation(LocationEntity location);
 
     /**
+     * @param locationString the location to search for surrounding businesses
+     * @return an single containing a list that contains 0 or more businesses
+     */
+    Observable<BusinessEntity> aroundLocationString(String locationString);
+
+    /**
      * @param coordinates the coordinates to search for surrounding businesses
      * @return an observable of 0 or more businesses
      */

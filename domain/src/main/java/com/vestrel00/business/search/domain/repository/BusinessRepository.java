@@ -36,6 +36,12 @@ public interface BusinessRepository {
     Single<List<Business>> aroundLocation(Location location);
 
     /**
+     * @param locationString the location to search for surrounding businesses
+     * @return an single containing a list that contains 0 or more businesses
+     */
+    Single<List<Business>> aroundLocationString(String locationString);
+
+    /**
      * @param coordinates the coordinates to search for surrounding businesses
      * @return an single containing a list that contains 0 or more businesses
      */
