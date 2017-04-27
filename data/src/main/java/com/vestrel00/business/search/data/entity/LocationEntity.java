@@ -33,10 +33,11 @@ import com.google.auto.value.AutoValue;
  * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
-// FIXME (DATABIND) - The generated builder could be used for deserialization. However, Jackson does
-// not yet support setting default values for null or missing properties per setter/getter methods.
+// FIXME (DATABIND JACKSON) - The generated builder could be used for deserialization.
+// However, Jackson does not yet support setting default values for null or missing properties
+// per setter/getter methods.
 // E.G. Missing (or null) property string -> empty string (instead of the default null)
-// @JsonDeserialize(builder = AutoValue_LocationEntity.Builder.class)
+// @JsonDeserialize(builder = AutoValue_BusinessEntity.Builder.class)
 public abstract class LocationEntity implements Entity {
 
     /**

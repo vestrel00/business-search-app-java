@@ -16,15 +16,13 @@
 
 package com.vestrel00.business.search.presentation.android.mvp;
 
-import android.app.Application;
-
 import com.squareup.leakcanary.LeakCanary;
 
 /**
- * The debug Android {@link Application}, which uses {@link LeakCanary} for leak detection.
+ * The debug Android {@link AndroidApplication}, which uses {@link LeakCanary} for leak detection.
  */
-// FIXME (GRADLE) - Move to presentation-android once library projects support publishing all
-// library variants (not just release). See config/android/library.gradle.
+// FIXME (GRADLE LIBRARY) - Move to presentation-android once library projects support publishing
+// all library variants (not just release). See config/android/library.gradle.
 public class DebugAndroidApplication extends AndroidApplication {
 
     @Override

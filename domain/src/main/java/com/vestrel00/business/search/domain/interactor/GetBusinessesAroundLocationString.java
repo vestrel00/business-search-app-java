@@ -28,7 +28,8 @@ import io.reactivex.Single;
 /**
  * Use case for getting businesses around the given location string.
  */
-public final class GetBusinessesAroundLocationString implements SingleUseCase<String, List<Business>> {
+public final class GetBusinessesAroundLocationString
+        implements SingleUseCase<String, List<Business>> {
 
     private final BusinessRepository businessRepository;
 

@@ -17,10 +17,7 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
@@ -34,7 +31,7 @@ import butterknife.BindView;
  * An abstract {@link BaseFragment} that implements {@link LoadDataView}.
  * <p>
  * This fragment assumes that the following Android views with the given ids exist in the view
- * returned in {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}:
+ * returned in onCreateView:
  * <ul>
  * <li>R.id.loading_indicator : the loading indicator view</li>
  * <li>R.id.retry_button : the retry button view</li>

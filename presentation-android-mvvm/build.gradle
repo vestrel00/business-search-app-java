@@ -29,7 +29,7 @@ dependencies {
 
     compile project(':presentation-android')
 
-    // FIXME (GRADLE) - Move to presentation-android dependencies once library projects support
+    // FIXME (GRADLE LIBRARY) - Move to presentation-android dependencies once library projects support
     // publishing all library variants (not just release). See config/android/library.gradle
     debugCompile presentationAndroidDebugDependencies.leakCanary
 }

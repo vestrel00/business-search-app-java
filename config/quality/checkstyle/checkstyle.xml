@@ -346,9 +346,9 @@
     <module name="TreeWalker">
 
         <!-- Checks visibility of class members. !-->
-        <!-- See http://checkstyle.sf.net/config_design.html !-->
+        <!-- See http://checkstyle.sf.net/config_design.html#VisibilityModifier !-->
         <module name="VisibilityModifier">
-            <property name="packageAllowed" value="false"/>
+            <property name="packageAllowed" value="true"/>
             <property name="protectedAllowed" value="true"/>
             <property name="publicMemberPattern" value="^serialVersionUID$"/>
         </module>

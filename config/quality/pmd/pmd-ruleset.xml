@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright 2017 Vandolf Estrellado
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,7 +24,6 @@
     <exclude-pattern>.*/gen/.*</exclude-pattern>
     <exclude-pattern>.*/test.*/.*</exclude-pattern>
 
-    <rule ref="rulesets/java/android.xml" />
     <rule ref="rulesets/java/clone.xml" />
     <rule ref="rulesets/java/finalizers.xml" />
     <rule ref="rulesets/java/imports.xml">
@@ -41,5 +41,13 @@
         <exclude name="ShortVariable" />
         <exclude name="VariableNamingConventions" />
         <exclude name="AvoidFieldNameMatchingMethodName" />
+    </rule>
+
+    <!-- Android specific -->
+    <!-- See http://pmd.sourceforge.net/pmd-4.3.0/rules/android.html -->
+    <rule ref="rulesets/java/android.xml">
+        <!-- Order of invocation of super lifecycle methods needs to be disabled for flexibility -->
+        <exclude name="CallSuperFirst" />
+        <exclude name="CallSuperLast" />
     </rule>
 </ruleset>

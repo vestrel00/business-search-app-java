@@ -20,7 +20,6 @@ import com.vestrel00.business.search.domain.interactor.ObservableUseCase;
 import com.vestrel00.business.search.domain.interactor.SingleUseCase;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

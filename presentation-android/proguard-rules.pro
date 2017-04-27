@@ -34,3 +34,6 @@
 # Retrolambda 3.6.0 - https://github.com/evant/gradle-retrolambda#proguard
 -dontwarn java.lang.invoke.*
 -dontwarn **$$Lambda$*
+
+# Dagger Android 2.11.x - https://google.github.io/dagger/android.html
+-dontwarn dagger.android.*
