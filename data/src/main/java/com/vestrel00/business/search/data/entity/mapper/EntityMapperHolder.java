@@ -27,19 +27,19 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Provides instances of {@link EntityMapper}.
+ * Holds instances of {@link EntityMapper}.
  */
 @Singleton
-public final class EntityMapperProvider {
+public final class EntityMapperHolder {
 
     private final EntityMapper<BusinessEntity, Business> businessEntityMapper;
     private final EntityMapper<LocationEntity, Location> locationEntityMapper;
     private final EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper;
 
     @Inject
-    EntityMapperProvider(EntityMapper<BusinessEntity, Business> businessEntityMapper,
-                         EntityMapper<LocationEntity, Location> locationEntityMapper,
-                         EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper) {
+    EntityMapperHolder(EntityMapper<BusinessEntity, Business> businessEntityMapper,
+                       EntityMapper<LocationEntity, Location> locationEntityMapper,
+                       EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper) {
         this.businessEntityMapper = businessEntityMapper;
         this.locationEntityMapper = locationEntityMapper;
         this.coordinatesEntityMapper = coordinatesEntityMapper;

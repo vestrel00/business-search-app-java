@@ -24,19 +24,19 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Provides instances of {@link EntityValidator}s.
+ * Holds instances of {@link EntityValidator}s.
  */
 @Singleton
-public final class EntityValidatorProvider {
+public final class EntityValidatorHolder {
 
     private final EntityValidator<BusinessEntity> businessEntityValidator;
     private final EntityValidator<LocationEntity> locationEntityValidator;
     private final EntityValidator<CoordinatesEntity> coordinatesEntityValidator;
 
     @Inject
-    EntityValidatorProvider(EntityValidator<BusinessEntity> businessEntityValidator,
-                            EntityValidator<LocationEntity> locationEntityValidator,
-                            EntityValidator<CoordinatesEntity> coordinatesEntityValidator) {
+    EntityValidatorHolder(EntityValidator<BusinessEntity> businessEntityValidator,
+                          EntityValidator<LocationEntity> locationEntityValidator,
+                          EntityValidator<CoordinatesEntity> coordinatesEntityValidator) {
         this.businessEntityValidator = businessEntityValidator;
         this.locationEntityValidator = locationEntityValidator;
         this.coordinatesEntityValidator = coordinatesEntityValidator;
