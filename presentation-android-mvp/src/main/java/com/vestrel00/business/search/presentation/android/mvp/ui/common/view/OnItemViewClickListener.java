@@ -16,22 +16,24 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import android.support.annotation.StringRes;
+import android.view.View;
 
 /**
- * A {@link MVPView} that loads data.
+ * A {@link View.OnClickListener} that invokes an {@link OnItemClickListener}'s
+ * {@link OnItemClickListener#onItemClicked(Object)} {@link #onClick(View)}.
  */
-public interface LoadDataView extends MVPView {
+public final class OnItemViewClickListener<T> implements View.OnClickListener {
 
-    void showLoading();
+    private final OnItemClickListener<T> onItemClickListener;
+    private final T item;
 
-    void hideLoading();
+    OnItemViewClickListener(OnItemClickListener<T> onItemClickListener, T item) {
+        this.onItemClickListener = onItemClickListener;
+        this.item = item;
+    }
 
-    void showRetry();
-
-    void hideRetry();
-
-    void showError(@StringRes int messageRes);
-
-    void showError(String message);
+    @Override
+    public void onClick(View view) {
+        onItemClickListener.onItemClicked(item);
+    }
 }

@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * An abstract {@link BaseFragment} that implements {@link LoadDataView}.
@@ -67,7 +69,16 @@ public abstract class LoadDataFragment<T extends Presenter> extends BaseFragment
     }
 
     @Override
+    public void showError(@StringRes int messageRes) {
+        Toast.makeText(getActivity(), messageRes, Toast.LENGTH_SHORT).show();
+    }
+    
+    @Override
     public void showError(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.retry_button)
+    protected void onRetryButtonClicked() {
     }
 }

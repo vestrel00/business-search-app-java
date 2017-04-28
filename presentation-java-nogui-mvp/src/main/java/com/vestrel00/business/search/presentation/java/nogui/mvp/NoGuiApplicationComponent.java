@@ -24,7 +24,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 /**
- * Injects java no gui presentation dependencies.
+ * Injects no gui application dependencies.
  */
 @Singleton
 @Component(modules = {

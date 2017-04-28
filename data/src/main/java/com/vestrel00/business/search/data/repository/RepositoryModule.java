@@ -24,7 +24,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides data repository dependencies.
+ * Provides repository dependencies.
  */
 @Module
 public abstract class RepositoryModule {

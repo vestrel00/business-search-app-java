@@ -14,28 +14,23 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.cache;
+package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import com.vestrel00.business.search.data.config.DataConfig;
-
-import java.io.File;
-
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import dagger.Module;
-import dagger.Provides;
-import okhttp3.Cache;
-
 /**
- * Provides network cache dependencies.
+ * Creates instances of {@link OnItemViewClickListener}.
  */
-@Module
-public abstract class NetCacheModule {
+@Singleton
+public final class OnItemViewClickListenerFactory {
 
-    @Provides
-    @Singleton
-    static Cache networkCache(DataConfig dataConfig) {
-        return new Cache(new File(dataConfig.cacheDir()),
-                dataConfig.cacheMaxSizeMb() * 1024 * 1024);
+    @Inject
+    OnItemViewClickListenerFactory() {
+    }
+
+    public <T> OnItemViewClickListener<T> create(OnItemClickListener<T> onItemClickListener,
+                                                 T item) {
+        return new OnItemViewClickListener<>(onItemClickListener, item);
     }
 }

@@ -22,6 +22,7 @@ import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocati
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListView;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.BasePresenter;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 import javax.inject.Inject;
 
@@ -62,6 +63,11 @@ final class BusinessListPresenterImpl extends BasePresenter<BusinessListView>
         clearUseCases();
         // TODO (IMPLEMENTATION) - onListBusinessesAroundCurrentCoordinates
         // https://developer.android.com/training/location/retrieve-current.html
+    }
+
+    @Override
+    public void onBusinessClicked(BusinessModel businessModel) {
+        // TODO (IMPLEMENTATION) - onBusinessClicked
     }
 
     private void clearUseCases() {

@@ -22,7 +22,7 @@ import com.vestrel00.business.search.data.entity.validator.EntityValidatorModule
 import dagger.Module;
 
 /**
- * Provides data entity dependencies.
+ * Provides entity dependencies.
  */
 @Module(includes = {
         EntityMapperModule.class,

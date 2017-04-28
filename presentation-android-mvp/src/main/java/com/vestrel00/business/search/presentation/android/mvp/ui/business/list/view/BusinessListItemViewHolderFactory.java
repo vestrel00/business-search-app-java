@@ -14,28 +14,25 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.cache;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import com.vestrel00.business.search.data.config.DataConfig;
+import android.view.View;
 
-import java.io.File;
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 
-import javax.inject.Singleton;
-
-import dagger.Module;
-import dagger.Provides;
-import okhttp3.Cache;
+import javax.inject.Inject;
 
 /**
- * Provides network cache dependencies.
+ * Creates instances of {@link BusinessListItemViewHolder}.
  */
-@Module
-public abstract class NetCacheModule {
+@PerFragment
+final class BusinessListItemViewHolderFactory {
 
-    @Provides
-    @Singleton
-    static Cache networkCache(DataConfig dataConfig) {
-        return new Cache(new File(dataConfig.cacheDir()),
-                dataConfig.cacheMaxSizeMb() * 1024 * 1024);
+    @Inject
+    BusinessListItemViewHolderFactory() {
+    }
+
+    BusinessListItemViewHolder create(View itemView) {
+        return new BusinessListItemViewHolder(itemView);
     }
 }

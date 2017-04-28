@@ -25,7 +25,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides presentation Android executor dependencies.
+ * Provides executor dependencies.
  */
 @Module
 public abstract class ExecutorModule {

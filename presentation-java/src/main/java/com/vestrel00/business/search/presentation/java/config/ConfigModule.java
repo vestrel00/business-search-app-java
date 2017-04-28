@@ -24,7 +24,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Provides presentation Java config dependencies.
+ * Provides config dependencies.
  */
 @Module
 public abstract class ConfigModule {

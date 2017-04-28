@@ -29,7 +29,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides presentation java model mapper dependencies.
+ * Provides model mapper dependencies.
  */
 @Module
 public abstract class ModelMapperModule {

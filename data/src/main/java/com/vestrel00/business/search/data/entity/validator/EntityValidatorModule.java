@@ -27,7 +27,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides data entity validator dependencies.
+ * Provides entity validator dependencies.
  */
 @Module
 public abstract class EntityValidatorModule {

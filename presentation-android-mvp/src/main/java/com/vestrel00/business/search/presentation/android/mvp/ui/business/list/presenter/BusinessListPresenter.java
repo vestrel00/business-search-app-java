@@ -17,6 +17,7 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter;
 
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 /**
  * A {@link Presenter} that retrieves and displays a list of businesses.
@@ -26,4 +27,6 @@ public interface BusinessListPresenter extends Presenter {
     void onListBusinessesAroundLocation(String location);
 
     void onListBusinessesAroundCurrentCoordinates();
+
+    void onBusinessClicked(BusinessModel businessModel);
 }

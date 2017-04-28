@@ -14,28 +14,28 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.cache;
+package com.vestrel00.business.search.presentation.java.common;
 
-import com.vestrel00.business.search.data.config.DataConfig;
+import java.util.Collections;
+import java.util.List;
 
-import java.io.File;
-
-import javax.inject.Singleton;
+import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Cache;
 
 /**
- * Provides network cache dependencies.
+ * Provides Java common dependencies.
  */
 @Module
-public abstract class NetCacheModule {
+public abstract class JavaCommonModule {
+
+    public static final String EMPTY_LIST = "JavaCommonModule.emptyList";
 
     @Provides
-    @Singleton
-    static Cache networkCache(DataConfig dataConfig) {
-        return new Cache(new File(dataConfig.cacheDir()),
-                dataConfig.cacheMaxSizeMb() * 1024 * 1024);
+    @Named(EMPTY_LIST)
+    static List emptyList() {
+        return Collections.emptyList();
     }
+
 }

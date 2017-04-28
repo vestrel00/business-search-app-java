@@ -16,30 +16,29 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter.BusinessListPresenter;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.LoadDataFragment;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemClickListener;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 /**
- * A fragment implementation of {@link BusinessListView}.
+ * Listens for clicks on a business item in the list and invokes the
+ * {@link BusinessListPresenter#onBusinessClicked(BusinessModel)}.
  */
-public final class BusinessListFragment extends LoadDataFragment<BusinessListPresenter>
-        implements BusinessListView {
+@PerFragment
+public final class BusinessListItemClickListener implements OnItemClickListener<BusinessModel> {
+
+    private final BusinessListPresenter presenter;
 
     @Inject
-    BusinessListAdapter businessListAdapter;
-
-    @Override
-    public void renderBusinessList(List<BusinessModel> businessModels) {
-        businessListAdapter.setBusinessModels(businessModels);
+    BusinessListItemClickListener(BusinessListPresenter presenter) {
+        this.presenter = presenter;
     }
 
     @Override
-    public void viewBusinessDetails(BusinessModel businessModel) {
-        // TODO (IMPLEMENTATION) - viewBusinessDetails
+    public void onItemClicked(BusinessModel businessModel) {
+        presenter.onBusinessClicked(businessModel);
     }
 }

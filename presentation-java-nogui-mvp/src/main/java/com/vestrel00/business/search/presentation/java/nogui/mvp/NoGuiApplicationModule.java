@@ -23,7 +23,7 @@ import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.Execut
 import dagger.Module;
 
 /**
- * Provides presentation java no gui dependencies.
+ * Provides no gui application dependencies.
  */
 @Module(includes = {
         PresentationJavaModule.class,

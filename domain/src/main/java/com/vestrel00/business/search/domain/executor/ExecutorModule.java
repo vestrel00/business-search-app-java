@@ -21,7 +21,7 @@ import dagger.Provides;
 import io.reactivex.disposables.CompositeDisposable;
 
 /**
- * Provides domain executor dependencies.
+ * Provides executor dependencies.
  */
 @Module
 public final class ExecutorModule {

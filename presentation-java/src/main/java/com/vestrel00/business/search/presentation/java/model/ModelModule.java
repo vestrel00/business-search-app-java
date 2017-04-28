@@ -21,7 +21,7 @@ import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperM
 import dagger.Module;
 
 /**
- * Provides presentation java model dependencies.
+ * Provides model dependencies.
  */
 @Module(includes = ModelMapperModule.class)
 public abstract class ModelModule {

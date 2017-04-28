@@ -29,7 +29,7 @@ import dagger.Binds;
 import dagger.Module;
 
 /**
- * Provides data entity mapper dependencies.
+ * Provides entity mapper dependencies.
  */
 @Module
 public abstract class EntityMapperModule {

@@ -16,27 +16,25 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.LoadDataView;
-import com.vestrel00.business.search.presentation.java.model.BusinessModel;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
-import java.util.List;
+import com.vestrel00.business.search.presentation.android.mvp.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
- * The view that displays a list of businesses.
+ * The {@link RecyclerView.ViewHolder} for {@link BusinessListAdapter}.
  */
-public interface BusinessListView extends LoadDataView {
+final class BusinessListItemViewHolder extends RecyclerView.ViewHolder {
 
-    /**
-     * Renders a list of businesses in the UI.
-     *
-     * @param businessModels the businesses to render
-     */
-    void renderBusinessList(List<BusinessModel> businessModels);
+    @BindView(R.id.name)
+    TextView nameTextView;
 
-    /**
-     * MVPView a business' details.
-     *
-     * @param businessModel the businesses to view the details of
-     */
-    void viewBusinessDetails(BusinessModel businessModel);
+    BusinessListItemViewHolder(View itemView) {
+        super(itemView);
+        ButterKnife.bind(this, itemView);
+    }
 }

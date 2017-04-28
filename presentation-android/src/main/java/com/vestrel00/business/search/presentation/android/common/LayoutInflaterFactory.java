@@ -14,28 +14,30 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.cache;
+package com.vestrel00.business.search.presentation.android.common;
 
-import com.vestrel00.business.search.data.config.DataConfig;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 
-import java.io.File;
-
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import dagger.Module;
-import dagger.Provides;
-import okhttp3.Cache;
-
 /**
- * Provides network cache dependencies.
+ * Creates instances of {@link LayoutInflater}.
  */
-@Module
-public abstract class NetCacheModule {
+@Singleton
+public final class LayoutInflaterFactory {
 
-    @Provides
-    @Singleton
-    static Cache networkCache(DataConfig dataConfig) {
-        return new Cache(new File(dataConfig.cacheDir()),
-                dataConfig.cacheMaxSizeMb() * 1024 * 1024);
+    @Inject
+    LayoutInflaterFactory() {
+    }
+
+    public LayoutInflater from(View activityView) {
+        return from(activityView.getContext());
+    }
+
+    public LayoutInflater from(Context activityContext) {
+        return LayoutInflater.from(activityContext);
     }
 }

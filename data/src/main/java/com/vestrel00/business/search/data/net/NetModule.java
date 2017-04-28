@@ -26,7 +26,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Provides data network dependencies.
+ * Provides network dependencies.
  */
 @Module(includes = {
         NetAuthModule.class,
