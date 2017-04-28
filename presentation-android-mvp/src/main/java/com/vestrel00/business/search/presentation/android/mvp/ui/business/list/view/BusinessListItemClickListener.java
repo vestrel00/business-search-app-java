@@ -28,7 +28,7 @@ import javax.inject.Inject;
  * {@link BusinessListPresenter#onBusinessClicked(BusinessModel)}.
  */
 @PerFragment
-public final class BusinessListItemClickListener implements OnItemClickListener<BusinessModel> {
+final class BusinessListItemClickListener implements OnItemClickListener<BusinessModel> {
 
     private final BusinessListPresenter presenter;
 

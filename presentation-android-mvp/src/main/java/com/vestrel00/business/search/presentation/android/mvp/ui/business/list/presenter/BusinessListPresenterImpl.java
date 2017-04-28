@@ -59,15 +59,21 @@ final class BusinessListPresenterImpl extends BasePresenter<BusinessListView>
     }
 
     @Override
-    public void onListBusinessesAroundCurrentCoordinates() {
+    public void onListBusinessesAroundCurrentLocation() {
         clearUseCases();
-        // TODO (IMPLEMENTATION) - onListBusinessesAroundCurrentCoordinates
+        // TODO (IMPLEMENTATION) - onListBusinessesAroundCurrentLocation
         // https://developer.android.com/training/location/retrieve-current.html
     }
 
     @Override
     public void onBusinessClicked(BusinessModel businessModel) {
         // TODO (IMPLEMENTATION) - onBusinessClicked
+    }
+
+    @Override
+    public void onEnd() {
+        super.onEnd();
+        useCaseHandler.clear();
     }
 
     private void clearUseCases() {

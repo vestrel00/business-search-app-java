@@ -16,6 +16,8 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,7 @@ import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnI
 import com.vestrel00.business.search.presentation.java.common.JavaCommonModule;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -40,6 +43,8 @@ import javax.inject.Named;
  */
 @PerFragment
 final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemViewHolder> {
+
+    private static final String STATE_BUSINESS_MODELS = "BusinessListAdapter.businessModels";
 
     private final List<BusinessModel> businessModels;
     private final BusinessListItemViewHolderFactory itemViewHolderFactory;
@@ -85,5 +90,16 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     void setBusinessModels(List<BusinessModel> businessModels) {
         this.businessModels.clear();
         this.businessModels.addAll(businessModels);
+        notifyDataSetChanged();
+    }
+
+    void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable(STATE_BUSINESS_MODELS, (Serializable) businessModels);
+    }
+
+    void onRestoreInstanceState(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            setBusinessModels(savedInstanceState.getParcelable(STATE_BUSINESS_MODELS));
+        }
     }
 }

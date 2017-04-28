@@ -15,18 +15,8 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <string name="app_name">Business Search MVP</string>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- literals -->
-    <string name="click_to_retry">Click to retry</string>
-
-    <!-- actions -->
-    <string name="action_search">Search</string>
-
-    <!-- hints -->
-    <string name="hint_location">Address city state, and/or zip</string>
-
-    <!-- errors -->
-    <string name="error_generic">Something went wrong</string>
-</resources>
+</RelativeLayout>

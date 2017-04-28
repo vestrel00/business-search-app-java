@@ -55,7 +55,7 @@ public abstract class LoadDataFragment<T extends Presenter> extends BaseFragment
 
     @Override
     public void hideLoading() {
-        loadingIndicator.setVisibility(View.GONE);
+        loadingIndicator.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -65,7 +65,7 @@ public abstract class LoadDataFragment<T extends Presenter> extends BaseFragment
 
     @Override
     public void hideRetry() {
-        retryButton.setVisibility(View.GONE);
+        retryButton.setVisibility(View.INVISIBLE);
     }
 
     @Override

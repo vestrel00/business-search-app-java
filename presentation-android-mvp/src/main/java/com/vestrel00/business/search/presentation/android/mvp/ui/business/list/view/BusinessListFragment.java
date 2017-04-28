@@ -16,6 +16,14 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter.BusinessListPresenter;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.LoadDataFragment;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
@@ -24,14 +32,39 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+
 /**
- * A fragment implementation of {@link BusinessListView}.
+ * A fragment implementation of {@link BusinessListView} that allows listing businesses around
+ * a given location or current location.
  */
 public final class BusinessListFragment extends LoadDataFragment<BusinessListPresenter>
         implements BusinessListView {
 
     @Inject
     BusinessListAdapter businessListAdapter;
+
+    @BindView(R.id.business_list)
+    RecyclerView businessListView;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.business_list_fragment, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        businessListView.setAdapter(businessListAdapter);
+        businessListAdapter.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        businessListAdapter.onSaveInstanceState(outState);
+    }
 
     @Override
     public void renderBusinessList(List<BusinessModel> businessModels) {
@@ -41,5 +74,13 @@ public final class BusinessListFragment extends LoadDataFragment<BusinessListPre
     @Override
     public void viewBusinessDetails(BusinessModel businessModel) {
         // TODO (IMPLEMENTATION) - viewBusinessDetails
+    }
+
+    public void showBusinessesAroundLocation(String location) {
+        presenter.onListBusinessesAroundLocation(location);
+    }
+
+    public void showBusinessesAroundCurrentLocation() {
+        presenter.onListBusinessesAroundCurrentLocation();
     }
 }

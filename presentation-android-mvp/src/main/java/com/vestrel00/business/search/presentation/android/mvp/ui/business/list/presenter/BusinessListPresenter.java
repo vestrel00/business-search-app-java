@@ -26,7 +26,7 @@ public interface BusinessListPresenter extends Presenter {
 
     void onListBusinessesAroundLocation(String location);
 
-    void onListBusinessesAroundCurrentCoordinates();
+    void onListBusinessesAroundCurrentLocation();
 
     void onBusinessClicked(BusinessModel businessModel);
 }
