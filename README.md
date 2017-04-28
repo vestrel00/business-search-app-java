@@ -19,7 +19,7 @@ The purpose of this project is to demonstrate how to build Android applications 
 using clean architecture principles, Java best practices, and design patterns. It is less about the 
 application content and more about the code and architecture. 
 
-The goal is to showcase Java object oriented programming in Java and Android, including:
+The goal is to showcase object oriented programming in Java, Java Swing, and Android, including:
 
 - Reactive programming with [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) and 
   [RxAndroid 2](https://github.com/ReactiveX/RxAndroid/tree/2.x)
@@ -34,12 +34,13 @@ The goal is to showcase Java object oriented programming in Java and Android, in
   [Mockito 2](https://github.com/mockito/mockito/tree/release/2.x), 
   [Robolectric 3](https://github.com/robolectric/robolectric/tree/robolectric-3.3.2), and
   [Espresso 2](https://google.github.io/android-testing-support-library/docs/espresso/index.html)
-- [Clean architecture](https://github.com/android10/Android-CleanArchitecture)
-- [Model-View-Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP) pattern
-- [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (MVVM) pattern
-- [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
-- Mobile application development [Android](https://developer.android.com/training/index.html)
-- Desktop application development using [Java Swing](http://docs.oracle.com/javase/tutorial/uiswing/)
+- Writing code using [clean architecture](https://github.com/android10/Android-CleanArchitecture) principles,
+  [Model-View-Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP) pattern, and
+  [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (MVVM) pattern
+- Project management with the [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
+- Continuous Integration with [Travis CI](https://travis-ci.org/)
+- Mobile application development with [Android](https://developer.android.com/training/index.html)
+- Desktop application development with [Java Swing](http://docs.oracle.com/javase/tutorial/uiswing/)
 - Java best practices and design patterns
 - Creating readable, focused, and well-documented pull requests
 
