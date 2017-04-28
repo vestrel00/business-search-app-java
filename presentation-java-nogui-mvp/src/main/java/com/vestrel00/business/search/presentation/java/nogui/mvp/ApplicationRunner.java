@@ -14,23 +14,18 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.common;
-
-import java.util.Collections;
-import java.util.List;
-
-import dagger.Module;
-import dagger.Provides;
+package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
 /**
- * Provides Android common dependencies.
+ * Runs the application.
  */
-@Module
-public abstract class AndroidCommonModule {
+public final class ApplicationRunner {
 
-    @Provides
-    static List emptyList() {
-        return Collections.emptyList();
+    private ApplicationRunner() {
     }
 
+    public static void main(String[] args) {
+        Application app = DaggerApplicationComponent.create().application();
+        app.run();
+    }
 }

@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.common;
+package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import java.util.Collections;
-import java.util.List;
+import com.vestrel00.business.search.presentation.java.PresentationJavaModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.display.DisplayModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.ExecutorModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.UIModule;
 
 import dagger.Module;
-import dagger.Provides;
 
 /**
- * Provides Android common dependencies.
+ * Provides application dependencies.
  */
-@Module
-public abstract class AndroidCommonModule {
-
-    @Provides
-    static List emptyList() {
-        return Collections.emptyList();
-    }
-
+@Module(includes = {
+        PresentationJavaModule.class,
+        DisplayModule.class,
+        ExecutorModule.class,
+        UIModule.class
+})
+abstract class ApplicationModule {
 }

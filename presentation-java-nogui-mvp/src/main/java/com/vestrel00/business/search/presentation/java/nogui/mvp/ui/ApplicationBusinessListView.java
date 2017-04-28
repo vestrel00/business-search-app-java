@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.common;
-
-import java.util.Collections;
-import java.util.List;
-
-import dagger.Module;
-import dagger.Provides;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui;
 
 /**
- * Provides Android common dependencies.
+ * A view that displays a list of businesses.
  */
-@Module
-public abstract class AndroidCommonModule {
+public interface ApplicationBusinessListView extends ApplicationView {
 
-    @Provides
-    static List emptyList() {
-        return Collections.emptyList();
-    }
+    void showBusinessesAroundLocation();
 
+    void showBusinessesAroundCoordinates();
 }

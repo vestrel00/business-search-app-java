@@ -30,6 +30,9 @@ import dagger.Provides;
 @Module
 public abstract class JavaCommonModule {
 
+    /**
+     * The {@link Named#value()} for an empty list.
+     */
     public static final String EMPTY_LIST = "JavaCommonModule.emptyList";
 
     @Provides

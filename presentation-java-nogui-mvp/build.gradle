@@ -19,7 +19,7 @@ apply from: "$rootDir/config/java/application.gradle"
 version '1.0.0'
 
 // Required when running as an application: ./gradlew run
-mainClassName = "com.vestrel00.business.search.presentation.java.nogui.mvp.NoGuiApplicationRunner"
+mainClassName = "com.vestrel00.business.search.presentation.java.nogui.mvp.ApplicationRunner"
 
 jar {
     manifest {

@@ -17,44 +17,15 @@
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view;
 
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.presenter.BusinessDetailsPresenter;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * Shows business details.
  */
-@Singleton
-public final class BusinessDetailsView {
+public interface BusinessDetailsView {
 
-    private final BusinessDetailsPresenter presenter;
-    private final Display display;
+    void showBusiness(BusinessModel business);
 
-    @Inject
-    BusinessDetailsView(BusinessDetailsPresenter presenter, Display display) {
-        this.presenter = presenter;
-        this.display = display;
-    }
+    void showError(String error);
 
-    public void initialize() {
-        presenter.setView(this);
-    }
-
-    public void showBusinessDetails() {
-        presenter.showBusinessDetails();
-    }
-
-    public void showBusiness(BusinessModel business) {
-        display.showMessage(business.toString().replace(",", "\n"));
-    }
-
-    public void showError(String error) {
-        display.showError(error);
-    }
-
-    public String getBusinessId() {
-        return display.promptInput("Enter a business id:");
-    }
+    String getBusinessId();
 }

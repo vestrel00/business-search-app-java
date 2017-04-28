@@ -17,8 +17,8 @@
 package com.vestrel00.business.search.data.net;
 
 import com.vestrel00.business.search.data.net.auth.AuthRequestInterceptor;
-import com.vestrel00.business.search.data.net.auth.NetAuthModule;
-import com.vestrel00.business.search.data.net.cache.NetCacheModule;
+import com.vestrel00.business.search.data.net.auth.AuthModule;
+import com.vestrel00.business.search.data.net.cache.CacheModule;
 
 import javax.inject.Singleton;
 
@@ -29,8 +29,8 @@ import dagger.Provides;
  * Provides network dependencies.
  */
 @Module(includes = {
-        NetAuthModule.class,
-        NetCacheModule.class
+        AuthModule.class,
+        CacheModule.class
 })
 public abstract class NetModule {
 

@@ -36,10 +36,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public final class BusinessListPresenterTest extends AbstractJavaTestCase {
+public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
 
     @InjectMocks
-    private BusinessListPresenter testSubject;
+    private BusinessListPresenterImpl testSubject;
 
     @Mock
     private GetBusinessesAroundLocation getBusinessesAroundLocation;
@@ -62,7 +62,7 @@ public final class BusinessListPresenterTest extends AbstractJavaTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
-        testSubject.setView(view);
+        testSubject.onViewInitialized(view);
     }
 
     @SuppressWarnings("unchecked")
@@ -80,7 +80,7 @@ public final class BusinessListPresenterTest extends AbstractJavaTestCase {
         when(businessListObserverFactory.create(view)).thenReturn(observer);
 
         // WHEN
-        testSubject.showBusinessesAroundLocation();
+        testSubject.onShowBusinessesAroundLocation();
 
         // THEN
         verify(useCaseHandler).execute(getBusinessesAroundLocation, location, observer);
@@ -101,7 +101,7 @@ public final class BusinessListPresenterTest extends AbstractJavaTestCase {
         when(businessListObserverFactory.create(view)).thenReturn(observer);
 
         // WHEN
-        testSubject.showBusinessesAroundCoordinates();
+        testSubject.onShowBusinessesAroundCoordinates();
 
         // THEN
         verify(useCaseHandler).execute(getBusinessesAroundCoordinates, coordinates, observer);

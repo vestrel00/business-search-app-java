@@ -24,14 +24,14 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 /**
- * Injects no gui application dependencies.
+ * Injects application dependencies.
  */
 @Singleton
 @Component(modules = {
         DataModule.class,
         DomainModule.class,
-        NoGuiApplicationModule.class
+        ApplicationModule.class
 })
-interface NoGuiApplicationComponent {
-    NoGuiApplication application();
+interface ApplicationComponent {
+    Application application();
 }

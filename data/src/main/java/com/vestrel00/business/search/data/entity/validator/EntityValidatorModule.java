@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.data.entity.validator;
 
-
 import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;

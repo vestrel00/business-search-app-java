@@ -16,63 +16,10 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.presenter.OptionsPresenter;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import io.reactivex.Observable;
-
 /**
- * Shows the options.
+ * Shows the options and errors.
  */
-@Singleton
-public final class OptionsView {
+public interface OptionsView {
 
-    private static final String OPTIONS = "\nYou have the following options:\n"
-            + "l: list businesses around a location (address, city, state, zip, and/or country)\n"
-            + "c: list businesses around coordinates (latitude, longitude)\n"
-            + "s: show more business details\n"
-            + "q: quit\n";
-
-    private final OptionsPresenter presenter;
-    private final Display display;
-
-    @Inject
-    OptionsView(OptionsPresenter presenter, Display display) {
-        this.presenter = presenter;
-        this.display = display;
-    }
-
-    public void initialize() {
-        presenter.setView(this);
-    }
-
-    public Option chooseOption() {
-        return Observable.just(OPTIONS)
-                .map(display::promptInput)
-                .map(this::parseOption)
-                .map(presenter::handleOption)
-                .blockingSingle();
-    }
-
-    public void showError(String error) {
-        display.showError(error);
-    }
-
-    private Option parseOption(String option) {
-        switch (option.toLowerCase()) {
-            case "l":
-                return Option.SHOW_BUSINESSES_AROUND_LOCATION;
-            case "c":
-                return Option.SHOW_BUSINESSES_AROUND_COORDINATES;
-            case "s":
-                return Option.SHOW_BUSINESS_DETAILS;
-            case "q":
-                return Option.QUIT;
-            default:
-                return Option.UNKNOWN;
-        }
-    }
+    void showError(String error);
 }

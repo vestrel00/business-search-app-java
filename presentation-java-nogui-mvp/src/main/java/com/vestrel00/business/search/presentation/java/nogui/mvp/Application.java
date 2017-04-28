@@ -16,10 +16,10 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view.BusinessDetailsView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.Option;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.OptionsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationBusinessDetailsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationBusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationOption;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationOptionsView;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -28,15 +28,15 @@ import javax.inject.Singleton;
  * An application with no GUI. Communications are done through the command line (the UI).
  */
 @Singleton
-final class NoGuiApplication implements Runnable {
+final class Application implements Runnable {
 
-    private final OptionsView optionsView;
-    private final BusinessListView businessListView;
-    private final BusinessDetailsView businessDetailsView;
+    private final ApplicationOptionsView optionsView;
+    private final ApplicationBusinessListView businessListView;
+    private final ApplicationBusinessDetailsView businessDetailsView;
 
     @Inject
-    NoGuiApplication(OptionsView optionsView, BusinessListView businessListView,
-                     BusinessDetailsView businessDetailsView) {
+    Application(ApplicationOptionsView optionsView, ApplicationBusinessListView businessListView,
+                ApplicationBusinessDetailsView businessDetailsView) {
         this.optionsView = optionsView;
         this.businessListView = businessListView;
         this.businessDetailsView = businessDetailsView;
@@ -50,12 +50,12 @@ final class NoGuiApplication implements Runnable {
 
         boolean run = true;
         while (run) {
-            Option option = optionsView.chooseOption();
+            ApplicationOption option = optionsView.chooseOption();
             run = handleOption(option);
         }
     }
 
-    private boolean handleOption(Option option) {
+    private boolean handleOption(ApplicationOption option) {
         switch (option) {
             case SHOW_BUSINESSES_AROUND_LOCATION:
                 businessListView.showBusinessesAroundLocation();

@@ -14,24 +14,27 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.auth;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view;
 
-import com.vestrel00.business.search.data.net.DataServiceFactory;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationOptionsView;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
- * Provides network authentication dependencies.
+ * Provides options view dependencies.
  */
 @Module
-public abstract class NetAuthModule {
+public abstract class OptionsViewModule {
 
-    @Provides
+    @Binds
     @Singleton
-    static AuthTokenService authTokenService(DataServiceFactory dataServiceFactory) {
-        return dataServiceFactory.create(AuthTokenService.class);
-    }
+    abstract OptionsView optionsView(OptionsViewImpl optionsViewImpl);
+
+    @Binds
+    @Singleton
+    abstract ApplicationOptionsView applicationOptionsView(OptionsViewImpl optionsViewImpl);
+
 }

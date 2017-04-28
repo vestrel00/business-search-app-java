@@ -16,48 +16,16 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.presenter;
 
-import com.vestrel00.business.search.domain.executor.UseCaseHandler;
-import com.vestrel00.business.search.domain.interactor.GetBusinessWithId;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view.BusinessDetailsView;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import io.reactivex.annotations.NonNull;
 
 /**
  * Presents business details.
  */
-@Singleton
-public final class BusinessDetailsPresenter {
+public interface BusinessDetailsPresenter {
 
-    private final GetBusinessWithId getBusinessWithId;
-    private final BusinessDetailsObserverFactory businessDetailsObserverFactory;
-    private final UseCaseHandler useCaseHandler;
+    void onViewInitialized(@NonNull BusinessDetailsView view);
 
-    @NonNull
-    private BusinessDetailsView view;
-
-    @Inject
-    BusinessDetailsPresenter(GetBusinessWithId getBusinessWithId,
-                             BusinessDetailsObserverFactory businessDetailsObserverFactory,
-                             UseCaseHandler useCaseHandler) {
-        this.getBusinessWithId = getBusinessWithId;
-        this.businessDetailsObserverFactory = businessDetailsObserverFactory;
-        this.useCaseHandler = useCaseHandler;
-    }
-
-    public void setView(@NonNull BusinessDetailsView view) {
-        this.view = view;
-    }
-
-    public void showBusinessDetails() {
-        String businessId = view.getBusinessId();
-        showBusinessDetails(businessId);
-    }
-
-    private void showBusinessDetails(String businessId) {
-        BusinessDetailsObserver observer = businessDetailsObserverFactory.create(view);
-        useCaseHandler.execute(getBusinessWithId, businessId, observer);
-    }
+    void onShowBusinessDetails();
 }

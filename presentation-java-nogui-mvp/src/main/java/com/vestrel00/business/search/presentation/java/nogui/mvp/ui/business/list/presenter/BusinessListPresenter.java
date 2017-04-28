@@ -16,74 +16,18 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter;
 
-import com.vestrel00.business.search.domain.Coordinates;
-import com.vestrel00.business.search.domain.Location;
-import com.vestrel00.business.search.domain.executor.UseCaseHandler;
-import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundCoordinates;
-import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocation;
-import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
-import com.vestrel00.business.search.presentation.java.model.LocationModel;
-import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperHolder;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import io.reactivex.annotations.NonNull;
 
 /**
  * Presents the business list.
  */
-@Singleton
-public final class BusinessListPresenter {
+public interface BusinessListPresenter {
 
-    private final GetBusinessesAroundLocation getBusinessesAroundLocation;
-    private final GetBusinessesAroundCoordinates getBusinessesAroundCoordinates;
-    private final ModelMapperHolder modelMapperHolder;
-    private final BusinessListObserverFactory businessListObserverFactory;
-    private final UseCaseHandler useCaseHandler;
+    void onViewInitialized(@NonNull BusinessListView view);
 
-    @NonNull
-    private BusinessListView view;
+    void onShowBusinessesAroundLocation();
 
-    @Inject
-    BusinessListPresenter(GetBusinessesAroundLocation getBusinessesAroundLocation,
-                          GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
-                          ModelMapperHolder modelMapperHolder,
-                          BusinessListObserverFactory businessListObserverFactory,
-                          UseCaseHandler useCaseHandler) {
-        this.getBusinessesAroundLocation = getBusinessesAroundLocation;
-        this.getBusinessesAroundCoordinates = getBusinessesAroundCoordinates;
-        this.modelMapperHolder = modelMapperHolder;
-        this.businessListObserverFactory = businessListObserverFactory;
-        this.useCaseHandler = useCaseHandler;
-    }
-
-    public void setView(@NonNull BusinessListView view) {
-        this.view = view;
-    }
-
-    public void showBusinessesAroundLocation() {
-        LocationModel locationModel = view.getLocation();
-        showBusinessesAroundLocation(locationModel);
-    }
-
-    public void showBusinessesAroundCoordinates() {
-        CoordinatesModel coordinatesModel = view.getCoordinates();
-        showBusinessesAroundCoordinates(coordinatesModel);
-    }
-
-    private void showBusinessesAroundLocation(LocationModel locationModel) {
-        Location location = modelMapperHolder.locationModelMapper()
-                .map(locationModel);
-        BusinessListObserver observer = businessListObserverFactory.create(view);
-        useCaseHandler.execute(getBusinessesAroundLocation, location, observer);
-    }
-
-    private void showBusinessesAroundCoordinates(CoordinatesModel coordinatesModel) {
-        Coordinates coordinates = modelMapperHolder.coordinatesModelMapper()
-                .map(coordinatesModel);
-        BusinessListObserver observer = businessListObserverFactory.create(view);
-        useCaseHandler.execute(getBusinessesAroundCoordinates, coordinates, observer);
-    }
+    void onShowBusinessesAroundCoordinates();
 }

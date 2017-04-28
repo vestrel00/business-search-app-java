@@ -14,23 +14,24 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.common;
+package com.vestrel00.business.search.data.net.auth;
 
-import java.util.Collections;
-import java.util.List;
+import com.vestrel00.business.search.data.net.DataServiceFactory;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
 /**
- * Provides Android common dependencies.
+ * Provides network authentication dependencies.
  */
 @Module
-public abstract class AndroidCommonModule {
+public abstract class AuthModule {
 
     @Provides
-    static List emptyList() {
-        return Collections.emptyList();
+    @Singleton
+    static AuthTokenService authTokenService(DataServiceFactory dataServiceFactory) {
+        return dataServiceFactory.create(AuthTokenService.class);
     }
-
 }

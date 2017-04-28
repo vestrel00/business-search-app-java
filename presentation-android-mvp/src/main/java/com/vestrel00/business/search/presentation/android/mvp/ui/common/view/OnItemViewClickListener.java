@@ -21,6 +21,8 @@ import android.view.View;
 /**
  * A {@link View.OnClickListener} that invokes an {@link OnItemClickListener}'s
  * {@link OnItemClickListener#onItemClicked(Object)} {@link #onClick(View)}.
+ *
+ * @param <T> the type of the item that is clicked
  */
 public final class OnItemViewClickListener<T> implements View.OnClickListener {
 

@@ -17,9 +17,8 @@
 apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
 
 generateJavaMainJacocoTaskWithExcludes([
-        '**/config/DataConfigFactory.class',
+        '**/executor/BlockingExecutionThread.class',
         '**/executor/BlockingPostExecutionThread.class',
-        '**/executor/view/BlockingExecutionThread.class',
-        '**/options/view/Option.class',
-        '**/NoGuiApplicationRunner.class'
+        '**/ui/ApplicationOption.class',
+        '**/ApplicationRunner.class'
 ])

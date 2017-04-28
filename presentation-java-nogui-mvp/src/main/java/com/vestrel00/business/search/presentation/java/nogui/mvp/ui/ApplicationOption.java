@@ -14,23 +14,34 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.common;
-
-import java.util.Collections;
-import java.util.List;
-
-import dagger.Module;
-import dagger.Provides;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui;
 
 /**
- * Provides Android common dependencies.
+ * Contains options.
  */
-@Module
-public abstract class AndroidCommonModule {
+public enum ApplicationOption {
+    /**
+     * Option to show businesses around a location.
+     */
+    SHOW_BUSINESSES_AROUND_LOCATION,
 
-    @Provides
-    static List emptyList() {
-        return Collections.emptyList();
-    }
+    /**
+     * Option to show businesses around a given coordinates.
+     */
+    SHOW_BUSINESSES_AROUND_COORDINATES,
 
+    /**
+     * Option to show business details.
+     */
+    SHOW_BUSINESS_DETAILS,
+
+    /**
+     * Option to quit.
+     */
+    QUIT,
+
+    /**
+     * Unknown option.
+     */
+    UNKNOWN
 }

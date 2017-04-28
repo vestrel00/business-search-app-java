@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options;
 
-import com.vestrel00.business.search.presentation.java.PresentationJavaModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.display.DisplayModule;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.ExecutorModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.presenter.OptionsPresenterModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.OptionsViewModule;
 
 import dagger.Module;
 
 /**
- * Provides no gui application dependencies.
+ * Provides options dependencies.
  */
 @Module(includes = {
-        PresentationJavaModule.class,
-        DisplayModule.class,
-        ExecutorModule.class
+        OptionsPresenterModule.class,
+        OptionsViewModule.class
 })
-abstract class NoGuiApplicationModule {
+public abstract class OptionsModule {
 }

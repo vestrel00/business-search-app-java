@@ -14,28 +14,19 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.cache;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details;
 
-import com.vestrel00.business.search.data.config.DataConfig;
-
-import java.io.File;
-
-import javax.inject.Singleton;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.presenter.BusinessDetailsPresenterModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view.BusinessDetailsViewModule;
 
 import dagger.Module;
-import dagger.Provides;
-import okhttp3.Cache;
 
 /**
- * Provides network cache dependencies.
+ * Provides business details dependencies.
  */
-@Module
-public abstract class NetCacheModule {
-
-    @Provides
-    @Singleton
-    static Cache networkCache(DataConfig dataConfig) {
-        return new Cache(new File(dataConfig.cacheDir()),
-                dataConfig.cacheMaxSizeMb() * 1024 * 1024);
-    }
+@Module(includes = {
+        BusinessDetailsPresenterModule.class,
+        BusinessDetailsViewModule.class
+})
+public abstract class BusinessDetailsModule {
 }

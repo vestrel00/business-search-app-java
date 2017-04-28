@@ -14,34 +14,28 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view;
+package com.vestrel00.business.search.data.net.cache;
+
+import com.vestrel00.business.search.data.config.DataConfig;
+
+import java.io.File;
+
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
+import okhttp3.Cache;
 
 /**
- * Contains options.
+ * Provides network cache dependencies.
  */
-public enum Option {
-    /**
-     * Option to show businesses around a location.
-     */
-    SHOW_BUSINESSES_AROUND_LOCATION,
+@Module
+public abstract class CacheModule {
 
-    /**
-     * Option to show businesses around a given coordinates.
-     */
-    SHOW_BUSINESSES_AROUND_COORDINATES,
-
-    /**
-     * Option to show business details.
-     */
-    SHOW_BUSINESS_DETAILS,
-
-    /**
-     * Option to quit.
-     */
-    QUIT,
-
-    /**
-     * Unknown option.
-     */
-    UNKNOWN
+    @Provides
+    @Singleton
+    static Cache networkCache(DataConfig dataConfig) {
+        return new Cache(new File(dataConfig.cacheDir()),
+                dataConfig.cacheMaxSizeMb() * 1024 * 1024);
+    }
 }

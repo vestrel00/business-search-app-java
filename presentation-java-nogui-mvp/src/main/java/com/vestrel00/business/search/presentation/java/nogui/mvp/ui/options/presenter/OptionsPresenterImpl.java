@@ -16,17 +16,38 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.presenter;
 
+
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationOption;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.view.OptionsView;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.annotations.NonNull;
 
 /**
- * Presents the options.
+ * An implementatio of {@link OptionsPresenter}.
  */
-public interface OptionsPresenter {
+@Singleton
+final class OptionsPresenterImpl implements OptionsPresenter {
 
-    void onViewInitialized(@NonNull OptionsView view);
+    @NonNull
+    private OptionsView view;
 
-    ApplicationOption onHandleOption(ApplicationOption option);
+    @Inject
+    OptionsPresenterImpl() {
+    }
+
+    @Override
+    public void onViewInitialized(@NonNull OptionsView view) {
+        this.view = view;
+    }
+
+    @Override
+    public ApplicationOption onHandleOption(ApplicationOption option) {
+        if (option == ApplicationOption.UNKNOWN) {
+            view.showError("You must choose a valid option.");
+        }
+        return option;
+    }
 }

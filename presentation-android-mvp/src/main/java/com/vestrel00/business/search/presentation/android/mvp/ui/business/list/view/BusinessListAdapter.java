@@ -72,8 +72,8 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
         BusinessModel businessModel = businessModels.get(position);
         holder.nameTextView.setText(businessModel.name());
 
-        OnItemViewClickListener onItemViewClickListener =
-                onItemViewClickListenerFactory.create(onItemClickListener, businessModel);
+        OnItemViewClickListener onItemViewClickListener
+                = onItemViewClickListenerFactory.create(onItemClickListener, businessModel);
         holder.itemView.setOnClickListener(onItemViewClickListener);
     }
 

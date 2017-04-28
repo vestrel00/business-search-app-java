@@ -14,18 +14,12 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui;
 
 /**
- * Runs the application.
+ * A view that displays a business's details.
  */
-public final class NoGuiApplicationRunner {
+public interface ApplicationBusinessDetailsView extends ApplicationView {
 
-    private NoGuiApplicationRunner() {
-    }
-
-    public static void main(String[] args) {
-        NoGuiApplication app = DaggerNoGuiApplicationComponent.create().application();
-        app.run();
-    }
+    void showBusinessDetails();
 }
