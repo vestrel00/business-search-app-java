@@ -17,6 +17,7 @@
 package com.vestrel00.business.search.presentation.android.mvp;
 
 import com.vestrel00.business.search.presentation.android.PresentationAndroidModule;
+import com.vestrel00.business.search.presentation.android.mvp.ui.UIModule;
 
 import dagger.Module;
 import dagger.android.AndroidInjectionModule;
@@ -25,10 +26,9 @@ import dagger.android.AndroidInjectionModule;
  * Provides Android Application dependencies.
  */
 @Module(includes = {
-        PresentationAndroidModule.class,
         AndroidInjectionModule.class,
-}, subcomponents = {
-
+        PresentationAndroidModule.class,
+        UIModule.class
 })
 abstract class AndroidApplicationModule {
 }

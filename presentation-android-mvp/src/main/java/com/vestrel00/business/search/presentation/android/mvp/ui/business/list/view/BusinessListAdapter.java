@@ -28,14 +28,12 @@ import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemViewClickListener;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemViewClickListenerFactory;
-import com.vestrel00.business.search.presentation.java.common.JavaCommonModule;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * A view adapter for a collection of businessModels that binds {@link BusinessModel} to a
@@ -53,7 +51,7 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     private final LayoutInflaterFactory layoutInflaterFactory;
 
     @Inject
-    BusinessListAdapter(@Named(JavaCommonModule.EMPTY_LIST) List<BusinessModel> businessModels,
+    BusinessListAdapter(List<BusinessModel> businessModels,
                         BusinessListItemViewHolderFactory itemViewHolderFactory,
                         BusinessListItemClickListener onItemClickListener,
                         OnItemViewClickListenerFactory onItemViewClickListenerFactory,

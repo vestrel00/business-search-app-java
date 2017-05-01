@@ -19,6 +19,8 @@ package com.vestrel00.business.search.presentation.android.mvp;
 import com.vestrel00.business.search.data.DataModule;
 import com.vestrel00.business.search.domain.DomainModule;
 
+import javax.inject.Singleton;
+
 import dagger.Component;
 
 /**
@@ -29,5 +31,7 @@ import dagger.Component;
         DomainModule.class,
         AndroidApplicationModule.class,
 })
+@Singleton
 interface AndroidApplicationComponent {
+    void inject(AndroidApplication androidApplication);
 }

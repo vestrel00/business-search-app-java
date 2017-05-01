@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.options.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +24,8 @@ import android.widget.EditText;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseFragment;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
@@ -38,13 +39,8 @@ public class BusinessListOptionsFragment extends BaseFragment {
     @BindView(R.id.location_field)
     EditText locationField;
 
-    private BusinessListOptionsFragmentListener listener;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        listener = (BusinessListOptionsFragmentListener) context;
-    }
+    @Inject
+    BusinessListOptionsFragmentListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

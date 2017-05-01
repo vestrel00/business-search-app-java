@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android;
 
-import com.vestrel00.business.search.presentation.android.common.AndroidCommonModule;
 import com.vestrel00.business.search.presentation.android.executor.ExecutorModule;
 import com.vestrel00.business.search.presentation.java.PresentationJavaModule;
 
@@ -27,7 +26,6 @@ import dagger.Module;
  */
 @Module(includes = {
         PresentationJavaModule.class,
-        AndroidCommonModule.class,
         ExecutorModule.class
 })
 public abstract class PresentationAndroidModule {

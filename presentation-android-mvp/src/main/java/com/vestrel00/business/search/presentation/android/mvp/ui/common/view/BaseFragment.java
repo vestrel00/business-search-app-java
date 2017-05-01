@@ -17,12 +17,14 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -44,6 +46,17 @@ import dagger.android.HasFragmentInjector;
  * This fragment handles view bind and unbinding.
  */
 public abstract class BaseFragment extends Fragment implements HasFragmentInjector {
+
+    @Inject
+    protected Context activityContext;
+
+    @Inject
+    @Named(BaseActivityModule.ACTIVITY_FRAGMENT_MANAGER)
+    protected FragmentManager activityFragmentManager;
+
+    @Inject
+    @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
+    protected FragmentManager childFragmentManager;
 
     @Inject
     DispatchingAndroidInjector<Fragment> childFragmentInjector;

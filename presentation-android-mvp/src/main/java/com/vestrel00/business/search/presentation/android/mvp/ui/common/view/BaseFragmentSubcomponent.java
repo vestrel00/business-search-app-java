@@ -14,28 +14,22 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.executor;
+package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import com.vestrel00.business.search.domain.executor.ExecutionThread;
+import android.app.FragmentManager;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 
-import io.reactivex.Scheduler;
-import io.reactivex.schedulers.Schedulers;
+import javax.inject.Named;
 
 /**
- * An {@link ExecutionThread} that provides the {@link Schedulers#io()} scheduler.
+ * Injects base fragment dependencies. All fragment subcomponents must extend this interface and
+ * all fragment modules must include {@link BaseFragmentModule}.
  */
-@Singleton
-final class IOExecutionThread implements ExecutionThread {
+// @Subcomponent(modules = BaseFragmentModule.class) - unused
+@PerFragment
+public interface BaseFragmentSubcomponent {
 
-    @Inject
-    IOExecutionThread() {
-    }
-
-    @Override
-    public Scheduler scheduler() {
-        return Schedulers.io();
-    }
+    @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
+    FragmentManager childFragmentManager();
 }

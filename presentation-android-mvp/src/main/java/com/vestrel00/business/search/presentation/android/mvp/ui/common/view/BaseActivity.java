@@ -25,6 +25,7 @@ import android.support.annotation.Nullable;
 import com.vestrel00.business.search.presentation.android.mvp.navigation.Navigator;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
@@ -46,6 +47,7 @@ public abstract class BaseActivity extends Activity implements HasFragmentInject
     protected Navigator navigator;
 
     @Inject
+    @Named(BaseActivityModule.ACTIVITY_FRAGMENT_MANAGER)
     protected FragmentManager fragmentManager;
 
     @Inject

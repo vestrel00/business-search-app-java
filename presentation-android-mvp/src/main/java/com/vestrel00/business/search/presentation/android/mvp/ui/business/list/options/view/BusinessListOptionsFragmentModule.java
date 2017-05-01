@@ -14,28 +14,23 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.executor;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.options.view;
 
-import com.vestrel00.business.search.domain.executor.ExecutionThread;
+import android.app.Fragment;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseFragmentModule;
 
-import io.reactivex.Scheduler;
-import io.reactivex.schedulers.Schedulers;
+import dagger.Binds;
+import dagger.Module;
 
 /**
- * An {@link ExecutionThread} that provides the {@link Schedulers#io()} scheduler.
+ * Provides business list options fragment dependencies.
  */
-@Singleton
-final class IOExecutionThread implements ExecutionThread {
+@Module(includes = BaseFragmentModule.class)
+abstract class BusinessListOptionsFragmentModule {
 
-    @Inject
-    IOExecutionThread() {
-    }
-
-    @Override
-    public Scheduler scheduler() {
-        return Schedulers.io();
-    }
+    @Binds
+    @PerFragment
+    abstract Fragment fragment(BusinessListOptionsFragment businessListOptionsFragment);
 }

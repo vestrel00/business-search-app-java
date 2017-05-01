@@ -16,12 +16,21 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import com.vestrel00.business.search.presentation.java.model.BusinessModel;
+import com.vestrel00.business.search.presentation.android.inject.PerActivity;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivitySubcomponent;
+
+import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
 
 /**
- * Listener for {@link BusinessListFragment} events.
+ * Injects business list activity dependencies.
  */
-interface BusinessListFragmentListener {
+@Subcomponent(modules = BusinessListActivityModule.class)
+@PerActivity
+public interface BusinessListActivitySubcomponent extends BaseActivitySubcomponent,
+        AndroidInjector<BusinessListActivity> {
 
-    void onShowBusinessDetails(BusinessModel businessModel);
+    @Subcomponent.Builder
+    abstract class Builder extends AndroidInjector.Builder<BusinessListActivity> {
+    }
 }

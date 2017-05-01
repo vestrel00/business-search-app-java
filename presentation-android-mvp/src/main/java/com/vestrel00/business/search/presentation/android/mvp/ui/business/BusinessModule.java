@@ -14,28 +14,15 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.executor;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business;
 
-import com.vestrel00.business.search.domain.executor.ExecutionThread;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.BusinessListModule;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import io.reactivex.Scheduler;
-import io.reactivex.schedulers.Schedulers;
+import dagger.Module;
 
 /**
- * An {@link ExecutionThread} that provides the {@link Schedulers#io()} scheduler.
+ * Provides business dependencies.
  */
-@Singleton
-final class IOExecutionThread implements ExecutionThread {
-
-    @Inject
-    IOExecutionThread() {
-    }
-
-    @Override
-    public Scheduler scheduler() {
-        return Schedulers.io();
-    }
+@Module(includes = BusinessListModule.class)
+public abstract class BusinessModule {
 }

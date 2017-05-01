@@ -14,31 +14,15 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.common;
+package com.vestrel00.business.search.presentation.android.mvp.ui;
 
-import java.util.Collections;
-import java.util.List;
-
-import javax.inject.Named;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.BusinessModule;
 
 import dagger.Module;
-import dagger.Provides;
 
 /**
- * Provides Java common dependencies.
+ * Provides ui dependencies.
  */
-@Module
-public abstract class JavaCommonModule {
-
-    /**
-     * The {@link Named#value()} for an empty list.
-     */
-    public static final String EMPTY_LIST = "JavaCommonModule.emptyList";
-
-    @Provides
-    @Named(EMPTY_LIST)
-    static List emptyList() {
-        return Collections.emptyList();
-    }
-
+@Module(includes = BusinessModule.class)
+public abstract class UIModule {
 }

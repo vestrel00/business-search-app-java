@@ -25,7 +25,13 @@ android {
 }
 
 dependencies {
+    def presentationAndroidDependencies = rootProject.ext.presentationAndroidDependencies
     def presentationAndroidDebugDependencies = rootProject.ext.presentationAndroidDebugDependencies
+
+    annotationProcessor presentationAndroidDependencies.daggerCompiler
+    annotationProcessor presentationAndroidDependencies.daggerAndroidProcessor
+    annotationProcessor presentationAndroidDependencies.autoValue
+    annotationProcessor presentationAndroidDependencies.butterKnifeAnnotationProcessor
 
     compile project(':presentation-android')
 

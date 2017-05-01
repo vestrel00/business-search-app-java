@@ -37,7 +37,7 @@ public final class BusinessListActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.business_list_activity);
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState == null) {
             addFragment(R.id.options_container, new BusinessListOptionsFragment());
             addFragment(R.id.content_container, new BusinessListFragment());
         }

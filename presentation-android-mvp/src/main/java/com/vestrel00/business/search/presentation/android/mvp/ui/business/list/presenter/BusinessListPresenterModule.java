@@ -14,23 +14,21 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.common;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter;
 
-import java.util.Collections;
-import java.util.List;
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
- * Provides Android common dependencies.
+ * Provides business list presenter dependencies.
  */
 @Module
-public abstract class AndroidCommonModule {
+public abstract class BusinessListPresenterModule {
 
-    @Provides
-    static List emptyList() {
-        return Collections.emptyList();
-    }
-
+    @Binds
+    @PerFragment
+    abstract BusinessListPresenter
+    businessListPresenter(BusinessListPresenterImpl businessListPresenterImpl);
 }
