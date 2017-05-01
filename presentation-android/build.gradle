@@ -32,6 +32,10 @@ dependencies {
     annotationProcessor presentationAndroidDependencies.autoValue
     annotationProcessor presentationAndroidDependencies.butterKnifeAnnotationProcessor
 
+    // FIXME (GRADLE DEPENDENCY) - Update to api, implementation, compileOnly, and runtimeOnly configurations
+    // These are the same configurations provided by the java-library plugin starting at Gradle 3.4
+    // See http://tools.android.com/tech-docs/new-build-system/2-5-alpha-gradle-plugin/trying-gradle-plugin-2-5#TOC-New-dependency-configurations
+
     compile project(':presentation-java')
 
     compile presentationAndroidDependencies.rxJava
