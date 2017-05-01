@@ -22,8 +22,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
-
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
@@ -35,7 +33,7 @@ import dagger.android.HasFragmentInjector;
 
 /**
  * Abstract Fragment for all Fragments to extend. This contains some boilerplate dependency
- * injection code and {@link Presenter} lifecycle invocations.
+ * injection code.
  * <p>
  * <b>DEPENDENCY INJECTION</b>
  * We could extend {@link dagger.android.DaggerFragment} so we can get the boilerplate
@@ -44,14 +42,8 @@ import dagger.android.HasFragmentInjector;
  * <p>
  * <b>VIEW BINDING</b>
  * This fragment handles view bind and unbinding.
- *
- * @param <T> the type of the {@link Presenter}.
  */
-public abstract class BaseFragment<T extends Presenter> extends Fragment
-        implements MVPView, HasFragmentInjector {
-
-    @Inject
-    protected T presenter;
+public abstract class BaseFragment extends Fragment implements HasFragmentInjector {
 
     @Inject
     DispatchingAndroidInjector<Fragment> childFragmentInjector;
@@ -68,26 +60,12 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewUnbinder = ButterKnife.bind(this, view);
-        presenter.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        presenter.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        presenter.onPause();
     }
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
-        presenter.onEnd();
         viewUnbinder.unbind();
+        super.onDestroyView();
     }
 
     @Override

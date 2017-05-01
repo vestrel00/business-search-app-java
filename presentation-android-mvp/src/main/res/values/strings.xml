@@ -20,9 +20,10 @@
 
     <!-- literals -->
     <string name="click_to_retry">Click to retry</string>
-
-    <!-- actions -->
-    <string name="action_search">Search</string>
+    <string name="search">Search</string>
+    <string name="use_current_location">Use current location</string>
+    <string name="list_view">List View</string>
+    <string name="map_view">Map View</string>
 
     <!-- hints -->
     <string name="hint_location">Address city state, and/or zip</string>

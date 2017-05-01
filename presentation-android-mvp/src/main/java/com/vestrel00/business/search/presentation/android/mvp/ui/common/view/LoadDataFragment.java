@@ -27,7 +27,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * An abstract {@link BaseFragment} that implements {@link LoadDataView}.
+ * An abstract {@link BaseViewFragment} that implements {@link LoadDataView}.
  * <p>
  * This fragment assumes that the following Android views with the given ids exist in the view
  * returned in onCreateView:
@@ -39,7 +39,7 @@ import butterknife.OnClick;
  *
  * @param <T> the type of the {@link Presenter}.
  */
-public abstract class LoadDataFragment<T extends Presenter> extends BaseFragment<T>
+public abstract class LoadDataFragment<T extends Presenter> extends BaseViewFragment<T>
         implements LoadDataView {
 
     @BindView(R.id.loading_indicator)

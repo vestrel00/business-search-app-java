@@ -14,22 +14,18 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.navigation;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.options.view;
 
 /**
- * Provides methods to navigate to the different Activities in the application.
+ * Listener for {@link BusinessListOptionsFragment} UI events.
  */
-@Singleton
-public final class Navigator {
+public interface BusinessListOptionsFragmentListener {
 
-    @Inject
-    Navigator() {
-    }
+    void onSearchAroundLocationClicked(String location);
 
-    public void toBusinessDetails(String businessId) {
-        // TODO (IMPLEMENTATION) - toBusinessDetails(String businessId)
-    }
+    void onSearchAroundCurrentLocationClicked();
+
+    void onShowListView();
+
+    void onShowMapView();
 }

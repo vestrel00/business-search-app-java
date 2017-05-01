@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.navigation;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 /**
- * Provides methods to navigate to the different Activities in the application.
+ * Listener for {@link BusinessListFragment} events.
  */
-@Singleton
-public final class Navigator {
+public interface BusinessListFragmentListener {
 
-    @Inject
-    Navigator() {
-    }
-
-    public void toBusinessDetails(String businessId) {
-        // TODO (IMPLEMENTATION) - toBusinessDetails(String businessId)
-    }
+    void onShowBusinessDetails(BusinessModel businessModel);
 }

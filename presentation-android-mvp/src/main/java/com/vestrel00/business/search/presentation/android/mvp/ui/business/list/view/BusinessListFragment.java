@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -47,6 +48,14 @@ public final class BusinessListFragment extends LoadDataFragment<BusinessListPre
     @BindView(R.id.business_list)
     RecyclerView businessListView;
 
+    private BusinessListFragmentListener listener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (BusinessListFragmentListener) context;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,7 +82,7 @@ public final class BusinessListFragment extends LoadDataFragment<BusinessListPre
 
     @Override
     public void viewBusinessDetails(BusinessModel businessModel) {
-        // TODO (IMPLEMENTATION) - viewBusinessDetails
+        listener.onShowBusinessDetails(businessModel);
     }
 
     public void showBusinessesAroundLocation(String location) {

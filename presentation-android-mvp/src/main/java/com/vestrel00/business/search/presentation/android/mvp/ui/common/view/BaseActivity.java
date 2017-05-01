@@ -18,8 +18,11 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
+import com.vestrel00.business.search.presentation.android.mvp.navigation.Navigator;
 
 import javax.inject.Inject;
 
@@ -30,7 +33,7 @@ import dagger.android.HasFragmentInjector;
 
 /**
  * Abstract Activity for all Activities to extend. This contains some boilerplate dependency
- * injection code.
+ * injection code, the {@link Navigator}, and the {@link FragmentManager}.
  * <p>
  * <b>DEPENDENCY INJECTION</b>
  * We could extend {@link dagger.android.DaggerActivity} so we can get the boilerplate
@@ -38,6 +41,12 @@ import dagger.android.HasFragmentInjector;
  * so that we have to option to inherit from something else later on if needed.
  */
 public abstract class BaseActivity extends Activity implements HasFragmentInjector {
+
+    @Inject
+    protected Navigator navigator;
+
+    @Inject
+    protected FragmentManager fragmentManager;
 
     @Inject
     DispatchingAndroidInjector<Fragment> fragmentInjector;
@@ -54,7 +63,7 @@ public abstract class BaseActivity extends Activity implements HasFragmentInject
     }
 
     protected void addFragment(int containerViewId, Fragment fragment) {
-        getFragmentManager().beginTransaction()
+        fragmentManager.beginTransaction()
                 .add(containerViewId, fragment)
                 .commit();
     }
