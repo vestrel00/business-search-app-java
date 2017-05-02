@@ -30,6 +30,9 @@ import dagger.android.AndroidInjector;
 public interface BusinessListFragmentSubcomponent extends BaseFragmentSubcomponent,
         AndroidInjector<BusinessListFragment> {
 
+    /**
+     * The builder for this subcomponent.
+     */
     @Subcomponent.Builder
     abstract class Builder extends AndroidInjector.Builder<BusinessListFragment> {
     }
