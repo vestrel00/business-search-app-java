@@ -26,7 +26,7 @@ import io.reactivex.Single;
 /**
  * Use case for getting a businesses with a given id.
  */
-public final class GetBusinessWithId implements SingleUseCase<String, Business> {
+public final class GetBusinessWithId implements UseCase<String, Business> {
 
     private final BusinessRepository businessRepository;
 

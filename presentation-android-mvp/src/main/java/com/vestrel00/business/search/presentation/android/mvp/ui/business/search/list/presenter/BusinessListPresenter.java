@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.presenter;
 
-import com.vestrel00.business.search.presentation.android.PresentationAndroidModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.UIModule;
-
-import dagger.Module;
-import dagger.android.AndroidInjectionModule;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 /**
- * Provides Android Application dependencies.
+ * A {@link Presenter} that retrieves and displays a list of businesses.
  */
-@Module(includes = {
-        AndroidInjectionModule.class,
-        AndroidApplicationInjectorFactoryModule.class,
-        PresentationAndroidModule.class,
-        UIModule.class
-})
-abstract class AndroidApplicationModule {
+public interface BusinessListPresenter extends Presenter {
+
+    void onListBusinessesAroundLocation(String location);
+
+    void onListBusinessesAroundCurrentLocation();
+
+    void onRetryPreviousAction();
+
+    void onBusinessClicked(BusinessModel businessModel);
 }

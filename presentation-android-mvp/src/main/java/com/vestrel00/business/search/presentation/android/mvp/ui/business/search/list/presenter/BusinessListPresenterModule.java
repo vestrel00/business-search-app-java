@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.presenter;
 
-import com.vestrel00.business.search.presentation.android.PresentationAndroidModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.UIModule;
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.android.AndroidInjectionModule;
 
 /**
- * Provides Android Application dependencies.
+ * Provides business list presenter dependencies.
  */
-@Module(includes = {
-        AndroidInjectionModule.class,
-        AndroidApplicationInjectorFactoryModule.class,
-        PresentationAndroidModule.class,
-        UIModule.class
-})
-abstract class AndroidApplicationModule {
+@Module
+public abstract class BusinessListPresenterModule {
+
+    @Binds
+    @PerFragment
+    abstract BusinessListPresenter
+    businessListPresenter(BusinessListPresenterImpl businessListPresenterImpl);
 }

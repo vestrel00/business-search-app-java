@@ -16,13 +16,13 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.BusinessListModule;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.BusinessSearchActivitySubcomponent;
 
 import dagger.Module;
 
 /**
  * Provides business dependencies.
  */
-@Module(includes = BusinessListModule.class)
+@Module(subcomponents = BusinessSearchActivitySubcomponent.class)
 public abstract class BusinessModule {
 }

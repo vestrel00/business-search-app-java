@@ -14,6 +14,7 @@
   ~ limitations under the License.
   -->
 <resources>
+    <item name="content_pane" type="id" />
     <item name="loading_indicator" type="id" />
     <item name="retry_button" type="id" />
 </resources>

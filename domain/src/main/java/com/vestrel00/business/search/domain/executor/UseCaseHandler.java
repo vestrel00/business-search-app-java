@@ -16,14 +16,12 @@
 
 package com.vestrel00.business.search.domain.executor;
 
-import com.vestrel00.business.search.domain.interactor.ObservableUseCase;
-import com.vestrel00.business.search.domain.interactor.SingleUseCase;
+import com.vestrel00.business.search.domain.interactor.UseCase;
 
 import javax.inject.Inject;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
 
 /**
@@ -38,6 +36,9 @@ public final class UseCaseHandler {
     private final PostExecutionThread postExecutionThread;
     private final CompositeDisposable disposables;
 
+    private UseCase previousUseCase;
+    private Object previousUseCaseParams;
+
     @Inject
     UseCaseHandler(ExecutionThread executionThread,
                    PostExecutionThread postExecutionThread,
@@ -47,8 +48,9 @@ public final class UseCaseHandler {
         this.disposables = disposables;
     }
 
-    public <K, V> void execute(SingleUseCase<K, V> useCase, K params,
+    public <K, V> void execute(UseCase<K, V> useCase, K params,
                                DisposableSingleObserver<V> observer) {
+        setLastUseCase(useCase, params);
         Disposable disposable = useCase.execute(params)
                 .subscribeOn(executionThread.scheduler())
                 .observeOn(postExecutionThread.scheduler())
@@ -56,17 +58,19 @@ public final class UseCaseHandler {
         disposables.add(disposable);
     }
 
-    public <K, V> void execute(ObservableUseCase<K, V> useCase, K params,
-                               DisposableObserver<V> observer) {
-        Disposable disposable = useCase.execute(params)
-                .subscribeOn(executionThread.scheduler())
-                .observeOn(postExecutionThread.scheduler())
-                .subscribeWith(observer);
-        disposables.add(disposable);
+    public void executePreviousUseCase(DisposableSingleObserver observer) {
+        if (previousUseCase != null) {
+            execute(previousUseCase, previousUseCaseParams, observer);
+        }
     }
 
     public void clear() {
         // clear only and not dispose the composite to enable composite reuse
         disposables.clear();
+    }
+
+    private void setLastUseCase(UseCase previousUseCase, Object previousUseCaseParams) {
+        this.previousUseCase = previousUseCase;
+        this.previousUseCaseParams = previousUseCaseParams;
     }
 }

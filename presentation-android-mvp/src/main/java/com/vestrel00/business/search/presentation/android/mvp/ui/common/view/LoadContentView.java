@@ -14,22 +14,28 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import com.vestrel00.business.search.presentation.android.PresentationAndroidModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.UIModule;
-
-import dagger.Module;
-import dagger.android.AndroidInjectionModule;
+import android.support.annotation.StringRes;
 
 /**
- * Provides Android Application dependencies.
+ * A {@link MVPView} that loads content.
  */
-@Module(includes = {
-        AndroidInjectionModule.class,
-        AndroidApplicationInjectorFactoryModule.class,
-        PresentationAndroidModule.class,
-        UIModule.class
-})
-abstract class AndroidApplicationModule {
+public interface LoadContentView extends MVPView {
+
+    void showContent();
+
+    void hideContent();
+
+    void showLoading();
+
+    void hideLoading();
+
+    void showRetry();
+
+    void hideRetry();
+
+    void showError(@StringRes int messageRes);
+
+    void showError(String message);
 }

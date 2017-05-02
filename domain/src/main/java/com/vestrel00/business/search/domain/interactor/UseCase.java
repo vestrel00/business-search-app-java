@@ -16,14 +16,16 @@
 
 package com.vestrel00.business.search.domain.interactor;
 
+import io.reactivex.Single;
+
 /**
  * Use cases are interactors in terms of "clean architecture", which encapsulate a focused unit of
  * work. These do not, by themselves, determine where (what thread) the work will be done.
  *
  * @param <K> the type of the input passed as a parameter to {@link #execute(K)}
- * @param <V> the type {@link #execute(V)} returns. E.G. Single, Observable, etc
+ * @param <V> the type of the item emmited by the single returned by {@link #execute(V)}
  */
 public interface UseCase<K, V> {
 
-    V execute(K params);
+    Single<V> execute(K params);
 }

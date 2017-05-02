@@ -29,7 +29,7 @@ import io.reactivex.Single;
 /**
  * Use case for getting businesses around the given location.
  */
-public final class GetBusinessesAroundLocation implements SingleUseCase<Location, List<Business>> {
+public final class GetBusinessesAroundLocation implements UseCase<Location, List<Business>> {
 
     private final BusinessRepository businessRepository;
 

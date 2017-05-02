@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view;
 
-import com.vestrel00.business.search.presentation.android.PresentationAndroidModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.UIModule;
-
-import dagger.Module;
-import dagger.android.AndroidInjectionModule;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 /**
- * Provides Android Application dependencies.
+ * Listener for {@link BusinessListFragment} events.
  */
-@Module(includes = {
-        AndroidInjectionModule.class,
-        AndroidApplicationInjectorFactoryModule.class,
-        PresentationAndroidModule.class,
-        UIModule.class
-})
-abstract class AndroidApplicationModule {
+public interface BusinessListFragmentListener {
+
+    void onShowBusinessDetails(BusinessModel businessModel);
 }
