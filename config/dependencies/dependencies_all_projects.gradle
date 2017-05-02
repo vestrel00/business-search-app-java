@@ -34,7 +34,7 @@ ext {
     retrofitVersion = '2.2.0'
     jacksonVersion = '2.8.8'
 
-    // Android
+    // Android Build
     androidBuildToolsVersion = "25.0.2"
     androidMinSdkVersion = 21
     androidTargetSdkVersion = 25
