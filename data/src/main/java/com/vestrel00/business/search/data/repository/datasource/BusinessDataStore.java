@@ -46,7 +46,7 @@ public interface BusinessDataStore {
 
     /**
      * @param businessId the business id
-     * @return an observable of a business
+     * @return an observable of 0 or 1 business
      */
     Observable<BusinessEntity> withId(String businessId);
 }

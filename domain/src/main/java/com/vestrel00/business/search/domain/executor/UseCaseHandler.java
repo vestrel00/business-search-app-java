@@ -20,9 +20,10 @@ import com.vestrel00.business.search.domain.interactor.UseCase;
 
 import javax.inject.Inject;
 
+import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableSingleObserver;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Provides default handling of use cases.
@@ -36,7 +37,10 @@ public final class UseCaseHandler {
     private final PostExecutionThread postExecutionThread;
     private final CompositeDisposable disposables;
 
+    @Nullable
     private UseCase previousUseCase;
+
+    @Nullable
     private Object previousUseCaseParams;
 
     @Inject
@@ -48,8 +52,8 @@ public final class UseCaseHandler {
         this.disposables = disposables;
     }
 
-    public <K, V> void execute(UseCase<K, V> useCase, K params,
-                               DisposableSingleObserver<V> observer) {
+    public <K, V> void execute(UseCase<K, V> useCase, @Nullable K params,
+                               DisposableObserver<V> observer) {
         setLastUseCase(useCase, params);
         Disposable disposable = useCase.execute(params)
                 .subscribeOn(executionThread.scheduler())
@@ -58,7 +62,11 @@ public final class UseCaseHandler {
         disposables.add(disposable);
     }
 
-    public void executePreviousUseCase(DisposableSingleObserver observer) {
+    public <K, V> void execute(UseCase<K, V> useCase, DisposableObserver<V> observer) {
+        execute(useCase, null, observer);
+    }
+
+    public void executePreviousUseCase(DisposableObserver observer) {
         if (previousUseCase != null) {
             execute(previousUseCase, previousUseCaseParams, observer);
         }
@@ -69,7 +77,7 @@ public final class UseCaseHandler {
         disposables.clear();
     }
 
-    private void setLastUseCase(UseCase previousUseCase, Object previousUseCaseParams) {
+    private void setLastUseCase(UseCase previousUseCase, @Nullable Object previousUseCaseParams) {
         this.previousUseCase = previousUseCase;
         this.previousUseCaseParams = previousUseCaseParams;
     }

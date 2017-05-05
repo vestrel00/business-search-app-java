@@ -26,17 +26,24 @@ import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapper;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperHolder;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter.BusinessObserver;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter.BusinessObserverFactory;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
 
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import java.util.Locale;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
+
+    private static final String SHOW_BUSINESSES_AROUND_MESSAGE
+            = "\nShowing businesses around %s\n";
 
     @InjectMocks
     private BusinessListPresenterImpl testSubject;
@@ -51,7 +58,7 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
     private ModelMapperHolder modelMapperHolder;
 
     @Mock
-    private BusinessListObserverFactory businessListObserverFactory;
+    private BusinessObserverFactory businessObserverFactory;
 
     @Mock
     private UseCaseHandler useCaseHandler;
@@ -65,19 +72,12 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
         testSubject.onViewInitialized(view);
     }
 
-    @SuppressWarnings("unchecked")
     @Test
-    public void showBusinessesAroundLocation_executesGetBusinessesAroundLocationUseCase() throws Exception {
+    public void onShowBusinessesAroundLocation_executesGetBusinessesAroundLocationUseCase() throws Exception {
         // GIVEN
-        LocationModel locationModel = mock(LocationModel.class);
-        ModelMapper<LocationModel, Location> locationModelMapper = mock(ModelMapper.class);
         Location location = mock(Location.class);
-        BusinessListObserver observer = mock(BusinessListObserver.class);
-
-        when(view.getLocation()).thenReturn(locationModel);
-        when(modelMapperHolder.locationModelMapper()).thenReturn(locationModelMapper);
-        when(locationModelMapper.map(locationModel)).thenReturn(location);
-        when(businessListObserverFactory.create(view)).thenReturn(observer);
+        BusinessObserver observer = mock(BusinessObserver.class);
+        given_onShowBusinessesAroundLocation(location, observer, "");
 
         // WHEN
         testSubject.onShowBusinessesAroundLocation();
@@ -86,24 +86,73 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
         verify(useCaseHandler).execute(getBusinessesAroundLocation, location, observer);
     }
 
-    @SuppressWarnings("unchecked")
+    @Test
+    public void onShowBusinessesAroundLocation_showsBusinessesAroundMessage() throws Exception {
+        // GIVEN
+        String locationModelString = "location";
+        given_onShowBusinessesAroundLocation(mock(Location.class), mock(BusinessObserver.class),
+                locationModelString);
+
+        // WHEN
+        testSubject.onShowBusinessesAroundLocation();
+
+        // THEN
+        String message = String.format(Locale.US, SHOW_BUSINESSES_AROUND_MESSAGE, locationModelString);
+        verify(view).showMessage(message);
+    }
+
     @Test
     public void showBusinessesAroundCoordinates_executesGetBusinessesAroundCoordinatesUseCase() throws Exception {
         // GIVEN
-        CoordinatesModel coordinatesModel = mock(CoordinatesModel.class);
-        ModelMapper<CoordinatesModel, Coordinates> coordinatesModelMapper = mock(ModelMapper.class);
         Coordinates coordinates = mock(Coordinates.class);
-        BusinessListObserver observer = mock(BusinessListObserver.class);
-
-        when(view.getCoordinates()).thenReturn(coordinatesModel);
-        when(modelMapperHolder.coordinatesModelMapper()).thenReturn(coordinatesModelMapper);
-        when(coordinatesModelMapper.map(coordinatesModel)).thenReturn(coordinates);
-        when(businessListObserverFactory.create(view)).thenReturn(observer);
+        BusinessObserver observer = mock(BusinessObserver.class);
+        given_onShowBusinessesAroundCoordinates(coordinates, observer, "");
 
         // WHEN
         testSubject.onShowBusinessesAroundCoordinates();
 
         // THEN
         verify(useCaseHandler).execute(getBusinessesAroundCoordinates, coordinates, observer);
+    }
+
+    @Test
+    public void onShowBusinessesAroundCoordinates_showsBusinessesAroundMessage() throws Exception {
+        // GIVEN
+        String coordinatesModelString = "coordinates";
+        given_onShowBusinessesAroundCoordinates(mock(Coordinates.class), mock(BusinessObserver.class),
+                coordinatesModelString);
+
+        // WHEN
+        testSubject.onShowBusinessesAroundCoordinates();
+
+        // THEN
+        String message = String.format(Locale.US, SHOW_BUSINESSES_AROUND_MESSAGE, coordinatesModelString);
+        verify(view).showMessage(message);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void given_onShowBusinessesAroundLocation(Location location, BusinessObserver observer,
+                                                      String locationModelString) {
+        LocationModel locationModel = mock(LocationModel.class);
+        ModelMapper<LocationModel, Location> locationModelMapper = mock(ModelMapper.class);
+
+        when(view.getLocation()).thenReturn(locationModel);
+        when(locationModel.toString()).thenReturn(locationModelString);
+        when(modelMapperHolder.locationModelMapper()).thenReturn(locationModelMapper);
+        when(locationModelMapper.map(locationModel)).thenReturn(location);
+        when(businessObserverFactory.create(view)).thenReturn(observer);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void given_onShowBusinessesAroundCoordinates(Coordinates coordinates, BusinessObserver observer,
+                                                         String coordinatesModelString) {
+        CoordinatesModel coordinatesModel = mock(CoordinatesModel.class);
+        ModelMapper<CoordinatesModel, Coordinates> coordinatesModelMapper = mock(ModelMapper.class);
+
+        when(view.getCoordinates()).thenReturn(coordinatesModel);
+        when(coordinatesModel.toString()).thenReturn(coordinatesModelString);
+        when(modelMapperHolder.coordinatesModelMapper()).thenReturn(coordinatesModelMapper);
+        when(coordinatesModelMapper.map(coordinatesModel)).thenReturn(coordinates);
+        when(businessObserverFactory.create(view)).thenReturn(observer);
     }
 }

@@ -19,19 +19,28 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.searc
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.LoadContentView;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
-import java.util.List;
-
 /**
  * The view that displays a list of businesses.
  */
 public interface BusinessListView extends LoadContentView {
 
     /**
-     * Renders a list of businesses in the UI.
+     * Adds a business to be shown in the UI, which will all be rendered when
+     * {@link #showBusinesses()} is called.
      *
-     * @param businessModels the businesses to render
+     * @param businessModel the business to be rendered when {@link #showBusinesses()} is called
      */
-    void renderBusinessList(List<BusinessModel> businessModels);
+    void addBusinessToShow(BusinessModel businessModel);
+
+    /**
+     * Shows all businesses that have been added in {@link #addBusinessToShow(BusinessModel)}.
+     */
+    void showBusinesses();
+
+    /**
+     * Removes all businesses added in {@link #addBusinessToShow(BusinessModel)} from showing.
+     */
+    void removeAllBusinessesFromShowing();
 
     /**
      * MVPView a business' details.

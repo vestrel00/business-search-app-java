@@ -18,6 +18,8 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.de
 
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
 import com.vestrel00.business.search.domain.interactor.GetBusinessWithId;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter.BusinessObserver;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter.BusinessObserverFactory;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view.BusinessDetailsView;
 
 import javax.inject.Inject;
@@ -32,7 +34,7 @@ import io.reactivex.annotations.NonNull;
 final class BusinessDetailsPresenterImpl implements BusinessDetailsPresenter {
 
     private final GetBusinessWithId getBusinessWithId;
-    private final BusinessDetailsObserverFactory businessDetailsObserverFactory;
+    private final BusinessObserverFactory businessObserverFactory;
     private final UseCaseHandler useCaseHandler;
 
     @NonNull
@@ -40,10 +42,10 @@ final class BusinessDetailsPresenterImpl implements BusinessDetailsPresenter {
 
     @Inject
     BusinessDetailsPresenterImpl(GetBusinessWithId getBusinessWithId,
-                                 BusinessDetailsObserverFactory businessDetailsObserverFactory,
+                                 BusinessObserverFactory businessObserverFactory,
                                  UseCaseHandler useCaseHandler) {
         this.getBusinessWithId = getBusinessWithId;
-        this.businessDetailsObserverFactory = businessDetailsObserverFactory;
+        this.businessObserverFactory = businessObserverFactory;
         this.useCaseHandler = useCaseHandler;
     }
 
@@ -55,11 +57,16 @@ final class BusinessDetailsPresenterImpl implements BusinessDetailsPresenter {
     @Override
     public void onShowBusinessDetails() {
         String businessId = view.getBusinessId();
+        showBusinessWithIdMessage(businessId);
         showBusinessDetails(businessId);
     }
 
     private void showBusinessDetails(String businessId) {
-        BusinessDetailsObserver observer = businessDetailsObserverFactory.create(view);
+        BusinessObserver observer = businessObserverFactory.create(view);
         useCaseHandler.execute(getBusinessWithId, businessId, observer);
+    }
+
+    private void showBusinessWithIdMessage(String businessid) {
+        view.showMessage("\nShowing business with id " + businessid + "\n");
     }
 }

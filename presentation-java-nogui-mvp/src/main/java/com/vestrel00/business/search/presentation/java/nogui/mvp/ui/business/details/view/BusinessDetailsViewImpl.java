@@ -19,6 +19,7 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.de
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationBusinessDetailsView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.AbstractBusinessView;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.presenter.BusinessDetailsPresenter;
 
 import javax.inject.Inject;
@@ -28,15 +29,15 @@ import javax.inject.Singleton;
  * An implementation of {@link ApplicationBusinessDetailsView} and {@link BusinessDetailsView}.
  */
 @Singleton
-final class BusinessDetailsViewImpl implements ApplicationBusinessDetailsView, BusinessDetailsView {
+final class BusinessDetailsViewImpl extends AbstractBusinessView
+        implements ApplicationBusinessDetailsView, BusinessDetailsView {
 
     private final BusinessDetailsPresenter presenter;
-    private final Display display;
 
     @Inject
-    BusinessDetailsViewImpl(BusinessDetailsPresenter presenter, Display display) {
+    BusinessDetailsViewImpl(Display display, BusinessDetailsPresenter presenter) {
+        super(display);
         this.presenter = presenter;
-        this.display = display;
     }
 
     @Override
@@ -52,11 +53,6 @@ final class BusinessDetailsViewImpl implements ApplicationBusinessDetailsView, B
     @Override
     public void showBusiness(BusinessModel business) {
         display.showMessage(business.toString().replace(",", "\n"));
-    }
-
-    @Override
-    public void showError(String error) {
-        display.showError(error);
     }
 
     @Override

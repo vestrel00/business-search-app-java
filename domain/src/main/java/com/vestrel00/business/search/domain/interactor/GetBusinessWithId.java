@@ -21,7 +21,7 @@ import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
 import javax.inject.Inject;
 
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 /**
  * Use case for getting a businesses with a given id.
@@ -36,7 +36,7 @@ public final class GetBusinessWithId implements UseCase<String, Business> {
     }
 
     @Override
-    public Single<Business> execute(String businessId) {
+    public Observable<Business> execute(String businessId) {
         return businessRepository.withId(businessId);
     }
 }

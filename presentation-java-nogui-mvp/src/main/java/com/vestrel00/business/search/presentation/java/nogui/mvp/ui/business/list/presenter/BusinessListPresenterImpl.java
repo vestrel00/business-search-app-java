@@ -24,7 +24,11 @@ import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocati
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperHolder;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter.BusinessObserver;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter.BusinessObserverFactory;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
+
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -37,10 +41,13 @@ import io.reactivex.annotations.NonNull;
 @Singleton
 final class BusinessListPresenterImpl implements BusinessListPresenter {
 
+    private static final String SHOW_BUSINESSES_AROUND_MESSAGE
+            = "\nShowing businesses around %s\n";
+
     private final GetBusinessesAroundLocation getBusinessesAroundLocation;
     private final GetBusinessesAroundCoordinates getBusinessesAroundCoordinates;
     private final ModelMapperHolder modelMapperHolder;
-    private final BusinessListObserverFactory businessListObserverFactory;
+    private final BusinessObserverFactory businessObserverFactory;
     private final UseCaseHandler useCaseHandler;
 
     @NonNull
@@ -50,12 +57,12 @@ final class BusinessListPresenterImpl implements BusinessListPresenter {
     BusinessListPresenterImpl(GetBusinessesAroundLocation getBusinessesAroundLocation,
                               GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
                               ModelMapperHolder modelMapperHolder,
-                              BusinessListObserverFactory businessListObserverFactory,
+                              BusinessObserverFactory businessObserverFactory,
                               UseCaseHandler useCaseHandler) {
         this.getBusinessesAroundLocation = getBusinessesAroundLocation;
         this.getBusinessesAroundCoordinates = getBusinessesAroundCoordinates;
         this.modelMapperHolder = modelMapperHolder;
-        this.businessListObserverFactory = businessListObserverFactory;
+        this.businessObserverFactory = businessObserverFactory;
         this.useCaseHandler = useCaseHandler;
     }
 
@@ -67,26 +74,33 @@ final class BusinessListPresenterImpl implements BusinessListPresenter {
     @Override
     public void onShowBusinessesAroundLocation() {
         LocationModel locationModel = view.getLocation();
+        showBusinessesAroundMessage(locationModel.toString());
         showBusinessesAroundLocation(locationModel);
     }
 
     @Override
     public void onShowBusinessesAroundCoordinates() {
         CoordinatesModel coordinatesModel = view.getCoordinates();
+        showBusinessesAroundMessage(coordinatesModel.toString());
         showBusinessesAroundCoordinates(coordinatesModel);
     }
 
     private void showBusinessesAroundLocation(LocationModel locationModel) {
         Location location = modelMapperHolder.locationModelMapper()
                 .map(locationModel);
-        BusinessListObserver observer = businessListObserverFactory.create(view);
+        BusinessObserver observer = businessObserverFactory.create(view);
         useCaseHandler.execute(getBusinessesAroundLocation, location, observer);
     }
 
     private void showBusinessesAroundCoordinates(CoordinatesModel coordinatesModel) {
         Coordinates coordinates = modelMapperHolder.coordinatesModelMapper()
                 .map(coordinatesModel);
-        BusinessListObserver observer = businessListObserverFactory.create(view);
+        BusinessObserver observer = businessObserverFactory.create(view);
         useCaseHandler.execute(getBusinessesAroundCoordinates, coordinates, observer);
+    }
+
+    private void showBusinessesAroundMessage(String around) {
+        String message = String.format(Locale.US, SHOW_BUSINESSES_AROUND_MESSAGE, around);
+        view.showMessage(message);
     }
 }

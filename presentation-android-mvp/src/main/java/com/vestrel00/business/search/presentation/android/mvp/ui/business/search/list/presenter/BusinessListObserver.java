@@ -18,50 +18,38 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.searc
 
 import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view.BusinessListView;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.AbstractLoadContentViewObserver;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperHolder;
 
-import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.observers.DisposableSingleObserver;
-
 /**
- * Observer for business lists obtained from a use case.
+ * An observer that renders a list of businesses or retry/error.
  */
-final class BusinessListObserver extends DisposableSingleObserver<List<Business>> {
+final class BusinessListObserver
+        extends AbstractLoadContentViewObserver<BusinessListView, Business> {
 
-    private final BusinessListView view;
     private final ModelMapperHolder modelMapperHolder;
 
     BusinessListObserver(BusinessListView view, ModelMapperHolder modelMapperHolder) {
-        this.view = view;
+        super(view);
         this.modelMapperHolder = modelMapperHolder;
     }
 
     @Override
     protected void onStart() {
-        view.hideRetry();
-        view.hideContent();
-        view.showLoading();
+        super.onStart();
+        view.removeAllBusinessesFromShowing();
     }
 
     @Override
-    public void onSuccess(@NonNull List<Business> businesses) {
-        Observable.fromIterable(businesses)
-                .map(modelMapperHolder.businessModelMapper()::map)
-                .toList(businesses.size())
-                .subscribe(businessModels -> {
-                    view.hideLoading();
-                    view.showContent();
-                    view.renderBusinessList(businessModels);
-                });
+    public void onNext(Business business) {
+        BusinessModel businessModel = modelMapperHolder.businessModelMapper().map(business);
+        view.addBusinessToShow(businessModel);
     }
 
     @Override
-    public void onError(@NonNull Throwable e) {
-        view.hideLoading();
-        view.showRetry();
-        view.showError(e.getMessage());
+    public void onComplete() {
+        super.onComplete();
+        view.showBusinesses();
     }
 }

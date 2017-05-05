@@ -20,16 +20,14 @@ import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 /**
  * Use case for getting businesses around the given coordinates.
  */
-public final class GetBusinessesAroundCoordinates implements UseCase<Coordinates, List<Business>> {
+public final class GetBusinessesAroundCoordinates implements UseCase<Coordinates, Business> {
 
     private final BusinessRepository businessRepository;
 
@@ -39,7 +37,7 @@ public final class GetBusinessesAroundCoordinates implements UseCase<Coordinates
     }
 
     @Override
-    public Single<List<Business>> execute(Coordinates coordinates) {
+    public Observable<Business> execute(Coordinates coordinates) {
         return businessRepository.aroundCoordinates(coordinates);
     }
 }

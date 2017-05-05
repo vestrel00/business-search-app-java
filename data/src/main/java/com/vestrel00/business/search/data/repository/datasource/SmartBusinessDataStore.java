@@ -52,7 +52,6 @@ final class SmartBusinessDataStore implements BusinessDataStore {
     public Observable<BusinessEntity> aroundLocationString(String locationString) {
         return businessDataServiceProvider.get()
                 .aroundLocation(locationString)
-                // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMapIterable(toList());
     }
 
@@ -60,7 +59,6 @@ final class SmartBusinessDataStore implements BusinessDataStore {
     public Observable<BusinessEntity> aroundCoordinates(CoordinatesEntity coordinates) {
         return businessDataServiceProvider.get()
                 .aroundCoordinates(coordinates.latitude(), coordinates.longitude())
-                // Ordering via concatMap is unnecessary since the source only emits 1 item
                 .flatMapIterable(toList());
     }
 

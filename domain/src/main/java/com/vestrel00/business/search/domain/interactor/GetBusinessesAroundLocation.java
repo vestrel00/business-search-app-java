@@ -20,16 +20,14 @@ import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 /**
  * Use case for getting businesses around the given location.
  */
-public final class GetBusinessesAroundLocation implements UseCase<Location, List<Business>> {
+public final class GetBusinessesAroundLocation implements UseCase<Location, Business> {
 
     private final BusinessRepository businessRepository;
 
@@ -39,7 +37,7 @@ public final class GetBusinessesAroundLocation implements UseCase<Location, List
     }
 
     @Override
-    public Single<List<Business>> execute(Location location) {
+    public Observable<Business> execute(Location location) {
         return businessRepository.aroundLocation(location);
     }
 }

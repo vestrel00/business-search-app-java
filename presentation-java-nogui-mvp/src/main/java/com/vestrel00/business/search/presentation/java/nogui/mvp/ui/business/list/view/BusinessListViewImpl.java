@@ -21,6 +21,7 @@ import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationBusinessListView;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.AbstractBusinessView;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter.BusinessListPresenter;
 
 import javax.inject.Inject;
@@ -32,15 +33,15 @@ import io.reactivex.Observable;
  * An implementation of {@link ApplicationBusinessListView} and {@link BusinessListView}.
  */
 @Singleton
-final class BusinessListViewImpl implements ApplicationBusinessListView, BusinessListView {
+final class BusinessListViewImpl extends AbstractBusinessView
+        implements ApplicationBusinessListView, BusinessListView {
 
     private final BusinessListPresenter presenter;
-    private final Display display;
 
     @Inject
-    BusinessListViewImpl(BusinessListPresenter presenter, Display display) {
+    BusinessListViewImpl(Display display, BusinessListPresenter presenter) {
+        super(display);
         this.presenter = presenter;
-        this.display = display;
     }
 
     @Override
@@ -61,11 +62,6 @@ final class BusinessListViewImpl implements ApplicationBusinessListView, Busines
     @Override
     public void showBusiness(BusinessModel business) {
         display.showMessage(business.name() + ", id: " + business.id());
-    }
-
-    @Override
-    public void showError(String error) {
-        display.showError(error);
     }
 
     @Override

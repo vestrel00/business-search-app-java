@@ -20,9 +20,7 @@ import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 
-import java.util.List;
-
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 /**
  * Represents repository for retrieving business data.
@@ -31,25 +29,25 @@ public interface BusinessRepository {
 
     /**
      * @param location the location to search for surrounding businesses
-     * @return an single containing a list that contains 0 or more businesses
+     * @return an observable of 0 or more businesses
      */
-    Single<List<Business>> aroundLocation(Location location);
+    Observable<Business> aroundLocation(Location location);
 
     /**
      * @param locationString the location to search for surrounding businesses
      * @return an single containing a list that contains 0 or more businesses
      */
-    Single<List<Business>> aroundLocationString(String locationString);
+    Observable<Business> aroundLocationString(String locationString);
 
     /**
      * @param coordinates the coordinates to search for surrounding businesses
-     * @return an single containing a list that contains 0 or more businesses
+     * @return an observable of 0 or more businesses
      */
-    Single<List<Business>> aroundCoordinates(Coordinates coordinates);
+    Observable<Business> aroundCoordinates(Coordinates coordinates);
 
     /**
      * @param businessId the business id
-     * @return a single containing a business with the given id
+     * @return an observable of 0 or 1 business
      */
-    Single<Business> withId(String businessId);
+    Observable<Business> withId(String businessId);
 }

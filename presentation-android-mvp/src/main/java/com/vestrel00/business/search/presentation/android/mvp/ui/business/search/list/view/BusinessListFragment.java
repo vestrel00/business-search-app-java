@@ -25,10 +25,8 @@ import android.view.ViewGroup;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.presenter.BusinessListPresenter;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.LoadContentFragment;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.AbstractLoadContentFragment;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -38,7 +36,7 @@ import butterknife.BindView;
  * A fragment implementation of {@link BusinessListView} that allows listing businesses around
  * a given location or current location.
  */
-public final class BusinessListFragment extends LoadContentFragment<BusinessListPresenter>
+public final class BusinessListFragment extends AbstractLoadContentFragment<BusinessListPresenter>
         implements BusinessListView {
 
     @Inject
@@ -59,8 +57,8 @@ public final class BusinessListFragment extends LoadContentFragment<BusinessList
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        businessListView.setAdapter(businessListAdapter);
         businessListAdapter.onRestoreInstanceState(savedInstanceState);
+        businessListView.setAdapter(businessListAdapter);
     }
 
     @Override
@@ -70,8 +68,18 @@ public final class BusinessListFragment extends LoadContentFragment<BusinessList
     }
 
     @Override
-    public void renderBusinessList(List<BusinessModel> businessModels) {
-        businessListAdapter.setBusinessModels(businessModels);
+    public void addBusinessToShow(BusinessModel businessModel) {
+        businessListAdapter.addBusinessModel(businessModel);
+    }
+
+    @Override
+    public void showBusinesses() {
+        businessListAdapter.notifyBusinessModelsChanged();
+    }
+
+    @Override
+    public void removeAllBusinessesFromShowing() {
+        businessListAdapter.clearBusinessModels();
     }
 
     @Override

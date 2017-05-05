@@ -14,40 +14,35 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter;
 
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.presentation.java.common.AbstractDisposableObserver;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperHolder;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
-
-import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.observers.DisposableSingleObserver;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.BusinessView;
 
 /**
- * Observer for business lists obtained from a use case.
+ * An observer that shows a business or an error.
  */
-final class BusinessListObserver extends DisposableSingleObserver<List<Business>> {
+public final class BusinessObserver extends AbstractDisposableObserver<Business> {
 
-    private final BusinessListView view;
+    private final BusinessView view;
     private final ModelMapperHolder modelMapperHolder;
 
-    BusinessListObserver(BusinessListView view, ModelMapperHolder modelMapperHolder) {
+    BusinessObserver(BusinessView view, ModelMapperHolder modelMapperHolder) {
         this.view = view;
         this.modelMapperHolder = modelMapperHolder;
     }
 
     @Override
-    public void onSuccess(@NonNull List<Business> businesses) {
-        Observable.fromIterable(businesses)
-                .map(modelMapperHolder.businessModelMapper()::map)
-                .subscribe(view::showBusiness);
+    public void onNext(Business business) {
+        BusinessModel businessModel = modelMapperHolder.businessModelMapper().map(business);
+        view.showBusiness(businessModel);
     }
 
     @Override
-    public void onError(@NonNull Throwable e) {
+    public void onError(Throwable e) {
         view.showError(e.getMessage());
     }
 }

@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Toast;
 
@@ -40,7 +39,7 @@ import butterknife.OnClick;
  *
  * @param <T> the type of the {@link Presenter}.
  */
-public abstract class LoadContentFragment<T extends Presenter> extends BaseViewFragment<T>
+public abstract class AbstractLoadContentFragment<T extends Presenter> extends BaseViewFragment<T>
         implements LoadContentView {
 
     @BindView(R.id.content_pane)
@@ -80,11 +79,6 @@ public abstract class LoadContentFragment<T extends Presenter> extends BaseViewF
     @Override
     public void hideRetry() {
         retryButton.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    public void showError(@StringRes int messageRes) {
-        Toast.makeText(getActivity(), messageRes, Toast.LENGTH_SHORT).show();
     }
 
     @Override

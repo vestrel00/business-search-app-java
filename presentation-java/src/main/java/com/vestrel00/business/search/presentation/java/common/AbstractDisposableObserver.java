@@ -14,18 +14,26 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view;
+package com.vestrel00.business.search.presentation.java.common;
 
-import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
-import com.vestrel00.business.search.presentation.java.model.LocationModel;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.BusinessView;
+import io.reactivex.observers.DisposableObserver;
 
 /**
- * A {@link BusinessView} that allows for getting a location and coordinates.
+ * An abstract {@link DisposableObserver} that provides optional overrides to all
+ * {@link DisposableObserver} methods.
+ *
+ * @param <T> the received value type
  */
-public interface BusinessListView extends BusinessView {
+public abstract class AbstractDisposableObserver<T> extends DisposableObserver<T> {
+    @Override
+    public void onNext(T t) {
+    }
 
-    LocationModel getLocation();
+    @Override
+    public void onError(Throwable e) {
+    }
 
-    CoordinatesModel getCoordinates();
+    @Override
+    public void onComplete() {
+    }
 }

@@ -16,16 +16,12 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.details.view;
 
-import com.vestrel00.business.search.presentation.java.model.BusinessModel;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.BusinessView;
 
 /**
- * Shows business details.
+ * A {@link BusinessView} that allows for getting a business id.
  */
-public interface BusinessDetailsView {
-
-    void showBusiness(BusinessModel business);
-
-    void showError(String error);
+public interface BusinessDetailsView extends BusinessView {
 
     String getBusinessId();
 }

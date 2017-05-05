@@ -82,7 +82,7 @@ public abstract class BaseFragment extends Fragment implements HasFragmentInject
     }
 
     @Override
-    public AndroidInjector<Fragment> fragmentInjector() {
+    public final AndroidInjector<Fragment> fragmentInjector() {
         return childFragmentInjector;
     }
 }

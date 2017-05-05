@@ -85,9 +85,15 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
         return businessModels.size();
     }
 
-    void setBusinessModels(List<BusinessModel> businessModels) {
-        this.businessModels.clear();
-        this.businessModels.addAll(businessModels);
+    void addBusinessModel(BusinessModel businessModel) {
+        businessModels.add(businessModel);
+    }
+
+    void clearBusinessModels() {
+        businessModels.clear();
+    }
+
+    void notifyBusinessModelsChanged() {
         notifyDataSetChanged();
     }
 
@@ -99,7 +105,11 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     void onRestoreInstanceState(@Nullable Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             Serializable businessModels = savedInstanceState.getSerializable(STATE_BUSINESS_MODELS);
-            setBusinessModels((List<BusinessModel>) businessModels);
+            addBusinessModels((List<BusinessModel>) businessModels);
         }
+    }
+
+    private void addBusinessModels(List<BusinessModel> businessModels) {
+        this.businessModels.addAll(businessModels);
     }
 }

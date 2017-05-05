@@ -19,16 +19,14 @@ package com.vestrel00.business.search.domain.interactor;
 import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 /**
  * Use case for getting businesses around the given location string.
  */
-public final class GetBusinessesAroundLocationString implements UseCase<String, List<Business>> {
+public final class GetBusinessesAroundLocationString implements UseCase<String, Business> {
 
     private final BusinessRepository businessRepository;
 
@@ -38,7 +36,7 @@ public final class GetBusinessesAroundLocationString implements UseCase<String, 
     }
 
     @Override
-    public Single<List<Business>> execute(String locationString) {
+    public Observable<Business> execute(String locationString) {
         return businessRepository.aroundLocationString(locationString);
     }
 }

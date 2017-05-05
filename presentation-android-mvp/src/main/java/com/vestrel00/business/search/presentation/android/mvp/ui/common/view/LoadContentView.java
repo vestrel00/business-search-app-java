@@ -16,8 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
-import android.support.annotation.StringRes;
-
 /**
  * A {@link MVPView} that loads content.
  */
@@ -34,8 +32,6 @@ public interface LoadContentView extends MVPView {
     void showRetry();
 
     void hideRetry();
-
-    void showError(@StringRes int messageRes);
 
     void showError(String message);
 }

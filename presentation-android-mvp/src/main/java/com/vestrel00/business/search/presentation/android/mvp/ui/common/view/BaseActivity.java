@@ -60,11 +60,11 @@ public abstract class BaseActivity extends Activity implements HasFragmentInject
     }
 
     @Override
-    public AndroidInjector<Fragment> fragmentInjector() {
+    public final AndroidInjector<Fragment> fragmentInjector() {
         return fragmentInjector;
     }
 
-    protected void addFragment(int containerViewId, Fragment fragment) {
+    protected final void addFragment(int containerViewId, Fragment fragment) {
         fragmentManager.beginTransaction()
                 .add(containerViewId, fragment)
                 .commit();

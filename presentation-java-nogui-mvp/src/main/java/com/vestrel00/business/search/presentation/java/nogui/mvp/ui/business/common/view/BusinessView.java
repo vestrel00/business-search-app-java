@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view;
 
-import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
-import com.vestrel00.business.search.presentation.java.model.LocationModel;
-import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.BusinessView;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 /**
- * A {@link BusinessView} that allows for getting a location and coordinates.
+ * Shows business details or an error.
  */
-public interface BusinessListView extends BusinessView {
+public interface BusinessView {
 
-    LocationModel getLocation();
+    void showBusiness(BusinessModel business);
 
-    CoordinatesModel getCoordinates();
+    void showMessage(String message);
+
+    void showError(String error);
 }

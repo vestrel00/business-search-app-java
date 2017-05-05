@@ -16,7 +16,7 @@
 
 buildscript {
     ext {
-        androidGradleBuildToolsVersion = '2.3.1'
+        androidGradlePluginVersion = '2.3.1'
         javaAptPluginVersion = '0.10'
         retrolambdaPluginVersion = '3.6.0'
     }
@@ -34,7 +34,7 @@ buildscript {
         // Note that annotation processors (apt) are now included in the Android gradle plugin
         // starting with v2.2 (usage is annotationProcessor). This deprecates the custom android-apt
         // annotation processor: https://bitbucket.org/hvisser/android-apt/wiki/Migration
-        classpath "com.android.tools.build:gradle:$androidGradleBuildToolsVersion"
+        classpath "com.android.tools.build:gradle:$androidGradlePluginVersion"
 
         // Apt for Java: https://plugins.gradle.org/plugin/net.ltgt.apt
         classpath "net.ltgt.gradle:gradle-apt-plugin:$javaAptPluginVersion"
