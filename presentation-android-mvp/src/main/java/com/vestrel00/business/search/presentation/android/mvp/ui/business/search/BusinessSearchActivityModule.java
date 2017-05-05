@@ -19,8 +19,8 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.searc
 import android.app.Activity;
 
 import com.vestrel00.business.search.presentation.android.inject.PerActivity;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view.BusinessListFragmentListener;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view.BusinessListFragmentSubcomponent;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragmentListener;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragmentSubcomponent;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentListener;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentSubcomponent;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivityModule;

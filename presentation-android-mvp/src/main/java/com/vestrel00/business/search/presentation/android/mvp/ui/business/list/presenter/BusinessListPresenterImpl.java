@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.presenter;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter;
 
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
 import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundCoordinates;
 import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocationString;
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view.BusinessListView;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListView;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.BasePresenter;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 

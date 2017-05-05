@@ -14,30 +14,25 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.presenter;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
+
+import android.view.View;
 
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view.BusinessListView;
-import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperHolder;
 
 import javax.inject.Inject;
 
 /**
- * Creates instances of {@link BusinessListObserver}.
+ * Creates instances of {@link BusinessListItemViewHolder}.
  */
 @PerFragment
-final class BusinessListObserverFactory {
-
-    private final BusinessListView view;
-    private final ModelMapperHolder modelMapperHolder;
+final class BusinessListItemViewHolderFactory {
 
     @Inject
-    BusinessListObserverFactory(BusinessListView view, ModelMapperHolder modelMapperHolder) {
-        this.view = view;
-        this.modelMapperHolder = modelMapperHolder;
+    BusinessListItemViewHolderFactory() {
     }
 
-    BusinessListObserver create() {
-        return new BusinessListObserver(view, modelMapperHolder);
+    BusinessListItemViewHolder create(View itemView) {
+        return new BusinessListItemViewHolder(itemView);
     }
 }

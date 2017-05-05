@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.presenter;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter;
 
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;

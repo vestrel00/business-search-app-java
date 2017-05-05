@@ -21,8 +21,8 @@ import android.app.Fragment;
 
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.BusinessSearchActivity;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.BusinessSearchActivitySubcomponent;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view.BusinessListFragment;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view.BusinessListFragmentSubcomponent;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragment;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragmentSubcomponent;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentSubcomponent;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,7 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.presenter.BusinessListPresenter;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter.BusinessListPresenter;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.AbstractLoadContentFragment;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 

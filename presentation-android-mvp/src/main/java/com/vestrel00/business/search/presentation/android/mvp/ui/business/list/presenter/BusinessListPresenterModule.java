@@ -14,25 +14,21 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view;
-
-import android.view.View;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter;
 
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 
-import javax.inject.Inject;
+import dagger.Binds;
+import dagger.Module;
 
 /**
- * Creates instances of {@link BusinessListItemViewHolder}.
+ * Provides business list presenter dependencies.
  */
-@PerFragment
-final class BusinessListItemViewHolderFactory {
+@Module
+public abstract class BusinessListPresenterModule {
 
-    @Inject
-    BusinessListItemViewHolderFactory() {
-    }
-
-    BusinessListItemViewHolder create(View itemView) {
-        return new BusinessListItemViewHolder(itemView);
-    }
+    @Binds
+    @PerFragment
+    abstract BusinessListPresenter
+    businessListPresenter(BusinessListPresenterImpl businessListPresenterImpl);
 }

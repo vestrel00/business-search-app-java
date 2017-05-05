@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.list.view;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
