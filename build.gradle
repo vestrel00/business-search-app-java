@@ -47,7 +47,7 @@ buildscript {
     }
 }
 
-apply from: "$rootDir/config/dependencies/all_projects.gradle"
+apply from: "$rootDir/config/dependencies/all-projects.gradle"
 
 // Include cleaning the root build/ dir
 task clean(type: Delete) {

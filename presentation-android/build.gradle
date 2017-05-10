@@ -15,7 +15,7 @@
  */
 
 apply from: "$rootDir/config/android/library.gradle"
-apply from: "$rootDir/config/dependencies/presentation_android.gradle"
+apply from: "$rootDir/config/dependencies/presentation-android.gradle"
 
 android {
     defaultConfig {

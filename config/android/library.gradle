@@ -17,9 +17,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
 
-apply from: "$rootDir/config/documentation/javadoc_android_library.gradle"
+apply from: "$rootDir/config/documentation/javadoc-android-library.gradle"
 apply from: "$projectDir/config/coverage/jacoco.gradle"
-apply from: "$rootDir/config/quality/quality_android_library.gradle"
+apply from: "$rootDir/config/quality/quality-android-library.gradle"
 
 android {
     // FIXME (GRADLE LIBRARY) - Enable when publishing all library variants (not just release) is finally supported

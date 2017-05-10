@@ -15,6 +15,6 @@
  */
 
 apply from: "$rootDir/config/java/application.gradle"
-apply from: "$rootDir/config/dependencies/presentation_java_swing_mvvm.gradle"
+apply from: "$rootDir/config/dependencies/presentation-java-swing-mvvm.gradle"
 
 mainClassName = "com.vestrel00.business.search.presentation.java.swing.mvvm.ApplicationRunner"

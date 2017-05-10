@@ -15,4 +15,4 @@
  */
 
 apply from: "$rootDir/config/java/library.gradle"
-apply from: "$rootDir/config/dependencies/presentation_java.gradle"
+apply from: "$rootDir/config/dependencies/presentation-java.gradle"

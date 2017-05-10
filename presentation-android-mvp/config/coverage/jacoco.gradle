@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/coverage/jacoco_android_application.gradle"
+apply from: "$rootDir/config/coverage/jacoco-android-application.gradle"
 
 generateAndroidApplicationJacocoTaskWithExcludes([])

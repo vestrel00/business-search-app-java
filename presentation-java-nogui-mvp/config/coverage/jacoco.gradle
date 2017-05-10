@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/coverage/jacoco_java_main.gradle"
+apply from: "$rootDir/config/coverage/jacoco-java-main.gradle"
 
 generateJavaMainJacocoTaskWithExcludes([
         '**/display/*.class',

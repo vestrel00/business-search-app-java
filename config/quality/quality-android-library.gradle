@@ -15,9 +15,9 @@
  */
 
 apply from: "$rootDir/config/quality/quality.gradle"
-apply from: "$rootDir/config/quality/quality_android.gradle"
+apply from: "$rootDir/config/quality/quality-android.gradle"
 
-android.applicationVariants.all { variant ->
+android.libraryVariants.all { variant ->
     generateCheckstyleTaskForVariant(variant)
     generatePMDTaskForVariant(variant)
     generateFindbugsTaskForVariant(variant)

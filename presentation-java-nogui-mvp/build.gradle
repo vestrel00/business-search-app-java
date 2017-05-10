@@ -15,7 +15,7 @@
  */
 
 apply from: "$rootDir/config/java/application.gradle"
-apply from: "$rootDir/config/dependencies/presentation_java_nogui_mvp.gradle"
+apply from: "$rootDir/config/dependencies/presentation-java-nogui-mvp.gradle"
 
 version '1.0.0'
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/android/artifact/apk_name_android.gradle"
+apply from: "$rootDir/config/android/artifact/apk-name-android.gradle"
 
 android.applicationVariants.all { variant ->
     renameApkForVariant(variant)

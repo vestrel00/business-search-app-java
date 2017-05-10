@@ -19,8 +19,8 @@ apply plugin: 'idea' // required for net.ltgt.apt plugin to work in IntelliJ/And
 apply plugin: "net.ltgt.apt"
 
 apply from: "$projectDir/config/coverage/jacoco.gradle"
-apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
-apply from: "$rootDir/config/quality/quality_java_main.gradle"
+apply from: "$rootDir/config/documentation/javadoc-java-main.gradle"
+apply from: "$rootDir/config/quality/quality-java-main.gradle"
 
 targetCompatibility = rootProject.ext.versions.build.java.targetCompatibility
 sourceCompatibility = rootProject.ext.versions.build.java.sourceCompatibility
