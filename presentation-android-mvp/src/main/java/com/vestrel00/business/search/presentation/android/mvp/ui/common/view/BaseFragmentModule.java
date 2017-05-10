@@ -28,7 +28,7 @@ import dagger.Provides;
 
 /**
  * Provides base fragment dependencies. This must be included in all fragment modules, which must
- * provie a concrete implementation of {@link Fragment}.
+ * provide a concrete implementation of {@link Fragment}.
  */
 @Module
 public abstract class BaseFragmentModule {

@@ -17,7 +17,6 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.search;
 
 import com.vestrel00.business.search.presentation.android.inject.PerActivity;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivitySubcomponent;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
@@ -27,8 +26,8 @@ import dagger.android.AndroidInjector;
  */
 @Subcomponent(modules = BusinessSearchActivityModule.class)
 @PerActivity
-public interface BusinessSearchActivitySubcomponent extends BaseActivitySubcomponent,
-        AndroidInjector<BusinessSearchActivity> {
+public interface BusinessSearchActivitySubcomponent
+        extends AndroidInjector<BusinessSearchActivity> {
 
     /**
      * The builder for this subcomponent.

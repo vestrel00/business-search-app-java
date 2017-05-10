@@ -17,7 +17,6 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseFragmentSubcomponent;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
@@ -27,8 +26,7 @@ import dagger.android.AndroidInjector;
  */
 @Subcomponent(modules = BusinessListFragmentModule.class)
 @PerFragment
-public interface BusinessListFragmentSubcomponent extends BaseFragmentSubcomponent,
-        AndroidInjector<BusinessListFragment> {
+public interface BusinessListFragmentSubcomponent extends AndroidInjector<BusinessListFragment> {
 
     /**
      * The builder for this subcomponent.

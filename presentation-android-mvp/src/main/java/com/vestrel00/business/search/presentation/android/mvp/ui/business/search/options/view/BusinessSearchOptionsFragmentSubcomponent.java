@@ -17,7 +17,6 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view;
 
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseFragmentSubcomponent;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
@@ -27,8 +26,8 @@ import dagger.android.AndroidInjector;
  */
 @Subcomponent(modules = BusinessSearchOptionsFragmentModule.class)
 @PerFragment
-public interface BusinessSearchOptionsFragmentSubcomponent extends BaseFragmentSubcomponent,
-        AndroidInjector<BusinessSearchOptionsFragment> {
+public interface BusinessSearchOptionsFragmentSubcomponent
+        extends AndroidInjector<BusinessSearchOptionsFragment> {
 
     /**
      * The builder for this subcomponent.
