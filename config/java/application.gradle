@@ -22,5 +22,5 @@ apply from: "$projectDir/config/coverage/jacoco.gradle"
 apply from: "$rootDir/config/documentation/javadoc_java_main.gradle"
 apply from: "$rootDir/config/quality/quality_java_main.gradle"
 
-targetCompatibility = '1.8'
-sourceCompatibility = '1.8'
+targetCompatibility = rootProject.ext.versions.build.java.targetCompatibility
+sourceCompatibility = rootProject.ext.versions.build.java.sourceCompatibility

@@ -48,3 +48,6 @@ apply from: "$rootDir/config/testing/share_tests_java_library.gradle"
  */
 targetCompatibility = '1.7'
 sourceCompatibility = '1.7'
+
+// targetCompatibility = rootProject.ext.versions.build.java.targetCompatibility
+// sourceCompatibility = rootProject.ext.versions.build.java.sourceCompatibility

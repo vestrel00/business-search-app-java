@@ -26,66 +26,77 @@ allprojects {
 }
 
 ext {
-    // Java
-    rxJavaVersion = '2.0.8'
-    javaxAnnotationVersion = '1.0'
-    daggerVersion = '2.11-rc1'
-    autoValueVersion = '1.4.1'
-    retrofitVersion = '2.2.0'
-    jacksonVersion = '2.8.8'
 
-    // Android Build
-    androidBuildToolsVersion = "25.0.2"
-    androidMinSdkVersion = 21
-    androidTargetSdkVersion = 25
-    androidCompileSdkVersion = 25
+    versions = [
+            // Build
+            build          : [
+                    java   : [
+                            targetCompatibility: '1.8',
+                            sourceCompatibility: '1.8'
+                    ],
+                    android: [
+                            tools     : '25.0.2',
+                            minSdk    : 21,
+                            targetSdk : 25,
+                            compileSdk: 25,
+                    ]
+            ],
 
-    // Android Libraries
-    rxAndroidVersion = '2.0.1'
-    butterKnifeVersion = '8.5.1'
-    androidSupportVersion = '25.2.0'
+            // Java Libraries
+            rxJava         : '2.0.8',
+            javaxAnnotation: '1.0',
+            dagger         : '2.11-rc1',
+            autoValue      : '1.4.1',
+            retrofit       : '2.2.0',
+            jackson        : '2.8.8',
 
-    // Java Testing
-    jUnitVersion = '4.12'
-    assertJVersion = '2.6.0'
-    mockitoVersion = '2.7.21'
+            // Android Libraries
+            rxAndroid      : '2.0.1',
+            butterKnife    : '8.5.1',
+            androidSupport : '25.2.0',
 
-    // Android Testing
-    robolectricVersion = '3.3.2'
-    espressoCoreVersion = '2.2.2'
-    espressoRunnerVersion = '0.5'
+            // Java Testing
+            jUnit          : '4.12',
+            assertJ        : '2.6.0',
+            mockito        : '2.7.21',
 
-    // Android Development (Debug Only)
-    leakCanaryVersion = '1.5'
+            // Android Testing
+            robolectric    : '3.3.2',
+            espressoCore   : '2.2.2',
+            espressoRunner : '0.5',
+
+            // Android Development (Debug Only)
+            leakCanary     : '1.5'
+    ]
 
     javaDependencies = [
-            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            dagger         : "com.google.dagger:dagger:${daggerVersion}",
-            daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
-            autoValue      : "com.google.auto.value:auto-value:${autoValueVersion}"
+            rxJava         : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+            javaxAnnotation: "javax.annotation:jsr250-api:${versions.javaxAnnotation}",
+            dagger         : "com.google.dagger:dagger:${versions.dagger}",
+            daggerCompiler : "com.google.dagger:dagger-compiler:${versions.dagger}",
+            autoValue      : "com.google.auto.value:auto-value:${versions.autoValue}"
     ]
 
     javaTestDependencies = [
-            junit      : "junit:junit:${jUnitVersion}",
-            assertj    : "org.assertj:assertj-core:${assertJVersion}",
-            mockitoCore: "org.mockito:mockito-core:${mockitoVersion}",
+            junit      : "junit:junit:${versions.jUnit}",
+            assertj    : "org.assertj:assertj-core:${versions.assertJ}",
+            mockitoCore: "org.mockito:mockito-core:${versions.mockito}",
     ]
 
     androidDependencies = javaDependencies + [
-            daggerAndroid                 : "com.google.dagger:dagger-android:${daggerVersion}",
-            daggerAndroidProcessor        : "com.google.dagger:dagger-android-processor:${daggerVersion}",
-            rxAndroid                     : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-            appCompat                     : "com.android.support:appcompat-v7:$androidSupportVersion",
-            recyclerView                  : "com.android.support:recyclerview-v7:${androidSupportVersion}",
-            butterKnife                   : "com.jakewharton:butterknife:${butterKnifeVersion}",
-            butterKnifeAnnotationProcessor: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+            daggerAndroid                 : "com.google.dagger:dagger-android:${versions.dagger}",
+            daggerAndroidProcessor        : "com.google.dagger:dagger-android-processor:${versions.dagger}",
+            rxAndroid                     : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+            appCompat                     : "com.android.support:appcompat-v7:${versions.androidSupport}",
+            recyclerView                  : "com.android.support:recyclerview-v7:${versions.androidSupport}",
+            butterKnife                   : "com.jakewharton:butterknife:${versions.butterKnife}",
+            butterKnifeAnnotationProcessor: "com.jakewharton:butterknife-compiler:${versions.butterKnife}"
     ]
 
     androidTestDependencies = javaTestDependencies + [
-            mockitoAndroid: "org.mockito:mockito-android:${mockitoVersion}",
-            espressoCore  : "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}",
-            espressoRunner: "com.android.support.test:runner:${espressoRunnerVersion}"
+            mockitoAndroid: "org.mockito:mockito-android:${versions.mockito}",
+            espressoCore  : "com.android.support.test.espresso:espresso-core:${versions.espressoCore}",
+            espressoRunner: "com.android.support.test:runner:${versions.espressoRunner}"
     ]
 
     domainDependencies = javaDependencies
@@ -93,12 +104,12 @@ ext {
     domainTestDependencies = javaTestDependencies
 
     dataDependencies = javaDependencies + [
-            retrofit                : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
-            retrofitJacksonConverter: "com.squareup.retrofit2:converter-jackson:${retrofitVersion}",
-            jacksonCore             : "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
-            jacksonDatabind         : "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
-            jacksonAnnotations      : "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}",
+            retrofit                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+            retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+            retrofitJacksonConverter: "com.squareup.retrofit2:converter-jackson:${versions.retrofit}",
+            jacksonCore             : "com.fasterxml.jackson.core:jackson-core:${versions.jackson}",
+            jacksonDatabind         : "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
+            jacksonAnnotations      : "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}",
     ]
 
     dataTestDependencies = javaTestDependencies
@@ -110,7 +121,7 @@ ext {
     presentationAndroidDependencies = androidDependencies
 
     presentationAndroidDebugDependencies = [
-            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+            leakCanary: "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
     ]
 
     presentationAndroidTestDependencies = androidTestDependencies

@@ -24,12 +24,12 @@ apply from: "$rootDir/config/quality/quality_android_application.gradle"
 apply from: "$rootDir/config/android/signing/signing.gradle"
 
 android {
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+    compileSdkVersion rootProject.ext.versions.build.android.compileSdk
+    buildToolsVersion rootProject.ext.versions.build.android.tools
 
     defaultConfig {
-        minSdkVersion rootProject.ext.androidMinSdkVersion
-        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        minSdkVersion rootProject.ext.versions.build.android.minSdk
+        targetSdkVersion rootProject.ext.versions.build.android.targetSdk
 
         testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -46,8 +46,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility rootProject.ext.versions.build.java.targetCompatibility
+        sourceCompatibility rootProject.ext.versions.build.java.sourceCompatibility
     }
 
     packagingOptions {
