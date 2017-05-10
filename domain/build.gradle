@@ -15,21 +15,4 @@
  */
 
 apply from: "$rootDir/config/java/library.gradle"
-
-dependencies {
-    def domainDependencies = rootProject.ext.domainDependencies
-    def domainTestDependencies = rootProject.ext.domainTestDependencies
-
-    apt domainDependencies.daggerCompiler
-    apt domainDependencies.autoValue
-
-    implementation domainDependencies.rxJava
-    implementation domainDependencies.dagger
-
-    compileOnly domainDependencies.javaxAnnotation
-    compileOnly domainDependencies.autoValue
-
-    testImplementation domainTestDependencies.junit
-    testImplementation domainTestDependencies.assertj
-    testImplementation domainTestDependencies.mockitoCore
-}
+apply from: "$rootDir/config/dependencies/domain.gradle"

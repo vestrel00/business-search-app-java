@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/android/application.gradle"
-apply from: "$rootDir/config/dependencies/presentation_android_mvp.gradle"
+/**
+ * Declare all dependencies for the presentation-android-mvvm project.
+ */
 
-android {
-    defaultConfig {
-        applicationId "com.vestrel00.business.search.presentation.mvp"
-        versionCode 1
-        versionName '1.0.0'
-    }
+dependencies {
+    def presentationAndroidDebugDependencies = rootProject.ext.presentationAndroidDebugDependencies
+
+    compile project(':presentation-android')
+
+    // FIXME (GRADLE LIBRARY) - Move to presentation-android dependencies once library projects support
+    // publishing all library variants (not just release). See config/android/library.gradle
+    debugCompile presentationAndroidDebugDependencies.leakCanary
 }

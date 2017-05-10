@@ -15,32 +15,4 @@
  */
 
 apply from: "$rootDir/config/java/library.gradle"
-
-dependencies {
-    def dataDependencies = rootProject.ext.dataDependencies
-    def dataTestDependencies = rootProject.ext.dataTestDependencies
-
-    apt dataDependencies.daggerCompiler
-    apt dataDependencies.autoValue
-
-    // FIXME? (DEPENDENCY) - Possible to set to implementation? Retrofit dependencies are not
-    // directly exposed to consumers (though indirectly are). This api scope may already be correct.
-    // E.G. DataServiceFactory includes okhttp3 and retrofit2 symbols in compiled class file.
-    api dataDependencies.retrofit
-
-    implementation project(':domain')
-    implementation dataDependencies.rxJava
-    implementation dataDependencies.dagger
-    implementation dataDependencies.retrofitRxJavaAdapter
-    implementation dataDependencies.retrofitJacksonConverter
-    implementation dataDependencies.jacksonCore
-    implementation dataDependencies.jacksonDatabind
-    implementation dataDependencies.jacksonAnnotations
-
-    compileOnly dataDependencies.javaxAnnotation
-    compileOnly dataDependencies.autoValue
-
-    testImplementation dataTestDependencies.junit
-    testImplementation dataTestDependencies.assertj
-    testImplementation dataTestDependencies.mockitoCore
-}
+apply from: "$rootDir/config/dependencies/data.gradle"

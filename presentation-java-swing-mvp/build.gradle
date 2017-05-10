@@ -15,25 +15,6 @@
  */
 
 apply from: "$rootDir/config/java/application.gradle"
+apply from: "$rootDir/config/dependencies/presentation_java_swing_mvp.gradle"
 
 mainClassName = "com.vestrel00.business.search.presentation.java.swing.mvp.ApplicationRunner"
-
-dependencies {
-    def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
-    def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
-
-    apt presentationJavaDependencies.daggerCompiler
-    apt presentationJavaDependencies.autoValue
-
-    compile project(':presentation-java')
-
-    compile presentationJavaDependencies.rxJava
-    compile presentationJavaDependencies.dagger
-
-    compileOnly presentationJavaDependencies.javaxAnnotation
-    compileOnly presentationJavaDependencies.autoValue
-
-    testCompile presentationJavaTestDependencies.junit
-    testCompile presentationJavaTestDependencies.assertj
-    testCompile presentationJavaTestDependencies.mockitoCore
-}

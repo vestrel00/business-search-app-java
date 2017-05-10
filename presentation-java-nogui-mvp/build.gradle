@@ -15,6 +15,7 @@
  */
 
 apply from: "$rootDir/config/java/application.gradle"
+apply from: "$rootDir/config/dependencies/presentation_java_nogui_mvp.gradle"
 
 version '1.0.0'
 
@@ -39,25 +40,4 @@ run {
     // Required for System.in to block for getting user input.
     // See https://discuss.gradle.org/t/why-doesnt-system-in-read-block-when-im-using-gradle/3308
     standardInput = System.in
-}
-
-dependencies {
-    def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
-    def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
-
-    apt presentationJavaDependencies.daggerCompiler
-    apt presentationJavaDependencies.autoValue
-
-    compile project(':presentation-java')
-
-    compile presentationJavaDependencies.rxJava
-    compile presentationJavaDependencies.dagger
-
-    compileOnly presentationJavaDependencies.javaxAnnotation
-    compileOnly presentationJavaDependencies.autoValue
-
-    testCompile project(path: ':presentation-java', configuration: 'testOutput')
-    testCompile presentationJavaTestDependencies.junit
-    testCompile presentationJavaTestDependencies.assertj
-    testCompile presentationJavaTestDependencies.mockitoCore
 }

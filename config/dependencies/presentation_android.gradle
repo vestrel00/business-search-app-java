@@ -1,0 +1,60 @@
+/*
+ * Copyright 2017 Vandolf Estrellado
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Declare all dependencies for the presentation-android project.
+ */
+
+dependencies {
+    def presentationAndroidDependencies = rootProject.ext.presentationAndroidDependencies
+    def presentationAndroidTestDependencies = rootProject.ext.presentationAndroidTestDependencies
+
+    annotationProcessor presentationAndroidDependencies.daggerCompiler
+    annotationProcessor presentationAndroidDependencies.daggerAndroidProcessor
+    annotationProcessor presentationAndroidDependencies.autoValue
+    annotationProcessor presentationAndroidDependencies.butterKnifeAnnotationProcessor
+
+    // FIXME (GRADLE DEPENDENCY) - Update to api, implementation, compileOnly, and runtimeOnly configurations
+    // These are the same configurations provided by the java-library plugin starting at Gradle 3.4
+    // See http://tools.android.com/tech-docs/new-build-system/2-5-alpha-gradle-plugin/trying-gradle-plugin-2-5#TOC-New-dependency-configurations
+
+    compile project(':presentation-java')
+
+    compile presentationAndroidDependencies.rxJava
+    compile presentationAndroidDependencies.rxAndroid
+    compile presentationAndroidDependencies.dagger
+    compile presentationAndroidDependencies.daggerAndroid
+    compile presentationAndroidDependencies.appCompat
+    compile presentationAndroidDependencies.recyclerView
+    compile presentationAndroidDependencies.butterKnife
+
+    provided presentationAndroidDependencies.javaxAnnotation
+    provided presentationAndroidDependencies.autoValue
+
+    testCompile project(path: ':presentation-java', configuration: 'testOutput')
+    testCompile presentationAndroidTestDependencies.junit
+    testCompile presentationAndroidTestDependencies.assertj
+    testCompile presentationAndroidTestDependencies.mockitoCore
+
+    androidTestCompile presentationAndroidTestDependencies.mockitoCore
+    androidTestCompile presentationAndroidTestDependencies.mockitoAndroid
+    androidTestCompile(presentationAndroidTestDependencies.espressoCore) {
+        exclude group: 'com.android.support'
+    }
+    androidTestCompile(presentationAndroidTestDependencies.espressoRunner) {
+        exclude group: 'com.android.support'
+    }
+}

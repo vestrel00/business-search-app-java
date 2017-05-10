@@ -15,24 +15,4 @@
  */
 
 apply from: "$rootDir/config/java/library.gradle"
-
-dependencies {
-    def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
-    def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
-
-    apt presentationJavaDependencies.daggerCompiler
-    apt presentationJavaDependencies.autoValue
-
-    api project(':domain')
-    api project(':data')
-
-    implementation presentationJavaDependencies.rxJava
-    implementation presentationJavaDependencies.dagger
-
-    compileOnly presentationJavaDependencies.javaxAnnotation
-    compileOnly presentationJavaDependencies.autoValue
-
-    testImplementation presentationJavaTestDependencies.junit
-    testImplementation presentationJavaTestDependencies.assertj
-    testImplementation presentationJavaTestDependencies.mockitoCore
-}
+apply from: "$rootDir/config/dependencies/presentation_java.gradle"

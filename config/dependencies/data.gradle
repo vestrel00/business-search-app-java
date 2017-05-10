@@ -1,0 +1,48 @@
+/*
+ * Copyright 2017 Vandolf Estrellado
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Declare all dependencies for the data project.
+ */
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+
+    apt dataDependencies.daggerCompiler
+    apt dataDependencies.autoValue
+
+    // FIXME? (DEPENDENCY) - Possible to set to implementation? Retrofit dependencies are not
+    // directly exposed to consumers (though indirectly are). This api scope may already be correct.
+    // E.G. DataServiceFactory includes okhttp3 and retrofit2 symbols in compiled class file.
+    api dataDependencies.retrofit
+
+    implementation project(':domain')
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.dagger
+    implementation dataDependencies.retrofitRxJavaAdapter
+    implementation dataDependencies.retrofitJacksonConverter
+    implementation dataDependencies.jacksonCore
+    implementation dataDependencies.jacksonDatabind
+    implementation dataDependencies.jacksonAnnotations
+
+    compileOnly dataDependencies.javaxAnnotation
+    compileOnly dataDependencies.autoValue
+
+    testImplementation dataTestDependencies.junit
+    testImplementation dataTestDependencies.assertj
+    testImplementation dataTestDependencies.mockitoCore
+}
