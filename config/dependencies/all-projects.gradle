@@ -87,7 +87,6 @@ ext {
             daggerAndroid                 : "com.google.dagger:dagger-android:${versions.dagger}",
             daggerAndroidProcessor        : "com.google.dagger:dagger-android-processor:${versions.dagger}",
             rxAndroid                     : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
-            appCompat                     : "com.android.support:appcompat-v7:${versions.androidSupport}",
             recyclerView                  : "com.android.support:recyclerview-v7:${versions.androidSupport}",
             butterKnife                   : "com.jakewharton:butterknife:${versions.butterKnife}",
             butterKnifeAnnotationProcessor: "com.jakewharton:butterknife-compiler:${versions.butterKnife}"

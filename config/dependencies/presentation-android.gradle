@@ -37,7 +37,6 @@ dependencies {
     compile presentationAndroidDependencies.rxAndroid
     compile presentationAndroidDependencies.dagger
     compile presentationAndroidDependencies.daggerAndroid
-    compile presentationAndroidDependencies.appCompat
     compile presentationAndroidDependencies.recyclerView
     compile presentationAndroidDependencies.butterKnife
 
