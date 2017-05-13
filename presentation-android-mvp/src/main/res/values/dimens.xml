@@ -16,20 +16,11 @@
   -->
 
 <resources>
-    <string name="app_name">Business Search MVP</string>
-
-    <!-- literals -->
-    <string name="click_to_retry">Click to retry</string>
-    <string name="closed">Closed</string>
-    <string name="list_view">List View</string>
-    <string name="map_view">Map View</string>
-    <string name="open">Open</string>
-    <string name="search">Search</string>
-    <string name="use_current_location">Use current location</string>
-
-    <!-- hints -->
-    <string name="hint_location">Address city state, and/or zip</string>
-
-    <!-- errors -->
-    <string name="error_generic">Something went wrong</string>
+    <!-- Business List Item -->
+    <dimen name="business_list_item_horizontal_padding">16dp</dimen>
+    <dimen name="business_list_item_vertical_padding">8dp</dimen>
+    <dimen name="business_list_item_margin">8dp</dimen>
+    <dimen name="business_list_item_image_size">64dp</dimen>
+    <dimen name="business_list_item_rating_height">24dp</dimen>
+    <dimen name="business_list_item_name_text_size">18sp</dimen>
 </resources>

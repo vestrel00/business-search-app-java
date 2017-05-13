@@ -43,7 +43,7 @@ final class BusinessEntityParser implements Parser<BusinessEntity> {
                 .phoneNumber(node.path("display_phone").asText())
                 .imageUrl(node.path("image_url").asText())
                 .price(node.path("price").asText())
-                .rating(node.path("rating").asDouble())
+                .rating((float) node.path("rating").asDouble())
                 .closed(node.path("is_closed").asBoolean())
                 .locationEntity(locationEntityParser.parse(node.path("location")))
                 .coordinatesEntity(coordinatesEntityParser.parse(node.path("coordinates")))

@@ -38,6 +38,7 @@ dependencies {
     compile presentationAndroidDependencies.dagger
     compile presentationAndroidDependencies.daggerAndroid
     compile presentationAndroidDependencies.recyclerView
+    compile presentationAndroidDependencies.supportCompat
     compile presentationAndroidDependencies.butterKnife
 
     provided presentationAndroidDependencies.javaxAnnotation

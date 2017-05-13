@@ -18,6 +18,8 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +61,9 @@ public final class BusinessListFragment extends AbstractLoadContentFragment<Busi
         super.onViewCreated(view, savedInstanceState);
         businessListAdapter.onRestoreInstanceState(savedInstanceState);
         businessListView.setAdapter(businessListAdapter);
+        businessListView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        businessListView.addItemDecoration(new DividerItemDecoration(view.getContext(),
+                LinearLayoutManager.VERTICAL));
     }
 
     @Override

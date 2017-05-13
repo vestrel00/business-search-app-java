@@ -24,6 +24,8 @@ import com.google.auto.value.AutoValue;
 @AutoValue
 public abstract class BusinessModel implements Model {
 
+    public static final int MAX_RATING = 5;
+
     /**
      * @return a new {@link Builder}
      */
@@ -41,7 +43,7 @@ public abstract class BusinessModel implements Model {
 
     public abstract String price();
 
-    public abstract double rating();
+    public abstract float rating();
 
     public abstract boolean closed();
 
@@ -65,7 +67,7 @@ public abstract class BusinessModel implements Model {
 
         public abstract Builder price(String price);
 
-        public abstract Builder rating(double rating);
+        public abstract Builder rating(float rating);
 
         public abstract Builder closed(boolean closed);
 

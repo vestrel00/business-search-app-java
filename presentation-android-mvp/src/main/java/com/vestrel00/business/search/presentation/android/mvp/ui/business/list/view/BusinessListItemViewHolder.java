@@ -18,10 +18,13 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -31,7 +34,25 @@ import butterknife.ButterKnife;
 final class BusinessListItemViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.name)
-    TextView nameTextView;
+    TextView name;
+
+    @BindView(R.id.image)
+    ImageView image;
+
+    @BindView(R.id.rating)
+    RatingBar rating;
+
+    @BindView(R.id.price)
+    TextView price;
+
+    @BindView(R.id.open_close)
+    TextView openClose;
+
+    @BindString(R.string.open)
+    String openStr;
+
+    @BindString(R.string.closed)
+    String closedStr;
 
     BusinessListItemViewHolder(View itemView) {
         super(itemView);

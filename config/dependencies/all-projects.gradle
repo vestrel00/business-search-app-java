@@ -53,7 +53,7 @@ ext {
             // Android Libraries
             rxAndroid      : '2.0.1',
             butterKnife    : '8.5.1',
-            androidSupport : '25.2.0',
+            androidSupport : '25.3.1',
 
             // Java Testing
             jUnit          : '4.12',
@@ -88,6 +88,7 @@ ext {
             daggerAndroidProcessor        : "com.google.dagger:dagger-android-processor:${versions.dagger}",
             rxAndroid                     : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
             recyclerView                  : "com.android.support:recyclerview-v7:${versions.androidSupport}",
+            supportCompat                 : "com.android.support:support-compat:${versions.androidSupport}",
             butterKnife                   : "com.jakewharton:butterknife:${versions.butterKnife}",
             butterKnifeAnnotationProcessor: "com.jakewharton:butterknife-compiler:${versions.butterKnife}"
     ]

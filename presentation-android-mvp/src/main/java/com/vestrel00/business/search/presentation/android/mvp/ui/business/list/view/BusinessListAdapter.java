@@ -16,8 +16,11 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
+import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,13 +70,17 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     public BusinessListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = layoutInflaterFactory.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.business_list_item, parent, false);
-        return itemViewHolderFactory.create(itemView);
+
+        BusinessListItemViewHolder holder = itemViewHolderFactory.create(itemView);
+        initializeViewHolder(holder);
+        return holder;
     }
+
 
     @Override
     public void onBindViewHolder(BusinessListItemViewHolder holder, int position) {
         BusinessModel businessModel = businessModels.get(position);
-        holder.nameTextView.setText(businessModel.name());
+        bindViewHolderWithData(holder, businessModel);
 
         OnItemViewClickListener onItemViewClickListener
                 = onItemViewClickListenerFactory.create(onItemClickListener, businessModel);
@@ -111,5 +118,29 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
 
     private void addBusinessModels(List<BusinessModel> businessModels) {
         this.businessModels.addAll(businessModels);
+    }
+
+    private void initializeViewHolder(BusinessListItemViewHolder holder) {
+        holder.rating.setStepSize(0.1f);
+        holder.rating.setNumStars(BusinessModel.MAX_RATING);
+    }
+
+    private void bindViewHolderWithData(BusinessListItemViewHolder holder,
+                                        BusinessModel businessModel) {
+        holder.name.setText(businessModel.name());
+        holder.image.setImageURI(Uri.parse(businessModel.imageUrl()));
+        holder.rating.setRating(businessModel.rating());
+        holder.price.setText(businessModel.price());
+
+        Resources resources = holder.itemView.getResources();
+        if (businessModel.closed()) {
+            holder.openClose.setText(holder.closedStr);
+            holder.openClose.setTextColor(ResourcesCompat.getColor(resources,
+                    R.color.business_list_item_closed, null));
+        } else {
+            holder.openClose.setText(holder.openStr);
+            holder.openClose.setTextColor(ResourcesCompat.getColor(resources,
+                    R.color.business_list_item_open, null));
+        }
     }
 }

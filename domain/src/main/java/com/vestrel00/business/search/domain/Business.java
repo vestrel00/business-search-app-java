@@ -52,7 +52,7 @@ public abstract class Business {
 
     public abstract String price();
 
-    public abstract double rating();
+    public abstract float rating();
 
     public abstract boolean closed();
 
@@ -76,7 +76,7 @@ public abstract class Business {
 
         public abstract Builder price(String price);
 
-        public abstract Builder rating(double rating);
+        public abstract Builder rating(float rating);
 
         public abstract Builder closed(boolean closed);
 

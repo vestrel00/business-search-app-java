@@ -15,14 +15,62 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:paddingBottom="@dimen/business_list_item_vertical_padding"
+    android:paddingEnd="@dimen/business_list_item_horizontal_padding"
+    android:paddingStart="@dimen/business_list_item_horizontal_padding"
+    android:paddingTop="@dimen/business_list_item_vertical_padding">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginEnd="@dimen/business_list_item_margin"
+        android:layout_toStartOf="@+id/image"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Title"
+        tools:text="Vandolf's Bakery" />
 
-</LinearLayout>
+    <!-- TODO (IMPLEMENTATION) - Replace with Fresco -->
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/business_list_item_image_size"
+        android:layout_height="@dimen/business_list_item_image_size"
+        android:layout_alignParentEnd="true" />
+
+    <RatingBar
+        android:id="@+id/rating"
+        style="@android:style/Widget.Material.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/image" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/image"
+        android:layout_marginEnd="@dimen/business_list_item_margin"
+        android:layout_marginStart="@dimen/business_list_item_margin"
+        android:layout_toEndOf="@id/rating"
+        android:layout_toStartOf="@+id/open_close"
+        android:gravity="center_horizontal"
+        android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Subtitle"
+        tools:text="$$$" />
+
+    <TextView
+        android:id="@+id/open_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/image"
+        android:layout_marginEnd="@dimen/business_list_item_margin"
+        android:layout_toStartOf="@id/image"
+        android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Subtitle"
+        tools:text="Open" />
+
+</RelativeLayout>
