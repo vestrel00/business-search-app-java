@@ -46,12 +46,12 @@ public final class BusinessSearchActivity extends BaseActivity
     }
 
     @Override
-    public void onSearchAroundLocationClicked(String location) {
+    public void onSearchAroundLocation(String location) {
         businessListFragment().showBusinessesAroundLocation(location);
     }
 
     @Override
-    public void onSearchAroundCurrentLocationClicked() {
+    public void onSearchAroundCurrentLocation() {
         businessListFragment().showBusinessesAroundCurrentLocation();
     }
 

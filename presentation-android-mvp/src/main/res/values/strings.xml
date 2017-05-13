@@ -25,7 +25,7 @@
     <string name="map_view">Map View</string>
     <string name="open">Open</string>
     <string name="search">Search</string>
-    <string name="use_current_location">Use current location</string>
+    <string name="current_location">Current location</string>
 
     <!-- hints -->
     <string name="hint_location">Address city state, and/or zip</string>

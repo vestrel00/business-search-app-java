@@ -21,9 +21,9 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.searc
  */
 public interface BusinessSearchOptionsFragmentListener {
 
-    void onSearchAroundLocationClicked(String location);
+    void onSearchAroundLocation(String location);
 
-    void onSearchAroundCurrentLocationClicked();
+    void onSearchAroundCurrentLocation();
 
     void onShowListView();
 

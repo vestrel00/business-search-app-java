@@ -51,12 +51,16 @@ public class BusinessSearchOptionsFragment extends BaseFragment {
     @OnClick(R.id.search_around_location)
     void onSearchAroundLocationClicked() {
         String location = locationField.getText().toString();
-        listener.onSearchAroundLocationClicked(location);
+        listener.onSearchAroundLocation(location);
     }
 
-    @OnClick(R.id.search_around_current_location)
-    void onSearchAroundCurrentLocationClicked() {
-        listener.onSearchAroundCurrentLocationClicked();
+    @OnCheckedChanged(R.id.search_around_current_location)
+    void onToggleSearchAroundCurrentLocation(boolean isChecked) {
+        if (isChecked) {
+            listener.onSearchAroundCurrentLocation();
+        } else {
+            onSearchAroundLocationClicked();
+        }
     }
 
     @OnCheckedChanged(R.id.toggle_map_list_view)
