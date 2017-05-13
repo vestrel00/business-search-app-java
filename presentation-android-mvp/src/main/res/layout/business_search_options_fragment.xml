@@ -21,7 +21,7 @@
 
     <!-- TODO (IMPLEMENTATION) - Handle a ime action properly -->
     <EditText
-        android:id="@+id/location_field"
+        android:id="@+id/location_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -40,7 +40,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/location_field"
+        android:layout_below="@id/location_input"
         android:orientation="horizontal">
 
         <ToggleButton
@@ -58,6 +58,7 @@
             android:layout_marginEnd="@dimen/generic_margin"
             android:layout_marginStart="@dimen/generic_margin"
             android:layout_weight="3"
-            android:text="@string/current_location" />
+            android:text="@string/current_location"
+            android:textAppearance="@android:style/TextAppearance.Material.Widget.Button" />
     </LinearLayout>
 </RelativeLayout>

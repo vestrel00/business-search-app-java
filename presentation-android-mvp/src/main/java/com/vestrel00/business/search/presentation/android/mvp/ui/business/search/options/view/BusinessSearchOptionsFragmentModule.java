@@ -19,6 +19,7 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.searc
 import android.app.Fragment;
 
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.presenter.BusinessSearchOptionsPresenterModule;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseFragmentModule;
 
 import dagger.Binds;
@@ -27,10 +28,18 @@ import dagger.Module;
 /**
  * Provides business search options fragment dependencies.
  */
-@Module(includes = BaseFragmentModule.class)
+@Module(includes = {
+        BaseFragmentModule.class,
+        BusinessSearchOptionsPresenterModule.class
+})
 abstract class BusinessSearchOptionsFragmentModule {
 
     @Binds
     @PerFragment
     abstract Fragment fragment(BusinessSearchOptionsFragment businessSearchOptionsFragment);
+
+    @Binds
+    @PerFragment
+    abstract BusinessSearchOptionsView
+    businessSearchOptionsView(BusinessSearchOptionsFragment businessSearchOptionsFragment);
 }

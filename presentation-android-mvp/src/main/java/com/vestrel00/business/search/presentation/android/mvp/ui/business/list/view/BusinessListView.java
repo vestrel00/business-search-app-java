@@ -47,5 +47,5 @@ public interface BusinessListView extends LoadContentView {
      *
      * @param businessModel the businesses to view the details of
      */
-    void viewBusinessDetails(BusinessModel businessModel);
+    void showBusinessDetails(BusinessModel businessModel);
 }

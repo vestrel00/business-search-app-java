@@ -20,7 +20,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
 import javax.inject.Inject;
@@ -70,14 +69,23 @@ public abstract class BaseFragment extends Fragment implements HasFragmentInject
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        viewUnbinder = ButterKnife.bind(this, view);
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        View view = getView();
+        if (view != null) {
+            // Bind the views here instead of in onViewCreated so that view state changed listeners
+            // are not invoked automatically without user interaction.
+            // If we bind before this method (e.g. onViewCreated), then any checked changed
+            // listeners bound by ButterKnife will be invoked during fragment recreation.
+            viewUnbinder = ButterKnife.bind(this, getView());
+        }
     }
 
     @Override
     public void onDestroyView() {
-        viewUnbinder.unbind();
+        if (viewUnbinder != null) {
+            viewUnbinder.unbind();
+        }
         super.onDestroyView();
     }
 

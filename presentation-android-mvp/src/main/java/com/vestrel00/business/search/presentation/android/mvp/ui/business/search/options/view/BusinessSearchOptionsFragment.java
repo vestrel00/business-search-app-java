@@ -21,9 +21,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseFragment;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.presenter.BusinessSearchOptionsPresenter;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseViewFragment;
 
 import javax.inject.Inject;
 
@@ -34,10 +36,15 @@ import butterknife.OnClick;
 /**
  * The fragment view that displays options that can be applied to list businesses.
  */
-public class BusinessSearchOptionsFragment extends BaseFragment {
+public class BusinessSearchOptionsFragment
+        extends BaseViewFragment<BusinessSearchOptionsPresenter>
+        implements BusinessSearchOptionsView {
 
-    @BindView(R.id.location_field)
-    EditText locationField;
+    @BindView(R.id.location_input)
+    EditText locationInput;
+
+    @BindView(R.id.search_around_current_location)
+    Switch searchAroundCurrentLocation;
 
     @Inject
     BusinessSearchOptionsFragmentListener listener;
@@ -50,25 +57,61 @@ public class BusinessSearchOptionsFragment extends BaseFragment {
 
     @OnClick(R.id.search_around_location)
     void onSearchAroundLocationClicked() {
-        String location = locationField.getText().toString();
-        listener.onSearchAroundLocation(location);
+        presenter.onSearchAroundLocationClicked();
     }
 
     @OnCheckedChanged(R.id.search_around_current_location)
-    void onToggleSearchAroundCurrentLocation(boolean isChecked) {
-        if (isChecked) {
-            listener.onSearchAroundCurrentLocation();
-        } else {
-            onSearchAroundLocationClicked();
-        }
+    void onToggleSearchAroundCurrentLocation(boolean checked) {
+        presenter.onToggleSearchAroundCurrentLocation(checked);
     }
 
     @OnCheckedChanged(R.id.toggle_map_list_view)
-    void onToggleMapListView(boolean isChecked) {
-        if (isChecked) {
-            listener.onShowMapView();
-        } else {
-            listener.onShowListView();
-        }
+    void onToggleMapListView(boolean checked) {
+        presenter.onToggleMapListView(checked);
+    }
+
+    @Override
+    public void showBusinessesAroundLocation(String location) {
+        listener.onSearchAroundLocation(location);
+    }
+
+    @Override
+    public void showBusinessesAroundCurrentLocation() {
+        listener.onSearchAroundCurrentLocation();
+    }
+
+    @Override
+    public void showListView() {
+        listener.onShowListView();
+    }
+
+    @Override
+    public void showMapView() {
+        listener.onShowMapView();
+    }
+
+    @Override
+    public void setLocationInputEnabled(boolean enabled) {
+        locationInput.setEnabled(enabled);
+    }
+
+    @Override
+    public void setLocationInputToUsingCurrentLocation() {
+        locationInput.setText(R.string.using_current_location);
+    }
+
+    @Override
+    public void setLocationInput(String location) {
+        locationInput.setText(location);
+    }
+
+    @Override
+    public String getLocationInput() {
+        return locationInput.getText().toString();
+    }
+
+    @Override
+    public boolean useCurrentLocationChecked() {
+        return searchAroundCurrentLocation.isChecked();
     }
 }

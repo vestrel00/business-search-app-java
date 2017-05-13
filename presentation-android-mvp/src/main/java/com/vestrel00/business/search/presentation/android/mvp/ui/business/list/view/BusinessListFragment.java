@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
@@ -56,13 +57,15 @@ public final class BusinessListFragment extends AbstractLoadContentFragment<Busi
         return inflater.inflate(R.layout.business_list_fragment, container, false);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        Context context = getView().getContext();
         businessListAdapter.onRestoreInstanceState(savedInstanceState);
         businessListView.setAdapter(businessListAdapter);
-        businessListView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        businessListView.addItemDecoration(new DividerItemDecoration(view.getContext(),
+        businessListView.setLayoutManager(new LinearLayoutManager(context));
+        businessListView.addItemDecoration(new DividerItemDecoration(context,
                 LinearLayoutManager.VERTICAL));
     }
 
@@ -88,7 +91,7 @@ public final class BusinessListFragment extends AbstractLoadContentFragment<Busi
     }
 
     @Override
-    public void viewBusinessDetails(BusinessModel businessModel) {
+    public void showBusinessDetails(BusinessModel businessModel) {
         listener.onShowBusinessDetails(businessModel);
     }
 

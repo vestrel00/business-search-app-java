@@ -17,8 +17,6 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
 
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
 
@@ -36,9 +34,9 @@ public abstract class BaseViewFragment<T extends Presenter> extends BaseFragment
     protected T presenter;
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        presenter.onStart();
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        presenter.onStart(savedInstanceState);
     }
 
     @Override
@@ -51,6 +49,12 @@ public abstract class BaseViewFragment<T extends Presenter> extends BaseFragment
     public void onPause() {
         super.onPause();
         presenter.onPause();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        presenter.onSaveInstanceState(outState);
     }
 
     @Override

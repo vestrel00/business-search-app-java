@@ -26,6 +26,7 @@
     <string name="open">Open</string>
     <string name="search">Search</string>
     <string name="current_location">Current location</string>
+    <string name="using_current_location">Using current location</string>
 
     <!-- hints -->
     <string name="hint_location">Address city state, and/or zip</string>

@@ -58,7 +58,7 @@ This simple business search application is able to:
 
 **Notes**
 
-- The application is kept short and simple with no styling and no advanced UI for brevity. 
+- The application is kept short and simple with minimal styling and no advanced UI for brevity. 
 - The [Yelp Android API](https://github.com/Yelp/yelp-android) is not used in order to showcase 
   usage of [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
 

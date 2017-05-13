@@ -16,7 +16,11 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter;
 
+import android.os.Bundle;
+
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.MVPView;
+
+import io.reactivex.annotations.Nullable;
 
 /**
  * Abstract {@link Presenter} for all presenters to extend.
@@ -32,7 +36,7 @@ public abstract class BasePresenter<T extends MVPView> implements Presenter {
     }
 
     @Override
-    public void onStart() {
+    public void onStart(@Nullable Bundle savedInstanceState) {
     }
 
     @Override
@@ -41,6 +45,10 @@ public abstract class BasePresenter<T extends MVPView> implements Presenter {
 
     @Override
     public void onPause() {
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
     }
 
     @Override

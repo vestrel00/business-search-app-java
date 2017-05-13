@@ -73,7 +73,7 @@ final class BusinessListPresenterImpl extends BasePresenter<BusinessListView>
 
     @Override
     public void onBusinessClicked(BusinessModel businessModel) {
-        view.viewBusinessDetails(businessModel);
+        view.showBusinessDetails(businessModel);
     }
 
     @Override
