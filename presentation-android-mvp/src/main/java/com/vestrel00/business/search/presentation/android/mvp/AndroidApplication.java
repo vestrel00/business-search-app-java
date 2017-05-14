@@ -19,6 +19,8 @@ package com.vestrel00.business.search.presentation.android.mvp;
 import android.app.Activity;
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
@@ -41,11 +43,20 @@ public class AndroidApplication extends Application implements HasActivityInject
     @Override
     public void onCreate() {
         super.onCreate();
-        DaggerAndroidApplicationComponent.create().inject(this);
+        injectDependencies();
+        initializeImagingLibrary();
     }
 
     @Override
     public AndroidInjector<Activity> activityInjector() {
         return activityInjector;
+    }
+
+    private void injectDependencies() {
+        DaggerAndroidApplicationComponent.create().inject(this);
+    }
+
+    private void initializeImagingLibrary() {
+        Fresco.initialize(this);
     }
 }

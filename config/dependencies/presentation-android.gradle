@@ -40,6 +40,7 @@ dependencies {
     compile presentationAndroidDependencies.recyclerView
     compile presentationAndroidDependencies.supportCompat
     compile presentationAndroidDependencies.butterKnife
+    compile presentationAndroidDependencies.fresco
 
     provided presentationAndroidDependencies.javaxAnnotation
     provided presentationAndroidDependencies.autoValue

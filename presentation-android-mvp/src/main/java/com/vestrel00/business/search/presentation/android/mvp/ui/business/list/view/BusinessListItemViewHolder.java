@@ -18,10 +18,10 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.vestrel00.business.search.presentation.android.mvp.R;
 
 import butterknife.BindString;
@@ -37,7 +37,7 @@ final class BusinessListItemViewHolder extends RecyclerView.ViewHolder {
     TextView name;
 
     @BindView(R.id.image)
-    ImageView image;
+    SimpleDraweeView image;
 
     @BindView(R.id.rating)
     RatingBar rating;

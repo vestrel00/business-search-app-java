@@ -23,7 +23,9 @@
     <dimen name="business_list_item_horizontal_padding">16dp</dimen>
     <dimen name="business_list_item_vertical_padding">8dp</dimen>
     <dimen name="business_list_item_margin">@dimen/generic_margin</dimen>
-    <dimen name="business_list_item_image_size">64dp</dimen>
-    <dimen name="business_list_item_rating_height">24dp</dimen>
     <dimen name="business_list_item_name_text_size">18sp</dimen>
+    <dimen name="business_list_item_rating_height">24dp</dimen>
+    <dimen name="business_list_item_image_size">64dp</dimen>
+    <dimen name="business_list_item_image_corner_radius">4dp</dimen>
+    <dimen name="business_list_item_image_border_width">1dp</dimen>
 </resources>
