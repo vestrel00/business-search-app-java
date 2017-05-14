@@ -17,6 +17,9 @@
 package com.vestrel00.business.search.presentation.java.model;
 
 import com.google.auto.value.AutoValue;
+import com.vestrel00.business.search.data.entity.BusinessEntity;
+
+import java.util.List;
 
 /**
  * Contains business information.
@@ -43,6 +46,10 @@ public abstract class BusinessModel implements Model {
 
     public abstract String price();
 
+    public abstract List<String> categories();
+
+    public abstract int reviewCount();
+
     public abstract float rating();
 
     public abstract boolean closed();
@@ -66,6 +73,10 @@ public abstract class BusinessModel implements Model {
         public abstract Builder imageUrl(String imageUrl);
 
         public abstract Builder price(String price);
+
+        public abstract Builder categories(List<String> categories);
+
+        public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
 

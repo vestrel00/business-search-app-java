@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.deserialize;
+package com.vestrel00.business.search.data.entity.deserialize;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
-import com.vestrel00.business.search.data.net.parser.Parser;
-import com.vestrel00.business.search.data.net.parser.ParserFactory;
+import com.vestrel00.business.search.data.entity.parser.Parser;
+import com.vestrel00.business.search.data.entity.parser.ParserFactory;
 
 import java.io.IOException;
 

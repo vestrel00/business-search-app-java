@@ -18,7 +18,9 @@ package com.vestrel00.business.search.data.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
-import com.vestrel00.business.search.data.net.deserialize.BusinessEntityDeserializer;
+import com.vestrel00.business.search.data.entity.deserialize.BusinessEntityDeserializer;
+
+import java.util.List;
 
 /**
  * Contains business information.
@@ -60,6 +62,10 @@ public abstract class BusinessEntity implements Entity {
 
     public abstract String price();
 
+    public abstract List<String> categories();
+
+    public abstract int reviewCount();
+
     public abstract float rating();
 
     public abstract boolean closed();
@@ -83,6 +89,10 @@ public abstract class BusinessEntity implements Entity {
         public abstract Builder imageUrl(String imageUrl);
 
         public abstract Builder price(String price);
+
+        public abstract Builder categories(List<String> categories);
+
+        public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
 

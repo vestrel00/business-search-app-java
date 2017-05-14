@@ -18,6 +18,8 @@ package com.vestrel00.business.search.domain;
 
 import com.google.auto.value.AutoValue;
 
+import java.util.List;
+
 /**
  * Contains business information.
  * <p>
@@ -52,6 +54,10 @@ public abstract class Business {
 
     public abstract String price();
 
+    public abstract List<String> categories();
+
+    public abstract int reviewCount();
+
     public abstract float rating();
 
     public abstract boolean closed();
@@ -75,6 +81,10 @@ public abstract class Business {
         public abstract Builder imageUrl(String imageUrl);
 
         public abstract Builder price(String price);
+
+        public abstract Builder categories(List<String> categories);
+
+        public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
 

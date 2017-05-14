@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.parser;
+package com.vestrel00.business.search.data.entity.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
@@ -43,6 +43,8 @@ final class BusinessEntityParser implements Parser<BusinessEntity> {
                 .phoneNumber(node.path("display_phone").asText())
                 .imageUrl(node.path("image_url").asText())
                 .price(node.path("price").asText())
+                .categories(node.path("categories").findValuesAsText("title"))
+                .reviewCount(node.path("review_count").asInt())
                 .rating((float) node.path("rating").asDouble())
                 .closed(node.path("is_closed").asBoolean())
                 .locationEntity(locationEntityParser.parse(node.path("location")))

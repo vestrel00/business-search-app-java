@@ -14,24 +14,17 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.net.parser;
+package com.vestrel00.business.search.data.entity.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.vestrel00.business.search.data.entity.LocationEntity;
+import com.vestrel00.business.search.data.entity.Entity;
 
 /**
- * Parses {@link JsonNode} to a {@link LocationEntity}.
+ * Parses {@link JsonNode} into the output type.
+ *
+ * @param <T> the type of the {@link Entity} the output of {@link #parse(JsonNode)}
  */
-final class LocationEntityParser implements Parser<LocationEntity> {
+public interface Parser<T extends Entity> {
 
-    @Override
-    public LocationEntity parse(JsonNode node) {
-        return LocationEntity.builder()
-                .address(node.path("address1").asText())
-                .city(node.path("city").asText())
-                .state(node.path("state").asText())
-                .zipCode(node.path("zip_code").asText())
-                .country(node.path("country").asText())
-                .build();
-    }
+    T parse(JsonNode node);
 }
