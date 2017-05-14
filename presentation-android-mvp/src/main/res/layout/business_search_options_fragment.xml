@@ -59,8 +59,8 @@
             android:id="@+id/search_around_current_location"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/generic_margin"
-            android:layout_marginStart="@dimen/generic_margin"
+            android:layout_marginEnd="@dimen/business_search_options_item_margin"
+            android:layout_marginStart="@dimen/business_search_options_item_margin"
             android:layout_weight="3"
             android:text="@string/current_location"
             android:textAppearance="@android:style/TextAppearance.Material.Widget.Button" />

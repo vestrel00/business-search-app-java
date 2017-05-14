@@ -16,13 +16,13 @@
   -->
 
 <resources>
-    <!-- Generic -->
-    <dimen name="generic_margin">8dp</dimen>
+    <!-- Business Search Options -->
+    <dimen name="business_search_options_item_margin">8dp</dimen>
 
     <!-- Business List Item -->
     <dimen name="business_list_item_horizontal_padding">16dp</dimen>
     <dimen name="business_list_item_vertical_padding">8dp</dimen>
-    <dimen name="business_list_item_margin">@dimen/generic_margin</dimen>
+    <dimen name="business_list_item_margin">16dp</dimen>
     <dimen name="business_list_item_name_text_size">18sp</dimen>
     <dimen name="business_list_item_rating_height">24dp</dimen>
     <dimen name="business_list_item_image_size">64dp</dimen>
