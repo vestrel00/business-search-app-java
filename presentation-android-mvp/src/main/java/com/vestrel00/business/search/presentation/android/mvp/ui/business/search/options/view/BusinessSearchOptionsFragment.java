@@ -103,6 +103,7 @@ public class BusinessSearchOptionsFragment
 
     @OnEditorAction(R.id.location_input)
     boolean onLocationInputEditorSearchAction() {
+        locationInput.clearFocus();
         hideSoftKeyboard();
         searchAroundLocation();
         return true;
