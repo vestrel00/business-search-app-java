@@ -32,6 +32,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.OnEditorAction;
 
 /**
  * The fragment view that displays options that can be applied to list businesses.
@@ -53,21 +54,6 @@ public class BusinessSearchOptionsFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.business_search_options_fragment, container, false);
-    }
-
-    @OnClick(R.id.search_around_location)
-    void onSearchAroundLocationClicked() {
-        presenter.onSearchAroundLocationClicked();
-    }
-
-    @OnCheckedChanged(R.id.search_around_current_location)
-    void onToggleSearchAroundCurrentLocation(boolean checked) {
-        presenter.onToggleSearchAroundCurrentLocation(checked);
-    }
-
-    @OnCheckedChanged(R.id.toggle_map_list_view)
-    void onToggleMapListView(boolean checked) {
-        presenter.onToggleMapListView(checked);
     }
 
     @Override
@@ -113,5 +99,31 @@ public class BusinessSearchOptionsFragment
     @Override
     public boolean useCurrentLocationChecked() {
         return searchAroundCurrentLocation.isChecked();
+    }
+
+    @OnEditorAction(R.id.location_input)
+    boolean onLocationInputEditorSearchAction() {
+        hideSoftKeyboard();
+        searchAroundLocation();
+        return true;
+    }
+
+    @OnClick(R.id.search_around_location)
+    void onSearchAroundLocationClicked() {
+        searchAroundLocation();
+    }
+
+    @OnCheckedChanged(R.id.search_around_current_location)
+    void onToggleSearchAroundCurrentLocation(boolean checked) {
+        presenter.onToggleSearchAroundCurrentLocation(checked);
+    }
+
+    @OnCheckedChanged(R.id.toggle_map_list_view)
+    void onToggleMapListView(boolean checked) {
+        presenter.onToggleMapListView(checked);
+    }
+
+    private void searchAroundLocation() {
+        presenter.onSearchAroundLocationClicked();
     }
 }

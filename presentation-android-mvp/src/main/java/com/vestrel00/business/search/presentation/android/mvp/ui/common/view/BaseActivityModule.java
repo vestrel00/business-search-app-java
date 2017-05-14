@@ -19,6 +19,7 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.view.inputmethod.InputMethodManager;
 
 import com.vestrel00.business.search.presentation.android.inject.PerActivity;
 
@@ -40,6 +41,12 @@ public abstract class BaseActivityModule {
     @Binds
     @PerActivity
     abstract Context activityContext(Activity activity);
+
+    @Provides
+    @PerActivity
+    static InputMethodManager inputMethodManager(Activity activity) {
+        return (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+    }
 
     @Provides
     @Named(ACTIVITY_FRAGMENT_MANAGER)

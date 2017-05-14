@@ -21,6 +21,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -50,6 +51,9 @@ public abstract class BaseFragment extends Fragment implements HasFragmentInject
     protected Context activityContext;
 
     @Inject
+    protected InputMethodManager inputMethodManager;
+
+    @Inject
     @Named(BaseActivityModule.ACTIVITY_FRAGMENT_MANAGER)
     protected FragmentManager activityFragmentManager;
 
@@ -73,10 +77,22 @@ public abstract class BaseFragment extends Fragment implements HasFragmentInject
         super.onViewStateRestored(savedInstanceState);
         View view = getView();
         if (view != null) {
-            // Bind the views here instead of in onViewCreated so that view state changed listeners
-            // are not invoked automatically without user interaction.
-            // If we bind before this method (e.g. onViewCreated), then any checked changed
-            // listeners bound by ButterKnife will be invoked during fragment recreation.
+            /*
+             * Bind the views here instead of in onViewCreated so that view state changed listeners
+             * are not invoked automatically without user interaction.
+             *
+             * If we bind before this method (e.g. onViewCreated), then any checked changed
+             * listeners bound by ButterKnife will be invoked during fragment recreation.
+             *
+             * The lifecycle order is as follows (same if added via xml or java
+             * or if retain instance is true):
+             *
+             * onAttach
+             * onCreateView
+             * onActivityCreated
+             * onViewStateRestored
+             * onResume
+             */
             viewUnbinder = ButterKnife.bind(this, getView());
         }
     }
@@ -92,5 +108,12 @@ public abstract class BaseFragment extends Fragment implements HasFragmentInject
     @Override
     public final AndroidInjector<Fragment> fragmentInjector() {
         return childFragmentInjector;
+    }
+
+    protected void hideSoftKeyboard() {
+        View view = getView();
+        if (view != null) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }

@@ -36,6 +36,8 @@ public abstract class BaseViewFragment<T extends Presenter> extends BaseFragment
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
+        // Only start the presenter when the views have been bound.
+        // See BaseFragment.onViewStateRestored
         presenter.onStart(savedInstanceState);
     }
 

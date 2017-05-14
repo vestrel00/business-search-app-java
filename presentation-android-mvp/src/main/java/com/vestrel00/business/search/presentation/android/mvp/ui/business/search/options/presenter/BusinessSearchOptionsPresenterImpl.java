@@ -65,7 +65,7 @@ final class BusinessSearchOptionsPresenterImpl extends BasePresenter<BusinessSea
 
     @Override
     public void onSearchAroundLocationClicked() {
-        view.showBusinessesAroundLocation(view.getLocationInput());
+        showBusinessesAroundLocationInput();
     }
 
     @Override
@@ -78,7 +78,7 @@ final class BusinessSearchOptionsPresenterImpl extends BasePresenter<BusinessSea
             view.showBusinessesAroundCurrentLocation();
         } else {
             view.setLocationInput(currentLocationInput);
-            onSearchAroundLocationClicked();
+            showBusinessesAroundLocationInput();
         }
     }
 
@@ -89,5 +89,9 @@ final class BusinessSearchOptionsPresenterImpl extends BasePresenter<BusinessSea
         } else {
             view.showListView();
         }
+    }
+
+    private void showBusinessesAroundLocationInput() {
+        view.showBusinessesAroundLocation(view.getLocationInput());
     }
 }
