@@ -21,7 +21,7 @@ import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundCoordi
 import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocationString;
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListView;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.BasePresenter;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.BaseUseCasePresenter;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 import javax.inject.Inject;
@@ -30,25 +30,22 @@ import javax.inject.Inject;
  * An implementation of {@link BusinessListPresenter}.
  */
 @PerFragment
-final class BusinessListPresenterImpl extends BasePresenter<BusinessListView>
+final class BusinessListPresenterImpl extends BaseUseCasePresenter<BusinessListView>
         implements BusinessListPresenter {
 
     private final GetBusinessesAroundLocationString getBusinessesAroundLocation;
     private final GetBusinessesAroundCoordinates getBusinessesAroundCoordinates;
     private final BusinessListObserverFactory businessListObserverFactory;
-    private final UseCaseHandler useCaseHandler;
 
     @Inject
-    BusinessListPresenterImpl(BusinessListView view,
+    BusinessListPresenterImpl(BusinessListView view, UseCaseHandler useCaseHandler,
                               GetBusinessesAroundLocationString getBusinessesAroundLocation,
                               GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
-                              BusinessListObserverFactory businessListObserverFactory,
-                              UseCaseHandler useCaseHandler) {
-        super(view);
+                              BusinessListObserverFactory businessListObserverFactory) {
+        super(view, useCaseHandler);
         this.getBusinessesAroundLocation = getBusinessesAroundLocation;
         this.getBusinessesAroundCoordinates = getBusinessesAroundCoordinates;
         this.businessListObserverFactory = businessListObserverFactory;
-        this.useCaseHandler = useCaseHandler;
     }
 
     @Override
@@ -74,15 +71,5 @@ final class BusinessListPresenterImpl extends BasePresenter<BusinessListView>
     @Override
     public void onBusinessClicked(BusinessModel businessModel) {
         view.showBusinessDetails(businessModel);
-    }
-
-    @Override
-    public void onEnd() {
-        super.onEnd();
-        useCaseHandler.clear();
-    }
-
-    private void clearUseCases() {
-        useCaseHandler.clear();
     }
 }
