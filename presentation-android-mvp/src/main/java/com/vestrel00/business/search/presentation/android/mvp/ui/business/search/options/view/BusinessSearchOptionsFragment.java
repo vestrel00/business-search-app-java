@@ -35,9 +35,9 @@ import butterknife.OnClick;
 import butterknife.OnEditorAction;
 
 /**
- * The fragment view that displays options that can be applied to list businesses.
+ * A fragment implementation of {@link BusinessSearchOptionsView}.
  */
-public class BusinessSearchOptionsFragment
+public final class BusinessSearchOptionsFragment
         extends BaseViewFragment<BusinessSearchOptionsPresenter>
         implements BusinessSearchOptionsView {
 

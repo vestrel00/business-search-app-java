@@ -32,4 +32,18 @@ public final class Navigator {
     public void toBusinessDetails(String businessId) {
         // TODO (IMPLEMENTATION) - toBusinessDetails(String businessId)
     }
+
+    /*
+     * We could pass in the entire BusinessModel object as an extra in order to avoid having
+     * to make another network call using the businessId to fetch the data. However, we are not
+     * doing that to keep the details activity as simple as possible. There would be no code
+     * branching in case we support deep linking (it would use businessId as well). Furthermore,
+     * passing in the business model object would add logic for handling refreshes and retries.
+     *
+     * Another thing to note is that some data may not be available in the given BusinessModel,
+     * which is retrieved from the search. More details, including opening hours and photos,
+     * must be retrieved via the id.
+     */
+    // public void toBusinessDetails(BusinessModel businessModel) {
+    // }
 }

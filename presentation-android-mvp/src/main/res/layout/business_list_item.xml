@@ -41,7 +41,9 @@
         android:layout_width="@dimen/business_list_item_image_size"
         android:layout_height="@dimen/business_list_item_image_size"
         android:layout_alignParentEnd="true"
+        fresco:actualImageScaleType="centerCrop"
         fresco:placeholderImage="@drawable/ic_business_placeholder"
+        fresco:placeholderImageScaleType="centerCrop"
         fresco:roundedCornerRadius="@dimen/business_list_item_image_corner_radius"
         fresco:roundingBorderColor="@color/business_list_item_image_border"
         fresco:roundingBorderWidth="@dimen/business_list_item_image_border_width" />
