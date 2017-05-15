@@ -36,6 +36,13 @@ import dagger.multibindings.IntoMap;
 /**
  * Provides Android Application injector factory dependencies.
  */
+// FIXME? (DAGGER) - Migrate over to @ContributesAndroidInjector when multi-layer subcomponent
+// binding becomes supported. Currently, there is no way to specify the subcomponents of an
+// activity module so that fragment scope subcomponents are bound properly.
+// E.G. BusinessSearchActivityModule specifies the following subcomponents:
+// - BusinessSearchOptionsFragmentSubcomponent
+// - BusinessListFragmentSubcomponent
+// There is no way to set this up using @ContributesAndroidInjector as of dagger 2.11-rc2
 @Module
 abstract class AndroidApplicationInjectorFactoryModule {
 
