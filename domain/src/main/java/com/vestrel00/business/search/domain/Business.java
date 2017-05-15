@@ -56,7 +56,7 @@ public abstract class Business {
 
     public abstract String url();
 
-    public abstract List<String> transactions();
+    public abstract List<BusinessTransactionType> transactionTypes();
 
     public abstract List<String> categories();
 
@@ -88,7 +88,7 @@ public abstract class Business {
 
         public abstract Builder url(String url);
 
-        public abstract Builder transactions(List<String> transactions);
+        public abstract Builder transactionTypes(List<BusinessTransactionType> transactionTypes);
 
         public abstract Builder categories(List<String> categories);
 

@@ -17,9 +17,11 @@
 package com.vestrel00.business.search.presentation.java.model.mapper;
 
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.BusinessTransactionType;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
+import com.vestrel00.business.search.presentation.java.model.BusinessTransactionTypeModel;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 
@@ -48,4 +50,10 @@ public abstract class ModelMapperModule {
     @Singleton
     abstract ModelMapper<CoordinatesModel, Coordinates>
     coordinatesModelMapper(CoordinatesModelMapper coordinatesModelMapper);
+
+    @Binds
+    @Singleton
+    abstract ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
+    businessTransactionTypeModelMapper(BusinessTransactionTypeModelMapper
+                                               businessTransactionTypeModelMapper);
 }

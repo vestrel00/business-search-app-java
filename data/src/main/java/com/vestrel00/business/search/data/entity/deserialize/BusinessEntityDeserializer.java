@@ -21,8 +21,8 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
-import com.vestrel00.business.search.data.entity.parser.Parser;
-import com.vestrel00.business.search.data.entity.parser.ParserFactory;
+import com.vestrel00.business.search.data.entity.parser.EntityParser;
+import com.vestrel00.business.search.data.entity.parser.EntityParserFactory;
 
 import java.io.IOException;
 
@@ -35,7 +35,9 @@ public final class BusinessEntityDeserializer extends JsonDeserializer<BusinessE
     public BusinessEntity deserialize(JsonParser parser, DeserializationContext ctxt)
             throws IOException {
         JsonNode node = parser.readValueAsTree();
-        Parser<BusinessEntity> businessEntityParser = ParserFactory.create().businessEntityParser();
+        EntityParser<BusinessEntity> businessEntityParser
+                = EntityParserFactory.create().businessEntityParser();
+        
         return businessEntityParser.parse(node);
     }
 }

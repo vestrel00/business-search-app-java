@@ -17,9 +17,11 @@
 package com.vestrel00.business.search.data.entity.mapper;
 
 import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.BusinessTransactionTypeEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.BusinessTransactionType;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 
@@ -35,14 +37,19 @@ public final class EntityMapperHolder {
     private final EntityMapper<BusinessEntity, Business> businessEntityMapper;
     private final EntityMapper<LocationEntity, Location> locationEntityMapper;
     private final EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper;
+    private final EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType>
+            businessTransactionTypeEntityMapper;
 
     @Inject
     EntityMapperHolder(EntityMapper<BusinessEntity, Business> businessEntityMapper,
                        EntityMapper<LocationEntity, Location> locationEntityMapper,
-                       EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper) {
+                       EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper,
+                       EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType>
+                               businessTransactionTypeEntityMapper) {
         this.businessEntityMapper = businessEntityMapper;
         this.locationEntityMapper = locationEntityMapper;
         this.coordinatesEntityMapper = coordinatesEntityMapper;
+        this.businessTransactionTypeEntityMapper = businessTransactionTypeEntityMapper;
     }
 
     public EntityMapper<BusinessEntity, Business> businessEntityMapper() {
@@ -55,5 +62,10 @@ public final class EntityMapperHolder {
 
     public EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper() {
         return coordinatesEntityMapper;
+    }
+
+    public EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType>
+    businessTransactionTypeEntityMapper() {
+        return businessTransactionTypeEntityMapper;
     }
 }

@@ -64,7 +64,7 @@ public abstract class BusinessEntity implements Entity {
 
     public abstract String url();
 
-    public abstract List<String> transactions();
+    public abstract List<BusinessTransactionTypeEntity> transactionTypes();
 
     public abstract List<String> categories();
 
@@ -96,8 +96,9 @@ public abstract class BusinessEntity implements Entity {
 
         public abstract Builder url(String url);
 
-        public abstract Builder transactions(List<String> transactions);
-        
+        public abstract Builder
+        transactionTypes(List<BusinessTransactionTypeEntity> transactionTypes);
+
         public abstract Builder categories(List<String> categories);
 
         public abstract Builder reviewCount(int reviewCount);

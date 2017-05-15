@@ -14,21 +14,24 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.entity.parser;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.vestrel00.business.search.data.entity.CoordinatesEntity;
+package com.vestrel00.business.search.presentation.java.model;
 
 /**
- * Parses {@link JsonNode} to a {@link CoordinatesEntity}.
+ * Contains business transaction information.
  */
-final class CoordinatesEntityParser implements EntityParser<CoordinatesEntity> {
+public enum BusinessTransactionTypeModel implements Model {
+    /**
+     * Allows for pickups.
+     */
+    PICKUP,
 
-    @Override
-    public CoordinatesEntity parse(JsonNode node) {
-        return CoordinatesEntity.builder()
-                .latitude(node.path("latitude").asDouble())
-                .longitude(node.path("longitude").asDouble())
-                .build();
-    }
+    /**
+     * Allows for deliveries.
+     */
+    DELIVERY,
+
+    /**
+     * Allows for reservations.
+     */
+    RESERVATION
 }

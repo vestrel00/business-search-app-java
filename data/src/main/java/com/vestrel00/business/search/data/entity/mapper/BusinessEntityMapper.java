@@ -17,9 +17,11 @@
 package com.vestrel00.business.search.data.entity.mapper;
 
 import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.BusinessTransactionTypeEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.BusinessTransactionType;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 
@@ -34,12 +36,20 @@ final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Busines
 
     private final EntityMapper<LocationEntity, Location> locationEntityMapper;
     private final EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper;
+    private final EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType>
+            businessTransactionTypeEntityMapper;
+    private final EntityListMapper entityListMapper;
 
     @Inject
     BusinessEntityMapper(EntityMapper<LocationEntity, Location> locationEntityMapper,
-                         EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper) {
+                         EntityMapper<CoordinatesEntity, Coordinates> coordinatesEntityMapper,
+                         EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType>
+                                 businessTransactionTypeEntityMapper,
+                         EntityListMapper entityListMapper) {
         this.locationEntityMapper = locationEntityMapper;
         this.coordinatesEntityMapper = coordinatesEntityMapper;
+        this.businessTransactionTypeEntityMapper = businessTransactionTypeEntityMapper;
+        this.entityListMapper = entityListMapper;
     }
 
     @Override
@@ -51,7 +61,8 @@ final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Busines
                 .imageUrl(businessEntity.imageUrl())
                 .price(businessEntity.price())
                 .url(businessEntity.url())
-                .transactions(businessEntity.transactions())
+                .transactionTypes(entityListMapper.mapToV(businessTransactionTypeEntityMapper,
+                        businessEntity.transactionTypes()))
                 .categories(businessEntity.categories())
                 .reviewCount(businessEntity.reviewCount())
                 .rating(businessEntity.rating())
@@ -70,7 +81,8 @@ final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Busines
                 .imageUrl(business.imageUrl())
                 .price(business.price())
                 .url(business.url())
-                .transactions(business.transactions())
+                .transactionTypes(entityListMapper.mapToK(businessTransactionTypeEntityMapper,
+                        business.transactionTypes()))
                 .categories(business.categories())
                 .reviewCount(business.reviewCount())
                 .rating(business.rating())

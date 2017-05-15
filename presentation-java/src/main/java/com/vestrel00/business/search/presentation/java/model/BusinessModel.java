@@ -47,7 +47,7 @@ public abstract class BusinessModel implements Model {
 
     public abstract String url();
 
-    public abstract List<String> transactions();
+    public abstract List<BusinessTransactionTypeModel> transactionTypes();
 
     public abstract List<String> categories();
 
@@ -79,7 +79,8 @@ public abstract class BusinessModel implements Model {
 
         public abstract Builder url(String url);
 
-        public abstract Builder transactions(List<String> transactions);
+        public abstract Builder
+        transactionTypes(List<BusinessTransactionTypeModel> transactionTypes);
 
         public abstract Builder categories(List<String> categories);
 

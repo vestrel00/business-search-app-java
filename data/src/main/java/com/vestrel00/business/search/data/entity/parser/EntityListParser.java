@@ -17,21 +17,26 @@
 package com.vestrel00.business.search.data.entity.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.vestrel00.business.search.data.entity.LocationEntity;
+import com.vestrel00.business.search.data.entity.Entity;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
- * Parses {@link JsonNode} to a {@link LocationEntity}.
+ * Parses lists of entities.
  */
-final class LocationEntityParser implements EntityParser<LocationEntity> {
+final class EntityListParser {
 
-    @Override
-    public LocationEntity parse(JsonNode node) {
-        return LocationEntity.builder()
-                .address(node.path("address1").asText())
-                .city(node.path("city").asText())
-                .state(node.path("state").asText())
-                .zipCode(node.path("zip_code").asText())
-                .country(node.path("country").asText())
-                .build();
+    EntityListParser() {
+    }
+
+    <T extends Entity> List<T> parse(EntityParser<T> entityParser, Iterator<JsonNode> nodesIter) {
+        List<T> entityList = new ArrayList<>();
+        while (nodesIter.hasNext()) {
+            JsonNode node = nodesIter.next();
+            entityList.add(entityParser.parse(node));
+        }
+        return entityList;
     }
 }

@@ -17,9 +17,11 @@
 package com.vestrel00.business.search.data.entity.mapper;
 
 import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.BusinessTransactionTypeEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.BusinessTransactionType;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 
@@ -48,4 +50,10 @@ public abstract class EntityMapperModule {
     @Singleton
     abstract EntityMapper<CoordinatesEntity, Coordinates>
     coordinatesEntityMapper(CoordinatesEntityMapper coordinatesEntityMapper);
+
+    @Binds
+    @Singleton
+    abstract EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType>
+    businessTransactionTypeEntityMapper(BusinessTransactionTypeEntityMapper
+                                                businessTransactionTypeEntityMapper);
 }

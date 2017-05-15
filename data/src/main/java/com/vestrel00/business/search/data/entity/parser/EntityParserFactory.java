@@ -16,33 +16,42 @@
 
 package com.vestrel00.business.search.data.entity.parser;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.BusinessTransactionTypeEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 
 /**
- * Creates instance of {@link Parser}.
+ * Creates instance of {@link EntityParser}.
  */
-public final class ParserFactory {
+public final class EntityParserFactory {
 
-    private ParserFactory() {
+    private EntityParserFactory() {
     }
 
-    public static ParserFactory create() {
-        return new ParserFactory();
+    public static EntityParserFactory create() {
+        return new EntityParserFactory();
     }
 
-    public Parser<BusinessEntity> businessEntityParser() {
+    public EntityParser<BusinessEntity> businessEntityParser() {
         return new BusinessEntityParser(locationEntityParser(), coordinatesEntityParser(),
-                new ObjectMapper());
+                businessTransactionTypeEntityEntityParser(), entityListParser());
     }
 
-    private Parser<LocationEntity> locationEntityParser() {
+    private EntityParser<LocationEntity> locationEntityParser() {
         return new LocationEntityParser();
     }
 
-    private Parser<CoordinatesEntity> coordinatesEntityParser() {
+    private EntityParser<CoordinatesEntity> coordinatesEntityParser() {
         return new CoordinatesEntityParser();
+    }
+
+    private EntityParser<BusinessTransactionTypeEntity>
+    businessTransactionTypeEntityEntityParser() {
+        return new BusinessTransactionTypeEntityParser();
+    }
+
+    private EntityListParser entityListParser() {
+        return new EntityListParser();
     }
 }

@@ -17,9 +17,11 @@
 package com.vestrel00.business.search.presentation.java.model.mapper;
 
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.BusinessTransactionType;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
+import com.vestrel00.business.search.presentation.java.model.BusinessTransactionTypeModel;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 
@@ -34,12 +36,20 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
 
     private final ModelMapper<LocationModel, Location> locationModelMapper;
     private final ModelMapper<CoordinatesModel, Coordinates> coordinatesEntityMapper;
+    private final ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
+            businessTransactionTypeModelMapper;
+    private final ModelListMapper modelListMapper;
 
     @Inject
     BusinessModelMapper(LocationModelMapper locationModelMapper,
-                        CoordinatesModelMapper coordinatesEntityMapper) {
+                        CoordinatesModelMapper coordinatesEntityMapper,
+                        ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
+                                businessTransactionTypeModelMapper,
+                        ModelListMapper modelListMapper) {
         this.locationModelMapper = locationModelMapper;
         this.coordinatesEntityMapper = coordinatesEntityMapper;
+        this.businessTransactionTypeModelMapper = businessTransactionTypeModelMapper;
+        this.modelListMapper = modelListMapper;
     }
 
     @Override
@@ -51,7 +61,8 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .imageUrl(businessModel.imageUrl())
                 .price(businessModel.price())
                 .url(businessModel.url())
-                .transactions(businessModel.transactions())
+                .transactionTypes(modelListMapper.mapToV(businessTransactionTypeModelMapper,
+                        businessModel.transactionTypes()))
                 .categories(businessModel.categories())
                 .reviewCount(businessModel.reviewCount())
                 .rating(businessModel.rating())
@@ -70,7 +81,8 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .imageUrl(business.imageUrl())
                 .price(business.price())
                 .url(business.url())
-                .transactions(business.transactions())
+                .transactionTypes(modelListMapper.mapToK(businessTransactionTypeModelMapper,
+                        business.transactionTypes()))
                 .categories(business.categories())
                 .reviewCount(business.reviewCount())
                 .rating(business.rating())

@@ -17,28 +17,31 @@
 package com.vestrel00.business.search.data.entity.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.BusinessTransactionTypeEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
-
-import java.util.List;
 
 /**
  * Parses {@link JsonNode} to a {@link BusinessEntity}.
  */
-final class BusinessEntityParser implements Parser<BusinessEntity> {
+final class BusinessEntityParser implements EntityParser<BusinessEntity> {
 
-    private final Parser<LocationEntity> locationEntityParser;
-    private final Parser<CoordinatesEntity> coordinatesEntityParser;
-    private final ObjectMapper objectMapper;
+    private final EntityParser<LocationEntity> locationEntityParser;
+    private final EntityParser<CoordinatesEntity> coordinatesEntityParser;
+    private final EntityParser<BusinessTransactionTypeEntity>
+            businessTransactionTypeEntityEntityParser;
+    private final EntityListParser entityListParser;
 
-    BusinessEntityParser(Parser<LocationEntity> locationEntityParser,
-                         Parser<CoordinatesEntity> coordinatesEntityParser,
-                         ObjectMapper objectMapper) {
+    BusinessEntityParser(EntityParser<LocationEntity> locationEntityParser,
+                         EntityParser<CoordinatesEntity> coordinatesEntityParser,
+                         EntityParser<BusinessTransactionTypeEntity>
+                                 businessTransactionTypeEntityEntityParser,
+                         EntityListParser entityListParser) {
         this.locationEntityParser = locationEntityParser;
         this.coordinatesEntityParser = coordinatesEntityParser;
-        this.objectMapper = objectMapper;
+        this.businessTransactionTypeEntityEntityParser = businessTransactionTypeEntityEntityParser;
+        this.entityListParser = entityListParser;
     }
 
     @SuppressWarnings("unchecked")
@@ -51,7 +54,8 @@ final class BusinessEntityParser implements Parser<BusinessEntity> {
                 .imageUrl(node.path("image_url").asText())
                 .price(node.path("price").asText())
                 .url(node.path("url").asText())
-                .transactions(objectMapper.convertValue(node.path("transactions"), List.class))
+                .transactionTypes(entityListParser.parse(businessTransactionTypeEntityEntityParser,
+                        node.path("transactions").iterator()))
                 .categories(node.path("categories").findValuesAsText("title"))
                 .reviewCount(node.path("review_count").asInt())
                 .rating((float) node.path("rating").asDouble())

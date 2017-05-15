@@ -14,17 +14,24 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.data.entity.parser;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.vestrel00.business.search.data.entity.Entity;
+package com.vestrel00.business.search.data.entity;
 
 /**
- * Parses {@link JsonNode} into the output type.
- *
- * @param <T> the type of the {@link Entity} the output of {@link #parse(JsonNode)}
+ * Contains business transaction information.
  */
-public interface Parser<T extends Entity> {
+public enum BusinessTransactionTypeEntity implements Entity {
+    /**
+     * Allows for pickups.
+     */
+    PICKUP,
 
-    T parse(JsonNode node);
+    /**
+     * Allows for deliveries.
+     */
+    DELIVERY,
+
+    /**
+     * Allows for reservations.
+     */
+    RESERVATION
 }
