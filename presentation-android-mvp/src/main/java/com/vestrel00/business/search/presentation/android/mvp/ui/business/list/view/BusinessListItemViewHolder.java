@@ -24,7 +24,6 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.vestrel00.business.search.presentation.android.mvp.R;
 
-import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -39,20 +38,14 @@ final class BusinessListItemViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.image)
     SimpleDraweeView image;
 
+    @BindView(R.id.categories)
+    TextView categories;
+
     @BindView(R.id.rating)
     RatingBar rating;
 
     @BindView(R.id.price)
     TextView price;
-
-    @BindView(R.id.open_close)
-    TextView openClose;
-
-    @BindString(R.string.open)
-    String openStr;
-
-    @BindString(R.string.closed)
-    String closedStr;
 
     BusinessListItemViewHolder(View itemView) {
         super(itemView);

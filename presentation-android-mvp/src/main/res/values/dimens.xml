@@ -22,11 +22,12 @@
     <!-- Business List Item -->
     <dimen name="business_list_item_horizontal_padding">16dp</dimen>
     <dimen name="business_list_item_vertical_padding">8dp</dimen>
-    <dimen name="business_list_item_margin">16dp</dimen>
-    <dimen name="business_list_item_rating_height">24dp</dimen>
-    <dimen name="business_list_item_image_size">64dp</dimen>
+    <dimen name="business_list_item_margin">8dp</dimen>
+    <dimen name="business_list_item_image_size">76dp</dimen>
     <dimen name="business_list_item_image_corner_radius">4dp</dimen>
     <dimen name="business_list_item_image_border_width">1dp</dimen>
+    <dimen name="business_list_item_categories_text_size">14sp</dimen>
+    <dimen name="business_list_item_price_text_size">12sp</dimen>
 
     <!-- Business Details -->
     <dimen name="business_details_image_height">164dp</dimen>

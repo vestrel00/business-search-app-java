@@ -17,7 +17,5 @@
 
 <resources>
     <!-- Business List Item -->
-    <color name="business_list_item_open">@android:color/white</color>
-    <color name="business_list_item_closed">@android:color/darker_gray</color>
     <color name="business_list_item_image_border">@android:color/white</color>
 </resources>

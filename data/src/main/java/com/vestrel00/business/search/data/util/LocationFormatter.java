@@ -16,7 +16,10 @@
 
 package com.vestrel00.business.search.data.util;
 
+import com.vestrel00.business.search.common.StringUtils;
 import com.vestrel00.business.search.data.entity.LocationEntity;
+
+import java.util.Arrays;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -27,24 +30,15 @@ import javax.inject.Singleton;
 @Singleton
 public final class LocationFormatter {
 
+    private final StringUtils stringUtils;
+
     @Inject
-    LocationFormatter() {
+    LocationFormatter(StringUtils stringUtils) {
+        this.stringUtils = stringUtils;
     }
 
     public String formatLocation(LocationEntity location) {
-        StringBuilder formattedLocation = new StringBuilder();
-        addToFormattedLocation(formattedLocation, location.address());
-        addToFormattedLocation(formattedLocation, location.city());
-        addToFormattedLocation(formattedLocation, location.state());
-        addToFormattedLocation(formattedLocation, location.zipCode());
-        addToFormattedLocation(formattedLocation, location.country());
-        return formattedLocation.toString().trim();
-    }
-
-    private void addToFormattedLocation(StringBuilder formattedLocation, String locationItem) {
-        if (!locationItem.isEmpty()) {
-            formattedLocation.append(locationItem);
-            formattedLocation.append(' ');
-        }
+        return stringUtils.join(Arrays.asList(location.address(), location.city(), location.state(),
+                location.zipCode(), location.country()), " ");
     }
 }

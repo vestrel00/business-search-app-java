@@ -16,10 +16,10 @@
 
 package com.vestrel00.business.search.data.entity.validator;
 
+import com.vestrel00.business.search.common.StringUtils;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
-import com.vestrel00.business.search.data.util.StringUtils;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

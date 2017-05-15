@@ -58,8 +58,6 @@ public abstract class BusinessModel implements Model {
 
     public abstract float rating();
 
-    public abstract boolean closed();
-
     public abstract LocationModel locationModel();
 
     public abstract CoordinatesModel coordinatesModel();
@@ -90,8 +88,6 @@ public abstract class BusinessModel implements Model {
         public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
-
-        public abstract Builder closed(boolean closed);
 
         public abstract Builder locationModel(LocationModel locationModel);
 

@@ -14,15 +14,6 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search"
+apply from: "$rootDir/config/coverage/jacoco-java-main.gradle"
 
-include ':common'
-include ':domain'
-include ':data'
-include ':presentation-java'
-include ':presentation-java-nogui-mvp'
-include ':presentation-java-swing-mvp'
-include ':presentation-java-swing-mvvm'
-include ':presentation-android'
-include ':presentation-android-mvp'
-include ':presentation-android-mvvm'
+generateJavaMainJacocoTaskWithExcludes([])

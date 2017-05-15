@@ -72,8 +72,6 @@ public abstract class BusinessEntity implements Entity {
 
     public abstract float rating();
 
-    public abstract boolean closed();
-
     public abstract LocationEntity locationEntity();
 
     public abstract CoordinatesEntity coordinatesEntity();
@@ -104,8 +102,6 @@ public abstract class BusinessEntity implements Entity {
         public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
-
-        public abstract Builder closed(boolean closed);
 
         public abstract Builder locationEntity(LocationEntity locationEntity);
 

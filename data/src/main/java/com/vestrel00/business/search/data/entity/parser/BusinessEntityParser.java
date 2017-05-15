@@ -59,7 +59,6 @@ final class BusinessEntityParser implements EntityParser<BusinessEntity> {
                 .categories(node.path("categories").findValuesAsText("title"))
                 .reviewCount(node.path("review_count").asInt())
                 .rating((float) node.path("rating").asDouble())
-                .closed(node.path("is_closed").asBoolean())
                 .locationEntity(locationEntityParser.parse(node.path("location")))
                 .coordinatesEntity(coordinatesEntityParser.parse(node.path("coordinates")))
                 .build();

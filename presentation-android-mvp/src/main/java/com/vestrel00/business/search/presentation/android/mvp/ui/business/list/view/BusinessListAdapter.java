@@ -16,16 +16,15 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vestrel00.business.search.common.StringUtils;
 import com.vestrel00.business.search.presentation.android.common.LayoutInflaterFactory;
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.R;
@@ -52,18 +51,21 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     private final BusinessListItemClickListener onItemClickListener;
     private final OnItemViewClickListenerFactory onItemViewClickListenerFactory;
     private final LayoutInflaterFactory layoutInflaterFactory;
+    private final StringUtils stringUtils;
 
     @Inject
     BusinessListAdapter(List<BusinessModel> businessModels,
                         BusinessListItemViewHolderFactory itemViewHolderFactory,
                         BusinessListItemClickListener onItemClickListener,
                         OnItemViewClickListenerFactory onItemViewClickListenerFactory,
-                        LayoutInflaterFactory layoutInflaterFactory) {
+                        LayoutInflaterFactory layoutInflaterFactory,
+                        StringUtils stringUtils) {
         this.businessModels = businessModels;
         this.itemViewHolderFactory = itemViewHolderFactory;
         this.onItemClickListener = onItemClickListener;
         this.onItemViewClickListenerFactory = onItemViewClickListenerFactory;
         this.layoutInflaterFactory = layoutInflaterFactory;
+        this.stringUtils = stringUtils;
     }
 
     @Override
@@ -132,15 +134,7 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
         holder.rating.setRating(businessModel.rating());
         holder.price.setText(businessModel.price());
 
-        Resources resources = holder.itemView.getResources();
-        if (businessModel.closed()) {
-            holder.openClose.setText(holder.closedStr);
-            holder.openClose.setTextColor(ResourcesCompat.getColor(resources,
-                    R.color.business_list_item_closed, null));
-        } else {
-            holder.openClose.setText(holder.openStr);
-            holder.openClose.setTextColor(ResourcesCompat.getColor(resources,
-                    R.color.business_list_item_open, null));
-        }
+        String categories = stringUtils.join(businessModel.categories(), ", ");
+        holder.categories.setText(categories);
     }
 }

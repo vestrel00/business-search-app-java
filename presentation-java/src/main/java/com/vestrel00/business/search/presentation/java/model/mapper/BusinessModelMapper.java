@@ -66,7 +66,6 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .categories(businessModel.categories())
                 .reviewCount(businessModel.reviewCount())
                 .rating(businessModel.rating())
-                .closed(businessModel.closed())
                 .location(locationModelMapper.map(businessModel.locationModel()))
                 .coordinates(coordinatesEntityMapper.map(businessModel.coordinatesModel()))
                 .build();
@@ -86,7 +85,6 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .categories(business.categories())
                 .reviewCount(business.reviewCount())
                 .rating(business.rating())
-                .closed(business.closed())
                 .locationModel(locationModelMapper.map(business.location()))
                 .coordinatesModel(coordinatesEntityMapper.map(business.coordinates()))
                 .build();

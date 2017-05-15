@@ -101,6 +101,10 @@ ext {
             espressoRunner: "com.android.support.test:runner:${versions.espressoRunner}"
     ]
 
+    commonDependencies = javaDependencies
+
+    commonTestDependencies = javaTestDependencies
+
     domainDependencies = javaDependencies
 
     domainTestDependencies = javaTestDependencies

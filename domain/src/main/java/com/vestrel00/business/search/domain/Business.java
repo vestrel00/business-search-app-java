@@ -34,6 +34,7 @@ import java.util.List;
  * </ul>
  * This done to prevent null checks and null exceptions for consumers.
  */
+// TODO (IMPLEMENTATION) - Add business details : hours, photos
 @AutoValue
 public abstract class Business {
 
@@ -64,8 +65,6 @@ public abstract class Business {
 
     public abstract float rating();
 
-    public abstract boolean closed();
-
     public abstract Location location();
 
     public abstract Coordinates coordinates();
@@ -95,8 +94,6 @@ public abstract class Business {
         public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
-
-        public abstract Builder closed(boolean closed);
 
         public abstract Builder location(Location location);
 

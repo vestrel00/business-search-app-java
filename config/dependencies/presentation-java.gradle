@@ -25,6 +25,7 @@ dependencies {
     apt presentationJavaDependencies.daggerCompiler
     apt presentationJavaDependencies.autoValue
 
+    api project(':common')
     api project(':domain')
     api project(':data')
 

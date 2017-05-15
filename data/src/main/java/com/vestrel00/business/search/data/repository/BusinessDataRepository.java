@@ -16,13 +16,13 @@
 
 package com.vestrel00.business.search.data.repository;
 
+import com.vestrel00.business.search.common.StringUtils;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.data.entity.mapper.EntityMapperHolder;
 import com.vestrel00.business.search.data.entity.validator.EntityValidatorHolder;
 import com.vestrel00.business.search.data.repository.datasource.BusinessDataStoreFactory;
-import com.vestrel00.business.search.data.util.StringUtils;
 import com.vestrel00.business.search.domain.Business;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
@@ -238,13 +238,13 @@ final class BusinessDataRepository implements BusinessRepository {
                 });
     }
 
-    private void validateLocationString(String locationString) throws IllegalArgumentException {
+    private void validateLocationString(String locationString) {
         if (stringUtils.isEmpty(locationString)) {
             throw new IllegalArgumentException("Location must not be empty.");
         }
     }
 
-    private void validateBusinessId(String businessId) throws IllegalArgumentException {
+    private void validateBusinessId(String businessId) {
         if (stringUtils.isEmpty(businessId)) {
             throw new IllegalArgumentException("Business id must not be empty.");
         }

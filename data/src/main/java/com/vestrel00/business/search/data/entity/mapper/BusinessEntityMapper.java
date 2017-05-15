@@ -66,7 +66,6 @@ final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Busines
                 .categories(businessEntity.categories())
                 .reviewCount(businessEntity.reviewCount())
                 .rating(businessEntity.rating())
-                .closed(businessEntity.closed())
                 .location(locationEntityMapper.map(businessEntity.locationEntity()))
                 .coordinates(coordinatesEntityMapper.map(businessEntity.coordinatesEntity()))
                 .build();
@@ -86,7 +85,6 @@ final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Busines
                 .categories(business.categories())
                 .reviewCount(business.reviewCount())
                 .rating(business.rating())
-                .closed(business.closed())
                 .locationEntity(locationEntityMapper.map(business.location()))
                 .coordinatesEntity(coordinatesEntityMapper.map(business.coordinates()))
                 .build();

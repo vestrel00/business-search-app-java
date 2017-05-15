@@ -25,6 +25,8 @@ dependencies {
     apt domainDependencies.daggerCompiler
     apt domainDependencies.autoValue
 
+    implementation project(':common')
+
     implementation domainDependencies.rxJava
     implementation domainDependencies.dagger
 
