@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.data.entity.parser;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
@@ -27,13 +28,14 @@ public final class ParserFactory {
 
     private ParserFactory() {
     }
-    
+
     public static ParserFactory create() {
         return new ParserFactory();
     }
 
     public Parser<BusinessEntity> businessEntityParser() {
-        return new BusinessEntityParser(locationEntityParser(), coordinatesEntityParser());
+        return new BusinessEntityParser(locationEntityParser(), coordinatesEntityParser(),
+                new ObjectMapper());
     }
 
     private Parser<LocationEntity> locationEntityParser() {
