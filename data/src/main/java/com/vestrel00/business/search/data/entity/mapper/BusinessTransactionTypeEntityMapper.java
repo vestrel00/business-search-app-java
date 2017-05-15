@@ -32,20 +32,20 @@ import javax.inject.Singleton;
 final class BusinessTransactionTypeEntityMapper
         implements EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType> {
 
-    private static final Map<BusinessTransactionTypeEntity, BusinessTransactionType> kMap;
-    private static final Map<BusinessTransactionType, BusinessTransactionTypeEntity> vMap;
+    private static final Map<BusinessTransactionTypeEntity, BusinessTransactionType> K_MAP;
+    private static final Map<BusinessTransactionType, BusinessTransactionTypeEntity> V_MAP;
 
     static {
-        kMap = new HashMap<>();
-        vMap = new HashMap<>();
+        K_MAP = new HashMap<>();
+        V_MAP = new HashMap<>();
 
-        kMap.put(BusinessTransactionTypeEntity.PICKUP, BusinessTransactionType.PICKUP);
-        kMap.put(BusinessTransactionTypeEntity.DELIVERY, BusinessTransactionType.DELIVERY);
-        kMap.put(BusinessTransactionTypeEntity.RESERVATION, BusinessTransactionType.RESERVATION);
+        K_MAP.put(BusinessTransactionTypeEntity.PICKUP, BusinessTransactionType.PICKUP);
+        K_MAP.put(BusinessTransactionTypeEntity.DELIVERY, BusinessTransactionType.DELIVERY);
+        K_MAP.put(BusinessTransactionTypeEntity.RESERVATION, BusinessTransactionType.RESERVATION);
 
-        vMap.put(BusinessTransactionType.PICKUP, BusinessTransactionTypeEntity.PICKUP);
-        vMap.put(BusinessTransactionType.DELIVERY, BusinessTransactionTypeEntity.DELIVERY);
-        vMap.put(BusinessTransactionType.RESERVATION, BusinessTransactionTypeEntity.RESERVATION);
+        V_MAP.put(BusinessTransactionType.PICKUP, BusinessTransactionTypeEntity.PICKUP);
+        V_MAP.put(BusinessTransactionType.DELIVERY, BusinessTransactionTypeEntity.DELIVERY);
+        V_MAP.put(BusinessTransactionType.RESERVATION, BusinessTransactionTypeEntity.RESERVATION);
     }
 
     @Inject
@@ -53,12 +53,13 @@ final class BusinessTransactionTypeEntityMapper
     }
 
     @Override
-    public BusinessTransactionType map(BusinessTransactionTypeEntity businessTransactionTypeEntity) {
-        return kMap.get(businessTransactionTypeEntity);
+    public BusinessTransactionType
+    map(BusinessTransactionTypeEntity businessTransactionTypeEntity) {
+        return K_MAP.get(businessTransactionTypeEntity);
     }
 
     @Override
     public BusinessTransactionTypeEntity map(BusinessTransactionType businessTransactionType) {
-        return vMap.get(businessTransactionType);
+        return V_MAP.get(businessTransactionType);
     }
 }

@@ -32,20 +32,20 @@ import javax.inject.Singleton;
 final class BusinessTransactionTypeModelMapper
         implements ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType> {
 
-    private static final Map<BusinessTransactionTypeModel, BusinessTransactionType> kMap;
-    private static final Map<BusinessTransactionType, BusinessTransactionTypeModel> vMap;
+    private static final Map<BusinessTransactionTypeModel, BusinessTransactionType> K_MAP;
+    private static final Map<BusinessTransactionType, BusinessTransactionTypeModel> V_MAP;
 
     static {
-        kMap = new HashMap<>();
-        vMap = new HashMap<>();
+        K_MAP = new HashMap<>();
+        V_MAP = new HashMap<>();
 
-        kMap.put(BusinessTransactionTypeModel.PICKUP, BusinessTransactionType.PICKUP);
-        kMap.put(BusinessTransactionTypeModel.DELIVERY, BusinessTransactionType.DELIVERY);
-        kMap.put(BusinessTransactionTypeModel.RESERVATION, BusinessTransactionType.RESERVATION);
+        K_MAP.put(BusinessTransactionTypeModel.PICKUP, BusinessTransactionType.PICKUP);
+        K_MAP.put(BusinessTransactionTypeModel.DELIVERY, BusinessTransactionType.DELIVERY);
+        K_MAP.put(BusinessTransactionTypeModel.RESERVATION, BusinessTransactionType.RESERVATION);
 
-        vMap.put(BusinessTransactionType.PICKUP, BusinessTransactionTypeModel.PICKUP);
-        vMap.put(BusinessTransactionType.DELIVERY, BusinessTransactionTypeModel.DELIVERY);
-        vMap.put(BusinessTransactionType.RESERVATION, BusinessTransactionTypeModel.RESERVATION);
+        V_MAP.put(BusinessTransactionType.PICKUP, BusinessTransactionTypeModel.PICKUP);
+        V_MAP.put(BusinessTransactionType.DELIVERY, BusinessTransactionTypeModel.DELIVERY);
+        V_MAP.put(BusinessTransactionType.RESERVATION, BusinessTransactionTypeModel.RESERVATION);
     }
 
     @Inject
@@ -54,11 +54,11 @@ final class BusinessTransactionTypeModelMapper
 
     @Override
     public BusinessTransactionType map(BusinessTransactionTypeModel businessTransactionTypeModel) {
-        return kMap.get(businessTransactionTypeModel);
+        return K_MAP.get(businessTransactionTypeModel);
     }
 
     @Override
     public BusinessTransactionTypeModel map(BusinessTransactionType businessTransactionType) {
-        return vMap.get(businessTransactionType);
+        return V_MAP.get(businessTransactionType);
     }
 }

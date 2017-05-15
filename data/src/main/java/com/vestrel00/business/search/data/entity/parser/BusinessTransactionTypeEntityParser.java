@@ -28,18 +28,18 @@ import java.util.Map;
 final class BusinessTransactionTypeEntityParser
         implements EntityParser<BusinessTransactionTypeEntity> {
 
-    private static final Map<String, BusinessTransactionTypeEntity> map;
+    private static final Map<String, BusinessTransactionTypeEntity> MAP;
 
     static {
-        map = new HashMap<>();
+        MAP = new HashMap<>();
 
-        map.put("pickup", BusinessTransactionTypeEntity.PICKUP);
-        map.put("delivery", BusinessTransactionTypeEntity.DELIVERY);
-        map.put("restaurant_reservation", BusinessTransactionTypeEntity.RESERVATION);
+        MAP.put("pickup", BusinessTransactionTypeEntity.PICKUP);
+        MAP.put("delivery", BusinessTransactionTypeEntity.DELIVERY);
+        MAP.put("restaurant_reservation", BusinessTransactionTypeEntity.RESERVATION);
     }
 
     @Override
     public BusinessTransactionTypeEntity parse(JsonNode node) {
-        return map.get(node.asText());
+        return MAP.get(node.asText());
     }
 }

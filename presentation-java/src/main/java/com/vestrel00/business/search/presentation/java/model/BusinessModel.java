@@ -26,6 +26,9 @@ import java.util.List;
 @AutoValue
 public abstract class BusinessModel implements Model {
 
+    /**
+     * The maximum value of {@link #rating()}.
+     */
     public static final int MAX_RATING = 5;
 
     /**

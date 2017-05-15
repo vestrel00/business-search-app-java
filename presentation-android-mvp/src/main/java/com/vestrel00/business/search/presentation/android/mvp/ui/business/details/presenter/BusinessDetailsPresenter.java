@@ -17,7 +17,6 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.details.presenter;
 
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
-import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 /**
  * A {@link Presenter} that retrieves and displays the details of a business.

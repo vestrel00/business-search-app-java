@@ -17,15 +17,10 @@
 #}
 
 # Retrofit 2.2.0 - http://square.github.io/retrofit/
-## Platform calls Class.forName on types which do not exist on Android to determine platform.
 -dontnote retrofit2.Platform
-## Platform used when running on Java 8 VMs. Will not be used at runtime.
 -dontwarn retrofit2.Platform$Java8
-## Retain generic type information for use by reflection by converters and adapters.
 -keepattributes Signature
-## Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
-## For Okio
 -dontwarn okio.**
 
 # Jackson Databind 2.8.8
@@ -37,3 +32,14 @@
 
 # Dagger Android 2.11.x - https://google.github.io/dagger/android.html
 -dontwarn dagger.android.*
+
+# Fresco 1.3.0 - https://raw.githubusercontent.com/facebook/fresco/master/proguard-fresco.pro
+-keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
+-keep @com.facebook.common.internal.DoNotStrip class *
+-keepclassmembers class * {
+    @com.facebook.common.internal.DoNotStrip *;
+}
+-keepclassmembers class * {
+    native <methods>;
+}
+-dontwarn com.facebook.infer.**
