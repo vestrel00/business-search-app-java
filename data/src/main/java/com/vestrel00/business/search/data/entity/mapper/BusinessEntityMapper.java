@@ -64,6 +64,7 @@ final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Busines
                 .transactionTypes(entityListMapper.mapToV(businessTransactionTypeEntityMapper,
                         businessEntity.transactionTypes()))
                 .categories(businessEntity.categories())
+                .photos(businessEntity.photos())
                 .reviewCount(businessEntity.reviewCount())
                 .rating(businessEntity.rating())
                 .location(locationEntityMapper.map(businessEntity.locationEntity()))
@@ -83,6 +84,7 @@ final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Busines
                 .transactionTypes(entityListMapper.mapToK(businessTransactionTypeEntityMapper,
                         business.transactionTypes()))
                 .categories(business.categories())
+                .photos(business.photos())
                 .reviewCount(business.reviewCount())
                 .rating(business.rating())
                 .locationEntity(locationEntityMapper.map(business.location()))

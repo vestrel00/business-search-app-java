@@ -61,6 +61,13 @@ public abstract class Business {
 
     public abstract List<String> categories();
 
+    /**
+     * This data may only available for instances retrieved using the {@link #id()}.
+     *
+     * @return a list of urls of photos of this business
+     */
+    public abstract List<String> photos();
+
     public abstract int reviewCount();
 
     public abstract float rating();
@@ -90,6 +97,8 @@ public abstract class Business {
         public abstract Builder transactionTypes(List<BusinessTransactionType> transactionTypes);
 
         public abstract Builder categories(List<String> categories);
+
+        public abstract Builder photos(List<String> photos);
 
         public abstract Builder reviewCount(int reviewCount);
 

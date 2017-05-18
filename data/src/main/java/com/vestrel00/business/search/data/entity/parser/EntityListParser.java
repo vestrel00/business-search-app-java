@@ -39,4 +39,13 @@ final class EntityListParser {
         }
         return entityList;
     }
+
+    List<String> parse(Iterator<JsonNode> nodesIter) {
+        List<String> strings = new ArrayList<>();
+        while (nodesIter.hasNext()) {
+            JsonNode node = nodesIter.next();
+            strings.add(node.asText());
+        }
+        return strings;
+    }
 }

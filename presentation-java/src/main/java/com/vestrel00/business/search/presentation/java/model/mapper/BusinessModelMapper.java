@@ -64,6 +64,7 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .transactionTypes(modelListMapper.mapToV(businessTransactionTypeModelMapper,
                         businessModel.transactionTypes()))
                 .categories(businessModel.categories())
+                .photos(businessModel.photos())
                 .reviewCount(businessModel.reviewCount())
                 .rating(businessModel.rating())
                 .location(locationModelMapper.map(businessModel.locationModel()))
@@ -83,6 +84,7 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .transactionTypes(modelListMapper.mapToK(businessTransactionTypeModelMapper,
                         business.transactionTypes()))
                 .categories(business.categories())
+                .photos(business.photos())
                 .reviewCount(business.reviewCount())
                 .rating(business.rating())
                 .locationModel(locationModelMapper.map(business.location()))

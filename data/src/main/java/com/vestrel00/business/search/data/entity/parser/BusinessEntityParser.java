@@ -57,6 +57,7 @@ final class BusinessEntityParser implements EntityParser<BusinessEntity> {
                 .transactionTypes(entityListParser.parse(businessTransactionTypeEntityEntityParser,
                         node.path("transactions").iterator()))
                 .categories(node.path("categories").findValuesAsText("title"))
+                .photos(entityListParser.parse(node.path("photos").iterator()))
                 .reviewCount(node.path("review_count").asInt())
                 .rating((float) node.path("rating").asDouble())
                 .locationEntity(locationEntityParser.parse(node.path("location")))

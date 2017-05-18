@@ -18,23 +18,12 @@ package com.vestrel00.business.search.data.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.google.auto.value.AutoValue;
-import com.vestrel00.business.search.data.entity.deserialize.BusinessEntityDeserializer;
+import com.vestrel00.business.search.data.entity.deserializer.BusinessEntityDeserializer;
 
 import java.util.List;
 
 /**
  * Contains business information.
- * <p>
- * <b>DEFAULT VALUES</b>
- * None of the getter methods defined here return null. If an attribute is missing or null, the
- * value returned as defaulted to their non-null counterparts:
- * <ul>
- * <li>String -> ""</li>
- * <li>Collection -> empty collection</li>
- * <li>CustomClass -> non-null CustomClass</li>
- * <li>Primitives -> default values. E.G. int -> 0</li>
- * </ul>
- * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
 // FIXME (DATABIND JACKSON) - The generated builder could be used for deserialization.
@@ -68,6 +57,13 @@ public abstract class BusinessEntity implements Entity {
 
     public abstract List<String> categories();
 
+    /**
+     * This data may only available for instances retrieved using the {@link #id()}.
+     *
+     * @return a list of urls of photos of this business
+     */
+    public abstract List<String> photos();
+
     public abstract int reviewCount();
 
     public abstract float rating();
@@ -98,6 +94,8 @@ public abstract class BusinessEntity implements Entity {
         transactionTypes(List<BusinessTransactionTypeEntity> transactionTypes);
 
         public abstract Builder categories(List<String> categories);
+
+        public abstract Builder photos(List<String> photos);
 
         public abstract Builder reviewCount(int reviewCount);
 
