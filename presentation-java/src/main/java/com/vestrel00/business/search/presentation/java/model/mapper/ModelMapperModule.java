@@ -17,9 +17,13 @@
 package com.vestrel00.business.search.presentation.java.model.mapper;
 
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.BusinessHour;
+import com.vestrel00.business.search.domain.BusinessHours;
 import com.vestrel00.business.search.domain.BusinessTransactionType;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
+import com.vestrel00.business.search.presentation.java.model.BusinessHourModel;
+import com.vestrel00.business.search.presentation.java.model.BusinessHoursModel;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.model.BusinessTransactionTypeModel;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
@@ -43,6 +47,22 @@ public abstract class ModelMapperModule {
 
     @Binds
     @Singleton
+    abstract ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
+    businessTransactionTypeModelMapper(BusinessTransactionTypeModelMapper
+                                               businessTransactionTypeModelMapper);
+
+    @Binds
+    @Singleton
+    abstract ModelMapper<BusinessHoursModel, BusinessHours>
+    businessHoursModelMapper(BusinessHoursModelMapper businessHoursModelMapper);
+
+    @Binds
+    @Singleton
+    abstract ModelMapper<BusinessHourModel, BusinessHour>
+    businessHourModelMapper(BusinessHourModelMapper businessHourModelMapper);
+
+    @Binds
+    @Singleton
     abstract ModelMapper<LocationModel, Location>
     locationModelMapper(LocationModelMapper locationModelMapper);
 
@@ -50,10 +70,4 @@ public abstract class ModelMapperModule {
     @Singleton
     abstract ModelMapper<CoordinatesModel, Coordinates>
     coordinatesModelMapper(CoordinatesModelMapper coordinatesModelMapper);
-
-    @Binds
-    @Singleton
-    abstract ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
-    businessTransactionTypeModelMapper(BusinessTransactionTypeModelMapper
-                                               businessTransactionTypeModelMapper);
 }

@@ -28,7 +28,7 @@ package com.vestrel00.business.search.data.entity;
  * <li>CustomClass -> non-null CustomClass</li>
  * <li>Primitives -> default values. E.G. int -> 0</li>
  * </ul>
- * This done to prevent null checks and null exceptions for consumers.
+ * This done to prevent null or optional checks for consumers.
  */
 public interface Entity {
 }

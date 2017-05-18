@@ -17,9 +17,11 @@
 package com.vestrel00.business.search.presentation.java.model.mapper;
 
 import com.vestrel00.business.search.domain.Business;
+import com.vestrel00.business.search.domain.BusinessHours;
 import com.vestrel00.business.search.domain.BusinessTransactionType;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
+import com.vestrel00.business.search.presentation.java.model.BusinessHoursModel;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.model.BusinessTransactionTypeModel;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
@@ -34,21 +36,24 @@ import javax.inject.Singleton;
 @Singleton
 final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> {
 
-    private final ModelMapper<LocationModel, Location> locationModelMapper;
-    private final ModelMapper<CoordinatesModel, Coordinates> coordinatesEntityMapper;
     private final ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
-            businessTransactionTypeModelMapper;
+            transactionTypeModelMapper;
+    private final ModelMapper<BusinessHoursModel, BusinessHours> hoursModelMapper;
+    private final ModelMapper<LocationModel, Location> locationModelMapper;
+    private final ModelMapper<CoordinatesModel, Coordinates> coordinatesModelMapper;
     private final ModelListMapper modelListMapper;
 
     @Inject
-    BusinessModelMapper(LocationModelMapper locationModelMapper,
-                        CoordinatesModelMapper coordinatesEntityMapper,
-                        ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
-                                businessTransactionTypeModelMapper,
+    BusinessModelMapper(ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
+                                transactionTypeModelMapper,
+                        ModelMapper<BusinessHoursModel, BusinessHours> hoursModelMapper,
+                        ModelMapper<LocationModel, Location> locationModelMapper,
+                        ModelMapper<CoordinatesModel, Coordinates> coordinatesModelMapper,
                         ModelListMapper modelListMapper) {
+        this.transactionTypeModelMapper = transactionTypeModelMapper;
+        this.hoursModelMapper = hoursModelMapper;
         this.locationModelMapper = locationModelMapper;
-        this.coordinatesEntityMapper = coordinatesEntityMapper;
-        this.businessTransactionTypeModelMapper = businessTransactionTypeModelMapper;
+        this.coordinatesModelMapper = coordinatesModelMapper;
         this.modelListMapper = modelListMapper;
     }
 
@@ -61,14 +66,15 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .imageUrl(businessModel.imageUrl())
                 .price(businessModel.price())
                 .url(businessModel.url())
-                .transactionTypes(modelListMapper.mapToV(businessTransactionTypeModelMapper,
+                .transactionTypes(modelListMapper.mapToV(transactionTypeModelMapper,
                         businessModel.transactionTypes()))
                 .categories(businessModel.categories())
                 .photos(businessModel.photos())
                 .reviewCount(businessModel.reviewCount())
                 .rating(businessModel.rating())
+                .hours(hoursModelMapper.map(businessModel.hoursModel()))
                 .location(locationModelMapper.map(businessModel.locationModel()))
-                .coordinates(coordinatesEntityMapper.map(businessModel.coordinatesModel()))
+                .coordinates(coordinatesModelMapper.map(businessModel.coordinatesModel()))
                 .build();
     }
 
@@ -81,14 +87,15 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .imageUrl(business.imageUrl())
                 .price(business.price())
                 .url(business.url())
-                .transactionTypes(modelListMapper.mapToK(businessTransactionTypeModelMapper,
+                .transactionTypes(modelListMapper.mapToK(transactionTypeModelMapper,
                         business.transactionTypes()))
                 .categories(business.categories())
                 .photos(business.photos())
                 .reviewCount(business.reviewCount())
                 .rating(business.rating())
+                .hoursModel(hoursModelMapper.map(business.hours()))
                 .locationModel(locationModelMapper.map(business.location()))
-                .coordinatesModel(coordinatesEntityMapper.map(business.coordinates()))
+                .coordinatesModel(coordinatesModelMapper.map(business.coordinates()))
                 .build();
     }
 }

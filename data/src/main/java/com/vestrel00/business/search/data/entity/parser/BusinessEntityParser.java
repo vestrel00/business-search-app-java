@@ -18,6 +18,7 @@ package com.vestrel00.business.search.data.entity.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.BusinessHoursEntity;
 import com.vestrel00.business.search.data.entity.BusinessTransactionTypeEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
@@ -27,21 +28,23 @@ import com.vestrel00.business.search.data.entity.LocationEntity;
  */
 final class BusinessEntityParser implements EntityParser<BusinessEntity> {
 
+    private final EntityParser<BusinessTransactionTypeEntity> transactionTypeEntityParser;
+    private final EntityParser<BusinessHoursEntity> hoursEntityParser;
     private final EntityParser<LocationEntity> locationEntityParser;
     private final EntityParser<CoordinatesEntity> coordinatesEntityParser;
-    private final EntityParser<BusinessTransactionTypeEntity>
-            businessTransactionTypeEntityEntityParser;
-    private final EntityListParser entityListParser;
+    private final EntityParserUtil entityParserUtil;
 
-    BusinessEntityParser(EntityParser<LocationEntity> locationEntityParser,
+    BusinessEntityParser(EntityParser<BusinessTransactionTypeEntity>
+                                 transactionTypeEntityParser,
+                         EntityParser<BusinessHoursEntity> hoursEntityParser,
+                         EntityParser<LocationEntity> locationEntityParser,
                          EntityParser<CoordinatesEntity> coordinatesEntityParser,
-                         EntityParser<BusinessTransactionTypeEntity>
-                                 businessTransactionTypeEntityEntityParser,
-                         EntityListParser entityListParser) {
+                         EntityParserUtil entityParserUtil) {
+        this.transactionTypeEntityParser = transactionTypeEntityParser;
+        this.hoursEntityParser = hoursEntityParser;
         this.locationEntityParser = locationEntityParser;
         this.coordinatesEntityParser = coordinatesEntityParser;
-        this.businessTransactionTypeEntityEntityParser = businessTransactionTypeEntityEntityParser;
-        this.entityListParser = entityListParser;
+        this.entityParserUtil = entityParserUtil;
     }
 
     @SuppressWarnings("unchecked")
@@ -54,12 +57,14 @@ final class BusinessEntityParser implements EntityParser<BusinessEntity> {
                 .imageUrl(node.path("image_url").asText())
                 .price(node.path("price").asText())
                 .url(node.path("url").asText())
-                .transactionTypes(entityListParser.parse(businessTransactionTypeEntityEntityParser,
-                        node.path("transactions").iterator()))
+                .transactionTypes(entityParserUtil.parse(transactionTypeEntityParser,
+                        node.path("transactions")))
                 .categories(node.path("categories").findValuesAsText("title"))
-                .photos(entityListParser.parse(node.path("photos").iterator()))
+                .photos(entityParserUtil.parse(node.path("photos")))
                 .reviewCount(node.path("review_count").asInt())
                 .rating((float) node.path("rating").asDouble())
+                .hoursEntity(hoursEntityParser.parse(entityParserUtil
+                        .findObjectNode(node.path("hours"), "hours_type", "REGULAR")))
                 .locationEntity(locationEntityParser.parse(node.path("location")))
                 .coordinatesEntity(coordinatesEntityParser.parse(node.path("coordinates")))
                 .build();

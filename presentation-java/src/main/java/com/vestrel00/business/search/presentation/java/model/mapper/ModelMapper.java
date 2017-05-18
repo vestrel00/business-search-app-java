@@ -16,16 +16,16 @@
 
 package com.vestrel00.business.search.presentation.java.model.mapper;
 
-import com.vestrel00.business.search.domain.DomainItem;
+import com.vestrel00.business.search.domain.DomainObject;
 import com.vestrel00.business.search.presentation.java.model.Model;
 
 /**
  * Maps model K to V and vice versa.
  *
  * @param <K> the type of the {@link Model}
- * @param <V> the type of the {@link DomainItem}
+ * @param <V> the type of the {@link DomainObject}
  */
-public interface ModelMapper<K extends Model, V extends DomainItem> {
+public interface ModelMapper<K extends Model, V extends DomainObject> {
 
     V map(K k);
 

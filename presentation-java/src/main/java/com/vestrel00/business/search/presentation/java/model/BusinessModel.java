@@ -65,6 +65,13 @@ public abstract class BusinessModel implements Model {
 
     public abstract float rating();
 
+    /**
+     * This data may only available for instances retrieved using the {@link #id()}.
+     *
+     * @return the business hours
+     */
+    public abstract BusinessHoursModel hoursModel();
+
     public abstract LocationModel locationModel();
 
     public abstract CoordinatesModel coordinatesModel();
@@ -88,15 +95,17 @@ public abstract class BusinessModel implements Model {
         public abstract Builder url(String url);
 
         public abstract Builder
-        transactionTypes(List<BusinessTransactionTypeModel> transactionTypes);
+        transactionTypes(List<BusinessTransactionTypeModel> transactionTypeModels);
 
         public abstract Builder categories(List<String> categories);
-        
+
         public abstract Builder photos(List<String> photos);
 
         public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
+
+        public abstract Builder hoursModel(BusinessHoursModel hoursModel);
 
         public abstract Builder locationModel(LocationModel locationModel);
 

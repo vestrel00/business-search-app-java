@@ -17,35 +17,44 @@
 package com.vestrel00.business.search.data.entity.parser;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.MissingNode;
 import com.vestrel00.business.search.data.entity.Entity;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * Parses lists of entities.
+ * Contains utility methods for parsing list of entities and traversing {@link JsonNode}s.
  */
-final class EntityListParser {
+final class EntityParserUtil {
 
-    EntityListParser() {
+    EntityParserUtil() {
     }
 
-    <T extends Entity> List<T> parse(EntityParser<T> entityParser, Iterator<JsonNode> nodesIter) {
+    <T extends Entity> List<T> parse(EntityParser<T> entityParser, JsonNode nodeArray) {
         List<T> entityList = new ArrayList<>();
-        while (nodesIter.hasNext()) {
-            JsonNode node = nodesIter.next();
+        for (JsonNode node : nodeArray) {
             entityList.add(entityParser.parse(node));
         }
         return entityList;
     }
 
-    List<String> parse(Iterator<JsonNode> nodesIter) {
+    List<String> parse(JsonNode nodeArray) {
         List<String> strings = new ArrayList<>();
-        while (nodesIter.hasNext()) {
-            JsonNode node = nodesIter.next();
+        for (JsonNode node : nodeArray) {
             strings.add(node.asText());
         }
         return strings;
+    }
+
+    JsonNode findObjectNode(JsonNode nodeArray, String fieldName, String fieldValue) {
+        for (JsonNode node : nodeArray) {
+            JsonNode fieldNameMatch = node.path(fieldName);
+            if (Objects.equals(fieldValue, fieldNameMatch.asText())) {
+                return node;
+            }
+        }
+        return MissingNode.getInstance();
     }
 }

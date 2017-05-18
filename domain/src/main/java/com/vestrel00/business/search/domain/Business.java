@@ -24,7 +24,7 @@ import java.util.List;
  * Contains business information.
  */
 @AutoValue
-public abstract class Business implements DomainItem {
+public abstract class Business implements DomainObject {
 
     /**
      * @return a new {@link Builder}
@@ -60,6 +60,13 @@ public abstract class Business implements DomainItem {
 
     public abstract float rating();
 
+    /**
+     * This data may only available for instances retrieved using the {@link #id()}.
+     *
+     * @return the business hours
+     */
+    public abstract BusinessHours hours();
+
     public abstract Location location();
 
     public abstract Coordinates coordinates();
@@ -91,6 +98,8 @@ public abstract class Business implements DomainItem {
         public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
+
+        public abstract Builder hours(BusinessHours hours);
 
         public abstract Builder location(Location location);
 

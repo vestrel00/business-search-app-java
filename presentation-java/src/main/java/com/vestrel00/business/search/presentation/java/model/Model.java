@@ -30,7 +30,7 @@ import java.io.Serializable;
  * <li>CustomClass -> non-null CustomClass</li>
  * <li>Primitives -> default values. E.G. int -> 0</li>
  * </ul>
- * This done to prevent null checks and null exceptions for consumers.
+ * This done to prevent null or optional checks for consumers.
  * <p>
  * <b>SERIALIZATION</b>
  * All model classes are {@link Serializable} so that presentation applications are able

@@ -17,6 +17,8 @@
 package com.vestrel00.business.search.data.entity.parser;
 
 import com.vestrel00.business.search.data.entity.BusinessEntity;
+import com.vestrel00.business.search.data.entity.BusinessHourEntity;
+import com.vestrel00.business.search.data.entity.BusinessHoursEntity;
 import com.vestrel00.business.search.data.entity.BusinessTransactionTypeEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
@@ -34,8 +36,21 @@ public final class EntityParserFactory {
     }
 
     public EntityParser<BusinessEntity> businessEntityParser() {
-        return new BusinessEntityParser(locationEntityParser(), coordinatesEntityParser(),
-                businessTransactionTypeEntityEntityParser(), entityListParser());
+        return new BusinessEntityParser(businessTransactionTypeEntityParser(),
+                businessHoursEntityParser(), locationEntityParser(), coordinatesEntityParser(),
+                entityParserUtil());
+    }
+
+    private EntityParser<BusinessTransactionTypeEntity> businessTransactionTypeEntityParser() {
+        return new BusinessTransactionTypeEntityParser();
+    }
+
+    private EntityParser<BusinessHoursEntity> businessHoursEntityParser() {
+        return new BusinessHoursEntityParser(businessHourEntityParser(), entityParserUtil());
+    }
+
+    private EntityParser<BusinessHourEntity> businessHourEntityParser() {
+        return new BusinessHourEntityParser();
     }
 
     private EntityParser<LocationEntity> locationEntityParser() {
@@ -46,12 +61,7 @@ public final class EntityParserFactory {
         return new CoordinatesEntityParser();
     }
 
-    private EntityParser<BusinessTransactionTypeEntity>
-    businessTransactionTypeEntityEntityParser() {
-        return new BusinessTransactionTypeEntityParser();
-    }
-
-    private EntityListParser entityListParser() {
-        return new EntityListParser();
+    private EntityParserUtil entityParserUtil() {
+        return new EntityParserUtil();
     }
 }

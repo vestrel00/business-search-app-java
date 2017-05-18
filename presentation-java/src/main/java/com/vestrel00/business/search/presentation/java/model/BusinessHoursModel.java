@@ -14,49 +14,39 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.domain;
+package com.vestrel00.business.search.presentation.java.model;
 
 import com.google.auto.value.AutoValue;
 
+import java.util.List;
+
 /**
- * Contains location information.
+ * Contains business hours information.
  */
 @AutoValue
-public abstract class Location implements DomainObject {
+public abstract class BusinessHoursModel implements Model {
 
     /**
      * @return a new {@link Builder}
      */
     public static Builder builder() {
-        return new AutoValue_Location.Builder();
+        return new AutoValue_BusinessHoursModel.Builder();
     }
 
-    public abstract String address();
+    public abstract boolean openNow();
 
-    public abstract String city();
-
-    public abstract String state();
-
-    public abstract String zipCode();
-
-    public abstract String country();
+    public abstract List<BusinessHourModel> hourModels();
 
     /**
-     * Builder used to create instances of {@link Location}.
+     * Builder used to create instances of {@link BusinessHoursModel}.
      */
     @AutoValue.Builder
     public abstract static class Builder {
 
-        public abstract Builder address(String address);
+        public abstract Builder openNow(boolean openNow);
 
-        public abstract Builder city(String city);
+        public abstract Builder hourModels(List<BusinessHourModel> hourModels);
 
-        public abstract Builder state(String state);
-
-        public abstract Builder zipCode(String zipCode);
-
-        public abstract Builder country(String country);
-
-        public abstract Location build();
+        public abstract BusinessHoursModel build();
     }
 }

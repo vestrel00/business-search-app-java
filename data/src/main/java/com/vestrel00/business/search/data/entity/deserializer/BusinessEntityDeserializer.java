@@ -34,9 +34,9 @@ public final class BusinessEntityDeserializer extends JsonDeserializer<BusinessE
     @Override
     public BusinessEntity deserialize(JsonParser parser, DeserializationContext ctxt)
             throws IOException {
-        JsonNode node = parser.readValueAsTree();
         EntityParser<BusinessEntity> businessEntityParser
                 = EntityParserFactory.create().businessEntityParser();
+        JsonNode node = parser.readValueAsTree();
         
         return businessEntityParser.parse(node);
     }

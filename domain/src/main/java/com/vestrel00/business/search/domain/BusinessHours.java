@@ -24,7 +24,7 @@ import java.util.List;
  * Contains business hours information.
  */
 @AutoValue
-public abstract class BusinessHours implements DomainItem {
+public abstract class BusinessHours implements DomainObject {
 
     /**
      * @return a new {@link Builder}
@@ -33,11 +33,19 @@ public abstract class BusinessHours implements DomainItem {
         return new AutoValue_BusinessHours.Builder();
     }
 
+    public abstract boolean openNow();
+
+    public abstract List<BusinessHour> hours();
+
     /**
      * Builder used to create instances of {@link BusinessHours}.
      */
     @AutoValue.Builder
     public abstract static class Builder {
+
+        public abstract Builder openNow(boolean openNow);
+
+        public abstract Builder hours(List<BusinessHour> hours);
 
         public abstract BusinessHours build();
     }

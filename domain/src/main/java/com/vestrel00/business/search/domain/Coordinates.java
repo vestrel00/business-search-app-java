@@ -22,7 +22,7 @@ import com.google.auto.value.AutoValue;
  * Contains coordinates.
  */
 @AutoValue
-public abstract class Coordinates implements DomainItem {
+public abstract class Coordinates implements DomainObject {
 
     /**
      * @return a new {@link Builder}

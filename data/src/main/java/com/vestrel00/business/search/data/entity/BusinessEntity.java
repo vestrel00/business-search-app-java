@@ -68,6 +68,13 @@ public abstract class BusinessEntity implements Entity {
 
     public abstract float rating();
 
+    /**
+     * This data may only available for instances retrieved using the {@link #id()}.
+     *
+     * @return the business hours
+     */
+    public abstract BusinessHoursEntity hoursEntity();
+
     public abstract LocationEntity locationEntity();
 
     public abstract CoordinatesEntity coordinatesEntity();
@@ -100,6 +107,8 @@ public abstract class BusinessEntity implements Entity {
         public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
+
+        public abstract Builder hoursEntity(BusinessHoursEntity hoursEntity);
 
         public abstract Builder locationEntity(LocationEntity locationEntity);
 

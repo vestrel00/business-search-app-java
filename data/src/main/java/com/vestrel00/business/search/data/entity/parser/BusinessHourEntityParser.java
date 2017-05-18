@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.domain;
+package com.vestrel00.business.search.data.entity.parser;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.vestrel00.business.search.data.entity.BusinessHourEntity;
 
 /**
- * Type of all domain items.
- * <b>DEFAULT VALUES</b>
- * None of the getter methods defined here return null. If an attribute is missing or null, the
- * value returned as defaulted to their non-null counterparts:
- * <ul>
- * <li>String -> ""</li>
- * <li>Collection -> empty collection</li>
- * <li>CustomClass -> non-null CustomClass</li>
- * <li>Primitives -> default values. E.G. int -> 0</li>
- * </ul>
- * This done to prevent null checks and null exceptions for consumers.
+ * Parses {@link JsonNode} to a {@link BusinessHourEntity}.
  */
-public interface DomainItem {
+final class BusinessHourEntityParser implements EntityParser<BusinessHourEntity> {
+
+    @Override
+    public BusinessHourEntity parse(JsonNode node) {
+        return BusinessHourEntity.builder()
+                .day(node.path("day").asInt())
+                .start(node.path("start").asText())
+                .end(node.path("end").asText())
+                .build();
+    }
 }
