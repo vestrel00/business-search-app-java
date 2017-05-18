@@ -34,8 +34,7 @@ final class BusinessEntityParser implements EntityParser<BusinessEntity> {
     private final EntityParser<CoordinatesEntity> coordinatesEntityParser;
     private final EntityParserUtil entityParserUtil;
 
-    BusinessEntityParser(EntityParser<BusinessTransactionTypeEntity>
-                                 transactionTypeEntityParser,
+    BusinessEntityParser(EntityParser<BusinessTransactionTypeEntity> transactionTypeEntityParser,
                          EntityParser<BusinessHoursEntity> hoursEntityParser,
                          EntityParser<LocationEntity> locationEntityParser,
                          EntityParser<CoordinatesEntity> coordinatesEntityParser,

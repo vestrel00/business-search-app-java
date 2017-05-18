@@ -38,9 +38,11 @@ dependencies {
     compile presentationAndroidDependencies.rxAndroid
     compile presentationAndroidDependencies.dagger
     compile presentationAndroidDependencies.daggerAndroid
+    compile presentationAndroidDependencies.butterKnife
     compile presentationAndroidDependencies.recyclerView
     compile presentationAndroidDependencies.supportCompat
-    compile presentationAndroidDependencies.butterKnife
+    compile presentationAndroidDependencies.coreUi
+    compile presentationAndroidDependencies.viewPagerIndicator
     compile presentationAndroidDependencies.fresco
 
     provided presentationAndroidDependencies.javaxAnnotation

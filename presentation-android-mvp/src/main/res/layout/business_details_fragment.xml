@@ -23,14 +23,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- TODO (IMPLEMENTATION) - replace with viewpager showing photos -->
-        <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/image"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/photos"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/business_details_image_height"
-            fresco:actualImageScaleType="centerCrop"
-            fresco:placeholderImage="@drawable/ic_business_placeholder"
-            fresco:placeholderImageScaleType="centerCrop" />
+            android:layout_height="@dimen/business_details_photos_height" />
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/photos_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/business_details_photos_indicator_margin" />
 
         <!-- TODO (IMPLEMENTATION) - business_list_fragment.xml -->
         <!-- Contact: name, phone number, url, location -->

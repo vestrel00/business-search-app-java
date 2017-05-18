@@ -30,6 +30,7 @@
     <dimen name="business_list_item_price_text_size">12sp</dimen>
 
     <!-- Business Details -->
-    <dimen name="business_details_image_height">164dp</dimen>
+    <dimen name="business_details_photos_height">164dp</dimen>
+    <dimen name="business_details_photos_indicator_margin">16dp</dimen>
 
 </resources>
