@@ -17,21 +17,17 @@
 package com.vestrel00.business.search.domain;
 
 /**
- * Contains business transaction information.
+ * Type of all domain items.
+ * <b>DEFAULT VALUES</b>
+ * None of the getter methods defined here return null. If an attribute is missing or null, the
+ * value returned as defaulted to their non-null counterparts:
+ * <ul>
+ * <li>String -> ""</li>
+ * <li>Collection -> empty collection</li>
+ * <li>CustomClass -> non-null CustomClass</li>
+ * <li>Primitives -> default values. E.G. int -> 0</li>
+ * </ul>
+ * This done to prevent null checks and null exceptions for consumers.
  */
-public enum BusinessTransactionType implements DomainItem {
-    /**
-     * Allows for pickups.
-     */
-    PICKUP,
-
-    /**
-     * Allows for deliveries.
-     */
-    DELIVERY,
-
-    /**
-     * Allows for reservations.
-     */
-    RESERVATION
+public interface DomainItem {
 }

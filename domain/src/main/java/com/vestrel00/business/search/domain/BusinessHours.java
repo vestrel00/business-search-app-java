@@ -16,22 +16,29 @@
 
 package com.vestrel00.business.search.domain;
 
+import com.google.auto.value.AutoValue;
+
+import java.util.List;
+
 /**
- * Contains business transaction information.
+ * Contains business hours information.
  */
-public enum BusinessTransactionType implements DomainItem {
-    /**
-     * Allows for pickups.
-     */
-    PICKUP,
+@AutoValue
+public abstract class BusinessHours implements DomainItem {
 
     /**
-     * Allows for deliveries.
+     * @return a new {@link Builder}
      */
-    DELIVERY,
+    public static Builder builder() {
+        return new AutoValue_BusinessHours.Builder();
+    }
 
     /**
-     * Allows for reservations.
+     * Builder used to create instances of {@link BusinessHours}.
      */
-    RESERVATION
+    @AutoValue.Builder
+    public abstract static class Builder {
+
+        public abstract BusinessHours build();
+    }
 }

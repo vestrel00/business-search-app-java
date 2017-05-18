@@ -17,6 +17,7 @@
 package com.vestrel00.business.search.data.entity.mapper;
 
 import com.vestrel00.business.search.data.entity.Entity;
+import com.vestrel00.business.search.domain.DomainItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,8 @@ final class EntityListMapper {
     EntityListMapper() {
     }
 
-    <K extends Entity, V> List<V> mapToV(EntityMapper<K, V> entityMapper, List<K> kList) {
+    <K extends Entity, V extends DomainItem> List<V> mapToV(EntityMapper<K, V> entityMapper,
+                                                            List<K> kList) {
         List<V> vList = new ArrayList<>(kList.size());
         for (K k : kList) {
             vList.add(entityMapper.map(k));
@@ -42,7 +44,8 @@ final class EntityListMapper {
         return vList;
     }
 
-    <K extends Entity, V> List<K> mapToK(EntityMapper<K, V> entityMapper, List<V> vList) {
+    <K extends Entity, V extends DomainItem> List<K> mapToK(EntityMapper<K, V> entityMapper,
+                                                            List<V> vList) {
         List<K> kList = new ArrayList<>(vList.size());
         for (V v : vList) {
             kList.add(entityMapper.map(v));

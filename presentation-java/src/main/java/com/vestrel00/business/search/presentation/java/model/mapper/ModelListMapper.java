@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.presentation.java.model.mapper;
 
+import com.vestrel00.business.search.domain.DomainItem;
 import com.vestrel00.business.search.presentation.java.model.Model;
 
 import java.util.ArrayList;
@@ -34,7 +35,8 @@ final class ModelListMapper {
     ModelListMapper() {
     }
 
-    <K extends Model, V> List<V> mapToV(ModelMapper<K, V> modelMapper, List<K> kList) {
+    <K extends Model, V extends DomainItem> List<V> mapToV(ModelMapper<K, V> modelMapper,
+                                                           List<K> kList) {
         List<V> vList = new ArrayList<>(kList.size());
         for (K k : kList) {
             vList.add(modelMapper.map(k));
@@ -42,7 +44,8 @@ final class ModelListMapper {
         return vList;
     }
 
-    <K extends Model, V> List<K> mapToK(ModelMapper<K, V> modelMapper, List<V> vList) {
+    <K extends Model, V extends DomainItem> List<K> mapToK(ModelMapper<K, V> modelMapper,
+                                                           List<V> vList) {
         List<K> kList = new ArrayList<>(vList.size());
         for (V v : vList) {
             kList.add(modelMapper.map(v));

@@ -20,20 +20,9 @@ import com.google.auto.value.AutoValue;
 
 /**
  * Contains location information.
- * <p>
- * <b>DEFAULT VALUES</b>
- * None of the getter methods defined here return null. If an attribute is missing or null, the
- * value returned as defaulted to their non-null counterparts:
- * <ul>
- * <li>String -> ""</li>
- * <li>Collection -> empty collection</li>
- * <li>CustomClass -> non-null CustomClass</li>
- * <li>Primitives -> default values. E.G. int -> 0</li>
- * </ul>
- * This done to prevent null checks and null exceptions for consumers.
  */
 @AutoValue
-public abstract class Location {
+public abstract class Location implements DomainItem {
 
     /**
      * @return a new {@link Builder}

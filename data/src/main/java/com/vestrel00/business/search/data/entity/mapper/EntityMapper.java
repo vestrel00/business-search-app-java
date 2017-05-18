@@ -17,14 +17,15 @@
 package com.vestrel00.business.search.data.entity.mapper;
 
 import com.vestrel00.business.search.data.entity.Entity;
+import com.vestrel00.business.search.domain.DomainItem;
 
 /**
  * Maps entity K to V and vice versa.
  *
  * @param <K> the type of the {@link Entity}
- * @param <V> the type of the output
+ * @param <V> the type of the {@link DomainItem}
  */
-public interface EntityMapper<K extends Entity, V> {
+public interface EntityMapper<K extends Entity, V extends DomainItem> {
 
     V map(K k);
 
