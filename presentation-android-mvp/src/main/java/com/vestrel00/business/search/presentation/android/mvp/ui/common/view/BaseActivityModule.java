@@ -19,6 +19,7 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.inputmethod.InputMethodManager;
 
 import com.vestrel00.business.search.presentation.android.inject.PerActivity;
@@ -41,6 +42,12 @@ public abstract class BaseActivityModule {
     @Binds
     @PerActivity
     abstract Context activityContext(Activity activity);
+
+    @Provides
+    @PerActivity
+    static Resources activityResources(Activity activity) {
+        return activity.getResources();
+    }
 
     @Provides
     @PerActivity

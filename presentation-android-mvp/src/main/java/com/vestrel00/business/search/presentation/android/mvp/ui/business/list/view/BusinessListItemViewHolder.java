@@ -32,20 +32,29 @@ import butterknife.ButterKnife;
  */
 final class BusinessListItemViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.name)
-    TextView name;
-
     @BindView(R.id.image)
     SimpleDraweeView image;
 
-    @BindView(R.id.categories)
-    TextView categories;
+    @BindView(R.id.name)
+    TextView name;
+
+    @BindView(R.id.distance)
+    TextView distance;
 
     @BindView(R.id.rating)
     RatingBar rating;
 
+    @BindView(R.id.reviews)
+    TextView reviews;
+
     @BindView(R.id.price)
     TextView price;
+
+    @BindView(R.id.location)
+    TextView location;
+
+    @BindView(R.id.categories)
+    TextView categories;
 
     BusinessListItemViewHolder(View itemView) {
         super(itemView);

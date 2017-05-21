@@ -51,6 +51,6 @@ public final class BusinessDetailsFragment
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-        // TODO photos.setAdapter();
+        // TODO (IMPLEMENTATION) - photos.setAdapter();
     }
 }

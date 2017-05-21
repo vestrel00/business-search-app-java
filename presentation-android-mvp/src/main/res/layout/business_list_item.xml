@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright 2017 Vandolf Estrellado
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +17,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@android:style/Widget.Material.Button.Borderless"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/business_list_item_vertical_padding"
@@ -23,63 +25,101 @@
     android:paddingStart="@dimen/business_list_item_horizontal_padding"
     android:paddingTop="@dimen/business_list_item_vertical_padding">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginEnd="@dimen/business_list_item_margin"
-        android:layout_toStartOf="@+id/image"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Title"
-        tools:text="Vandolf's Bakery" />
-
     <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
         android:id="@+id/image"
         android:layout_width="@dimen/business_list_item_image_size"
         android:layout_height="@dimen/business_list_item_image_size"
-        android:layout_alignParentEnd="true"
         fresco:actualImageScaleType="centerCrop"
         fresco:placeholderImage="@drawable/ic_business_placeholder"
         fresco:placeholderImageScaleType="centerCrop"
-        fresco:roundedCornerRadius="@dimen/business_list_item_image_corner_radius"
-        fresco:roundingBorderColor="@color/business_list_item_image_border"
-        fresco:roundingBorderWidth="@dimen/business_list_item_image_border_width" />
+        fresco:roundedCornerRadius="@dimen/business_list_item_image_corner_radius" />
 
     <TextView
-        android:id="@+id/categories"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/name"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/business_list_item_margin"
         android:layout_marginEnd="@dimen/business_list_item_margin"
-        android:layout_toStartOf="@id/image"
+        android:layout_marginStart="@dimen/business_list_item_margin"
+        android:layout_toEndOf="@id/image"
+        android:layout_toStartOf="@+id/distance"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Title"
+        android:textSize="@dimen/business_list_item_title_text_size"
+        tools:text="Vandolf's Bakery" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/name"
+        android:layout_alignParentEnd="true"
         android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Subtitle"
-        android:textSize="@dimen/business_list_item_categories_text_size"
-        tools:text="Bagels, Muffins, Cookies" />
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/business_list_item_subtitle_text_size"
+        tools:text="0.7 mi" />
 
     <RatingBar
         android:id="@+id/rating"
         style="@android:style/Widget.Material.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/categories"
-        android:layout_marginTop="@dimen/business_list_item_margin" />
+        android:layout_below="@id/name"
+        android:layout_marginStart="@dimen/business_list_item_margin"
+        android:layout_marginTop="@dimen/business_list_item_margin"
+        android:layout_toEndOf="@id/image" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/reviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/rating"
         android:layout_marginStart="@dimen/business_list_item_margin"
         android:layout_toEndOf="@id/rating"
-        android:gravity="center_horizontal"
         android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Subtitle"
-        android:textSize="@dimen/business_list_item_price_text_size"
+        android:textSize="@dimen/business_list_item_subtitle_text_size"
+        tools:text="31 Reviews" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/reviews"
+        android:layout_alignParentEnd="true"
+        android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Subtitle"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/business_list_item_subtitle_text_size"
         tools:text="$$$" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/rating"
+        android:layout_marginStart="@dimen/business_list_item_margin"
+        android:layout_marginTop="@dimen/business_list_item_margin"
+        android:layout_toEndOf="@id/image"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Subtitle"
+        android:textSize="@dimen/business_list_item_subtitle_text_size"
+        tools:text="1234 Unknown Street, Bronx" />
+
+    <TextView
+        android:id="@+id/categories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/location"
+        android:layout_marginStart="@dimen/business_list_item_margin"
+        android:layout_marginTop="@dimen/business_list_item_margin"
+        android:layout_toEndOf="@id/image"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@android:style/TextAppearance.Material.SearchResult.Subtitle"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/business_list_item_subtitle_text_size"
+        tools:text="Bagels, Muffins, Cookies" />
 
 </RelativeLayout>

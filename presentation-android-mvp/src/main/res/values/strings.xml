@@ -28,6 +28,11 @@
     <string name="search">Search</string>
     <string name="using_current_location">Using current location</string>
 
+    <!-- formatted -->
+    <string name="distance">%1$.1f mi</string>
+    <string name="location">%1$s, %2$s</string>
+    <string name="reviews">%1$d Reviews</string>
+
     <!-- hints -->
     <string name="hint_location">Address city state, and/or zip</string>
 
