@@ -57,9 +57,9 @@ public abstract class BusinessModel implements Model {
     /**
      * This data may only available for instances retrieved using the {@link #id()}.
      *
-     * @return a list of urls of photos of this business
+     * @return a list of urls of photosUrls of this business
      */
-    public abstract List<String> photos();
+    public abstract List<String> photosUrls();
 
     public abstract int reviewCount();
 
@@ -99,7 +99,7 @@ public abstract class BusinessModel implements Model {
 
         public abstract Builder categories(List<String> categories);
 
-        public abstract Builder photos(List<String> photos);
+        public abstract Builder photosUrls(List<String> photosUrls);
 
         public abstract Builder reviewCount(int reviewCount);
 

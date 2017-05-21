@@ -41,7 +41,7 @@ public final class Navigator {
      * passing in the business model object would add logic for handling refreshes and retries.
      *
      * Another thing to note is that some data may not be available in the given BusinessModel,
-     * which is retrieved from the search. More details, including opening hours and photos,
+     * which is retrieved from the search. More details, including opening hours and photosUrls,
      * must be retrieved via the id.
      */
     // public void toBusinessDetails(BusinessModel businessModel) {

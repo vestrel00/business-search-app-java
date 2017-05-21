@@ -69,7 +69,7 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .transactionTypes(modelListMapper.mapToV(transactionTypeModelMapper,
                         businessModel.transactionTypes()))
                 .categories(businessModel.categories())
-                .photos(businessModel.photos())
+                .photosUrls(businessModel.photosUrls())
                 .reviewCount(businessModel.reviewCount())
                 .rating(businessModel.rating())
                 .hours(hoursModelMapper.map(businessModel.hoursModel()))
@@ -90,7 +90,7 @@ final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> 
                 .transactionTypes(modelListMapper.mapToK(transactionTypeModelMapper,
                         business.transactionTypes()))
                 .categories(business.categories())
-                .photos(business.photos())
+                .photosUrls(business.photosUrls())
                 .reviewCount(business.reviewCount())
                 .rating(business.rating())
                 .hoursModel(hoursModelMapper.map(business.hours()))

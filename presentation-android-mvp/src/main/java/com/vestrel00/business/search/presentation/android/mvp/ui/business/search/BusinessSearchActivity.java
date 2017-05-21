@@ -67,10 +67,12 @@ public final class BusinessSearchActivity extends BaseActivity
 
     @Override
     public void onShowBusinessDetails(BusinessModel businessModel) {
-        // We could technically pass in the entire BusinessModel object to the next Activity.
-        // However, we are only passing in the id and letting the next Activity retrieve the data
-        // in order to ensure all data fields are retrieved. Furthermore the data retrieval and
-        // caching are logic that are handled in the data layer via a repository.
+        /*
+         * We could technically pass in the entire BusinessModel object to the next Activity.
+         * However, we are only passing in the id and letting the next Activity retrieve the data
+         * in order to ensure all data fields are retrieved. Furthermore the data retrieval and
+         * caching are logic that are handled in the data layer via a repository.
+         */
         navigator.toBusinessDetails(businessModel.id());
     }
 

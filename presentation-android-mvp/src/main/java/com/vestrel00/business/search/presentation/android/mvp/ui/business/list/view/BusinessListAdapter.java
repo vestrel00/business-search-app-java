@@ -38,8 +38,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * A view adapter for a collection of businessModels that binds {@link BusinessModel} to a
- * {@link BusinessListItemViewHolder}.
+ * A view adapter that binds a collection of {@link BusinessModel}s to a collection of
+ * {@link BusinessListItemViewHolder}s in a recycler view.
  */
 @PerFragment
 final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemViewHolder> {
