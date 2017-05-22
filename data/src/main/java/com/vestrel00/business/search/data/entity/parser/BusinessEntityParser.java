@@ -62,7 +62,7 @@ final class BusinessEntityParser implements EntityParser<BusinessEntity> {
                 .photosUrls(entityParserUtil.parse(node.path("photosUrls")))
                 .reviewCount(node.path("review_count").asInt())
                 .rating((float) node.path("rating").asDouble())
-                .distanceInMeters((float) node.path("distanceInMeters").asDouble())
+                .distanceInMeters((float) node.path("distance").asDouble())
                 .hoursEntity(hoursEntityParser.parse(entityParserUtil
                         .findObjectNode(node.path("hours"), "hours_type", "REGULAR")))
                 .locationEntity(locationEntityParser.parse(node.path("location")))
