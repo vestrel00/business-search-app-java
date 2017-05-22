@@ -24,6 +24,11 @@ import java.util.List;
  * Contains business hours information.
  */
 @AutoValue
+// FIXME? (JACKSON DATABIND) - The generated builder could be used for deserialization.
+// However, Jackson does not yet support setting default values for null or missing properties
+// per setter/getter methods. Furthermore, it is not as flexible as parsing using the tree model.
+// E.G. Missing (or null) property string -> empty string (instead of the default null)
+// @JsonDeserialize(builder = AutoValue_BusinessHoursEntity.Builder.class)
 public abstract class BusinessHoursEntity implements Entity {
 
     /**

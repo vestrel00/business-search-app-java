@@ -22,7 +22,7 @@
     <!-- Business List Item -->
     <dimen name="business_list_item_horizontal_padding">16dp</dimen>
     <dimen name="business_list_item_vertical_padding">8dp</dimen>
-    <dimen name="business_list_item_margin">6dp</dimen>
+    <dimen name="business_list_item_margin">5dp</dimen>
     <dimen name="business_list_item_image_size">76dp</dimen>
     <dimen name="business_list_item_image_corner_radius">4dp</dimen>
     <dimen name="business_list_item_title_text_size">14sp</dimen>

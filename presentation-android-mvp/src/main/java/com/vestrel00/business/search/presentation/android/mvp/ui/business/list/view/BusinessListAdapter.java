@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.vestrel00.business.search.common.MathUtils;
 import com.vestrel00.business.search.common.StringUtils;
 import com.vestrel00.business.search.presentation.android.common.LayoutInflaterFactory;
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
@@ -51,25 +51,26 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
 
     private final List<BusinessModel> businessModels;
     private final BusinessListItemViewHolderFactory itemViewHolderFactory;
-    private final BusinessListItemClickListener onItemClickListener;
-    private final OnItemViewClickListenerFactory onItemViewClickListenerFactory;
+    private final OnItemViewClickListenerFactory<BusinessModel> onItemViewClickListenerFactory;
     private final LayoutInflaterFactory layoutInflaterFactory;
     private final StringUtils stringUtils;
+    private final MathUtils mathUtils;
     private final Resources activityResources;
 
     @Inject
     BusinessListAdapter(List<BusinessModel> businessModels,
                         BusinessListItemViewHolderFactory itemViewHolderFactory,
-                        BusinessListItemClickListener onItemClickListener,
-                        OnItemViewClickListenerFactory onItemViewClickListenerFactory,
+                        OnItemViewClickListenerFactory<BusinessModel>
+                                onItemViewClickListenerFactory,
                         LayoutInflaterFactory layoutInflaterFactory,
-                        StringUtils stringUtils, Resources activityResources) {
+                        StringUtils stringUtils, MathUtils mathUtils,
+                        Resources activityResources) {
         this.businessModels = businessModels;
         this.itemViewHolderFactory = itemViewHolderFactory;
-        this.onItemClickListener = onItemClickListener;
         this.onItemViewClickListenerFactory = onItemViewClickListenerFactory;
         this.layoutInflaterFactory = layoutInflaterFactory;
         this.stringUtils = stringUtils;
+        this.mathUtils = mathUtils;
         this.activityResources = activityResources;
     }
 
@@ -89,7 +90,7 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
         bindViewHolderWithData(holder, businessModel);
 
         OnItemViewClickListener onItemViewClickListener
-                = onItemViewClickListenerFactory.create(onItemClickListener, businessModel);
+                = onItemViewClickListenerFactory.create(businessModel);
         holder.itemView.setOnClickListener(onItemViewClickListener);
     }
 
@@ -135,7 +136,8 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
                                         BusinessModel businessModel) {
         holder.image.setImageURI(Uri.parse(businessModel.imageUrl()));
         holder.name.setText(businessModel.name());
-        // TODO (IMPLEMENTATION) - holder.distance.setText(businessModel.distance());
+        holder.distance.setText(activityResources.getString(R.string.distance,
+                mathUtils.toMiles(businessModel.distanceInMeters())));
         holder.rating.setRating(businessModel.rating());
         holder.reviews.setText(activityResources.getString(R.string.reviews,
                 businessModel.reviewCount()));

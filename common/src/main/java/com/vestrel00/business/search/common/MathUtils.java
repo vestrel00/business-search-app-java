@@ -14,21 +14,22 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.common;
 
-import com.vestrel00.business.search.presentation.android.PresentationAndroidModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.UIModule;
-
-import dagger.Module;
-import dagger.android.AndroidInjectionModule;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
- * Provides Android Application dependencies.
+ * Provides utility methods for mathematics.
  */
-@Module(includes = {
-        AndroidInjectionModule.class,
-        PresentationAndroidModule.class,
-        UIModule.class
-})
-abstract class AndroidApplicationModule {
+@Singleton
+public final class MathUtils {
+
+    @Inject
+    MathUtils() {
+    }
+
+    public float toMiles(float meters) {
+        return meters * 0.000621371f;
+    }
 }

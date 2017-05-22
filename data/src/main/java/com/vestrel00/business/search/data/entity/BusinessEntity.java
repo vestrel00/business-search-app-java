@@ -26,9 +26,9 @@ import java.util.List;
  * Contains business information.
  */
 @AutoValue
-// FIXME (DATABIND JACKSON) - The generated builder could be used for deserialization.
+// FIXME? (JACKSON DATABIND) - The generated builder could be used for deserialization.
 // However, Jackson does not yet support setting default values for null or missing properties
-// per setter/getter methods.
+// per setter/getter methods. Furthermore, it is not as flexible as parsing using the tree model.
 // E.G. Missing (or null) property string -> empty string (instead of the default null)
 // @JsonDeserialize(builder = AutoValue_BusinessEntity.Builder.class)
 @JsonDeserialize(using = BusinessEntityDeserializer.class)
@@ -67,6 +67,8 @@ public abstract class BusinessEntity implements Entity {
     public abstract int reviewCount();
 
     public abstract float rating();
+
+    public abstract float distanceInMeters();
 
     /**
      * This data may only available for instances retrieved using the {@link #id()}.
@@ -107,6 +109,8 @@ public abstract class BusinessEntity implements Entity {
         public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
+
+        public abstract Builder distanceInMeters(float distanceInMeters);
 
         public abstract Builder hoursEntity(BusinessHoursEntity hoursEntity);
 

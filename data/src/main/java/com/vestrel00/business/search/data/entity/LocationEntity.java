@@ -22,9 +22,9 @@ import com.google.auto.value.AutoValue;
  * Contains location information.
  */
 @AutoValue
-// FIXME (DATABIND JACKSON) - The generated builder could be used for deserialization.
+// FIXME? (JACKSON DATABIND) - The generated builder could be used for deserialization.
 // However, Jackson does not yet support setting default values for null or missing properties
-// per setter/getter methods.
+// per setter/getter methods. Furthermore, it is not as flexible as parsing using the tree model.
 // E.G. Missing (or null) property string -> empty string (instead of the default null)
 // @JsonDeserialize(builder = AutoValue_LocationEntity.Builder.class)
 public abstract class LocationEntity implements Entity {

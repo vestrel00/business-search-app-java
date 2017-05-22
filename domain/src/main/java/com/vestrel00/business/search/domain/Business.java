@@ -60,6 +60,8 @@ public abstract class Business implements DomainObject {
 
     public abstract float rating();
 
+    public abstract float distanceInMeters();
+
     /**
      * This data may only available for instances retrieved using the {@link #id()}.
      *
@@ -98,6 +100,8 @@ public abstract class Business implements DomainObject {
         public abstract Builder reviewCount(int reviewCount);
 
         public abstract Builder rating(float rating);
+
+        public abstract Builder distanceInMeters(float distanceInMeters);
 
         public abstract Builder hours(BusinessHours hours);
 

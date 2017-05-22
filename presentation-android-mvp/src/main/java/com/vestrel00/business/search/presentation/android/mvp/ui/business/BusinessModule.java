@@ -16,13 +16,53 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.BusinessSearchActivitySubcomponent;
+import android.app.Activity;
+import android.app.Fragment;
 
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragment;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragmentSubcomponent;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.BusinessSearchActivity;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.BusinessSearchActivitySubcomponent;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragment;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentSubcomponent;
+
+import dagger.Binds;
 import dagger.Module;
+import dagger.android.ActivityKey;
+import dagger.android.AndroidInjector;
+import dagger.android.FragmentKey;
+import dagger.multibindings.IntoMap;
 
 /**
- * Provides business dependencies.
+ * Provides business dependencies, including subcomponents.
  */
+// FIXME? (DAGGER) - Migrate over to @ContributesAndroidInjector when multi-layer subcomponent
+// binding becomes supported. Currently, there is no way to specify the subcomponents of an
+// activity module so that fragment scope subcomponents are bound properly.
+// E.G. BusinessSearchActivityModule specifies the following subcomponents:
+// - BusinessSearchOptionsFragmentSubcomponent
+// - BusinessListFragmentSubcomponent
+// There is no way to set this up using @ContributesAndroidInjector as of dagger 2.11-rc2
 @Module(subcomponents = BusinessSearchActivitySubcomponent.class)
 public abstract class BusinessModule {
+
+    @Binds
+    @IntoMap
+    @ActivityKey(BusinessSearchActivity.class)
+    abstract AndroidInjector.Factory<? extends Activity>
+    bindBusinessSearchActivityInjectorFactory(BusinessSearchActivitySubcomponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @FragmentKey(BusinessListFragment.class)
+    abstract AndroidInjector.Factory<? extends Fragment>
+    bindBusinessListFragmentInjectorFactory(BusinessListFragmentSubcomponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @FragmentKey(BusinessSearchOptionsFragment.class)
+    abstract AndroidInjector.Factory<? extends Fragment>
+    businessOptionsFragmentInjectorFactory(
+            BusinessSearchOptionsFragmentSubcomponent.Builder builder);
+
 }

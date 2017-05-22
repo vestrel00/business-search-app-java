@@ -16,21 +16,26 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
+
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * Creates instances of {@link OnItemViewClickListener}.
+ *
+ * @param <T> the type of the {@link OnItemClickListener}'s item that is clicked
  */
-@Singleton
-public final class OnItemViewClickListenerFactory {
+@PerFragment
+public final class OnItemViewClickListenerFactory<T> {
+
+    private final OnItemClickListener<T> onItemClickListener;
 
     @Inject
-    OnItemViewClickListenerFactory() {
+    OnItemViewClickListenerFactory(OnItemClickListener<T> onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
-    public <T> OnItemViewClickListener<T> create(OnItemClickListener<T> onItemClickListener,
-                                                 T item) {
+    public OnItemViewClickListener create(T item) {
         return new OnItemViewClickListener<>(onItemClickListener, item);
     }
 }

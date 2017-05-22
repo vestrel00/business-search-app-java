@@ -21,6 +21,7 @@ import android.app.Fragment;
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter.BusinessListPresenterModule;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseFragmentModule;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemClickListener;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 import java.util.ArrayList;
@@ -46,6 +47,11 @@ abstract class BusinessListFragmentModule {
     @Binds
     @PerFragment
     abstract BusinessListView businessListView(BusinessListFragment businessListFragment);
+
+    @Binds
+    @PerFragment
+    abstract OnItemClickListener<BusinessModel>
+    businessListItemClickListener(BusinessListItemClickListener businessListItemClickListener);
 
     @Provides
     static List<BusinessModel> businessModels() {
