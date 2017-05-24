@@ -16,6 +16,7 @@
   -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,19 +29,146 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/business_details_photos_height" />
 
-        <com.viewpagerindicator.CirclePageIndicator
+        <me.relex.circleindicator.CircleIndicator
             android:id="@+id/photos_indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/business_details_photos_indicator_margin" />
+            android:layout_alignBottom="@id/photos"
+            android:layout_margin="@dimen/business_details_item_margin" />
 
-        <!-- TODO (IMPLEMENTATION) - business_list_fragment.xml -->
-        <!-- Contact: name, phone number, url, location -->
-        <!-- Hours: hours, open/close -->
-        <!-- Transaction types: transactionTypes -->
-        <!-- Price: price -->
-        <!-- Categories types: transactionTypes -->
-        <!-- Rating: rating, review count -->
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/photos"
+            android:layout_marginEnd="@dimen/business_details_horizontal_margin"
+            android:layout_marginStart="@dimen/business_details_horizontal_margin"
+            android:layout_marginTop="@dimen/business_details_item_margin"
+            android:layout_toStartOf="@+id/distance"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            tools:text="Vandolf's Bakery" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/name"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/business_details_horizontal_margin"
+            android:textAppearance="@android:style/TextAppearance.Material.Small"
+            android:textColor="@android:color/darker_gray"
+            tools:text="0.7 mi" />
+
+        <RatingBar
+            android:id="@+id/rating"
+            style="@android:style/Widget.Material.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/name"
+            android:layout_below="@id/name"
+            android:layout_marginTop="@dimen/business_details_item_margin"
+            tools:numStars="5"
+            tools:rating="4" />
+
+        <TextView
+            android:id="@+id/reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/rating"
+            android:layout_marginStart="@dimen/business_details_item_margin"
+            android:layout_toEndOf="@id/rating"
+            android:textAppearance="@android:style/TextAppearance.Material.Small"
+            tools:text="31 Reviews" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/reviews"
+            android:layout_alignEnd="@id/distance"
+            android:textAppearance="@android:style/TextAppearance.Material.Small"
+            android:textColor="@android:color/darker_gray"
+            tools:text="$$$" />
+
+        <TextView
+            android:id="@+id/categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@id/rating"
+            android:layout_below="@id/rating"
+            android:layout_marginTop="@dimen/business_details_item_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@android:style/TextAppearance.Material.Small"
+            android:textColor="@android:color/darker_gray"
+            tools:text="Bagels, Muffins, Cookies" />
+
+        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            xmlns:info_button="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/categories"
+            android:layout_marginEnd="@dimen/business_details_horizontal_margin"
+            android:layout_marginStart="@dimen/business_details_horizontal_margin"
+            android:layout_marginTop="@dimen/business_details_item_margin"
+            info_button:icon_res="@android:drawable/ic_menu_directions"
+            info_button:label_text="@string/call"
+            info_button:show_bottom_border="true"
+            info_button:show_top_border="true" />
+
+        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            xmlns:info_button="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/phone_number"
+            android:layout_alignStart="@id/phone_number"
+            android:layout_below="@id/phone_number"
+            info_button:icon_res="@android:drawable/ic_menu_directions"
+            info_button:label_text="@string/website"
+            info_button:show_bottom_border="true" />
+
+        <TextView
+            android:id="@+id/hours_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/website"
+            android:layout_below="@id/website"
+            android:layout_marginTop="@dimen/business_details_item_margin"
+            android:text="@string/hours"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
+
+        <TextView
+            android:id="@+id/open_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/hours_label"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/business_details_horizontal_margin"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:textStyle="bold"
+            tools:text="Open"
+            tools:textColor="@android:color/holo_green_dark" />
+
+        <LinearLayout
+            android:id="@+id/hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/open_indicator"
+            android:layout_alignStart="@id/hours_label"
+            android:layout_below="@id/hours_label"
+            android:layout_marginTop="@dimen/business_details_item_margin"
+            android:orientation="vertical" />
+
+
+        <!-- TODO (IMPLEMENTATION) - Transaction types -->
+
+        <!-- TODO (IMPLEMENTATION) - Display Map and Location -->
 
     </RelativeLayout>
 </ScrollView>

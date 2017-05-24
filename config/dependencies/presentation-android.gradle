@@ -42,7 +42,7 @@ dependencies {
     compile presentationAndroidDependencies.recyclerView
     compile presentationAndroidDependencies.supportCompat
     compile presentationAndroidDependencies.coreUi
-    compile presentationAndroidDependencies.viewPagerIndicator
+    compile presentationAndroidDependencies.circleIndicator
     compile presentationAndroidDependencies.fresco
 
     provided presentationAndroidDependencies.javaxAnnotation

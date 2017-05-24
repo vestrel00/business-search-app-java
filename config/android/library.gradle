@@ -16,6 +16,7 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.jakewharton.butterknife'
 
 apply from: "$rootDir/config/documentation/javadoc-android-library.gradle"
 apply from: "$projectDir/config/coverage/jacoco.gradle"

@@ -19,11 +19,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@android:style/Widget.Material.Button.Borderless"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/business_list_item_vertical_padding"
-    android:paddingEnd="@dimen/business_list_item_horizontal_padding"
-    android:paddingStart="@dimen/business_list_item_horizontal_padding"
-    android:paddingTop="@dimen/business_list_item_vertical_padding">
+    android:layout_height="wrap_content">
 
     <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
         android:id="@+id/image"
@@ -67,7 +63,9 @@
         android:layout_below="@id/name"
         android:layout_marginStart="@dimen/business_list_item_margin"
         android:layout_marginTop="@dimen/business_list_item_margin"
-        android:layout_toEndOf="@id/image" />
+        android:layout_toEndOf="@id/image"
+        tools:numStars="5"
+        tools:rating="4" />
 
     <TextView
         android:id="@+id/reviews"

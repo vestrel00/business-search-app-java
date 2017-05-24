@@ -16,19 +16,12 @@
   -->
 
 <resources>
-    <!-- Business Search Options -->
-    <dimen name="business_search_options_item_margin">8dp</dimen>
-
-    <!-- Business List Item -->
-    <dimen name="business_list_item_margin">5dp</dimen>
-    <dimen name="business_list_item_image_size">76dp</dimen>
-    <dimen name="business_list_item_image_corner_radius">4dp</dimen>
-    <dimen name="business_list_item_title_text_size">14sp</dimen>
-    <dimen name="business_list_item_subtitle_text_size">10sp</dimen>
-
-    <!-- Business Details -->
-    <dimen name="business_details_item_margin">6dp</dimen>
-    <dimen name="business_details_horizontal_margin">16dp</dimen>
-    <dimen name="business_details_photos_height">164dp</dimen>
-
+    <declare-styleable name="LabeledInfoField">
+        <attr name="show_top_border" format="boolean"/>
+        <attr name="show_bottom_border" format="boolean"/>
+        <attr name="icon_res" format="reference"/>
+        <attr name="action_indicator_res" format="reference"/>
+        <attr name="label_text" format="string"/>
+        <attr name="info_text" format="string"/>
+    </declare-styleable>
 </resources>

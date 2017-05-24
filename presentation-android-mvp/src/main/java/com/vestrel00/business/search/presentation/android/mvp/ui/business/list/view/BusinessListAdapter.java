@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 
 import com.vestrel00.business.search.common.MathUtils;
 import com.vestrel00.business.search.common.StringUtils;
-import com.vestrel00.business.search.presentation.android.common.LayoutInflaterFactory;
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemViewClickListener;
@@ -52,7 +51,7 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     private final List<BusinessModel> businessModels;
     private final BusinessListItemViewHolderFactory itemViewHolderFactory;
     private final OnItemViewClickListenerFactory<BusinessModel> onItemViewClickListenerFactory;
-    private final LayoutInflaterFactory layoutInflaterFactory;
+    private final LayoutInflater layoutInflater;
     private final StringUtils stringUtils;
     private final MathUtils mathUtils;
     private final Resources activityResources;
@@ -62,13 +61,13 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
                         BusinessListItemViewHolderFactory itemViewHolderFactory,
                         OnItemViewClickListenerFactory<BusinessModel>
                                 onItemViewClickListenerFactory,
-                        LayoutInflaterFactory layoutInflaterFactory,
+                        LayoutInflater layoutInflater,
                         StringUtils stringUtils, MathUtils mathUtils,
                         Resources activityResources) {
         this.businessModels = businessModels;
         this.itemViewHolderFactory = itemViewHolderFactory;
         this.onItemViewClickListenerFactory = onItemViewClickListenerFactory;
-        this.layoutInflaterFactory = layoutInflaterFactory;
+        this.layoutInflater = layoutInflater;
         this.stringUtils = stringUtils;
         this.mathUtils = mathUtils;
         this.activityResources = activityResources;
@@ -76,9 +75,7 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
 
     @Override
     public BusinessListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = layoutInflaterFactory.from(parent.getContext());
-        View itemView = inflater.inflate(R.layout.business_list_item, parent, false);
-
+        View itemView = layoutInflater.inflate(R.layout.business_list_item, parent, false);
         BusinessListItemViewHolder holder = itemViewHolderFactory.create(itemView);
         initializeViewHolder(holder);
         return holder;

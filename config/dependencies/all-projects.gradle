@@ -17,7 +17,6 @@
 /**
  * Define all dependencies for all projects and the repositories in which to retrieve them.
  */
-
 allprojects {
     repositories {
         jcenter()
@@ -29,7 +28,7 @@ ext {
 
     versions = [
             // Build
-            build             : [
+            build          : [
                     java   : [
                             targetCompatibility: '1.8',
                             sourceCompatibility: '1.8'
@@ -43,32 +42,32 @@ ext {
             ],
 
             // Java Libraries
-            rxJava            : '2.0.8',
-            javaxAnnotation   : '1.0',
-            dagger            : '2.11-rc2',
-            autoValue         : '1.4.1',
-            retrofit          : '2.2.0',
-            jackson           : '2.8.8',
+            rxJava         : '2.0.8',
+            javaxAnnotation: '1.0',
+            dagger         : '2.11-rc2',
+            autoValue      : '1.4.1',
+            retrofit       : '2.2.0',
+            jackson        : '2.8.8',
 
             // Android Libraries
-            rxAndroid         : '2.0.1',
-            butterKnife       : '8.5.1',
-            androidSupport    : '25.3.1',
-            viewPagerIndicator: '2.4.1.1',
-            fresco            : '1.3.0',
+            rxAndroid      : '2.0.1',
+            butterKnife    : '8.6.0',
+            androidSupport : '25.3.1',
+            circleIndicator: '1.2.2',
+            fresco         : '1.3.0',
 
             // Java Testing
-            jUnit             : '4.12',
-            assertJ           : '2.6.0',
-            mockito           : '2.7.21',
+            jUnit          : '4.12',
+            assertJ        : '2.6.0',
+            mockito        : '2.7.21',
 
             // Android Testing
-            robolectric       : '3.3.2',
-            espressoCore      : '2.2.2',
-            espressoRunner    : '0.5',
+            robolectric    : '3.3.2',
+            espressoCore   : '2.2.2',
+            espressoRunner : '0.5',
 
             // Android Development (Debug Only)
-            leakCanary        : '1.5'
+            leakCanary     : '1.5'
     ]
 
     javaDependencies = [
@@ -94,10 +93,7 @@ ext {
             recyclerView                  : "com.android.support:recyclerview-v7:${versions.androidSupport}",
             supportCompat                 : "com.android.support:support-compat:${versions.androidSupport}",
             coreUi                        : "com.android.support:support-core-ui:${versions.androidSupport}",
-            // Using gradle compatible version of original viewpager indicator lib
-            // See http://stackoverflow.com/questions/21130003/using-viewpagerindicator-library-with-android-studio-and-gradle
-            // FIXME? (DEPENDENCY) - use more recent library? This library is 5 years old and contains a lot of deprecated code
-            viewPagerIndicator            : "fr.avianey.com.viewpagerindicator:library:${versions.viewPagerIndicator}@aar",
+            circleIndicator               : "me.relex:circleindicator:${versions.circleIndicator}@aar",
             fresco                        : "com.facebook.fresco:fresco:${versions.fresco}"
     ]
 

@@ -19,14 +19,17 @@
     <string name="app_name">Business Search MVP</string>
 
     <!-- literals -->
+    <string name="call">Call</string>
     <string name="click_to_retry">Click to retry</string>
     <string name="closed">Closed</string>
     <string name="current_location">Current location</string>
+    <string name="hours">Hours</string>
     <string name="list_view">List View</string>
     <string name="map_view">Map View</string>
     <string name="open">Open</string>
     <string name="search">Search</string>
     <string name="using_current_location">Using current location</string>
+    <string name="website">Website</string>
 
     <!-- formatted -->
     <string name="distance">%1$.1f mi</string>
