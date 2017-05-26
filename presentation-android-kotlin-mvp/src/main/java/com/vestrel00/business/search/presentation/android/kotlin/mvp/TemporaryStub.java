@@ -14,13 +14,10 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/android/application.gradle"
-apply from: "$rootDir/config/dependencies/presentation-android-mvvm.gradle"
+package com.vestrel00.business.search.presentation.android.kotlin.mvp;
 
-android {
-    defaultConfig {
-        applicationId "com.vestrel00.business.search.presentation.android.mvvm"
-        versionCode 1
-        versionName '1.0.0'
-    }
+/**
+ * Created by estrellv on 4/6/17.
+ */
+public class TemporaryStub {
 }

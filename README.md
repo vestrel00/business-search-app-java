@@ -67,11 +67,12 @@ This simple business search application is able to:
 The application has several different presentations. In other words, there are several different
 applications that present the application in different platforms.
 
-1. presentation-android-mvp: Android app written using the MVP pattern.
-2. presentation-android-mvvm: Android app written using the MVVM pattern.
-3. presentation-java-nogui-mvp: Plain Java command line / console app written using the MVP pattern.
-4. presentation-java-swing-mvp: Java Swing app written using the MVP pattern.
-5. presentation-java-swing-mvvm: Java Swing app written using the MVVM pattern.
+1. presentation-java-nogui-mvp: Plain Java command line / console app written using the MVP pattern.
+2. presentation-java-swing-mvp: Java Swing app written using the MVP pattern.
+3. presentation-java-swing-mvvm: Java Swing app written using the MVVM pattern.
+4. presentation-android-mvp: Android app written in Java using the MVP pattern.
+5. presentation-android-mvvm: Android app written in Java using the MVVM pattern.
+6. presentation-android-kotlin-mvp: Android app written in Kotlin using the MVVM pattern.
 
 All of the above presentations use the same domain and data layer.
 
@@ -98,6 +99,7 @@ You may **open** this project in [Android Studio](https://developer.android.com/
   
   - presentation-android-mvp
   - presentation-android-mvvm
+  - presentation-android-kotlin-mvp
   
 Since this project contains a mix of plain Java modules and Android modules, the best way to ensure
 that all modules are built properly is to

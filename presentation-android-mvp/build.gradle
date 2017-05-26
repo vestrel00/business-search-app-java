@@ -19,7 +19,7 @@ apply from: "$rootDir/config/dependencies/presentation-android-mvp.gradle"
 
 android {
     defaultConfig {
-        applicationId "com.vestrel00.business.search.presentation.mvp"
+        applicationId "com.vestrel00.business.search.presentation.android.mvp"
         versionCode 1
         versionName '1.0.0'
     }

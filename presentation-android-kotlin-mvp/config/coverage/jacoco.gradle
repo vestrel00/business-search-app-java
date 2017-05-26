@@ -14,13 +14,6 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/android/application.gradle"
-apply from: "$rootDir/config/dependencies/presentation-android-mvvm.gradle"
+apply from: "$rootDir/config/coverage/jacoco-android-application.gradle"
 
-android {
-    defaultConfig {
-        applicationId "com.vestrel00.business.search.presentation.android.mvvm"
-        versionCode 1
-        versionName '1.0.0'
-    }
-}
+generateAndroidApplicationJacocoTaskWithExcludes([])
