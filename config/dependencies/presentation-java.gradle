@@ -19,23 +19,22 @@
  */
 
 dependencies {
-    def presentationJavaDependencies = rootProject.ext.presentationJavaDependencies
-    def presentationJavaTestDependencies = rootProject.ext.presentationJavaTestDependencies
+    def libraries = rootProject.ext.libraries
 
-    apt presentationJavaDependencies.daggerCompiler
-    apt presentationJavaDependencies.autoValue
+    apt libraries.dagger.compiler
+    apt libraries.autoValue
 
     api project(':common')
     api project(':domain')
     api project(':data')
 
-    implementation presentationJavaDependencies.rxJava
-    implementation presentationJavaDependencies.dagger
+    implementation libraries.rxJava
+    implementation libraries.dagger.core
 
-    compileOnly presentationJavaDependencies.javaxAnnotation
-    compileOnly presentationJavaDependencies.autoValue
+    compileOnly libraries.javaxAnnotation
+    compileOnly libraries.autoValue
 
-    testImplementation presentationJavaTestDependencies.junit
-    testImplementation presentationJavaTestDependencies.assertj
-    testImplementation presentationJavaTestDependencies.mockitoCore
+    testImplementation libraries.jUnit
+    testImplementation libraries.assertJ
+    testImplementation libraries.mockito.core
 }

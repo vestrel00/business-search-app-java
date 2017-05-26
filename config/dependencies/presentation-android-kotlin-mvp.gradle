@@ -15,7 +15,7 @@
  */
 
 /**
- * Declare all dependencies for the presentation-android-mvp project.
+ * Declare all dependencies for the presentation-android-kotlin-mvp project.
  */
 
 dependencies {

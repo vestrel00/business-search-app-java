@@ -19,13 +19,12 @@
  */
 
 dependencies {
-    def presentationAndroidDependencies = rootProject.ext.presentationAndroidDependencies
-    def presentationAndroidTestDependencies = rootProject.ext.presentationAndroidTestDependencies
+    def libraries = rootProject.ext.libraries
 
-    annotationProcessor presentationAndroidDependencies.daggerCompiler
-    annotationProcessor presentationAndroidDependencies.daggerAndroidProcessor
-    annotationProcessor presentationAndroidDependencies.autoValue
-    annotationProcessor presentationAndroidDependencies.butterKnifeAnnotationProcessor
+    annotationProcessor libraries.dagger.compiler
+    annotationProcessor libraries.dagger.android.processor
+    annotationProcessor libraries.autoValue
+    annotationProcessor libraries.butterKnife.compiler
 
     // FIXME (GRADLE DEPENDENCY) - Update to api, implementation, compileOnly, and runtimeOnly configurations
     // These are the same configurations provided by the java-library plugin starting at Gradle 3.4
@@ -34,31 +33,32 @@ dependencies {
     compile project(':common')
     compile project(':presentation-java')
 
-    compile presentationAndroidDependencies.rxJava
-    compile presentationAndroidDependencies.rxAndroid
-    compile presentationAndroidDependencies.dagger
-    compile presentationAndroidDependencies.daggerAndroid
-    compile presentationAndroidDependencies.butterKnife
-    compile presentationAndroidDependencies.recyclerView
-    compile presentationAndroidDependencies.supportCompat
-    compile presentationAndroidDependencies.coreUi
-    compile presentationAndroidDependencies.circleIndicator
-    compile presentationAndroidDependencies.fresco
+    compile libraries.rxJava
+    compile libraries.rxAndroid
+    compile libraries.dagger.core
+    compile libraries.dagger.android.core
+    compile libraries.butterKnife.core
+    compile libraries.androidSupport.recyclerView
+    compile libraries.androidSupport.supportCompat
+    compile libraries.androidSupport.coreUi
+    compile libraries.circleIndicator
+    compile libraries.fresco
 
-    provided presentationAndroidDependencies.javaxAnnotation
-    provided presentationAndroidDependencies.autoValue
+    provided libraries.javaxAnnotation
+    provided libraries.autoValue
 
     testCompile project(path: ':presentation-java', configuration: 'testOutput')
-    testCompile presentationAndroidTestDependencies.junit
-    testCompile presentationAndroidTestDependencies.assertj
-    testCompile presentationAndroidTestDependencies.mockitoCore
+    testCompile libraries.jUnit
+    testCompile libraries.assertJ
+    testCompile libraries.mockito.core
+    testCompile libraries.robolectric
 
-    androidTestCompile presentationAndroidTestDependencies.mockitoCore
-    androidTestCompile presentationAndroidTestDependencies.mockitoAndroid
-    androidTestCompile(presentationAndroidTestDependencies.espressoCore) {
+    androidTestCompile libraries.mockito.core
+    androidTestCompile libraries.mockito.android
+    androidTestCompile(libraries.espresso.core) {
         exclude group: 'com.android.support'
     }
-    androidTestCompile(presentationAndroidTestDependencies.espressoRunner) {
+    androidTestCompile(libraries.espresso.runner) {
         exclude group: 'com.android.support'
     }
 }

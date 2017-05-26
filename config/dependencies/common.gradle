@@ -19,19 +19,18 @@
  */
 
 dependencies {
-    def commonDependencies = rootProject.ext.commonDependencies
-    def commonTestDependencies = rootProject.ext.commonTestDependencies
+    def libraries = rootProject.ext.libraries
 
-    apt commonDependencies.daggerCompiler
-    apt commonDependencies.autoValue
+    apt libraries.dagger.compiler
+    apt libraries.autoValue
 
-    implementation commonDependencies.rxJava
-    implementation commonDependencies.dagger
+    implementation libraries.rxJava
+    implementation libraries.dagger.core
 
-    compileOnly commonDependencies.javaxAnnotation
-    compileOnly commonDependencies.autoValue
+    compileOnly libraries.javaxAnnotation
+    compileOnly libraries.autoValue
 
-    testImplementation commonTestDependencies.junit
-    testImplementation commonTestDependencies.assertj
-    testImplementation commonTestDependencies.mockitoCore
+    testImplementation libraries.jUnit
+    testImplementation libraries.assertJ
+    testImplementation libraries.mockito.core
 }

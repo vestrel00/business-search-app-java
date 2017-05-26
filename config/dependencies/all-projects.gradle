@@ -25,7 +25,6 @@ allprojects {
 }
 
 ext {
-
     versions = [
             // Build
             build          : [
@@ -62,75 +61,68 @@ ext {
             mockito        : '2.7.21',
 
             // Android Testing
-            robolectric    : '3.3.2',
-            espressoCore   : '2.2.2',
-            espressoRunner : '0.5',
+            robolectric : '3.3.2',
+            espresso : [
+                    core   : '2.2.2',
+                    runner : '0.5',
+            ],
 
             // Android Development (Debug Only)
             leakCanary     : '1.5'
     ]
 
-    javaDependencies = [
+    libraries = [
             rxJava         : "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
             javaxAnnotation: "javax.annotation:jsr250-api:${versions.javaxAnnotation}",
-            dagger         : "com.google.dagger:dagger:${versions.dagger}",
-            daggerCompiler : "com.google.dagger:dagger-compiler:${versions.dagger}",
-            autoValue      : "com.google.auto.value:auto-value:${versions.autoValue}"
+            dagger         : [
+                    core    : "com.google.dagger:dagger:${versions.dagger}",
+                    compiler: "com.google.dagger:dagger-compiler:${versions.dagger}",
+                    android : [
+                            core     : "com.google.dagger:dagger-android:${versions.dagger}",
+                            processor: "com.google.dagger:dagger-android-processor:${versions.dagger}"
+                    ]
+            ],
+            autoValue      : "com.google.auto.value:auto-value:${versions.autoValue}",
+
+            retrofit       : [
+                    core            : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
+                    rxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
+                    jacksonConverter: "com.squareup.retrofit2:converter-jackson:${versions.retrofit}"
+            ],
+
+            jackson        : [
+                    core       : "com.fasterxml.jackson.core:jackson-core:${versions.jackson}",
+                    databind   : "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
+                    annotations: "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}"
+            ],
+
+            rxAndroid      : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+            butterKnife    : [
+                    core    : "com.jakewharton:butterknife:${versions.butterKnife}",
+                    compiler: "com.jakewharton:butterknife-compiler:${versions.butterKnife}"
+
+            ],
+            androidSupport : [
+                    recyclerView : "com.android.support:recyclerview-v7:${versions.androidSupport}",
+                    supportCompat: "com.android.support:support-compat:${versions.androidSupport}",
+                    coreUi       : "com.android.support:support-core-ui:${versions.androidSupport}",
+            ],
+            circleIndicator: "me.relex:circleindicator:${versions.circleIndicator}@aar",
+            fresco         : "com.facebook.fresco:fresco:${versions.fresco}",
+
+            jUnit          : "junit:junit:${versions.jUnit}",
+            assertJ        : "org.assertj:assertj-core:${versions.assertJ}",
+            mockito        : [
+                    core   : "org.mockito:mockito-core:${versions.mockito}",
+                    android: "org.mockito:mockito-android:${versions.mockito}"
+            ],
+
+            robolectric : "org.robolectric:robolectric:${versions.robolectric}",
+            espresso   : [
+                    core  : "com.android.support.test.espresso:espresso-core:${versions.espresso.core}",
+                    runner: "com.android.support.test:runner:${versions.espresso.runner}"
+            ],
+
+            leakCanary     : "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
     ]
-
-    javaTestDependencies = [
-            junit      : "junit:junit:${versions.jUnit}",
-            assertj    : "org.assertj:assertj-core:${versions.assertJ}",
-            mockitoCore: "org.mockito:mockito-core:${versions.mockito}",
-    ]
-
-    androidDependencies = javaDependencies + [
-            daggerAndroid                 : "com.google.dagger:dagger-android:${versions.dagger}",
-            daggerAndroidProcessor        : "com.google.dagger:dagger-android-processor:${versions.dagger}",
-            butterKnife                   : "com.jakewharton:butterknife:${versions.butterKnife}",
-            butterKnifeAnnotationProcessor: "com.jakewharton:butterknife-compiler:${versions.butterKnife}",
-            rxAndroid                     : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
-            recyclerView                  : "com.android.support:recyclerview-v7:${versions.androidSupport}",
-            supportCompat                 : "com.android.support:support-compat:${versions.androidSupport}",
-            coreUi                        : "com.android.support:support-core-ui:${versions.androidSupport}",
-            circleIndicator               : "me.relex:circleindicator:${versions.circleIndicator}@aar",
-            fresco                        : "com.facebook.fresco:fresco:${versions.fresco}"
-    ]
-
-    androidTestDependencies = javaTestDependencies + [
-            mockitoAndroid: "org.mockito:mockito-android:${versions.mockito}",
-            espressoCore  : "com.android.support.test.espresso:espresso-core:${versions.espressoCore}",
-            espressoRunner: "com.android.support.test:runner:${versions.espressoRunner}"
-    ]
-
-    commonDependencies = javaDependencies
-
-    commonTestDependencies = javaTestDependencies
-
-    domainDependencies = javaDependencies
-
-    domainTestDependencies = javaTestDependencies
-
-    dataDependencies = javaDependencies + [
-            retrofit                : "com.squareup.retrofit2:retrofit:${versions.retrofit}",
-            retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit}",
-            retrofitJacksonConverter: "com.squareup.retrofit2:converter-jackson:${versions.retrofit}",
-            jacksonCore             : "com.fasterxml.jackson.core:jackson-core:${versions.jackson}",
-            jacksonDatabind         : "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
-            jacksonAnnotations      : "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}",
-    ]
-
-    dataTestDependencies = javaTestDependencies
-
-    presentationJavaDependencies = javaDependencies
-
-    presentationJavaTestDependencies = javaTestDependencies
-
-    presentationAndroidDependencies = androidDependencies
-
-    presentationAndroidDebugDependencies = [
-            leakCanary: "com.squareup.leakcanary:leakcanary-android:${versions.leakCanary}"
-    ]
-
-    presentationAndroidTestDependencies = androidTestDependencies
 }

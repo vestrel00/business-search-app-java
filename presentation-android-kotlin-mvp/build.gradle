@@ -15,7 +15,7 @@
  */
 
 apply from: "$rootDir/config/android/application.gradle"
-apply from: "$rootDir/config/dependencies/presentation-android-mvvm.gradle"
+apply from: "$rootDir/config/dependencies/presentation-android-kotlin-mvp.gradle"
 
 android {
     defaultConfig {

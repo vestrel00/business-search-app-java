@@ -19,11 +19,11 @@
  */
 
 dependencies {
-    def presentationAndroidDebugDependencies = rootProject.ext.presentationAndroidDebugDependencies
+    def libraries = rootProject.ext.libraries
 
     compile project(':presentation-android')
 
     // FIXME (GRADLE LIBRARY) - Move to presentation-android dependencies once library projects support
     // publishing all library variants (not just release). See config/android/library.gradle
-    debugCompile presentationAndroidDebugDependencies.leakCanary
+    debugCompile libraries.leakCanary
 }

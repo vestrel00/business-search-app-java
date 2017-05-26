@@ -19,21 +19,20 @@
  */
 
 dependencies {
-    def domainDependencies = rootProject.ext.domainDependencies
-    def domainTestDependencies = rootProject.ext.domainTestDependencies
+    def libraries = rootProject.ext.libraries
 
-    apt domainDependencies.daggerCompiler
-    apt domainDependencies.autoValue
+    apt libraries.dagger.compiler
+    apt libraries.autoValue
 
     implementation project(':common')
 
-    implementation domainDependencies.rxJava
-    implementation domainDependencies.dagger
+    implementation libraries.rxJava
+    implementation libraries.dagger.core
 
-    compileOnly domainDependencies.javaxAnnotation
-    compileOnly domainDependencies.autoValue
+    compileOnly libraries.javaxAnnotation
+    compileOnly libraries.autoValue
 
-    testImplementation domainTestDependencies.junit
-    testImplementation domainTestDependencies.assertj
-    testImplementation domainTestDependencies.mockitoCore
+    testImplementation libraries.jUnit
+    testImplementation libraries.assertJ
+    testImplementation libraries.mockito.core
 }
