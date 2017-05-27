@@ -17,7 +17,6 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,21 +25,12 @@ import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.presenter.BusinessDetailsPresenter;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.AbstractLoadContentFragment;
 
-import butterknife.BindView;
-import me.relex.circleindicator.CircleIndicator;
-
 /**
  * A fragment implementation of {@link BusinessDetailsView}.
  */
 public final class BusinessDetailsFragment
         extends AbstractLoadContentFragment<BusinessDetailsPresenter>
         implements BusinessDetailsView {
-
-    @BindView(R.id.photos)
-    ViewPager photos;
-
-    @BindView(R.id.photos_indicator)
-    CircleIndicator photosIndicator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

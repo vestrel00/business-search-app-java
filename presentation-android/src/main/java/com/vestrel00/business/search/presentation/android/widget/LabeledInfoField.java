@@ -54,8 +54,8 @@ public final class LabeledInfoField extends RelativeLayout {
     @BindView(R2.id.info)
     TextView info;
 
-    @BindView(R2.id.action_indicator)
-    SimpleDraweeView actionIndicator;
+    @BindView(R2.id.info_icon)
+    SimpleDraweeView infoIcon;
 
     public LabeledInfoField(Context context) {
         super(context);
@@ -99,8 +99,8 @@ public final class LabeledInfoField extends RelativeLayout {
         setDraweeResource(icon, iconRes);
     }
 
-    public void setActionIndicatorRes(@DrawableRes int actionIndicatorRes) {
-        setDraweeResource(actionIndicator, actionIndicatorRes);
+    public void setInfoIconRes(@DrawableRes int infoIconRes) {
+        setDraweeResource(infoIcon, infoIconRes);
     }
 
     private void setDraweeResource(SimpleDraweeView draweeView, @DrawableRes int resourceId) {
@@ -133,8 +133,8 @@ public final class LabeledInfoField extends RelativeLayout {
                 = typedArray.getBoolean(R.styleable.LabeledInfoField_show_bottom_border, false);
         @DrawableRes int iconRes
                 = typedArray.getResourceId(R.styleable.LabeledInfoField_icon_res, 0);
-        @DrawableRes int actionIndicatorRes
-                = typedArray.getResourceId(R.styleable.LabeledInfoField_action_indicator_res, 0);
+        @DrawableRes int infoIconRes
+                = typedArray.getResourceId(R.styleable.LabeledInfoField_info_icon_res, 0);
         String labelText = typedArray.getString(R.styleable.LabeledInfoField_label_text);
         String infoText = typedArray.getString(R.styleable.LabeledInfoField_info_text);
         typedArray.recycle();
@@ -144,6 +144,6 @@ public final class LabeledInfoField extends RelativeLayout {
         setLabelText(labelText);
         setInfoText(infoText);
         setIconRes(iconRes);
-        setActionIndicatorRes(actionIndicatorRes);
+        setInfoIconRes(infoIconRes);
     }
 }

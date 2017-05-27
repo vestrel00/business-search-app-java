@@ -20,7 +20,7 @@
         <attr name="show_top_border" format="boolean"/>
         <attr name="show_bottom_border" format="boolean"/>
         <attr name="icon_res" format="reference"/>
-        <attr name="action_indicator_res" format="reference"/>
+        <attr name="info_icon_res" format="reference"/>
         <attr name="label_text" format="string"/>
         <attr name="info_text" format="string"/>
     </declare-styleable>

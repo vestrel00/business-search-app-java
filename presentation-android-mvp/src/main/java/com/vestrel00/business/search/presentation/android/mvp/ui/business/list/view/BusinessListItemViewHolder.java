@@ -18,46 +18,22 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.vestrel00.business.search.presentation.android.mvp.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessItemViewHolder;
 
 /**
  * The {@link RecyclerView.ViewHolder} for {@link BusinessListAdapter}.
  */
 final class BusinessListItemViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.image)
-    SimpleDraweeView image;
+    private final BusinessItemViewHolder itemViewHolder;
 
-    @BindView(R.id.name)
-    TextView name;
-
-    @BindView(R.id.distance)
-    TextView distance;
-
-    @BindView(R.id.rating)
-    RatingBar rating;
-
-    @BindView(R.id.reviews)
-    TextView reviews;
-
-    @BindView(R.id.price)
-    TextView price;
-
-    @BindView(R.id.location)
-    TextView location;
-
-    @BindView(R.id.categories)
-    TextView categories;
-
-    BusinessListItemViewHolder(View itemView) {
+    BusinessListItemViewHolder(View itemView, BusinessItemViewHolder itemViewHolder) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+        this.itemViewHolder = itemViewHolder;
+    }
+
+    public BusinessItemViewHolder itemViewHolder() {
+        return itemViewHolder;
     }
 }

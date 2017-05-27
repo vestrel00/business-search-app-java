@@ -15,7 +15,8 @@
   ~ limitations under the License.
   -->
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:auto="http://schemas.android.com/apk/res-auto">
 
     <View
         android:id="@+id/top_border"
@@ -24,12 +25,12 @@
         android:layout_alignParentTop="true"
         android:background="@android:color/darker_gray" />
 
-    <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/icon"
         android:layout_width="@dimen/info_button_icon_size"
         android:layout_height="@dimen/info_button_icon_size"
         android:layout_centerVertical="true"
-        fresco:actualImageScaleType="centerInside" />
+        auto:actualImageScaleType="centerInside" />
 
     <TextView
         android:id="@+id/label"
@@ -38,7 +39,7 @@
         android:layout_below="@id/top_border"
         android:layout_marginTop="@dimen/info_button_vertical_margin"
         android:layout_toEndOf="@id/icon"
-        android:layout_toStartOf="@+id/action_indicator"
+        android:layout_toStartOf="@+id/info_icon"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@android:style/TextAppearance.Material.Small" />
@@ -50,20 +51,20 @@
         android:layout_alignStart="@id/label"
         android:layout_below="@id/label"
         android:layout_marginTop="@dimen/info_button_info_margin_top"
-        android:layout_toStartOf="@+id/action_indicator"
+        android:layout_toStartOf="@+id/info_icon"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@android:style/TextAppearance.Material.Small"
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/info_button_info_text_size" />
 
-    <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/action_indicator"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/info_icon"
         android:layout_width="@dimen/info_button_action_indicator_size"
         android:layout_height="@dimen/info_button_action_indicator_size"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        fresco:actualImageScaleType="centerInside" />
+        auto:actualImageScaleType="centerInside" />
 
     <View
         android:id="@+id/bottom_border"

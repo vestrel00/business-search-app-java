@@ -16,8 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -25,14 +23,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.vestrel00.business.search.common.MathUtils;
-import com.vestrel00.business.search.common.StringUtils;
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.R;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessItemAdapter;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemViewClickListener;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemViewClickListenerFactory;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
-import com.vestrel00.business.search.presentation.java.model.LocationModel;
 
 import java.io.Serializable;
 import java.util.List;
@@ -49,42 +45,37 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     private static final String STATE_BUSINESS_MODELS = "BusinessListAdapter.businessModels";
 
     private final List<BusinessModel> businessModels;
+    private final BusinessItemAdapter businessItemAdapter;
     private final BusinessListItemViewHolderFactory itemViewHolderFactory;
     private final OnItemViewClickListenerFactory<BusinessModel> onItemViewClickListenerFactory;
     private final LayoutInflater layoutInflater;
-    private final StringUtils stringUtils;
-    private final MathUtils mathUtils;
-    private final Resources activityResources;
 
     @Inject
     BusinessListAdapter(List<BusinessModel> businessModels,
+                        BusinessItemAdapter businessItemAdapter,
                         BusinessListItemViewHolderFactory itemViewHolderFactory,
                         OnItemViewClickListenerFactory<BusinessModel>
                                 onItemViewClickListenerFactory,
-                        LayoutInflater layoutInflater,
-                        StringUtils stringUtils, MathUtils mathUtils,
-                        Resources activityResources) {
+                        LayoutInflater layoutInflater) {
         this.businessModels = businessModels;
+        this.businessItemAdapter = businessItemAdapter;
         this.itemViewHolderFactory = itemViewHolderFactory;
         this.onItemViewClickListenerFactory = onItemViewClickListenerFactory;
         this.layoutInflater = layoutInflater;
-        this.stringUtils = stringUtils;
-        this.mathUtils = mathUtils;
-        this.activityResources = activityResources;
     }
 
     @Override
     public BusinessListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = layoutInflater.inflate(R.layout.business_list_item, parent, false);
         BusinessListItemViewHolder holder = itemViewHolderFactory.create(itemView);
-        initializeViewHolder(holder);
+        businessItemAdapter.initializeViewHolder(holder.itemViewHolder());
         return holder;
     }
 
     @Override
     public void onBindViewHolder(BusinessListItemViewHolder holder, int position) {
         BusinessModel businessModel = businessModels.get(position);
-        bindViewHolderWithData(holder, businessModel);
+        businessItemAdapter.bindViewHolderWithData(holder.itemViewHolder(), businessModel);
 
         OnItemViewClickListener onItemViewClickListener
                 = onItemViewClickListenerFactory.create(businessModel);
@@ -122,29 +113,5 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
 
     private void addBusinessModels(List<BusinessModel> businessModels) {
         this.businessModels.addAll(businessModels);
-    }
-
-    private void initializeViewHolder(BusinessListItemViewHolder holder) {
-        holder.rating.setStepSize(0.1f);
-        holder.rating.setNumStars(BusinessModel.MAX_RATING);
-    }
-
-    private void bindViewHolderWithData(BusinessListItemViewHolder holder,
-                                        BusinessModel businessModel) {
-        holder.image.setImageURI(Uri.parse(businessModel.imageUrl()));
-        holder.name.setText(businessModel.name());
-        holder.distance.setText(activityResources.getString(R.string.distance,
-                mathUtils.toMiles(businessModel.distanceInMeters())));
-        holder.rating.setRating(businessModel.rating());
-        holder.reviews.setText(activityResources.getString(R.string.reviews,
-                businessModel.reviewCount()));
-        holder.price.setText(businessModel.price());
-
-        LocationModel locationModel = businessModel.locationModel();
-        holder.location.setText(activityResources.getString(R.string.location,
-                locationModel.address(), locationModel.city()));
-
-        String categories = stringUtils.join(businessModel.categories(), ", ");
-        holder.categories.setText(categories);
     }
 }

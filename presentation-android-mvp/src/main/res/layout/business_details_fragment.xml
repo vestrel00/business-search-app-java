@@ -17,6 +17,7 @@
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:auto="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -97,7 +98,7 @@
             android:id="@+id/categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_alignEnd="@id/price"
             android:layout_alignStart="@id/rating"
             android:layout_below="@id/rating"
             android:layout_marginTop="@dimen/business_details_item_margin"
@@ -107,38 +108,15 @@
             android:textColor="@android:color/darker_gray"
             tools:text="Bagels, Muffins, Cookies" />
 
-        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
-            xmlns:info_button="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/categories"
-            android:layout_marginEnd="@dimen/business_details_horizontal_margin"
-            android:layout_marginStart="@dimen/business_details_horizontal_margin"
-            android:layout_marginTop="@dimen/business_details_item_margin"
-            info_button:icon_res="@android:drawable/ic_menu_directions"
-            info_button:label_text="@string/call"
-            info_button:show_bottom_border="true"
-            info_button:show_top_border="true" />
-
-        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
-            xmlns:info_button="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/website"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/phone_number"
-            android:layout_alignStart="@id/phone_number"
-            android:layout_below="@id/phone_number"
-            info_button:icon_res="@android:drawable/ic_menu_directions"
-            info_button:label_text="@string/website"
-            info_button:show_bottom_border="true" />
+        <!-- TODO (IMPLEMENTATION) - Display Map and Location -->
 
         <TextView
             android:id="@+id/hours_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/website"
-            android:layout_below="@id/website"
+            android:layout_alignStart="@id/categories"
+            android:layout_alignEnd="@id/categories"
+            android:layout_below="@id/categories"
             android:layout_marginTop="@dimen/business_details_item_margin"
             android:text="@string/hours"
             android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
@@ -166,9 +144,62 @@
             android:orientation="vertical" />
 
 
-        <!-- TODO (IMPLEMENTATION) - Transaction types -->
+        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            android:id="@+id/phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/hours"
+            android:layout_alignStart="@id/hours"
+            android:layout_below="@id/hours"
+            android:layout_marginTop="@dimen/business_details_item_margin"
+            auto:icon_res="@android:drawable/ic_menu_directions"
+            auto:label_text="@string/call"
+            auto:show_bottom_border="true"
+            auto:show_top_border="true" />
 
-        <!-- TODO (IMPLEMENTATION) - Display Map and Location -->
+        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            android:id="@+id/website"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/phone_number"
+            android:layout_alignStart="@id/phone_number"
+            android:layout_below="@id/phone_number"
+            auto:icon_res="@android:drawable/ic_menu_directions"
+            auto:label_text="@string/website"
+            auto:show_bottom_border="true" />
+
+        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            android:id="@+id/pickup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/website"
+            android:layout_alignStart="@id/website"
+            android:layout_below="@id/website"
+            auto:icon_res="@android:drawable/ic_menu_directions"
+            auto:label_text="@string/pickup"
+            auto:show_bottom_border="true" />
+
+        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            android:id="@+id/delivery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/pickup"
+            android:layout_alignStart="@id/pickup"
+            android:layout_below="@id/pickup"
+            auto:icon_res="@android:drawable/ic_menu_directions"
+            auto:label_text="@string/delivery"
+            auto:show_bottom_border="true" />
+
+        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            android:id="@+id/reservation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/delivery"
+            android:layout_alignStart="@id/delivery"
+            android:layout_below="@id/delivery"
+            auto:icon_res="@android:drawable/ic_menu_directions"
+            auto:label_text="@string/reservation"
+            auto:show_bottom_border="true" />
 
     </RelativeLayout>
 </ScrollView>
