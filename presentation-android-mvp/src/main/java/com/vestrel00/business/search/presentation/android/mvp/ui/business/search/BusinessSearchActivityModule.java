@@ -17,16 +17,22 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.search;
 
 import android.app.Activity;
+import android.app.Fragment;
 
 import com.vestrel00.business.search.presentation.android.inject.PerActivity;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragmentListener;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragmentSubcomponent;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentListener;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentSubcomponent;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivityModule;
 
 import dagger.Binds;
 import dagger.Module;
+import dagger.android.AndroidInjector;
+import dagger.android.FragmentKey;
+import dagger.multibindings.IntoMap;
 
 /**
  * Provides business search activity dependencies.
@@ -37,6 +43,19 @@ import dagger.Module;
                 BusinessListFragmentSubcomponent.class
         })
 abstract class BusinessSearchActivityModule {
+
+    @Binds
+    @IntoMap
+    @FragmentKey(BusinessSearchOptionsFragment.class)
+    abstract AndroidInjector.Factory<? extends Fragment>
+    businessSearchOptionsFragmentInjectorFactory(
+            BusinessSearchOptionsFragmentSubcomponent.Builder builder);
+
+    @Binds
+    @IntoMap
+    @FragmentKey(BusinessListFragment.class)
+    abstract AndroidInjector.Factory<? extends Fragment>
+    bindBusinessListFragmentInjectorFactory(BusinessListFragmentSubcomponent.Builder builder);
 
     @Binds
     @PerActivity
@@ -51,5 +70,4 @@ abstract class BusinessSearchActivityModule {
     @PerActivity
     abstract BusinessListFragmentListener
     businessListFragmentListener(BusinessSearchActivity businessSearchActivity);
-
 }

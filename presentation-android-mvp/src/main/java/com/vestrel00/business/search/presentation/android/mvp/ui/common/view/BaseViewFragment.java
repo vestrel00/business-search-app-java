@@ -17,6 +17,7 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
 
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.presenter.Presenter;
 
@@ -53,6 +54,7 @@ public abstract class BaseViewFragment<T extends Presenter> extends BaseFragment
         presenter.onPause();
     }
 
+    @CallSuper
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

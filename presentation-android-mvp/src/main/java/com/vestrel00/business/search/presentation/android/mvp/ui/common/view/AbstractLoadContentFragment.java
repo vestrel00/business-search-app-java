@@ -31,10 +31,12 @@ import butterknife.OnClick;
  * This fragment assumes that the following Android views with the given ids exist in the view
  * returned in onCreateView:
  * <ul>
- * <li>R.id.content_view : the view that contains the content</li>
- * <li>R.id.loading_indicator : the loading indicator view</li>
- * <li>R.id.retry_button : the retry button view</li>
+ *      <li>R.id.content_view : the view that contains the content</li>
+ *      <li>R.id.loading_indicator : the loading indicator view</li>
+ *  <   li>R.id.retry_button : the retry button view</li>
  * </ul>
+ * The above required views must be declared invisible in xml.
+ *
  * This uses a {@link Toast} for showing errors via {@link #showError(String)}.
  *
  * @param <T> the type of the {@link Presenter}.

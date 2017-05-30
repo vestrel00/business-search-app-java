@@ -24,7 +24,7 @@ dependencies {
     apt libraries.dagger.compiler
     apt libraries.autoValue
 
-    implementation project(':common')
+    implementation project(':util')
 
     implementation libraries.rxJava
     implementation libraries.dagger.core

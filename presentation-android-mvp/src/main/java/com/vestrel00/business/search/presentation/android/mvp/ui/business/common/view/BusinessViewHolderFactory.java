@@ -14,26 +14,25 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view;
 
-import com.vestrel00.business.search.data.DataModule;
-import com.vestrel00.business.search.domain.DomainModule;
-import com.vestrel00.business.search.util.UtilModule;
+import android.view.View;
 
-import javax.inject.Singleton;
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 
-import dagger.Component;
+import javax.inject.Inject;
 
 /**
- * Injects Android Application dependencies.
+ * Creates instances of {@link BusinessViewHolder}.
  */
-@Component(modules = {
-        UtilModule.class,
-        DataModule.class,
-        DomainModule.class,
-        AndroidApplicationModule.class,
-})
-@Singleton
-interface AndroidApplicationComponent {
-    void inject(AndroidApplication androidApplication);
+@PerFragment
+public final class BusinessViewHolderFactory {
+
+    @Inject
+    BusinessViewHolderFactory() {
+    }
+
+    public BusinessViewHolder create(View itemView) {
+        return new BusinessViewHolder(itemView);
+    }
 }

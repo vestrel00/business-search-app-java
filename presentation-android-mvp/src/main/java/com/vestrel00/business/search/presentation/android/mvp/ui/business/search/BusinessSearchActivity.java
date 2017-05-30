@@ -73,7 +73,7 @@ public final class BusinessSearchActivity extends BaseActivity
          * in order to ensure all data fields are retrieved. Furthermore the data retrieval and
          * caching are logic that are handled in the data layer via a repository.
          */
-        navigator.toBusinessDetails(businessModel.id());
+        navigator.toBusinessDetails(this, businessModel.id());
     }
 
     private BusinessListFragment businessListFragment() {

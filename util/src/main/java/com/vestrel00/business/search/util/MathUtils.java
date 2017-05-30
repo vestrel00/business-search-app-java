@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.common;
+package com.vestrel00.business.search.util;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

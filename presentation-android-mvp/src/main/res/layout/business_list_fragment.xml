@@ -25,6 +25,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:scrollbars="vertical"
+        android:visibility="invisible"
         auto:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
     <ProgressBar

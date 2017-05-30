@@ -27,7 +27,7 @@ import javax.inject.Inject;
 import io.reactivex.annotations.Nullable;
 
 /**
- * An implementation of
+ * An implementation of {@link BusinessSearchOptionsPresenter}.
  */
 @PerFragment
 final class BusinessSearchOptionsPresenterImpl extends BasePresenter<BusinessSearchOptionsView>

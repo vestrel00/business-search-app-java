@@ -14,49 +14,34 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view;
 
 import android.app.Fragment;
 
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessCommonViewModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.presenter.BusinessListPresenterModule;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.presenter.BusinessDetailsPresenterModule;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseFragmentModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemClickListener;
-import com.vestrel00.business.search.presentation.java.model.BusinessModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
- * Provides business list fragment dependencies.
+ * Provides business details fragment dependencies.
  */
 @Module(includes = {
         BaseFragmentModule.class,
         BusinessCommonViewModule.class,
-        BusinessListPresenterModule.class
+        BusinessDetailsPresenterModule.class
 })
-abstract class BusinessListFragmentModule {
+abstract class BusinessDetailsFragmentModule {
 
     @Binds
     @PerFragment
-    abstract Fragment fragment(BusinessListFragment businessListFragment);
+    abstract Fragment fragment(BusinessDetailsFragment businessDetailsFragment);
 
     @Binds
     @PerFragment
-    abstract BusinessListView businessListView(BusinessListFragment businessListFragment);
-
-    @Binds
-    @PerFragment
-    abstract OnItemClickListener<BusinessModel>
-    businessListItemClickListener(BusinessListItemClickListener businessListItemClickListener);
-
-    @Provides
-    static List<BusinessModel> businessModels() {
-        return new ArrayList<>();
-    }
+    abstract BusinessDetailsView
+    businessDetailsView(BusinessDetailsFragment businessDetailsFragment);
 }

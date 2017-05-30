@@ -15,191 +15,214 @@
   ~ limitations under the License.
   -->
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:auto="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView
+        android:id="@id/content_pane"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:visibility="invisible">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/photos"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/business_details_photos_height" />
+            android:layout_height="wrap_content">
 
-        <me.relex.circleindicator.CircleIndicator
-            android:id="@+id/photos_indicator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/photos"
-            android:layout_margin="@dimen/business_details_item_margin" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/photos"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/business_details_photos_height" />
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/photos"
-            android:layout_marginEnd="@dimen/business_details_horizontal_margin"
-            android:layout_marginStart="@dimen/business_details_horizontal_margin"
-            android:layout_marginTop="@dimen/business_details_item_margin"
-            android:layout_toStartOf="@+id/distance"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="@android:style/TextAppearance.Material.Headline"
-            tools:text="Vandolf's Bakery" />
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/photos_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/photos"
+                android:layout_margin="@dimen/business_details_item_margin" />
 
-        <TextView
-            android:id="@+id/distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/name"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/business_details_horizontal_margin"
-            android:textAppearance="@android:style/TextAppearance.Material.Small"
-            android:textColor="@android:color/darker_gray"
-            tools:text="0.7 mi" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/photos"
+                android:layout_marginEnd="@dimen/business_details_horizontal_margin"
+                android:layout_marginStart="@dimen/business_details_horizontal_margin"
+                android:layout_marginTop="@dimen/business_details_item_margin"
+                android:layout_toStartOf="@+id/distance"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                tools:text="Vandolf's Bakery" />
 
-        <RatingBar
-            android:id="@+id/rating"
-            style="@android:style/Widget.Material.RatingBar.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@id/name"
-            android:layout_below="@id/name"
-            android:layout_marginTop="@dimen/business_details_item_margin"
-            tools:numStars="5"
-            tools:rating="4" />
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/business_details_horizontal_margin"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="@android:color/darker_gray"
+                tools:text="0.7 mi" />
 
-        <TextView
-            android:id="@+id/reviews"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/rating"
-            android:layout_marginStart="@dimen/business_details_item_margin"
-            android:layout_toEndOf="@id/rating"
-            android:textAppearance="@android:style/TextAppearance.Material.Small"
-            tools:text="31 Reviews" />
+            <RatingBar
+                android:id="@+id/rating"
+                style="@android:style/Widget.Material.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/name"
+                android:layout_below="@id/name"
+                android:layout_marginTop="@dimen/business_details_item_margin"
+                tools:numStars="5"
+                tools:rating="4" />
 
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/reviews"
-            android:layout_alignEnd="@id/distance"
-            android:textAppearance="@android:style/TextAppearance.Material.Small"
-            android:textColor="@android:color/darker_gray"
-            tools:text="$$$" />
+            <TextView
+                android:id="@+id/reviews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/rating"
+                android:layout_marginStart="@dimen/business_details_item_margin"
+                android:layout_toEndOf="@id/rating"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                tools:text="31 Reviews" />
 
-        <TextView
-            android:id="@+id/categories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/price"
-            android:layout_alignStart="@id/rating"
-            android:layout_below="@id/rating"
-            android:layout_marginTop="@dimen/business_details_item_margin"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textAppearance="@android:style/TextAppearance.Material.Small"
-            android:textColor="@android:color/darker_gray"
-            tools:text="Bagels, Muffins, Cookies" />
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/reviews"
+                android:layout_alignEnd="@id/distance"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="@android:color/darker_gray"
+                tools:text="$$$" />
 
-        <!-- TODO (IMPLEMENTATION) - Display Map and Location -->
+            <TextView
+                android:id="@+id/categories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/price"
+                android:layout_alignStart="@id/rating"
+                android:layout_below="@id/rating"
+                android:layout_marginTop="@dimen/business_details_item_margin"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@android:style/TextAppearance.Material.Small"
+                android:textColor="@android:color/darker_gray"
+                tools:text="Bagels, Muffins, Cookies" />
 
-        <TextView
-            android:id="@+id/hours_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@id/categories"
-            android:layout_alignEnd="@id/categories"
-            android:layout_below="@id/categories"
-            android:layout_marginTop="@dimen/business_details_item_margin"
-            android:text="@string/hours"
-            android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
+            <!-- TODO (IMPLEMENTATION) - Display Map and Location -->
 
-        <TextView
-            android:id="@+id/open_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/hours_label"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/business_details_horizontal_margin"
-            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-            android:textStyle="bold"
-            tools:text="Open"
-            tools:textColor="@android:color/holo_green_dark" />
+            <TextView
+                android:id="@+id/hours_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/categories"
+                android:layout_alignStart="@id/categories"
+                android:layout_below="@id/categories"
+                android:layout_marginTop="@dimen/business_details_item_margin"
+                android:text="@string/hours"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead" />
 
-        <LinearLayout
-            android:id="@+id/hours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/open_indicator"
-            android:layout_alignStart="@id/hours_label"
-            android:layout_below="@id/hours_label"
-            android:layout_marginTop="@dimen/business_details_item_margin"
-            android:orientation="vertical" />
+            <TextView
+                android:id="@+id/open_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/hours_label"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/business_details_horizontal_margin"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textStyle="bold"
+                tools:text="Open"
+                tools:textColor="@android:color/holo_green_dark" />
+
+            <LinearLayout
+                android:id="@+id/hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/open_indicator"
+                android:layout_alignStart="@id/hours_label"
+                android:layout_below="@id/hours_label"
+                android:layout_marginTop="@dimen/business_details_item_margin"
+                android:orientation="vertical" />
+
+            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+                android:id="@+id/phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/hours"
+                android:layout_alignStart="@id/hours"
+                android:layout_below="@id/hours"
+                android:layout_marginTop="@dimen/business_details_item_margin"
+                auto:icon_res="@android:drawable/ic_menu_directions"
+                auto:label_text="@string/call"
+                auto:show_bottom_border="true"
+                auto:show_top_border="true" />
+
+            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+                android:id="@+id/website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/phone_number"
+                android:layout_alignStart="@id/phone_number"
+                android:layout_below="@id/phone_number"
+                auto:icon_res="@android:drawable/ic_menu_directions"
+                auto:label_text="@string/website"
+                auto:show_bottom_border="true" />
+
+            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+                android:id="@+id/pickup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/website"
+                android:layout_alignStart="@id/website"
+                android:layout_below="@id/website"
+                auto:icon_res="@android:drawable/ic_menu_directions"
+                auto:label_text="@string/pickup"
+                auto:show_bottom_border="true" />
+
+            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+                android:id="@+id/delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/pickup"
+                android:layout_alignStart="@id/pickup"
+                android:layout_below="@id/pickup"
+                auto:icon_res="@android:drawable/ic_menu_directions"
+                auto:label_text="@string/delivery"
+                auto:show_bottom_border="true" />
+
+            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+                android:id="@+id/reservation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/delivery"
+                android:layout_alignStart="@id/delivery"
+                android:layout_below="@id/delivery"
+                auto:icon_res="@android:drawable/ic_menu_directions"
+                auto:label_text="@string/reservation"
+                auto:show_bottom_border="true" />
+        </RelativeLayout>
+    </ScrollView>
 
 
-        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
-            android:id="@+id/phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/hours"
-            android:layout_alignStart="@id/hours"
-            android:layout_below="@id/hours"
-            android:layout_marginTop="@dimen/business_details_item_margin"
-            auto:icon_res="@android:drawable/ic_menu_directions"
-            auto:label_text="@string/call"
-            auto:show_bottom_border="true"
-            auto:show_top_border="true" />
+    <ProgressBar
+        android:id="@id/loading_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="invisible" />
 
-        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
-            android:id="@+id/website"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/phone_number"
-            android:layout_alignStart="@id/phone_number"
-            android:layout_below="@id/phone_number"
-            auto:icon_res="@android:drawable/ic_menu_directions"
-            auto:label_text="@string/website"
-            auto:show_bottom_border="true" />
+    <TextView
+        android:id="@id/retry_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/click_to_retry"
+        android:visibility="invisible" />
 
-        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
-            android:id="@+id/pickup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/website"
-            android:layout_alignStart="@id/website"
-            android:layout_below="@id/website"
-            auto:icon_res="@android:drawable/ic_menu_directions"
-            auto:label_text="@string/pickup"
-            auto:show_bottom_border="true" />
-
-        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
-            android:id="@+id/delivery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/pickup"
-            android:layout_alignStart="@id/pickup"
-            android:layout_below="@id/pickup"
-            auto:icon_res="@android:drawable/ic_menu_directions"
-            auto:label_text="@string/delivery"
-            auto:show_bottom_border="true" />
-
-        <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
-            android:id="@+id/reservation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/delivery"
-            android:layout_alignStart="@id/delivery"
-            android:layout_below="@id/delivery"
-            auto:icon_res="@android:drawable/ic_menu_directions"
-            auto:label_text="@string/reservation"
-            auto:show_bottom_border="true" />
-
-    </RelativeLayout>
-</ScrollView>
+</FrameLayout>

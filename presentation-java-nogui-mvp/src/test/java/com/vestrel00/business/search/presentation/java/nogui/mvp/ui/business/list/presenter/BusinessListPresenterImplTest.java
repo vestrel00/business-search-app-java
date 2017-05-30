@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter;
 
+import com.vestrel00.business.search.util.StringUtils;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
@@ -33,8 +34,6 @@ import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.lis
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
-import java.util.Locale;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -64,6 +63,9 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
     private UseCaseHandler useCaseHandler;
 
     @Mock
+    private StringUtils stringUtils;
+
+    @Mock
     private BusinessListView view;
 
     @Override
@@ -77,6 +79,7 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
         // GIVEN
         Location location = mock(Location.class);
         BusinessObserver observer = mock(BusinessObserver.class);
+
         given_onShowBusinessesAroundLocation(location, observer, "");
 
         // WHEN
@@ -90,14 +93,18 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
     public void onShowBusinessesAroundLocation_showsBusinessesAroundMessage() throws Exception {
         // GIVEN
         String locationModelString = "location";
+        String message = "message";
+
         given_onShowBusinessesAroundLocation(mock(Location.class), mock(BusinessObserver.class),
                 locationModelString);
+
+        when(stringUtils.format(SHOW_BUSINESSES_AROUND_MESSAGE, locationModelString))
+                .thenReturn(message);
 
         // WHEN
         testSubject.onShowBusinessesAroundLocation();
 
         // THEN
-        String message = String.format(Locale.US, SHOW_BUSINESSES_AROUND_MESSAGE, locationModelString);
         verify(view).showMessage(message);
     }
 
@@ -106,6 +113,7 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
         // GIVEN
         Coordinates coordinates = mock(Coordinates.class);
         BusinessObserver observer = mock(BusinessObserver.class);
+
         given_onShowBusinessesAroundCoordinates(coordinates, observer, "");
 
         // WHEN
@@ -119,14 +127,18 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
     public void onShowBusinessesAroundCoordinates_showsBusinessesAroundMessage() throws Exception {
         // GIVEN
         String coordinatesModelString = "coordinates";
+        String message = "message";
+
         given_onShowBusinessesAroundCoordinates(mock(Coordinates.class), mock(BusinessObserver.class),
                 coordinatesModelString);
+
+        when(stringUtils.format(SHOW_BUSINESSES_AROUND_MESSAGE, coordinatesModelString))
+                .thenReturn(message);
 
         // WHEN
         testSubject.onShowBusinessesAroundCoordinates();
 
         // THEN
-        String message = String.format(Locale.US, SHOW_BUSINESSES_AROUND_MESSAGE, coordinatesModelString);
         verify(view).showMessage(message);
     }
 

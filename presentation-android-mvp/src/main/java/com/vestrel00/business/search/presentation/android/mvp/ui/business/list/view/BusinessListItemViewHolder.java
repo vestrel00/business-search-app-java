@@ -19,21 +19,21 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessItemViewHolder;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessViewHolder;
 
 /**
  * The {@link RecyclerView.ViewHolder} for {@link BusinessListAdapter}.
  */
 final class BusinessListItemViewHolder extends RecyclerView.ViewHolder {
 
-    private final BusinessItemViewHolder itemViewHolder;
+    private final BusinessViewHolder viewHolder;
 
-    BusinessListItemViewHolder(View itemView, BusinessItemViewHolder itemViewHolder) {
+    BusinessListItemViewHolder(View itemView, BusinessViewHolder viewHolder) {
         super(itemView);
-        this.itemViewHolder = itemViewHolder;
+        this.viewHolder = viewHolder;
     }
 
-    public BusinessItemViewHolder itemViewHolder() {
-        return itemViewHolder;
+    BusinessViewHolder viewHolder() {
+        return viewHolder;
     }
 }

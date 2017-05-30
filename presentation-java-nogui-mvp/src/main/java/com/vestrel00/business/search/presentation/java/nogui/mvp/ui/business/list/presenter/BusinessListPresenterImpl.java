@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter;
 
+import com.vestrel00.business.search.util.StringUtils;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
@@ -27,8 +28,6 @@ import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperH
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter.BusinessObserver;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.presenter.BusinessObserverFactory;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
-
-import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -49,6 +48,7 @@ final class BusinessListPresenterImpl implements BusinessListPresenter {
     private final ModelMapperHolder modelMapperHolder;
     private final BusinessObserverFactory businessObserverFactory;
     private final UseCaseHandler useCaseHandler;
+    private final StringUtils stringUtils;
 
     @NonNull
     private BusinessListView view;
@@ -58,12 +58,13 @@ final class BusinessListPresenterImpl implements BusinessListPresenter {
                               GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
                               ModelMapperHolder modelMapperHolder,
                               BusinessObserverFactory businessObserverFactory,
-                              UseCaseHandler useCaseHandler) {
+                              UseCaseHandler useCaseHandler, StringUtils stringUtils) {
         this.getBusinessesAroundLocation = getBusinessesAroundLocation;
         this.getBusinessesAroundCoordinates = getBusinessesAroundCoordinates;
         this.modelMapperHolder = modelMapperHolder;
         this.businessObserverFactory = businessObserverFactory;
         this.useCaseHandler = useCaseHandler;
+        this.stringUtils = stringUtils;
     }
 
     @Override
@@ -100,7 +101,7 @@ final class BusinessListPresenterImpl implements BusinessListPresenter {
     }
 
     private void showBusinessesAroundMessage(String around) {
-        String message = String.format(Locale.US, SHOW_BUSINESSES_AROUND_MESSAGE, around);
+        String message = stringUtils.format(SHOW_BUSINESSES_AROUND_MESSAGE, around);
         view.showMessage(message);
     }
 }

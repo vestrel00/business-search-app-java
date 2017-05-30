@@ -16,7 +16,7 @@
 
 package com.vestrel00.business.search.data.entity.validator;
 
-import com.vestrel00.business.search.common.StringUtils;
+import com.vestrel00.business.search.util.StringUtils;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 
 import javax.inject.Inject;

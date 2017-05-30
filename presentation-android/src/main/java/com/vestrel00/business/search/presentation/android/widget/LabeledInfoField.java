@@ -22,6 +22,7 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -93,6 +94,14 @@ public final class LabeledInfoField extends RelativeLayout {
 
     public void setInfoText(String text) {
         info.setText(text);
+    }
+
+    public void setLabelText(@StringRes int textRes) {
+        label.setText(textRes);
+    }
+
+    public void setInfoText(@StringRes int textRes) {
+        info.setText(textRes);
     }
 
     public void setIconRes(@DrawableRes int iconRes) {

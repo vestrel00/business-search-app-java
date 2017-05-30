@@ -22,8 +22,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessAdapter;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessViewHolder;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessViewHolderFactory;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.presenter.BusinessDetailsPresenter;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.AbstractLoadContentFragment;
+import com.vestrel00.business.search.presentation.java.model.BusinessModel;
+
+import javax.inject.Inject;
 
 /**
  * A fragment implementation of {@link BusinessDetailsView}.
@@ -31,6 +37,23 @@ import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.Abs
 public final class BusinessDetailsFragment
         extends AbstractLoadContentFragment<BusinessDetailsPresenter>
         implements BusinessDetailsView {
+
+    private static final String ARG_BUSINESS_ID = "BusinessDetailsFragment.businessId";
+
+    @Inject
+    BusinessAdapter businessAdapter;
+
+    @Inject
+    BusinessViewHolderFactory businessViewHolderFactory;
+
+    public static BusinessDetailsFragment forBusinessId(String businessId) {
+        Bundle args = new Bundle();
+        args.putString(ARG_BUSINESS_ID, businessId);
+
+        BusinessDetailsFragment businessDetailsFragment = new BusinessDetailsFragment();
+        businessDetailsFragment.setArguments(args);
+        return businessDetailsFragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +64,17 @@ public final class BusinessDetailsFragment
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-        // TODO (IMPLEMENTATION) - photos.setAdapter();
+        presenter.onShowBusinessDetails(getBusinessIdArg());
+    }
+
+    @Override
+    public void showBusinessDetails(BusinessModel businessModel) {
+        BusinessViewHolder businessViewHolder = businessViewHolderFactory.create(getView());
+        businessAdapter.initializeViewHolder(businessViewHolder);
+        businessAdapter.bindViewHolderWithData(businessViewHolder, businessModel);
+    }
+
+    private String getBusinessIdArg() {
+        return getArguments().getString(ARG_BUSINESS_ID);
     }
 }

@@ -25,6 +25,7 @@ import io.reactivex.observers.DisposableObserver;
  * @param <T> the received value type
  */
 public abstract class AbstractDisposableObserver<T> extends DisposableObserver<T> {
+
     @Override
     public void onNext(T t) {
     }

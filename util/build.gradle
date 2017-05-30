@@ -14,26 +14,5 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
-
-import com.vestrel00.business.search.data.DataModule;
-import com.vestrel00.business.search.domain.DomainModule;
-import com.vestrel00.business.search.util.UtilModule;
-
-import javax.inject.Singleton;
-
-import dagger.Component;
-
-/**
- * Injects Android Application dependencies.
- */
-@Component(modules = {
-        UtilModule.class,
-        DataModule.class,
-        DomainModule.class,
-        AndroidApplicationModule.class,
-})
-@Singleton
-interface AndroidApplicationComponent {
-    void inject(AndroidApplication androidApplication);
-}
+apply from: "$rootDir/config/java/library.gradle"
+apply from: "$rootDir/config/dependencies/util.gradle"

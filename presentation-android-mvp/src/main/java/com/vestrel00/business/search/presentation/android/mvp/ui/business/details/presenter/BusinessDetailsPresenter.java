@@ -22,4 +22,7 @@ import com.vestrel00.business.search.presentation.android.mvp.ui.common.presente
  * A {@link Presenter} that retrieves and displays the details of a business.
  */
 public interface BusinessDetailsPresenter extends Presenter {
+
+    void onShowBusinessDetails(String businessId);
+
 }

@@ -16,13 +16,23 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.LoadContentView;
-import com.vestrel00.business.search.presentation.java.model.BusinessModel;
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
+
+import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
 
 /**
- * The view that displays details of a business.
+ * Injects business details fragment dependencies.
  */
-public interface BusinessDetailsView extends LoadContentView {
+@Subcomponent(modules = BusinessDetailsFragmentModule.class)
+@PerFragment
+public interface BusinessDetailsFragmentSubcomponent
+        extends AndroidInjector<BusinessDetailsFragment> {
 
-    void showBusinessDetails(BusinessModel businessModel);
+    /**
+     * The builder for this subcomponent.
+     */
+    @Subcomponent.Builder
+    abstract class Builder extends AndroidInjector.Builder<BusinessDetailsFragment> {
+    }
 }

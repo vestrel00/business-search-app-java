@@ -16,6 +16,11 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.navigation;
 
+import android.content.Context;
+import android.content.Intent;
+
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.BusinessDetailsActivity;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -29,8 +34,9 @@ public final class Navigator {
     Navigator() {
     }
 
-    public void toBusinessDetails(String businessId) {
-        // TODO (IMPLEMENTATION) - toBusinessDetails(String businessId)
+    public void toBusinessDetails(Context context, String businessId) {
+        Intent intent = BusinessDetailsActivity.intentForBusinessId(context, businessId);
+        context.startActivity(intent);
     }
 
     /*

@@ -14,23 +14,21 @@
  * limitations under the License.
  */
 
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.details.presenter;
+
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
+
+import dagger.Binds;
+import dagger.Module;
+
 /**
- * Declare all dependencies for the common project.
+ * Provides business details presenter dependencies.
  */
+@Module
+public abstract class BusinessDetailsPresenterModule {
 
-dependencies {
-    def libraries = rootProject.ext.libraries
-
-    apt libraries.dagger.compiler
-    apt libraries.autoValue
-
-    implementation libraries.rxJava
-    implementation libraries.dagger.core
-
-    compileOnly libraries.javaxAnnotation
-    compileOnly libraries.autoValue
-
-    testImplementation libraries.jUnit
-    testImplementation libraries.assertJ
-    testImplementation libraries.mockito.core
+    @Binds
+    @PerFragment
+    abstract BusinessDetailsPresenter businessDetailsPresenter(
+            BusinessDetailsPresenterImpl businessDetailsPresenterImpl);
 }

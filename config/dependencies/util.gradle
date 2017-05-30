@@ -14,25 +14,23 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view;
-
-import android.view.View;
-
-import com.vestrel00.business.search.presentation.android.inject.PerFragment;
-
-import javax.inject.Inject;
-
 /**
- * Creates instances of {@link BusinessItemViewHolder}.
+ * Declare all dependencies for the util project.
  */
-@PerFragment
-public final class BusinessItemViewHolderFactory {
 
-    @Inject
-    BusinessItemViewHolderFactory() {
-    }
+dependencies {
+    def libraries = rootProject.ext.libraries
 
-    public BusinessItemViewHolder create(View itemView) {
-        return new BusinessItemViewHolder(itemView);
-    }
+    apt libraries.dagger.compiler
+    apt libraries.autoValue
+
+    implementation libraries.rxJava
+    implementation libraries.dagger.core
+
+    compileOnly libraries.javaxAnnotation
+    compileOnly libraries.autoValue
+
+    testImplementation libraries.jUnit
+    testImplementation libraries.assertJ
+    testImplementation libraries.mockito.core
 }

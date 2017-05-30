@@ -16,6 +16,7 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
+import com.vestrel00.business.search.util.UtilModule;
 import com.vestrel00.business.search.data.DataModule;
 import com.vestrel00.business.search.domain.DomainModule;
 
@@ -28,6 +29,7 @@ import dagger.Component;
  */
 @Singleton
 @Component(modules = {
+        UtilModule.class,
         DataModule.class,
         DomainModule.class,
         ApplicationModule.class

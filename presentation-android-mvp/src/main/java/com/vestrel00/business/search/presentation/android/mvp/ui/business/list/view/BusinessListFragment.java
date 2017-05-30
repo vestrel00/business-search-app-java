@@ -47,6 +47,9 @@ public final class BusinessListFragment extends AbstractLoadContentFragment<Busi
     @Inject
     BusinessListFragmentListener listener;
 
+    @Inject
+    Context activityContext;
+
     @BindView(R.id.content_pane)
     RecyclerView businessListView;
 
@@ -56,15 +59,13 @@ public final class BusinessListFragment extends AbstractLoadContentFragment<Busi
         return inflater.inflate(R.layout.business_list_fragment, container, false);
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-        Context context = getView().getContext();
         businessListAdapter.onRestoreInstanceState(savedInstanceState);
         businessListView.setAdapter(businessListAdapter);
-        businessListView.setLayoutManager(new LinearLayoutManager(context));
-        businessListView.addItemDecoration(new DividerItemDecoration(context,
+        businessListView.setLayoutManager(new LinearLayoutManager(activityContext));
+        businessListView.addItemDecoration(new DividerItemDecoration(activityContext,
                 LinearLayoutManager.VERTICAL));
     }
 

@@ -14,5 +14,28 @@
  * limitations under the License.
  */
 
-apply from: "$rootDir/config/java/library.gradle"
-apply from: "$rootDir/config/dependencies/common.gradle"
+package com.vestrel00.business.search.util;
+
+import java.util.Calendar;
+import java.util.Locale;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+/**
+ * Creates instances of {@link Calendar} with a {@link Locale}.
+ */
+@Singleton
+public final class CalendarFactory {
+
+    private final Locale locale;
+
+    @Inject
+    CalendarFactory(Locale locale) {
+        this.locale = locale;
+    }
+
+    public Calendar create() {
+        return Calendar.getInstance(locale);
+    }
+}

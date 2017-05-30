@@ -25,7 +25,7 @@ import android.view.ViewGroup;
 
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.R;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessItemAdapter;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessAdapter;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemViewClickListener;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.OnItemViewClickListenerFactory;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
@@ -36,7 +36,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 /**
- * A view adapter that binds a collection of {@link BusinessModel}s to a collection of
+ * An adapter that binds a collection of {@link BusinessModel}s to a collection of
  * {@link BusinessListItemViewHolder}s in a recycler view.
  */
 @PerFragment
@@ -45,20 +45,20 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     private static final String STATE_BUSINESS_MODELS = "BusinessListAdapter.businessModels";
 
     private final List<BusinessModel> businessModels;
-    private final BusinessItemAdapter businessItemAdapter;
+    private final BusinessAdapter businessAdapter;
     private final BusinessListItemViewHolderFactory itemViewHolderFactory;
     private final OnItemViewClickListenerFactory<BusinessModel> onItemViewClickListenerFactory;
     private final LayoutInflater layoutInflater;
 
     @Inject
     BusinessListAdapter(List<BusinessModel> businessModels,
-                        BusinessItemAdapter businessItemAdapter,
+                        BusinessAdapter businessAdapter,
                         BusinessListItemViewHolderFactory itemViewHolderFactory,
                         OnItemViewClickListenerFactory<BusinessModel>
                                 onItemViewClickListenerFactory,
                         LayoutInflater layoutInflater) {
         this.businessModels = businessModels;
-        this.businessItemAdapter = businessItemAdapter;
+        this.businessAdapter = businessAdapter;
         this.itemViewHolderFactory = itemViewHolderFactory;
         this.onItemViewClickListenerFactory = onItemViewClickListenerFactory;
         this.layoutInflater = layoutInflater;
@@ -68,14 +68,14 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     public BusinessListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = layoutInflater.inflate(R.layout.business_list_item, parent, false);
         BusinessListItemViewHolder holder = itemViewHolderFactory.create(itemView);
-        businessItemAdapter.initializeViewHolder(holder.itemViewHolder());
+        businessAdapter.initializeViewHolder(holder.viewHolder());
         return holder;
     }
 
     @Override
     public void onBindViewHolder(BusinessListItemViewHolder holder, int position) {
         BusinessModel businessModel = businessModels.get(position);
-        businessItemAdapter.bindViewHolderWithData(holder.itemViewHolder(), businessModel);
+        businessAdapter.bindViewHolderWithData(holder.viewHolder(), businessModel);
 
         OnItemViewClickListener onItemViewClickListener
                 = onItemViewClickListenerFactory.create(businessModel);

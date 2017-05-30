@@ -43,7 +43,7 @@ public interface BusinessListView extends LoadContentView {
     void removeAllBusinessesFromShowing();
 
     /**
-     * MVPView a business' details.
+     * View a business' details.
      *
      * @param businessModel the businesses to view the details of
      */

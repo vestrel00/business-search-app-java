@@ -14,15 +14,29 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui;
+package com.vestrel00.business.search.util;
 
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.BusinessModule;
+import java.util.Locale;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
+import dagger.Provides;
 
 /**
- * Provides ui dependencies.
+ * Provides util dependencies.
  */
-@Module(includes = BusinessModule.class)
-public abstract class UIModule {
+@Module
+public abstract class UtilModule {
+
+    @Provides
+    @Singleton
+    static Locale locale() {
+        return Locale.US;
+    }
+
+    @Provides
+    static CalendarFactory calendarFactory(Locale locale) {
+        return new CalendarFactory(locale);
+    }
 }

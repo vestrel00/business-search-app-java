@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.common;
+package com.vestrel00.business.search.util;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.reactivex.annotations.NonNull;
+import io.reactivex.annotations.Nullable;
 
 /**
  * Provides utility methods for Strings.
@@ -27,11 +31,18 @@ import javax.inject.Singleton;
 @Singleton
 public final class StringUtils {
 
+    private final Locale locale;
+
     @Inject
-    StringUtils() {
+    StringUtils(Locale locale) {
+        this.locale = locale;
     }
 
-    public String join(List<String> strings, String separator) {
+    public String format(@NonNull String format, @NonNull Object... args) {
+        return String.format(locale, format, args);
+    }
+
+    public String join(@NonNull List<String> strings, @NonNull String separator) {
         StringBuilder joined = new StringBuilder();
         for (String string : strings) {
             joined.append(string);
@@ -47,16 +58,20 @@ public final class StringUtils {
         return joined.toString();
     }
 
-    public boolean isEmpty(String string) {
+    public boolean isEmpty(@Nullable String string) {
         return string == null || string.isEmpty();
     }
 
-    public boolean allEmpty(String... strings) {
+    public boolean allEmpty(@NonNull String... strings) {
         for (String string : strings) {
             if (!isEmpty(string)) {
                 return false;
             }
         }
         return true;
+    }
+
+    public boolean onlyDigits(@NonNull String string) {
+        return string.matches("\\d+");
     }
 }

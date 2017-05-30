@@ -14,26 +14,22 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view;
 
-import com.vestrel00.business.search.data.DataModule;
-import com.vestrel00.business.search.domain.DomainModule;
-import com.vestrel00.business.search.util.UtilModule;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.inject.Singleton;
-
-import dagger.Component;
+import dagger.Module;
+import dagger.Provides;
 
 /**
- * Injects Android Application dependencies.
+ * Provides business common view dependencies.
  */
-@Component(modules = {
-        UtilModule.class,
-        DataModule.class,
-        DomainModule.class,
-        AndroidApplicationModule.class,
-})
-@Singleton
-interface AndroidApplicationComponent {
-    void inject(AndroidApplication androidApplication);
+@Module
+public abstract class BusinessCommonViewModule {
+
+    @Provides
+    static List<String> photosUrls() {
+        return new ArrayList<>();
+    }
 }

@@ -24,10 +24,11 @@
     <string name="closed">Closed</string>
     <string name="current_location">Current location</string>
     <string name="delivery">Delivery</string>
+    <string name="details">Details</string>
     <string name="hours">Hours</string>
     <string name="list_view">List View</string>
     <string name="map_view">Map View</string>
-    <string name="no">Yes</string>
+    <string name="no">No</string>
     <string name="open">Open</string>
     <string name="pickup">Pickup</string>
     <string name="reservation">Reservation</string>
@@ -39,6 +40,7 @@
     <!-- formatted -->
     <string name="distance">%1$.1f mi</string>
     <string name="location">%1$s, %2$s</string>
+    <string name="open_hours">%1$s %2$s - %3$s</string>
     <string name="reviews">%1$d Reviews</string>
 
     <!-- hints -->

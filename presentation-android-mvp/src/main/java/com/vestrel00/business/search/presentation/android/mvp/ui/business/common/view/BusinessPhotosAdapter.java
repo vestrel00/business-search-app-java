@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view;
+package com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view;
 
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -34,14 +34,14 @@ import javax.inject.Inject;
  * displays it.
  */
 @PerFragment
-final class BusinessDetailsPhotosAdapter extends PagerAdapter {
+final class BusinessPhotosAdapter extends PagerAdapter {
 
-    private static final String STATE_PHOTOS_URLS = "BusinessDetailsPhotosAdapter.photosUrls";
+    private static final String STATE_PHOTOS_URLS = "BusinessPhotosAdapter.photosUrls";
 
     private final List<String> photosUrls;
 
     @Inject
-    BusinessDetailsPhotosAdapter(List<String> photosUrls) {
+    BusinessPhotosAdapter(List<String> photosUrls) {
         this.photosUrls = photosUrls;
     }
 

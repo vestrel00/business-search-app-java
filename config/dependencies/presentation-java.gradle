@@ -24,7 +24,7 @@ dependencies {
     apt libraries.dagger.compiler
     apt libraries.autoValue
 
-    api project(':common')
+    api project(':util')
     api project(':domain')
     api project(':data')
 

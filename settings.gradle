@@ -16,7 +16,7 @@
 
 rootProject.name = "business-search"
 
-include ':common'
+include ':util'
 include ':domain'
 include ':data'
 include ':presentation-java'

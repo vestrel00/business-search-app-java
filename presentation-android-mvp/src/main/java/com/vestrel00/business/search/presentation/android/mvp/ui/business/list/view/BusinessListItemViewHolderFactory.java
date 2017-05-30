@@ -19,8 +19,8 @@ package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.
 import android.view.View;
 
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessItemViewHolder;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessItemViewHolderFactory;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessViewHolder;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.common.view.BusinessViewHolderFactory;
 
 import javax.inject.Inject;
 
@@ -30,15 +30,15 @@ import javax.inject.Inject;
 @PerFragment
 final class BusinessListItemViewHolderFactory {
 
-    private final BusinessItemViewHolderFactory businessItemViewHolderFactory;
+    private final BusinessViewHolderFactory businessViewHolderFactory;
 
     @Inject
-    BusinessListItemViewHolderFactory(BusinessItemViewHolderFactory businessItemViewHolderFactory) {
-        this.businessItemViewHolderFactory = businessItemViewHolderFactory;
+    BusinessListItemViewHolderFactory(BusinessViewHolderFactory businessViewHolderFactory) {
+        this.businessViewHolderFactory = businessViewHolderFactory;
     }
 
     BusinessListItemViewHolder create(View itemView) {
-        BusinessItemViewHolder itemViewHolder = businessItemViewHolderFactory.create(itemView);
+        BusinessViewHolder itemViewHolder = businessViewHolderFactory.create(itemView);
         return new BusinessListItemViewHolder(itemView, itemViewHolder);
     }
 }
