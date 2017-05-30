@@ -33,7 +33,7 @@ import butterknife.OnClick;
  * <ul>
  *      <li>R.id.content_view : the view that contains the content</li>
  *      <li>R.id.loading_indicator : the loading indicator view</li>
- *  <   li>R.id.retry_button : the retry button view</li>
+ *      <li>R.id.retry_button : the retry button view</li>
  * </ul>
  * The above required views must be declared invisible in xml.
  *

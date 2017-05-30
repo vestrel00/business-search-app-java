@@ -30,17 +30,17 @@ import javax.inject.Singleton;
 @Singleton
 public final class BusinessDayToDayOfWeekMapper {
 
-    private static final List<Integer> dayOfWeek;
+    private static final List<Integer> DAY_OF_WEEK;
 
     static {
-        dayOfWeek = new ArrayList<>(7);
-        dayOfWeek.add(Calendar.MONDAY);
-        dayOfWeek.add(Calendar.TUESDAY);
-        dayOfWeek.add(Calendar.WEDNESDAY);
-        dayOfWeek.add(Calendar.THURSDAY);
-        dayOfWeek.add(Calendar.FRIDAY);
-        dayOfWeek.add(Calendar.SATURDAY);
-        dayOfWeek.add(Calendar.SUNDAY);
+        DAY_OF_WEEK = new ArrayList<>(7);
+        DAY_OF_WEEK.add(Calendar.MONDAY);
+        DAY_OF_WEEK.add(Calendar.TUESDAY);
+        DAY_OF_WEEK.add(Calendar.WEDNESDAY);
+        DAY_OF_WEEK.add(Calendar.THURSDAY);
+        DAY_OF_WEEK.add(Calendar.FRIDAY);
+        DAY_OF_WEEK.add(Calendar.SATURDAY);
+        DAY_OF_WEEK.add(Calendar.SUNDAY);
     }
 
     @Inject
@@ -48,6 +48,6 @@ public final class BusinessDayToDayOfWeekMapper {
     }
 
     public int map(int businessDay) {
-        return dayOfWeek.get(businessDay);
+        return DAY_OF_WEEK.get(businessDay);
     }
 }

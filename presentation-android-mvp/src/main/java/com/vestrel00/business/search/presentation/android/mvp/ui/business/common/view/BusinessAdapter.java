@@ -200,8 +200,9 @@ public final class BusinessAdapter {
     }
 
     @StringRes
-    private int getTransactionTypeSupportIndicatorRes(BusinessModel businessModel,
-                                                      BusinessTransactionTypeModel transactionType) {
+    private int
+    getTransactionTypeSupportIndicatorRes(BusinessModel businessModel,
+                                          BusinessTransactionTypeModel transactionType) {
         return businessModel.transactionTypes().contains(transactionType)
                 ? R.string.yes : R.string.no;
     }
