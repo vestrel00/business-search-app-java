@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,9 +45,6 @@ public final class BusinessListFragment extends AbstractLoadContentFragment<Busi
 
     @Inject
     BusinessListFragmentListener listener;
-
-    @Inject
-    Context activityContext;
 
     @BindView(R.id.content_pane)
     RecyclerView businessListView;
