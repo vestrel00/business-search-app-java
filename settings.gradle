@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search"
+rootProject.name = "business-search-app-java"
 
 include ':util'
 include ':domain'
