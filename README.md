@@ -14,10 +14,11 @@ BEWARE OF THE FOLLOWING:
 9. TRAVIS CI IS COMING SOON.
 
 
-# Business Search
+# Business Search App (Java)
 
-The purpose of this project is to demonstrate how to build Java and Android applications from the 
-ground up using clean architecture principles, Java best practices, and design patterns. 
+The purpose of this project is to demonstrate how to build Java applications from the ground up 
+using clean architecture principles, Java best practices, and design patterns. 
+
 It is less about the application content and more about the code and architecture. 
 
 The goal is to showcase object oriented programming in Java, Java Swing, and Android, including:
