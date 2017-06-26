@@ -21,7 +21,7 @@ using clean architecture principles, Java best practices, and design patterns.
 
 It is less about the application content and more about the code and architecture. 
 
-The goal is to showcase object oriented programming in Java, Java Swing, and Android, including:
+The goal is to showcase object oriented programming in Java, Java Swing, Kotlin, and Android, including:
 
 - Reactive programming with [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) and 
   [RxAndroid 2](https://github.com/ReactiveX/RxAndroid/tree/2.x)
@@ -42,6 +42,7 @@ The goal is to showcase object oriented programming in Java, Java Swing, and And
 - Project management with the [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
 - Continuous Integration with [Travis CI](https://travis-ci.org/)
 - Mobile application development with [Android](https://developer.android.com/training/index.html)
+  using java and [Kotlin](https://kotlinlang.org/docs/reference/android-overview.html)
 - Desktop application development with [Java Swing](http://docs.oracle.com/javase/tutorial/uiswing/)
 - Java best practices and design patterns
 - Creating readable, focused, and well-documented pull requests
@@ -294,7 +295,8 @@ To generate test reports for a specific module,
 ```
 
 
-## Static Analysis
+## Static Analysis## Static Analysis
+
 
 The following static analysis checks are used to enforce high code quality and compliance to standard Java (and Android) 
 code style and patterns:
