@@ -295,8 +295,7 @@ To generate test reports for a specific module,
 ```
 
 
-## Static Analysis## Static Analysis
-
+## Static Analysis
 
 The following static analysis checks are used to enforce high code quality and compliance to standard Java (and Android) 
 code style and patterns:
