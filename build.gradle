@@ -17,7 +17,7 @@
 buildscript {
     ext {
         androidGradlePluginVersion = '2.3.1'
-        butterKnifeVersion = '8.6.0'
+        butterKnifeVersion = '8.7.0'
         javaAptPluginVersion = '0.10'
         retrolambdaPluginVersion = '3.6.0'
     }
