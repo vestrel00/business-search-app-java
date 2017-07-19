@@ -24,8 +24,7 @@
     <ScrollView
         android:id="@id/content_pane"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
