@@ -24,8 +24,8 @@ import dagger.android.AndroidInjector;
 /**
  * Injects business search activity dependencies.
  */
-@Subcomponent(modules = BusinessSearchActivityModule.class)
 @PerActivity
+@Subcomponent(modules = BusinessSearchActivityModule.class)
 public interface BusinessSearchActivitySubcomponent
         extends AndroidInjector<BusinessSearchActivity> {
 

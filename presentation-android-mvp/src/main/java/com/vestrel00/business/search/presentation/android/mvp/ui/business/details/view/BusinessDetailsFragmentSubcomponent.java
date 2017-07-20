@@ -24,8 +24,8 @@ import dagger.android.AndroidInjector;
 /**
  * Injects business details fragment dependencies.
  */
-@Subcomponent(modules = BusinessDetailsFragmentModule.class)
 @PerFragment
+@Subcomponent(modules = BusinessDetailsFragmentModule.class)
 public interface BusinessDetailsFragmentSubcomponent
         extends AndroidInjector<BusinessDetailsFragment> {
 

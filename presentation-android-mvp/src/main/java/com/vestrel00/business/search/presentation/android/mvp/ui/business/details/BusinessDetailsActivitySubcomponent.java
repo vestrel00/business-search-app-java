@@ -24,8 +24,8 @@ import dagger.android.AndroidInjector;
 /**
  * Injects business details activity dependencies.
  */
-@Subcomponent(modules = BusinessDetailsActivityModule.class)
 @PerActivity
+@Subcomponent(modules = BusinessDetailsActivityModule.class)
 public interface BusinessDetailsActivitySubcomponent
         extends AndroidInjector<BusinessDetailsActivity> {
 

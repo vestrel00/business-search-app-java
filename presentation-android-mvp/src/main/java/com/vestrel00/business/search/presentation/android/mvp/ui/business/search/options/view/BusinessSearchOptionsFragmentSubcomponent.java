@@ -24,8 +24,8 @@ import dagger.android.AndroidInjector;
 /**
  * Injects business search options fragment dependencies.
  */
-@Subcomponent(modules = BusinessSearchOptionsFragmentModule.class)
 @PerFragment
+@Subcomponent(modules = BusinessSearchOptionsFragmentModule.class)
 public interface BusinessSearchOptionsFragmentSubcomponent
         extends AndroidInjector<BusinessSearchOptionsFragment> {
 

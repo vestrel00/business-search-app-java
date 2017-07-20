@@ -27,13 +27,13 @@ import dagger.Component;
 /**
  * Injects Android Application dependencies.
  */
+@Singleton
 @Component(modules = {
         UtilModule.class,
         DataModule.class,
         DomainModule.class,
         AndroidApplicationModule.class,
 })
-@Singleton
 interface AndroidApplicationComponent {
     void inject(AndroidApplication androidApplication);
 }

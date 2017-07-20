@@ -24,8 +24,8 @@ import dagger.android.AndroidInjector;
 /**
  * Injects business list fragment dependencies.
  */
-@Subcomponent(modules = BusinessListFragmentModule.class)
 @PerFragment
+@Subcomponent(modules = BusinessListFragmentModule.class)
 public interface BusinessListFragmentSubcomponent extends AndroidInjector<BusinessListFragment> {
 
     /**
