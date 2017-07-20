@@ -17,31 +17,26 @@
 package com.vestrel00.business.search.presentation.android.mvp.ui.business.details;
 
 import android.app.Activity;
-import android.app.Fragment;
 
 import com.vestrel00.business.search.presentation.android.inject.PerActivity;
+import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view.BusinessDetailsFragment;
-import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view.BusinessDetailsFragmentSubcomponent;
+import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view.BusinessDetailsFragmentModule;
 import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivityModule;
 
 import dagger.Binds;
 import dagger.Module;
-import dagger.android.AndroidInjector;
-import dagger.android.FragmentKey;
-import dagger.multibindings.IntoMap;
+import dagger.android.ContributesAndroidInjector;
 
 /**
  * Provides business details activity dependencies.
  */
-@Module(includes = BaseActivityModule.class,
-        subcomponents = BusinessDetailsFragmentSubcomponent.class)
-abstract class BusinessDetailsActivityModule {
+@Module(includes = BaseActivityModule.class)
+public abstract class BusinessDetailsActivityModule {
 
-    @Binds
-    @IntoMap
-    @FragmentKey(BusinessDetailsFragment.class)
-    abstract AndroidInjector.Factory<? extends Fragment>
-    bindBusinessDetailsFragmentInjectorFactory(BusinessDetailsFragmentSubcomponent.Builder builder);
+    @PerFragment
+    @ContributesAndroidInjector(modules = BusinessDetailsFragmentModule.class)
+    abstract BusinessDetailsFragment businessDetailsFragmentInjector();
 
     @Binds
     @PerActivity

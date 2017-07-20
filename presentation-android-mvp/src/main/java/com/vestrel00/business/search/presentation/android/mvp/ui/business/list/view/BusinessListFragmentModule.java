@@ -40,7 +40,7 @@ import dagger.Provides;
         BusinessCommonViewModule.class,
         BusinessListPresenterModule.class
 })
-abstract class BusinessListFragmentModule {
+public abstract class BusinessListFragmentModule {
 
     @Binds
     @PerFragment

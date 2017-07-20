@@ -32,7 +32,7 @@ import dagger.Module;
         BaseFragmentModule.class,
         BusinessSearchOptionsPresenterModule.class
 })
-abstract class BusinessSearchOptionsFragmentModule {
+public abstract class BusinessSearchOptionsFragmentModule {
 
     @Binds
     @PerFragment
