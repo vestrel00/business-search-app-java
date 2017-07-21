@@ -54,10 +54,6 @@ public abstract class BaseFragment extends Fragment implements HasFragmentInject
     protected InputMethodManager inputMethodManager;
 
     @Inject
-    @Named(BaseActivityModule.ACTIVITY_FRAGMENT_MANAGER)
-    protected FragmentManager activityFragmentManager;
-
-    @Inject
     @Named(BaseFragmentModule.CHILD_FRAGMENT_MANAGER)
     protected FragmentManager childFragmentManager;
 
