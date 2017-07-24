@@ -24,7 +24,7 @@ import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.v
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.view.BusinessListFragmentListener;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentListener;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivity;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.BaseActivity;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 
 /**

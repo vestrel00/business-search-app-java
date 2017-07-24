@@ -23,7 +23,7 @@ import android.support.annotation.Nullable;
 
 import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view.BusinessDetailsFragment;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivity;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.BaseActivity;
 
 /**
  * An activity that displays a the details of a business.

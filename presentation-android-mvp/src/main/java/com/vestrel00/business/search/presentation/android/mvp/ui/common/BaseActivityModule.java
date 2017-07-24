@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.android.mvp.ui.common.view;
+package com.vestrel00.business.search.presentation.android.mvp.ui.common;
 
 import android.app.Activity;
 import android.app.FragmentManager;

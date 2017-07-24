@@ -26,7 +26,7 @@ import com.vestrel00.business.search.presentation.android.mvp.ui.business.list.v
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentListener;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.options.view.BusinessSearchOptionsFragmentModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivityModule;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.BaseActivityModule;
 
 import dagger.Binds;
 import dagger.Module;

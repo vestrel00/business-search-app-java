@@ -22,7 +22,7 @@ import com.vestrel00.business.search.presentation.android.inject.PerActivity;
 import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view.BusinessDetailsFragment;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.view.BusinessDetailsFragmentModule;
-import com.vestrel00.business.search.presentation.android.mvp.ui.common.view.BaseActivityModule;
+import com.vestrel00.business.search.presentation.android.mvp.ui.common.BaseActivityModule;
 
 import dagger.Binds;
 import dagger.Module;
