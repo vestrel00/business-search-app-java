@@ -38,10 +38,10 @@ public abstract class BusinessDetailsFragmentModule {
 
     @Binds
     @PerFragment
-    abstract Fragment fragment(BusinessDetailsFragment businessDetailsFragment);
+    abstract BusinessDetailsView
+    businessDetailsView(BusinessDetailsFragment businessDetailsFragment);
 
     @Binds
     @PerFragment
-    abstract BusinessDetailsView
-    businessDetailsView(BusinessDetailsFragment businessDetailsFragment);
+    abstract Fragment fragment(BusinessDetailsFragment businessDetailsFragment);
 }

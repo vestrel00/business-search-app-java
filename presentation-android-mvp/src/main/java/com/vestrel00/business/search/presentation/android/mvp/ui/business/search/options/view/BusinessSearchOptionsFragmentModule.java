@@ -36,10 +36,10 @@ public abstract class BusinessSearchOptionsFragmentModule {
 
     @Binds
     @PerFragment
-    abstract Fragment fragment(BusinessSearchOptionsFragment businessSearchOptionsFragment);
+    abstract BusinessSearchOptionsView
+    businessSearchOptionsView(BusinessSearchOptionsFragment businessSearchOptionsFragment);
 
     @Binds
     @PerFragment
-    abstract BusinessSearchOptionsView
-    businessSearchOptionsView(BusinessSearchOptionsFragment businessSearchOptionsFragment);
+    abstract Fragment fragment(BusinessSearchOptionsFragment businessSearchOptionsFragment);
 }

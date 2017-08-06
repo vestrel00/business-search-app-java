@@ -38,6 +38,16 @@ import dagger.android.ContributesAndroidInjector;
 @Module(includes = BaseActivityModule.class)
 public abstract class BusinessSearchActivityModule {
 
+    @Binds
+    @PerActivity
+    abstract BusinessSearchOptionsFragmentListener
+    businessSearchOptionsFragmentListener(BusinessSearchActivity businessSearchActivity);
+
+    @Binds
+    @PerActivity
+    abstract BusinessListFragmentListener
+    businessListFragmentListener(BusinessSearchActivity businessSearchActivity);
+
     @PerFragment
     @ContributesAndroidInjector(modules = BusinessSearchOptionsFragmentModule.class)
     abstract BusinessSearchOptionsFragment businessSearchOptionsFragmentInjector();
@@ -50,13 +60,4 @@ public abstract class BusinessSearchActivityModule {
     @PerActivity
     abstract Activity activity(BusinessSearchActivity businessSearchActivity);
 
-    @Binds
-    @PerActivity
-    abstract BusinessSearchOptionsFragmentListener
-    businessSearchOptionsFragmentListener(BusinessSearchActivity businessSearchActivity);
-
-    @Binds
-    @PerActivity
-    abstract BusinessListFragmentListener
-    businessListFragmentListener(BusinessSearchActivity businessSearchActivity);
 }

@@ -44,14 +44,6 @@ public abstract class BusinessListFragmentModule {
 
     @Binds
     @PerFragment
-    abstract Fragment fragment(BusinessListFragment businessListFragment);
-
-    @Binds
-    @PerFragment
-    abstract BusinessListView businessListView(BusinessListFragment businessListFragment);
-
-    @Binds
-    @PerFragment
     abstract OnItemClickListener<BusinessModel>
     businessListItemClickListener(BusinessListItemClickListener businessListItemClickListener);
 
@@ -59,4 +51,12 @@ public abstract class BusinessListFragmentModule {
     static List<BusinessModel> businessModels() {
         return new ArrayList<>();
     }
+
+    @Binds
+    @PerFragment
+    abstract BusinessListView businessListView(BusinessListFragment businessListFragment);
+
+    @Binds
+    @PerFragment
+    abstract Fragment fragment(BusinessListFragment businessListFragment);
 }
