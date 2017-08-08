@@ -36,7 +36,7 @@ public abstract class ConfigModule extends BaseConfigModule {
     @Singleton
     static DataConfig dataConfig(Application application) {
         return BASE_CONFIG_BUILDER
-                .cacheParentDir(application.getExternalCacheDir().getPath())
+                .cacheRootDir(application.getExternalCacheDir().getPath())
                 .build();
     }
 }

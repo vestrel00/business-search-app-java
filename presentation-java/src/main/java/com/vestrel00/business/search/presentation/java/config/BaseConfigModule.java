@@ -35,7 +35,7 @@ public abstract class BaseConfigModule {
             .authClientId("pTnZUGJqLM_Q0pQt-jsCXw") // Replace this with your own client id
             .authClientSecret("zRs7F1e2B3Dc4OBNsp7yF0Jfh5eksGRXroaLE59JCxxwZUDO"
                     + "ppzjn6bQaVPB3bop") // Replace this with your own client secret
-            .cacheParentDir("business-search")
+            .cacheRootDir("business-search")
             .cacheChildDir("data-cache")
             .cacheMaxSizeMb(10)
             .networkCacheTimeSeconds(60);

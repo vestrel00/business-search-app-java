@@ -42,7 +42,7 @@ public abstract class DataConfig {
 
     public abstract String authClientSecret();
 
-    public abstract String cacheParentDir();
+    public abstract String cacheRootDir();
 
     public abstract String cacheChildDir();
 
@@ -64,7 +64,7 @@ public abstract class DataConfig {
 
         public abstract Builder authClientSecret(String authClientSecret);
 
-        public abstract Builder cacheParentDir(String cacheParentDir);
+        public abstract Builder cacheRootDir(String cacheRootDir);
 
         public abstract Builder cacheChildDir(String cacheChildDir);
 
