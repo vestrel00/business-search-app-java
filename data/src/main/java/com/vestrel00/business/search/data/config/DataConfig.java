@@ -42,7 +42,9 @@ public abstract class DataConfig {
 
     public abstract String authClientSecret();
 
-    public abstract String cacheDir();
+    public abstract String cacheParentDir();
+
+    public abstract String cacheChildDir();
 
     public abstract int cacheMaxSizeMb();
 
@@ -62,7 +64,9 @@ public abstract class DataConfig {
 
         public abstract Builder authClientSecret(String authClientSecret);
 
-        public abstract Builder cacheDir(String cacheDir);
+        public abstract Builder cacheParentDir(String cacheParentDir);
+
+        public abstract Builder cacheChildDir(String cacheChildDir);
 
         public abstract Builder cacheMaxSizeMb(int cacheMaxSizeMb);
 

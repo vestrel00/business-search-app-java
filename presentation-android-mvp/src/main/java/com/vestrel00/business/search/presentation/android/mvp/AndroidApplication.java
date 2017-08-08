@@ -53,7 +53,7 @@ public class AndroidApplication extends Application implements HasActivityInject
     }
 
     private void injectDependencies() {
-        DaggerAndroidApplicationComponent.create().inject(this);
+        DaggerAndroidApplicationComponent.builder().create(this).inject(this);
     }
 
     private void initializeImagingLibrary() {

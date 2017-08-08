@@ -16,6 +16,8 @@
 
 package com.vestrel00.business.search.presentation.android.mvp;
 
+import android.app.Application;
+
 import com.vestrel00.business.search.presentation.android.PresentationAndroidModule;
 import com.vestrel00.business.search.presentation.android.inject.PerActivity;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.details.BusinessDetailsActivity;
@@ -23,6 +25,9 @@ import com.vestrel00.business.search.presentation.android.mvp.ui.business.detail
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.BusinessSearchActivity;
 import com.vestrel00.business.search.presentation.android.mvp.ui.business.search.BusinessSearchActivityModule;
 
+import javax.inject.Singleton;
+
+import dagger.Binds;
 import dagger.Module;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.ContributesAndroidInjector;
@@ -35,6 +40,18 @@ import dagger.android.ContributesAndroidInjector;
         PresentationAndroidModule.class
 })
 abstract class AndroidApplicationModule {
+
+    @Binds
+    @Singleton
+    /*
+     * Singleton annotation isn't necessary since Application instance is unique but is here for
+     * convention. In general, providing Activity, Fragment, BroadcastReceiver, etc does not require
+     * them to be scoped since they are the components being injected and their instance is unique.
+     *
+     * However, having a scope annotation makes the module easier to read. We wouldn't have to look
+     * at what is being provided in order to understand its scope.
+     */
+    abstract Application application(AndroidApplication androidApplication);
 
     @PerActivity
     @ContributesAndroidInjector(modules = BusinessSearchActivityModule.class)

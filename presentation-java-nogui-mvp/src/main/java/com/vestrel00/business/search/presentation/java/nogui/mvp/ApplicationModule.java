@@ -17,6 +17,7 @@
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
 import com.vestrel00.business.search.presentation.java.PresentationJavaModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.config.ConfigModule;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.display.DisplayModule;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.ExecutorModule;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.UIModule;
@@ -28,6 +29,7 @@ import dagger.Module;
  */
 @Module(includes = {
         PresentationJavaModule.class,
+        ConfigModule.class,
         DisplayModule.class,
         ExecutorModule.class,
         UIModule.class

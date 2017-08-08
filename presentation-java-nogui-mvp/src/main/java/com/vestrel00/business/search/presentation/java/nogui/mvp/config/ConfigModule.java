@@ -14,15 +14,25 @@
  * limitations under the License.
  */
 
-package com.vestrel00.business.search.presentation.java;
+package com.vestrel00.business.search.presentation.java.nogui.mvp.config;
 
-import com.vestrel00.business.search.presentation.java.model.ModelModule;
+import com.vestrel00.business.search.data.config.DataConfig;
+import com.vestrel00.business.search.presentation.java.config.BaseConfigModule;
+
+import javax.inject.Singleton;
 
 import dagger.Module;
+import dagger.Provides;
 
 /**
- * Provides presentation java dependencies.
+ * Provides config dependencies.
  */
-@Module(includes = ModelModule.class)
-public abstract class PresentationJavaModule {
+@Module
+public abstract class ConfigModule extends BaseConfigModule {
+
+    @Provides
+    @Singleton
+    static DataConfig dataConfig() {
+        return BASE_CONFIG_BUILDER.build();
+    }
 }

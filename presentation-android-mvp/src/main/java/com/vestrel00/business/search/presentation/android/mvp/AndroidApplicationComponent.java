@@ -23,6 +23,7 @@ import com.vestrel00.business.search.util.UtilModule;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import dagger.android.AndroidInjector;
 
 /**
  * Injects Android Application dependencies.
@@ -34,6 +35,12 @@ import dagger.Component;
         DomainModule.class,
         AndroidApplicationModule.class,
 })
-interface AndroidApplicationComponent {
-    void inject(AndroidApplication androidApplication);
+interface AndroidApplicationComponent extends AndroidInjector<AndroidApplication> {
+
+    /**
+     * Builder for this component.
+     */
+    @Component.Builder
+    abstract class Builder extends AndroidInjector.Builder<AndroidApplication> {
+    }
 }
