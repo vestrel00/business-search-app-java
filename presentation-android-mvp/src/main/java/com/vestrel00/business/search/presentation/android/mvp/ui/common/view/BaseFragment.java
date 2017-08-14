@@ -97,6 +97,12 @@ public abstract class BaseFragment extends Fragment implements HasFragmentInject
          * caveat to this approach is that views, listeners, and resources bound by
          * Butterknife will be null until onViewStatedRestored. Just be careful not to use any
          * objects bound using Butterknife before onViewStateRestored.
+         *
+         * Fragments that do not return a non-null View in onCreateView results in onViewCreated
+         * and onViewStateRestored not being called. This means that Butterknife.bind will not get
+         * called, which is completely fine because there is no View to bind. Furthermore, there is
+         * no need to check if getView() returns null here because this lifecycle method only gets
+         * called with a non-null View.
          */
         viewUnbinder = ButterKnife.bind(this, getView());
     }
