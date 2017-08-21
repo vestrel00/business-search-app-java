@@ -24,19 +24,12 @@ import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.pres
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Observable;
-
 /**
  * An implementation of {@link ApplicationOptionsView} and {@link OptionsView}.
  */
 @Singleton
 final class OptionsViewImpl implements ApplicationOptionsView, OptionsView {
 
-    private static final String OPTIONS = "\nYou have the following options:\n"
-            + "l: list businesses around a location (address, city, state, zip, and/or country)\n"
-            + "c: list businesses around coordinates (latitude, longitude)\n"
-            + "s: show more business details\n"
-            + "q: quit\n";
 
     private final OptionsPresenter presenter;
     private final Display display;
@@ -54,11 +47,12 @@ final class OptionsViewImpl implements ApplicationOptionsView, OptionsView {
 
     @Override
     public ApplicationOption chooseOption() {
-        return Observable.just(OPTIONS)
-                .map(display::promptInput)
-                .map(this::parseOption)
-                .map(presenter::onHandleOption)
-                .blockingSingle();
+        return presenter.onChooseOption();
+    }
+
+    @Override
+    public void showOptions(String options) {
+        display.showMessage(options);
     }
 
     @Override
@@ -66,18 +60,8 @@ final class OptionsViewImpl implements ApplicationOptionsView, OptionsView {
         display.showError(error);
     }
 
-    private ApplicationOption parseOption(String option) {
-        switch (option.toLowerCase()) {
-            case "l":
-                return ApplicationOption.SHOW_BUSINESSES_AROUND_LOCATION;
-            case "c":
-                return ApplicationOption.SHOW_BUSINESSES_AROUND_COORDINATES;
-            case "s":
-                return ApplicationOption.SHOW_BUSINESS_DETAILS;
-            case "q":
-                return ApplicationOption.QUIT;
-            default:
-                return ApplicationOption.UNKNOWN;
-        }
+    @Override
+    public String getOption() {
+        return display.promptInput();
     }
 }

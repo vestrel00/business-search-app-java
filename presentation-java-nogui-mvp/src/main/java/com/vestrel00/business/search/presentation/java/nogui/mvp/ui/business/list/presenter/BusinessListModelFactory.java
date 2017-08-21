@@ -41,9 +41,9 @@ final class BusinessListModelFactory {
         return Observable.just(LocationModel.builder())
                 .doOnNext(locationBuilder -> locationBuilder.address(businessListView.getAddress()))
                 .doOnNext(locationBuilder -> locationBuilder.city(businessListView.getCity()))
-                .doOnNext(locationBuilder -> locationBuilder.city(businessListView.getState()))
-                .doOnNext(locationBuilder -> locationBuilder.city(businessListView.getZip()))
-                .doOnNext(locationBuilder -> locationBuilder.city(businessListView.getCountry()))
+                .doOnNext(locationBuilder -> locationBuilder.state(businessListView.getState()))
+                .doOnNext(locationBuilder -> locationBuilder.zipCode(businessListView.getZip()))
+                .doOnNext(locationBuilder -> locationBuilder.country(businessListView.getCountry()))
                 .map(LocationModel.Builder::build)
                 .blockingSingle();
     }

@@ -21,5 +21,9 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.options.vie
  */
 public interface OptionsView {
 
+    void showOptions(String options);
+
     void showError(String error);
+
+    String getOption();
 }

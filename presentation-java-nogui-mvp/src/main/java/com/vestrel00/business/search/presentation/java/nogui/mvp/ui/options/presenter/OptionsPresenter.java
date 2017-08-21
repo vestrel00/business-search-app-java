@@ -28,5 +28,5 @@ public interface OptionsPresenter {
 
     void onViewInitialized(@NonNull OptionsView view);
 
-    ApplicationOption onHandleOption(ApplicationOption option);
+    ApplicationOption onChooseOption();
 }
