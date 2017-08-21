@@ -16,8 +16,6 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view;
 
-import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
-import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.BusinessView;
 
 /**
@@ -25,7 +23,20 @@ import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.com
  */
 public interface BusinessListView extends BusinessView {
 
-    LocationModel getLocation();
+    void showBusinessesAroundMessage(String around);
 
-    CoordinatesModel getCoordinates();
+    String getAddress();
+
+    String getCity();
+
+    String getState();
+
+    String getZip();
+
+    String getCountry();
+
+    double getLatitude();
+
+    double getLongitude();
+
 }

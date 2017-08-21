@@ -17,17 +17,14 @@
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view;
 
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
-import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
-import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationBusinessListView;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.AbstractBusinessView;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter.BusinessListPresenter;
+import com.vestrel00.business.search.util.StringUtils;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import io.reactivex.Observable;
 
 /**
  * An implementation of {@link ApplicationBusinessListView} and {@link BusinessListView}.
@@ -36,11 +33,17 @@ import io.reactivex.Observable;
 final class BusinessListViewImpl extends AbstractBusinessView
         implements ApplicationBusinessListView, BusinessListView {
 
+    private static final String SHOW_BUSINESSES_AROUND_MESSAGE
+            = "\nShowing businesses around %s\n";
+
     private final BusinessListPresenter presenter;
+    private final StringUtils stringUtils;
 
     @Inject
-    BusinessListViewImpl(Display display, BusinessListPresenter presenter) {
+    BusinessListViewImpl(Display display, StringUtils stringUtils,
+                         BusinessListPresenter presenter) {
         super(display);
+        this.stringUtils = stringUtils;
         this.presenter = presenter;
     }
 
@@ -65,40 +68,42 @@ final class BusinessListViewImpl extends AbstractBusinessView
     }
 
     @Override
-    public LocationModel getLocation() {
-        // Use an observable to build the LocationModel for more granular code
-        return Observable.just("Enter the address or just enter to skip:")
-                .map(display::promptInput)
-                .map(address -> LocationModel.builder().address(address))
-                .doOnNext(locationBuilder -> locationBuilder.city(
-                        display.promptInput("Enter the city or just enter to skip:")))
-                .doOnNext(locationBuilder -> locationBuilder.state(
-                        display.promptInput("Enter the state or just enter to skip:"))
-                )
-                .doOnNext(locationBuilder -> locationBuilder.zipCode(
-                        display.promptInput("Enter the zip or just enter to skip:"))
-                )
-                .doOnNext(locationBuilder -> locationBuilder.country(
-                        display.promptInput("Enter the country or just enter to skip:"))
-                )
-                .map(LocationModel.Builder::build)
-                .blockingSingle();
+    public void showBusinessesAroundMessage(String around) {
+        showMessage(stringUtils.format(SHOW_BUSINESSES_AROUND_MESSAGE, around));
     }
 
     @Override
-    public CoordinatesModel getCoordinates() {
-        // Use an observable to build the CoordinatesModel in order to wrap any exceptions that may
-        // occur when retrieving input
-        return Observable.just("Enter latitude:")
-                .map(display::promptInput)
-                .map(Double::valueOf)
-                .map(latitude -> CoordinatesModel.builder().latitude(latitude))
-                .doOnNext(coordinatesBuilder -> coordinatesBuilder.longitude(
-                        Double.valueOf(display.promptInput("Enter longitude:")))
-                )
-                .map(CoordinatesModel.Builder::build)
-                .doOnError(throwable -> showError(throwable.getMessage()))
-                .retry()
-                .blockingSingle();
+    public String getAddress() {
+        return display.promptInput("Enter the address or just enter to skip:");
+    }
+
+    @Override
+    public String getCity() {
+        return display.promptInput("Enter the city or just enter to skip:");
+    }
+
+    @Override
+    public String getState() {
+        return display.promptInput("Enter the state or just enter to skip:");
+    }
+
+    @Override
+    public String getZip() {
+        return display.promptInput("Enter the zip or just enter to skip:");
+    }
+
+    @Override
+    public String getCountry() {
+        return display.promptInput("Enter the country or just enter to skip:");
+    }
+
+    @Override
+    public double getLatitude() {
+        return Double.valueOf(display.promptInput("Enter the latitude or just enter to skip:"));
+    }
+
+    @Override
+    public double getLongitude() {
+        return Double.valueOf(display.promptInput("Enter the longitude or just enter to skip:"));
     }
 }

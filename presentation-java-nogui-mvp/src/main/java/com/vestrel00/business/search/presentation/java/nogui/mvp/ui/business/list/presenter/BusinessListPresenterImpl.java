@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter;
 
-import com.vestrel00.business.search.util.StringUtils;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
@@ -40,15 +39,12 @@ import io.reactivex.annotations.NonNull;
 @Singleton
 final class BusinessListPresenterImpl implements BusinessListPresenter {
 
-    private static final String SHOW_BUSINESSES_AROUND_MESSAGE
-            = "\nShowing businesses around %s\n";
-
     private final GetBusinessesAroundLocation getBusinessesAroundLocation;
     private final GetBusinessesAroundCoordinates getBusinessesAroundCoordinates;
     private final ModelMapperHolder modelMapperHolder;
     private final BusinessObserverFactory businessObserverFactory;
     private final UseCaseHandler useCaseHandler;
-    private final StringUtils stringUtils;
+    private final BusinessListModelFactory modelFactory;
 
     @NonNull
     private BusinessListView view;
@@ -58,13 +54,14 @@ final class BusinessListPresenterImpl implements BusinessListPresenter {
                               GetBusinessesAroundCoordinates getBusinessesAroundCoordinates,
                               ModelMapperHolder modelMapperHolder,
                               BusinessObserverFactory businessObserverFactory,
-                              UseCaseHandler useCaseHandler, StringUtils stringUtils) {
+                              UseCaseHandler useCaseHandler,
+                              BusinessListModelFactory modelFactory) {
         this.getBusinessesAroundLocation = getBusinessesAroundLocation;
         this.getBusinessesAroundCoordinates = getBusinessesAroundCoordinates;
         this.modelMapperHolder = modelMapperHolder;
         this.businessObserverFactory = businessObserverFactory;
         this.useCaseHandler = useCaseHandler;
-        this.stringUtils = stringUtils;
+        this.modelFactory = modelFactory;
     }
 
     @Override
@@ -74,14 +71,14 @@ final class BusinessListPresenterImpl implements BusinessListPresenter {
 
     @Override
     public void onShowBusinessesAroundLocation() {
-        LocationModel locationModel = view.getLocation();
+        LocationModel locationModel = modelFactory.getLocation(view);
         showBusinessesAroundMessage(locationModel.toString());
         showBusinessesAroundLocation(locationModel);
     }
 
     @Override
     public void onShowBusinessesAroundCoordinates() {
-        CoordinatesModel coordinatesModel = view.getCoordinates();
+        CoordinatesModel coordinatesModel = modelFactory.getCoordinates(view);
         showBusinessesAroundMessage(coordinatesModel.toString());
         showBusinessesAroundCoordinates(coordinatesModel);
     }
@@ -101,7 +98,6 @@ final class BusinessListPresenterImpl implements BusinessListPresenter {
     }
 
     private void showBusinessesAroundMessage(String around) {
-        String message = stringUtils.format(SHOW_BUSINESSES_AROUND_MESSAGE, around);
-        view.showMessage(message);
+        view.showBusinessesAroundMessage(around);
     }
 }

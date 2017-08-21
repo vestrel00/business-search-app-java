@@ -16,7 +16,6 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter;
 
-import com.vestrel00.business.search.util.StringUtils;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
@@ -41,9 +40,6 @@ import static org.mockito.Mockito.when;
 
 public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
 
-    private static final String SHOW_BUSINESSES_AROUND_MESSAGE
-            = "\nShowing businesses around %s\n";
-
     @InjectMocks
     private BusinessListPresenterImpl testSubject;
 
@@ -63,7 +59,7 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
     private UseCaseHandler useCaseHandler;
 
     @Mock
-    private StringUtils stringUtils;
+    private BusinessListModelFactory modelFactory;
 
     @Mock
     private BusinessListView view;
@@ -93,19 +89,15 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
     public void onShowBusinessesAroundLocation_showsBusinessesAroundMessage() throws Exception {
         // GIVEN
         String locationModelString = "location";
-        String message = "message";
 
         given_onShowBusinessesAroundLocation(mock(Location.class), mock(BusinessObserver.class),
                 locationModelString);
-
-        when(stringUtils.format(SHOW_BUSINESSES_AROUND_MESSAGE, locationModelString))
-                .thenReturn(message);
 
         // WHEN
         testSubject.onShowBusinessesAroundLocation();
 
         // THEN
-        verify(view).showMessage(message);
+        verify(view).showBusinessesAroundMessage(locationModelString);
     }
 
     @Test
@@ -127,19 +119,15 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
     public void onShowBusinessesAroundCoordinates_showsBusinessesAroundMessage() throws Exception {
         // GIVEN
         String coordinatesModelString = "coordinates";
-        String message = "message";
 
         given_onShowBusinessesAroundCoordinates(mock(Coordinates.class), mock(BusinessObserver.class),
                 coordinatesModelString);
-
-        when(stringUtils.format(SHOW_BUSINESSES_AROUND_MESSAGE, coordinatesModelString))
-                .thenReturn(message);
 
         // WHEN
         testSubject.onShowBusinessesAroundCoordinates();
 
         // THEN
-        verify(view).showMessage(message);
+        verify(view).showBusinessesAroundMessage(coordinatesModelString);
     }
 
     @SuppressWarnings("unchecked")
@@ -148,7 +136,7 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
         LocationModel locationModel = mock(LocationModel.class);
         ModelMapper<LocationModel, Location> locationModelMapper = mock(ModelMapper.class);
 
-        when(view.getLocation()).thenReturn(locationModel);
+        when(modelFactory.getLocation(view)).thenReturn(locationModel);
         when(locationModel.toString()).thenReturn(locationModelString);
         when(modelMapperHolder.locationModelMapper()).thenReturn(locationModelMapper);
         when(locationModelMapper.map(locationModel)).thenReturn(location);
@@ -161,7 +149,7 @@ public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
         CoordinatesModel coordinatesModel = mock(CoordinatesModel.class);
         ModelMapper<CoordinatesModel, Coordinates> coordinatesModelMapper = mock(ModelMapper.class);
 
-        when(view.getCoordinates()).thenReturn(coordinatesModel);
+        when(modelFactory.getCoordinates(view)).thenReturn(coordinatesModel);
         when(coordinatesModel.toString()).thenReturn(coordinatesModelString);
         when(modelMapperHolder.coordinatesModelMapper()).thenReturn(coordinatesModelMapper);
         when(coordinatesModelMapper.map(coordinatesModel)).thenReturn(coordinates);
