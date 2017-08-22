@@ -58,7 +58,7 @@ ext {
             // Java Testing
             jUnit          : '4.12',
             assertJ        : '2.6.0',
-            mockito        : '2.7.21',
+            mockito        : '2.8.9',
 
             // Android Testing
             robolectric : '3.3.2',
@@ -113,7 +113,9 @@ ext {
             jUnit          : "junit:junit:${versions.jUnit}",
             assertJ        : "org.assertj:assertj-core:${versions.assertJ}",
             mockito        : [
-                    core   : "org.mockito:mockito-core:${versions.mockito}",
+                    // Use mockito-inline instead of mockito-core to avoid including opt-in file in
+                    // resource folder, which does not work for Java and Library projects
+                    core   : "org.mockito:mockito-inline:${versions.mockito}",
                     android: "org.mockito:mockito-android:${versions.mockito}"
             ],
 

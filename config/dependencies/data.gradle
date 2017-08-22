@@ -29,7 +29,7 @@ dependencies {
     // E.G. DataServiceFactory includes okhttp3 and retrofit2 symbols in compiled class file.
     api libraries.retrofit.core
 
-    implementation project(':util')
+    implementation project(':commons')
     implementation project(':domain')
 
     implementation libraries.rxJava
@@ -43,6 +43,7 @@ dependencies {
     compileOnly libraries.javaxAnnotation
     compileOnly libraries.autoValue
 
+    testImplementation project(path: ':commons', configuration: 'testOutput')
     testImplementation libraries.jUnit
     testImplementation libraries.assertJ
     testImplementation libraries.mockito.core

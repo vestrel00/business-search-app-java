@@ -24,7 +24,7 @@ dependencies {
     apt libraries.dagger.compiler
     apt libraries.autoValue
 
-    implementation project(':util')
+    implementation project(':commons')
 
     implementation libraries.rxJava
     implementation libraries.dagger.core
@@ -32,6 +32,7 @@ dependencies {
     compileOnly libraries.javaxAnnotation
     compileOnly libraries.autoValue
 
+    testImplementation project(path: ':commons', configuration: 'testOutput')
     testImplementation libraries.jUnit
     testImplementation libraries.assertJ
     testImplementation libraries.mockito.core

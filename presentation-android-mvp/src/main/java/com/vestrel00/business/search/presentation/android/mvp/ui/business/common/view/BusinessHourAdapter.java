@@ -25,8 +25,8 @@ import com.vestrel00.business.search.presentation.android.inject.PerFragment;
 import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.java.model.BusinessHourModel;
 import com.vestrel00.business.search.presentation.java.util.BusinessDayToDayOfWeekMapper;
-import com.vestrel00.business.search.util.CalendarFactory;
-import com.vestrel00.business.search.util.TimeUtils;
+import com.vestrel00.business.search.commons.CalendarFactory;
+import com.vestrel00.business.search.commons.TimeUtils;
 
 import java.util.Calendar;
 import java.util.Locale;

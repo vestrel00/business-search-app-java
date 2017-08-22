@@ -20,6 +20,7 @@ import com.vestrel00.business.search.presentation.java.PresentationJavaModule;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.config.ConfigModule;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.display.DisplayModule;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.executor.ExecutorModule;
+import com.vestrel00.business.search.presentation.java.nogui.mvp.net.NetModule;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.UIModule;
 
 import dagger.Module;
@@ -32,6 +33,7 @@ import dagger.Module;
         ConfigModule.class,
         DisplayModule.class,
         ExecutorModule.class,
+        NetModule.class,
         UIModule.class
 })
 abstract class ApplicationModule {

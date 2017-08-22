@@ -21,7 +21,7 @@ import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.domain.executor.UseCaseHandler;
 import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundCoordinates;
 import com.vestrel00.business.search.domain.interactor.GetBusinessesAroundLocation;
-import com.vestrel00.business.search.java.AbstractJavaTestCase;
+import com.vestrel00.business.search.commons.AbstractTestCase;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapper;
@@ -38,7 +38,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public final class BusinessListPresenterImplTest extends AbstractJavaTestCase {
+public final class BusinessListPresenterImplTest extends AbstractTestCase {
 
     @InjectMocks
     private BusinessListPresenterImpl testSubject;

@@ -31,4 +31,10 @@ dependencies {
     // FIXME (GRADLE LIBRARY) - Move to presentation-android dependencies once library projects support
     // publishing all library variants (not just release). See config/android/library.gradle
     debugCompile libraries.leakCanary
+
+    testCompile project(path: ':commons', configuration: 'testOutput')
+    testCompile libraries.jUnit
+    testCompile libraries.assertJ
+    testCompile libraries.mockito.core
+    testCompile libraries.robolectric
 }

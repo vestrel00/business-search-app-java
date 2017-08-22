@@ -19,6 +19,7 @@ package com.vestrel00.business.search.data.net;
 import com.vestrel00.business.search.data.config.DataConfig;
 import com.vestrel00.business.search.data.net.auth.AuthRequestInterceptor;
 import com.vestrel00.business.search.data.net.cache.NetworkCacheInterceptor;
+import com.vestrel00.business.search.data.net.cache.OfflineCacheInterceptor;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -37,14 +38,17 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 public final class DataServiceFactory {
 
     private final DataConfig config;
-    private final Lazy<Cache> cache;
+    private final Lazy<Cache> cache; // Lazy to only create the cache when needed
+    private final OfflineCacheInterceptor offlineCacheInterceptor;
     private final NetworkCacheInterceptor networkCacheInterceptor;
 
     @Inject
     DataServiceFactory(DataConfig config, Lazy<Cache> cache,
+                       OfflineCacheInterceptor offlineCacheInterceptor,
                        NetworkCacheInterceptor networkCacheInterceptor) {
         this.config = config;
         this.cache = cache;
+        this.offlineCacheInterceptor = offlineCacheInterceptor;
         this.networkCacheInterceptor = networkCacheInterceptor;
     }
 
@@ -53,7 +57,7 @@ public final class DataServiceFactory {
     }
 
     <T> T createWithAuth(Class<T> serviceClass,
-                                AuthRequestInterceptor authRequestInterceptor) {
+                         AuthRequestInterceptor authRequestInterceptor) {
         // AuthRequestInterceptor has to be passed in as a parameter to avoid dependency cycle
         OkHttpClient.Builder okHttpClientBuilder = okHttpClientBuilder();
         okHttpClientBuilder.addInterceptor(authRequestInterceptor);
@@ -63,6 +67,7 @@ public final class DataServiceFactory {
     private OkHttpClient.Builder okHttpClientBuilder() {
         return new OkHttpClient.Builder()
                 .cache(cache.get())
+                .addInterceptor(offlineCacheInterceptor)
                 .addNetworkInterceptor(networkCacheInterceptor);
     }
 

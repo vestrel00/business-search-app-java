@@ -16,7 +16,7 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp;
 
-import com.vestrel00.business.search.util.UtilModule;
+import com.vestrel00.business.search.commons.UtilModule;
 import com.vestrel00.business.search.data.DataModule;
 import com.vestrel00.business.search.domain.DomainModule;
 

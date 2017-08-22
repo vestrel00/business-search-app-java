@@ -32,7 +32,7 @@ dependencies {
     compileOnly libraries.javaxAnnotation
     compileOnly libraries.autoValue
 
-    testCompile project(path: ':presentation-java', configuration: 'testOutput')
+    testCompile project(path: ':commons', configuration: 'testOutput')
     testCompile libraries.jUnit
     testCompile libraries.assertJ
     testCompile libraries.mockito.core

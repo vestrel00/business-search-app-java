@@ -18,7 +18,7 @@ package com.vestrel00.business.search.presentation.android.mvp;
 
 import com.vestrel00.business.search.data.DataModule;
 import com.vestrel00.business.search.domain.DomainModule;
-import com.vestrel00.business.search.util.UtilModule;
+import com.vestrel00.business.search.commons.UtilModule;
 
 import javax.inject.Singleton;
 

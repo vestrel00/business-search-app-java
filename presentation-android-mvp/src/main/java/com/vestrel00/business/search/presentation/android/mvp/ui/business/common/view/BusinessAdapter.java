@@ -25,8 +25,8 @@ import com.vestrel00.business.search.presentation.android.mvp.R;
 import com.vestrel00.business.search.presentation.java.model.BusinessModel;
 import com.vestrel00.business.search.presentation.java.model.BusinessTransactionTypeModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
-import com.vestrel00.business.search.util.MathUtils;
-import com.vestrel00.business.search.util.StringUtils;
+import com.vestrel00.business.search.commons.MathUtils;
+import com.vestrel00.business.search.commons.StringUtils;
 
 import javax.inject.Inject;
 

@@ -35,7 +35,7 @@ public abstract class CacheModule {
     @Provides
     @Singleton
     static Cache networkCache(DataConfig dataConfig) {
-        return new Cache(new File(dataConfig.cacheRootDir(), dataConfig.cacheChildDir()),
+        return new Cache(new File(dataConfig.cacheRootDir(), dataConfig.cacheDir()),
                 dataConfig.cacheMaxSizeMb() * 1024 * 1024);
     }
 }

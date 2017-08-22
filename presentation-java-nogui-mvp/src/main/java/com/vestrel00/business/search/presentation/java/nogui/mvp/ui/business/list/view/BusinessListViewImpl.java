@@ -21,7 +21,7 @@ import com.vestrel00.business.search.presentation.java.nogui.mvp.display.Display
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.ApplicationBusinessListView;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.AbstractBusinessView;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.presenter.BusinessListPresenter;
-import com.vestrel00.business.search.util.StringUtils;
+import com.vestrel00.business.search.commons.StringUtils;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

@@ -27,7 +27,7 @@ android {
     // See http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Referencing-a-Library
     // See https://issuetracker.google.com/issues/37034891
     // Seems like this will be supported in Android gradle plugin 2.5
-    // See http://tools.android.com/tech-docs/new-build-system/2-5-alpha-gradle-plugin/trying-gradle-plugin-2-5#TOC-Variant-Aware-Dependency-Management
+    // See https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html
     // publishNonDefault true
 
     compileSdkVersion rootProject.ext.versions.build.android.compileSdk

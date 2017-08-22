@@ -36,7 +36,8 @@ public abstract class BaseConfigModule {
             .authClientSecret("zRs7F1e2B3Dc4OBNsp7yF0Jfh5eksGRXroaLE59JCxxwZUDO"
                     + "ppzjn6bQaVPB3bop") // Replace this with your own client secret
             .cacheRootDir("business-search")
-            .cacheChildDir("data-cache")
+            .cacheDir("data-cache")
             .cacheMaxSizeMb(10)
+            .offlineCacheTimeDays(3)
             .networkCacheTimeSeconds(60);
 }

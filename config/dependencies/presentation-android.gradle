@@ -30,7 +30,6 @@ dependencies {
     // These are the same configurations provided by the java-library plugin starting at Gradle 3.4
     // See http://tools.android.com/tech-docs/new-build-system/2-5-alpha-gradle-plugin/trying-gradle-plugin-2-5#TOC-New-dependency-configurations
 
-    compile project(':util')
     compile project(':presentation-java')
 
     compile libraries.rxJava
@@ -47,7 +46,10 @@ dependencies {
     provided libraries.javaxAnnotation
     provided libraries.autoValue
 
-    testCompile project(path: ':presentation-java', configuration: 'testOutput')
+    // FIXME (GRADLE DEPENDENCY) - This does not work for android library projects
+    // Perhaps upgrading will help
+    testCompile project(path: ':commons', configuration: 'testOutput')
+
     testCompile libraries.jUnit
     testCompile libraries.assertJ
     testCompile libraries.mockito.core

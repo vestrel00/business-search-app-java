@@ -44,9 +44,11 @@ public abstract class DataConfig {
 
     public abstract String cacheRootDir();
 
-    public abstract String cacheChildDir();
+    public abstract String cacheDir();
 
     public abstract int cacheMaxSizeMb();
+
+    public abstract int offlineCacheTimeDays();
 
     public abstract int networkCacheTimeSeconds();
 
@@ -66,9 +68,11 @@ public abstract class DataConfig {
 
         public abstract Builder cacheRootDir(String cacheRootDir);
 
-        public abstract Builder cacheChildDir(String cacheChildDir);
+        public abstract Builder cacheDir(String cacheDir);
 
         public abstract Builder cacheMaxSizeMb(int cacheMaxSizeMb);
+
+        public abstract Builder offlineCacheTimeDays(int offlineCacheTimeDays);
 
         public abstract Builder networkCacheTimeSeconds(int networkCacheTimeSeconds);
 
