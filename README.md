@@ -1,7 +1,7 @@
 # IMPORTANT!
 
 1. THE ONLY PRESENTATION APPLICATION THAT IS FULLY FUNCTIONAL IS *presentation-java-nogui-mvp*
-2. THE ANDROID APPLICATION *presentation-android-mvp* IS RUNNABLE BUT NOT YET FEATURE COMPLETE.
+2. THE ANDROID APPLICATION *presentation-java-android-mvp* IS RUNNABLE BUT NOT YET FEATURE COMPLETE.
 3. THIS PROJECT IS UNDER HEAVY DEVELOPMENT. BY NO MEANS IS IT CLOSE TO DONE.   
 4. COMMITS HAVE BEEN PUSHED DIRECTLY INTO THE DEVELOP BRANCH INSTEAD OF THROUGH PULL REQUESTS.  
 5. DEVELOP BRANCH COMMIT HISTORY IS EXTREMELY DIRTY.  
@@ -78,9 +78,9 @@ runnable applications that can be installed in different platforms.
 1. **presentation-java-nogui-mvp**: Plain Java command line / console app written using the MVP pattern.
 2. **presentation-java-swing-mvp**: Java Swing app written using the MVP pattern.
 3. **presentation-java-swing-mvvm**: Java Swing app written using the MVVM pattern.
-4. **presentation-android-mvp**: Android app written in Java using the MVP pattern.
-5. **presentation-android-mvvm**: Android app written in Java using the MVVM pattern.
-6. **presentation-android-kotlin-mvp**: Android app written in Kotlin using the MVVM pattern.
+4. **presentation-java-android-mvp**: Android app written in Java using the MVP pattern.
+5. **presentation-java-android-mvvm**: Android app written in Java using the MVVM pattern.
+6. **presentation-kotlin-android-mvp**: Android app written in Kotlin using the MVP pattern.
 
 All of the above presentations use the same domain and data layer.
 
@@ -105,9 +105,9 @@ You may **open** this project in [Android Studio](https://developer.android.com/
 - For Android applications, click Build -> Rebuild Project is enough. However, it will not build 
   plain Java applications as mentioned above. There are several Android applications:
   
-  - presentation-android-mvp
-  - presentation-android-mvvm
-  - presentation-android-kotlin-mvp
+  - presentation-java-android-mvp
+  - presentation-java-android-mvvm
+  - presentation-kotlin-android-mvp
   
 Since this project contains a mix of plain Java modules and Android modules, the best way to ensure
 that all modules are built properly is to
@@ -197,10 +197,10 @@ For example, to list all tasks for the *presentation-java-nogui-mvp* module,
   ./gradlew :<android-presentation-module>:install<build_variant>
   ```
 
-  For example, to install the *presentation-android-mvp* debug application,
+  For example, to install the *presentation-java-android-mvp* debug application,
 
   ```
-  ./gradlew :presentation-android-mvp:installDebug
+  ./gradlew :presentation-java-android-mvp:installDebug
   ```
 
 **Known Issues**
@@ -212,8 +212,8 @@ For example, to list all tasks for the *presentation-java-nogui-mvp* module,
    For example, ```./gradlew build``` builds all projects in parallel, which may result in the 
    following error,
    
-   > :presentation-android-mvp:transformClassesAndResourcesWithProguardForRelease FAILED
-     :presentation-android-mvvm:transformClassesAndResourcesWithProguardForRelease FAILED
+   > :presentation-java-android-mvp:transformClassesAndResourcesWithProguardForRelease FAILED
+     :presentation-java-android-mvvm:transformClassesAndResourcesWithProguardForRelease FAILED
    
    You will need to stop the existing gradle daemons and try again (without cleaning).
    
@@ -244,25 +244,25 @@ about this project's architecture;
 1. Does there need to be separate entities/models for each layer? That is, `Entity` in the data layer, 
    `DomainObject`in the domain layer, and `Model` in the presentation layers?
 
-  > Keeping these objects separate allows each layer to be completely independent from the other layers. 
-    It follows one of the clean architecture principles' on the separation of layers. In practical terms, 
-    each layer have complete control on what these objects should be. Furthermore, the amount of 
-    inter-layer imports are kept to a minimum. This increases the project's modularity. A change from 
-    one layer will not affect the other layers, except for places where "mappers" are used.
-
-    However, this abstraction comes at the cost of code duplication and having to create "mappers". 
-    Given the current state of the project, the advantage of this abstraction does not seem to 
-    outweight its costs. A more pragmatic approach is to only have a data layer and a presentation 
-    layer where the data layer provides the entities for the presentation layer to use.
+   > Keeping these objects separate allows each layer to be completely independent from the other layers. 
+     It follows one of the clean architecture principles' on the separation of layers. In practical terms, 
+     each layer have complete control on what these objects should be. Furthermore, the amount of 
+     inter-layer imports are kept to a minimum. This increases the project's modularity. A change from 
+     one layer will not affect the other layers, except for places where "mappers" are used.
+   >
+   > However, this abstraction comes at the cost of code duplication and having to create "mappers". 
+     Given the current state of the project, the advantage of this abstraction does not seem to 
+     outweight its costs. A more pragmatic approach is to only have a data layer and a presentation 
+     layer where the data layer provides the entities for the presentation layer to use.
     
 2. Currently, the domain layer provides interactors / use cases that simply call the repository 
    implementations provided by the data layer. So, why not get rid of the domain layer and just use 
    the data layer directly?
 
-  > As mentioned in point 1, this would be the more pragmatic approach. However, the domain layer 
-    is important in future-proofing. What if a reporting call needs to be fired when a use case is 
-    executed? What if all use cases need to be logged? What if API X needs to be used in use case Y?
-    The domain layer serves as the middleman between the presentation layer and other layers / APIs.
+   > As mentioned in point 1, this would be the more pragmatic approach. However, the domain layer 
+     is important in future-proofing. What if a reporting call needs to be fired when a use case is 
+     executed? What if all use cases need to be logged? What if API X needs to be used in use case Y?
+     The domain layer serves as the middleman between the presentation layer and other layers / APIs.
 
 
 ## Development Logs
