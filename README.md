@@ -36,13 +36,22 @@ The goal is to showcase object oriented programming in Java, Java Swing, Kotlin,
 - Writing code using [clean architecture](https://github.com/android10/Android-CleanArchitecture) principles,
   [Model-View-Presenter](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) (MVP) pattern, and
   [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) (MVVM) pattern
-- Project management with the [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
+- Monolithic project management with the [Gradle build-tool](https://docs.gradle.org/3.4.1/userguide/userguide.html)
 - Continuous Integration with [Travis CI](https://travis-ci.org/)
 - Mobile application development with [Android](https://developer.android.com/training/index.html)
   using java and [Kotlin](https://kotlinlang.org/docs/reference/android-overview.html)
 - Desktop application development with [Java Swing](http://docs.oracle.com/javase/tutorial/uiswing/)
 - Java best practices and design patterns
 - Creating readable, focused, and well-documented pull requests
+
+
+## Smaller Projects
+ 
+This project has the following derivative projects, which showcases / walks through different portions 
+of this project's architecture. 
+
+1. [Android Dagger (2.10/2.11) Butterknife (8.7) MVP](https://github.com/vestrel00/android-dagger-butterknife-mvp)
+
 
 ## Application and Features
 
@@ -221,11 +230,39 @@ For example, to list all tasks for the *presentation-java-nogui-mvp* module,
 
 ## Architecture
 
-TODO (Documentation) - Data, Domain, Presentation (MVP & MVVM)
+This project's adaptation of the clean architecture guidelines is inspired by the 
+[Clean Architecture sample app](https://github.com/android10/Android-CleanArchitecture) by android10. 
+Take a look at the [Clean Architecture sample app](https://github.com/android10/Android-CleanArchitecture) 
+for links to blogs discussing the architecture.
 
-#### Code Organization
+#### Considerations
 
-TODO (Documentation) - Dagger package module setup
+Not one project is perfect. Not one architectural pattern is without flaws. There is no 1 size fits all
+architecture. The same goes for this project. With that said, there are a couple of things to consider 
+about this project's architecture;
+
+1. Does there need to be separate entities/models for each layer? That is, `Entity` in the data layer, 
+   `DomainObject`in the domain layer, and `Model` in the presentation layers?
+
+  > Keeping these objects separate allows each layer to be completely independent from the other layers. 
+    It follows one of the clean architecture principles' on the separation of layers. In practical terms, 
+    each layer have complete control on what these objects should be. Furthermore, the amount of 
+    inter-layer imports are kept to a minimum. This increases the project's modularity. A change from 
+    one layer will not affect the other layers, except for places where "mappers" are used.
+
+    However, this abstraction comes at the cost of code duplication and having to create "mappers". 
+    Given the current state of the project, the advantage of this abstraction does not seem to 
+    outweight its costs. A more pragmatic approach is to only have a data layer and a presentation 
+    layer where the data layer provides the entities for the presentation layer to use.
+    
+2. Currently, the domain layer provides interactors / use cases that simply call the repository 
+   implementations provided by the data layer. So, why not get rid of the domain layer and just use 
+   the data layer directly?
+
+  > As mentioned in point 1, this would be the more pragmatic approach. However, the domain layer 
+    is important in future-proofing. What if a reporting call needs to be fired when a use case is 
+    executed? What if all use cases need to be logged? What if API X needs to be used in use case Y?
+    The domain layer serves as the middleman between the presentation layer and other layers / APIs.
 
 
 ## Development Logs
@@ -294,8 +331,8 @@ To generate test reports for a specific module,
 
 ## Static Analysis
 
-The following static analysis checks are used to enforce high code quality and compliance to standard Java (and Android) 
-code style and patterns:
+The following static analysis checks are used to enforce high code quality and compliance to 
+standard Java (and Android) code style and patterns:
 
 - [Checkstyle](http://checkstyle.sourceforge.net/)
 - [Findbugs](http://findbugs.sourceforge.net/)
