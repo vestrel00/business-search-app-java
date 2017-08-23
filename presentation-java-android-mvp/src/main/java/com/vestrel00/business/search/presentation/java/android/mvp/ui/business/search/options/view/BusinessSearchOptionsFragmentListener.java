@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search-app-java"
+package com.vestrel00.business.search.presentation.java.android.mvp.ui.business.search.options.view;
 
-include ':commons'
-include ':domain'
-include ':data'
-include ':presentation-java'
-include ':presentation-java-swing'
-include ':presentation-java-swing-mvp'
-include ':presentation-java-swing-mvvm'
-include ':presentation-java-nogui-mvp'
-include ':presentation-java-android'
-include ':presentation-java-android-mvp'
-include ':presentation-java-android-mvvm'
-include ':presentation-kotlin-android-mvp'
+/**
+ * Listener for {@link BusinessSearchOptionsFragment} UI events.
+ */
+public interface BusinessSearchOptionsFragmentListener {
+
+    void onSearchAroundLocation(String location);
+
+    void onSearchAroundCurrentLocation();
+
+    void onShowListView();
+
+    void onShowMapView();
+}

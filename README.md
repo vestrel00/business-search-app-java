@@ -45,7 +45,7 @@ The goal is to showcase object oriented programming in Java, Java Swing, Kotlin,
 - Creating readable, focused, and well-documented pull requests
 
 
-## Smaller Projects
+## Derivative Projects
  
 This project has the following derivative projects, which showcases / walks through different portions 
 of this project's architecture. 

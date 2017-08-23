@@ -14,17 +14,22 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search-app-java"
+package com.vestrel00.business.search.presentation.java.android.mvp.ui.business.common.view;
 
-include ':commons'
-include ':domain'
-include ':data'
-include ':presentation-java'
-include ':presentation-java-swing'
-include ':presentation-java-swing-mvp'
-include ':presentation-java-swing-mvvm'
-include ':presentation-java-nogui-mvp'
-include ':presentation-java-android'
-include ':presentation-java-android-mvp'
-include ':presentation-java-android-mvvm'
-include ':presentation-kotlin-android-mvp'
+import java.util.ArrayList;
+import java.util.List;
+
+import dagger.Module;
+import dagger.Provides;
+
+/**
+ * Provides business common view dependencies.
+ */
+@Module
+public abstract class BusinessCommonViewModule {
+
+    @Provides
+    static List<String> photosUrls() {
+        return new ArrayList<>();
+    }
+}

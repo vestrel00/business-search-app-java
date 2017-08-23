@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search-app-java"
+package com.vestrel00.business.search.presentation.java.android.mvp.ui.business.search.options.presenter;
 
-include ':commons'
-include ':domain'
-include ':data'
-include ':presentation-java'
-include ':presentation-java-swing'
-include ':presentation-java-swing-mvp'
-include ':presentation-java-swing-mvvm'
-include ':presentation-java-nogui-mvp'
-include ':presentation-java-android'
-include ':presentation-java-android-mvp'
-include ':presentation-java-android-mvvm'
-include ':presentation-kotlin-android-mvp'
+import com.vestrel00.business.search.presentation.java.android.mvp.ui.common.presenter.Presenter;
+
+/**
+ * A {@link Presenter} handles search options.
+ */
+public interface BusinessSearchOptionsPresenter extends Presenter {
+
+    void onSearchAroundLocationClicked();
+
+    void onToggleSearchAroundCurrentLocation(boolean checked);
+
+    void onToggleMapListView(boolean checked);
+}

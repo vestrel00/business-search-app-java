@@ -14,17 +14,13 @@
  * limitations under the License.
  */
 
-rootProject.name = "business-search-app-java"
+apply from: "$rootDir/config/android/application.gradle"
+apply from: "$rootDir/config/dependencies/presentation-kotlin-android-mvp.gradle"
 
-include ':commons'
-include ':domain'
-include ':data'
-include ':presentation-java'
-include ':presentation-java-swing'
-include ':presentation-java-swing-mvp'
-include ':presentation-java-swing-mvvm'
-include ':presentation-java-nogui-mvp'
-include ':presentation-java-android'
-include ':presentation-java-android-mvp'
-include ':presentation-java-android-mvvm'
-include ':presentation-kotlin-android-mvp'
+android {
+    defaultConfig {
+        applicationId "com.vestrel00.business.search.presentation.kotlin.android.mvp"
+        versionCode 1
+        versionName '1.0.0'
+    }
+}
