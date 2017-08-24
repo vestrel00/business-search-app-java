@@ -22,7 +22,7 @@ The goal is to showcase object oriented programming in Java, Java Swing, Kotlin,
 
 - Reactive programming with [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) and 
   [RxAndroid 2](https://github.com/ReactiveX/RxAndroid/tree/2.x)
-- Dependency injection with [Dagger 2](https://github.com/google/dagger/tree/dagger-2.10-rc4)
+- Dependency injection with [Dagger 2](https://github.com/google/dagger/tree/dagger-2.11)
 - View binding with [Butterknife](https://github.com/JakeWharton/butterknife/tree/butterknife-parent-7.0.1)
 - Networking with [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
 - De/serialization with [Jackson Databind 2](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.8.8)

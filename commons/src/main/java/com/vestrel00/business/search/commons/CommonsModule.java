@@ -24,10 +24,10 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * Provides util dependencies.
+ * Provides commons dependencies.
  */
 @Module
-public abstract class UtilModule {
+public abstract class CommonsModule {
 
     @Provides
     @Singleton
