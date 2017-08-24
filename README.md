@@ -127,16 +127,19 @@ After building/making the project, the applications may then be run.
   
 #### Using Gradle
 
-To build all applications,
+To build all modules,
 
 ```
 ./gradlew build
 ```
 
-To build all variants of a specific application,
+Note that building all modules may result in parallel build failure due to concurrent file 
+access resulting in file deadlocks. See FIXME about `org.gradle.parallel` in gradle.properties.
+
+To build all variants of a specific module,
 
 ```
-./gradlew :<presentation-module>:build
+./gradlew :<module>:build
 ```
 
 For example, to build the *presentation-java-nogui-mvp* application,
@@ -154,7 +157,7 @@ To list all tasks for this project,
 To list all tasks for a specific module,
 
 ```
-./gradlew :<presentation-module>:tasks
+./gradlew :<module>:tasks
 ```
 
 For example, to list all tasks for the *presentation-java-nogui-mvp* module,
