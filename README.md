@@ -250,12 +250,12 @@ about this project's architecture;
    > Keeping these objects separate allows each layer to be completely independent from the other layers. 
      It follows one of the clean architecture principles' on the separation of layers. In practical terms, 
      each layer have complete control on what these objects should be. Furthermore, the amount of 
-     inter-layer imports are kept to a minimum. This increases the project's modularity. A change from 
-     one layer will not affect the other layers, except for places where "mappers" are used.
+     inter-layer imports are kept to a minimum. This increases the modules's modularity. A change from 
+     one layer will not affect the other layers, except for "mappers".
    >
    > However, this abstraction comes at the cost of code duplication and having to create "mappers". 
      Given the current state of the project, the advantage of this abstraction does not seem to 
-     outweight its costs. A more pragmatic approach is to only have a data layer and a presentation 
+     outweigh its costs. A more pragmatic approach is to only have a data layer and a presentation 
      layer where the data layer provides the entities for the presentation layer to use.
     
 2. Currently, the domain layer provides interactors / use cases that simply call the repository 
