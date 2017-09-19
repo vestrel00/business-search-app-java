@@ -100,6 +100,9 @@ final class BusinessListAdapter extends RecyclerView.Adapter<BusinessListItemVie
     }
 
     void onSaveInstanceState(Bundle outState) {
+        // TODO (STATE) - These models should not be saved / restored in the Bundle. The repository
+        // provided by the data layer should be used to provide these synchronously from cache
+        // when available.
         outState.putSerializable(STATE_BUSINESS_MODELS, (Serializable) businessModels);
     }
 
