@@ -20,12 +20,13 @@ import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.domain.Coordinates;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link CoordinatesEntity} to {@link Coordinates} and vice versa.
  */
-@Singleton
+@Reusable
 final class CoordinatesEntityMapper implements EntityMapper<CoordinatesEntity, Coordinates> {
 
     @Inject

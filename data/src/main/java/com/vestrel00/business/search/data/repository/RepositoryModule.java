@@ -18,10 +18,9 @@ package com.vestrel00.business.search.data.repository;
 
 import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
+import dagger.Reusable;
 
 /**
  * Provides repository dependencies.
@@ -30,6 +29,6 @@ import dagger.Module;
 public abstract class RepositoryModule {
 
     @Binds
-    @Singleton
+    @Reusable
     abstract BusinessRepository businessRepository(BusinessDataRepository businessDataRepository);
 }

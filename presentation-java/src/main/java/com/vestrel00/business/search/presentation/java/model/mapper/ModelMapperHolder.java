@@ -30,12 +30,13 @@ import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Holds instances of {@link ModelMapper}s.
  */
-@Singleton
+@Reusable
 public final class ModelMapperHolder {
 
     private final ModelMapper<BusinessModel, Business> businessModelMapper;

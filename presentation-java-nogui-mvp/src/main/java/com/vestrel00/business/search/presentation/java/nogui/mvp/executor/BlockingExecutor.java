@@ -19,14 +19,14 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.executor;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.annotations.NonNull;
 
 /**
  * An {@link Executor} that simply runs any runnable it is given.
  */
-@Singleton
+@Reusable
 final class BlockingExecutor implements Executor {
 
     @Inject

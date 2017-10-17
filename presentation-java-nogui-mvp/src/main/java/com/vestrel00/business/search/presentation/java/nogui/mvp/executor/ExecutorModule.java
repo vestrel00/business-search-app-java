@@ -19,10 +19,9 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.executor;
 import com.vestrel00.business.search.domain.executor.ExecutionThread;
 import com.vestrel00.business.search.domain.executor.PostExecutionThread;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
+import dagger.Reusable;
 
 /**
  * Provides executor dependencies.
@@ -31,11 +30,11 @@ import dagger.Module;
 public abstract class ExecutorModule {
 
     @Binds
-    @Singleton
+    @Reusable
     abstract ExecutionThread executionThread(BlockingExecutionThread blockingExecutionThread);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract PostExecutionThread
     postExecutionThread(BlockingPostExecutionThread blockingPostExecutionThread);
 }

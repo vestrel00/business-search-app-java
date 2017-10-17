@@ -24,12 +24,13 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Uses {@link Logger} for displaying messages to the console.
  */
-@Singleton
+@Reusable
 final class DisplayOutput {
 
     // Defined here and not injected as for PMD

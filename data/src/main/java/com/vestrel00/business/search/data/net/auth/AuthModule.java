@@ -18,10 +18,9 @@ package com.vestrel00.business.search.data.net.auth;
 
 import com.vestrel00.business.search.data.net.DataServiceFactory;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
+import dagger.Reusable;
 
 /**
  * Provides network authentication dependencies.
@@ -30,7 +29,7 @@ import dagger.Provides;
 public abstract class AuthModule {
 
     @Provides
-    @Singleton
+    @Reusable
     static AuthTokenService authTokenService(DataServiceFactory dataServiceFactory) {
         return dataServiceFactory.create(AuthTokenService.class);
     }

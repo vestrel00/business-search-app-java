@@ -20,12 +20,13 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Creates instances of {@link Calendar} with a {@link Locale}.
  */
-@Singleton
+@Reusable
 public final class CalendarFactory {
 
     private final Locale locale;

@@ -19,12 +19,13 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.net;
 import com.vestrel00.business.search.data.net.NetworkStatus;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Android implementation of {@link NetworkStatus}.
  */
-@Singleton
+@Reusable
 final class DeviceNetworkStatus implements NetworkStatus {
 
     @Inject

@@ -19,15 +19,15 @@ package com.vestrel00.business.search.presentation.java.android.executor;
 import com.vestrel00.business.search.domain.executor.PostExecutionThread;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * A {@link PostExecutionThread} that provides the {@link AndroidSchedulers#mainThread()} scheduler.
  */
-@Singleton
+@Reusable
 final class MainPostExecutionThread implements PostExecutionThread {
 
     @Inject

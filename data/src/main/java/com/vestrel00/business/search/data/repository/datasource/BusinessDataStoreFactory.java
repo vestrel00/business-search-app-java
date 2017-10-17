@@ -20,9 +20,9 @@ import com.vestrel00.business.search.data.net.BusinessDataService;
 import com.vestrel00.business.search.data.util.LocationFormatter;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import dagger.Lazy;
+import dagger.Reusable;
 
 /**
  * Provides business data stores that stores business data in memory, disk, or network depending
@@ -36,7 +36,7 @@ import dagger.Lazy;
  * and just inject the {@link SmartBusinessDataStore} directly into consumers. However, we may
  * decide to provide different data stores given a circumstance. Hence, the purpose of this class.
  */
-@Singleton
+@Reusable
 public final class BusinessDataStoreFactory {
 
     private final Lazy<BusinessDataService> businessDataServiceProvider;

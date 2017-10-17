@@ -30,12 +30,13 @@ import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Holds instances of {@link EntityMapper}s.
  */
-@Singleton
+@Reusable
 public final class EntityMapperHolder {
 
     private final EntityMapper<BusinessEntity, Business> businessEntityMapper;

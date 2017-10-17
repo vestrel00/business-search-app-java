@@ -35,8 +35,4 @@ public abstract class CommonsModule {
         return Locale.US;
     }
 
-    @Provides
-    static CalendarFactory calendarFactory(Locale locale) {
-        return new CalendarFactory(locale);
-    }
 }

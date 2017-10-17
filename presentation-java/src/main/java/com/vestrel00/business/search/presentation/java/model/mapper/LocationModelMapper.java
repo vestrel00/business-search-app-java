@@ -20,12 +20,13 @@ import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link LocationModel} to {@link Location} and vice versa.
  */
-@Singleton
+@Reusable
 final class LocationModelMapper implements ModelMapper<LocationModel, Location> {
 
     @Inject

@@ -20,15 +20,15 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.annotations.Nullable;
 
 /**
  * Provides utility methods for Strings.
  */
-@Singleton
+@Reusable
 public final class StringUtils {
 
     private final Locale locale;

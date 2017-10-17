@@ -28,12 +28,13 @@ import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link BusinessEntity} to {@link Business} and vice versa.
  */
-@Singleton
+@Reusable
 final class BusinessEntityMapper implements EntityMapper<BusinessEntity, Business> {
 
     private final EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType>

@@ -17,13 +17,14 @@
 package com.vestrel00.business.search.presentation.java.nogui.mvp.display;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * A {@link Display} using {@link DisplayInput} for input prompts and {@link DisplayOutput} for
  * displaying messages.
  */
-@Singleton
+@Reusable
 final class DisplayIO implements Display {
 
     private final DisplayInput displayInput;

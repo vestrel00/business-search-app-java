@@ -23,12 +23,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link BusinessTransactionTypeModel} to {@link BusinessTransactionType} and vice versa.
  */
-@Singleton
+@Reusable
 final class BusinessTransactionTypeModelMapper
         implements ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType> {
 

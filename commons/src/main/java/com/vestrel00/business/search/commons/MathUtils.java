@@ -17,12 +17,13 @@
 package com.vestrel00.business.search.commons;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Provides utility methods for mathematics.
  */
-@Singleton
+@Reusable
 public final class MathUtils {
 
     @Inject

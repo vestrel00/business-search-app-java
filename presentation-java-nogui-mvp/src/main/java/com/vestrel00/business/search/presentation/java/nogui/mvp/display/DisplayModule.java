@@ -16,10 +16,9 @@
 
 package com.vestrel00.business.search.presentation.java.nogui.mvp.display;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
+import dagger.Reusable;
 
 /**
  * Provides display dependencies.
@@ -28,6 +27,6 @@ import dagger.Module;
 public abstract class DisplayModule {
 
     @Binds
-    @Singleton
+    @Reusable
     abstract Display display(DisplayIO displayIO);
 }

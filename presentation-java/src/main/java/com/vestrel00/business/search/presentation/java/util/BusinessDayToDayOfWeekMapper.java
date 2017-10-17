@@ -21,13 +21,14 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps a business day, whose first day of the week is a {@link Calendar#MONDAY}, to a
  * {@link Calendar#DAY_OF_WEEK}, whose first day of the week is a {@link Calendar#SUNDAY}.
  */
-@Singleton
+@Reusable
 public final class BusinessDayToDayOfWeekMapper {
 
     private static final List<Integer> DAY_OF_WEEK;

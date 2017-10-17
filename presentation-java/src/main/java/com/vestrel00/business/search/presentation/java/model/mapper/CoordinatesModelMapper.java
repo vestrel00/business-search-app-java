@@ -20,12 +20,13 @@ import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link CoordinatesModel} to {@link Coordinates} and vice versa.
  */
-@Singleton
+@Reusable
 final class CoordinatesModelMapper implements ModelMapper<CoordinatesModel, Coordinates> {
 
     @Inject

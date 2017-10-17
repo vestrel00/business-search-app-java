@@ -20,12 +20,13 @@ import com.vestrel00.business.search.commons.StringUtils;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Validation for {@link LocationEntity}.
  */
-@Singleton
+@Reusable
 final class LocationEntityValidator implements EntityValidator<LocationEntity> {
 
     private final StringUtils stringUtils;

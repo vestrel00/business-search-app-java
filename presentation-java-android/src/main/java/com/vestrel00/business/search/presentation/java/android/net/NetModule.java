@@ -22,11 +22,10 @@ import android.net.ConnectivityManager;
 
 import com.vestrel00.business.search.data.net.NetworkStatus;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
+import dagger.Reusable;
 
 /**
  * Provides net dependencies.
@@ -35,12 +34,12 @@ import dagger.Provides;
 public abstract class NetModule {
 
     @Provides
-    @Singleton
+    @Reusable
     static ConnectivityManager connectivityManager(Application application) {
         return (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     @Binds
-    @Singleton
+    @Reusable
     abstract NetworkStatus networkStatus(DeviceNetworkStatus deviceNetworkStatus);
 }

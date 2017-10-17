@@ -29,10 +29,9 @@ import com.vestrel00.business.search.presentation.java.model.BusinessTransaction
 import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
+import dagger.Reusable;
 
 /**
  * Provides model mapper dependencies.
@@ -41,33 +40,33 @@ import dagger.Module;
 public abstract class ModelMapperModule {
 
     @Binds
-    @Singleton
+    @Reusable
     abstract ModelMapper<BusinessModel, Business>
     businessModelMapper(BusinessModelMapper businessModelMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>
     businessTransactionTypeModelMapper(BusinessTransactionTypeModelMapper
                                                businessTransactionTypeModelMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract ModelMapper<BusinessHoursModel, BusinessHours>
     businessHoursModelMapper(BusinessHoursModelMapper businessHoursModelMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract ModelMapper<BusinessHourModel, BusinessHour>
     businessHourModelMapper(BusinessHourModelMapper businessHourModelMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract ModelMapper<LocationModel, Location>
     locationModelMapper(LocationModelMapper locationModelMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract ModelMapper<CoordinatesModel, Coordinates>
     coordinatesModelMapper(CoordinatesModelMapper coordinatesModelMapper);
 }

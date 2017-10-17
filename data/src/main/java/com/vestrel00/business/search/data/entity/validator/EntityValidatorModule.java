@@ -20,10 +20,9 @@ import com.vestrel00.business.search.data.entity.BusinessEntity;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
+import dagger.Reusable;
 
 /**
  * Provides entity validator dependencies.
@@ -32,17 +31,17 @@ import dagger.Module;
 public abstract class EntityValidatorModule {
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityValidator<BusinessEntity>
     businessEntityValidator(BusinessEntityValidator businessEntityValidator);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityValidator<LocationEntity>
     locationEntityValidator(LocationEntityValidator locationEntityValidator);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityValidator<CoordinatesEntity>
     coordinatesEntityValidator(CoordinatesEntityValidator coordinatesEntityValidator);
 

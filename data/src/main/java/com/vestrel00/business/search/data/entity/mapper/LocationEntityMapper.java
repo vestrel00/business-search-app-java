@@ -20,12 +20,13 @@ import com.vestrel00.business.search.data.entity.LocationEntity;
 import com.vestrel00.business.search.domain.Location;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link LocationEntity} to {@link Location} and vice versa.
  */
-@Singleton
+@Reusable
 final class LocationEntityMapper implements EntityMapper<LocationEntity, Location> {
 
     @Inject

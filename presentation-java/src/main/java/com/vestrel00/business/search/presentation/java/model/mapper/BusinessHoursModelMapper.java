@@ -22,12 +22,13 @@ import com.vestrel00.business.search.presentation.java.model.BusinessHourModel;
 import com.vestrel00.business.search.presentation.java.model.BusinessHoursModel;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link BusinessHoursModel} to {@link BusinessHours} and vice versa.
  */
-@Singleton
+@Reusable
 final class BusinessHoursModelMapper implements ModelMapper<BusinessHoursModel, BusinessHours> {
 
     private final ModelMapper<BusinessHourModel, BusinessHour> hoursModelMapper;

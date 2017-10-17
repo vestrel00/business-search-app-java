@@ -21,15 +21,15 @@ import com.vestrel00.business.search.presentation.java.model.LocationModel;
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.list.view.BusinessListView;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.Observable;
 
 /**
  * Creates new instances of {@link LocationModel} and {@link CoordinatesModel} using the
  * {@link BusinessListView}.
  */
-@Singleton
+@Reusable
 final class BusinessListModelFactory {
 
     @Inject

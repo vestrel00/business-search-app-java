@@ -19,15 +19,15 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.executor;
 import com.vestrel00.business.search.domain.executor.PostExecutionThread;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * a {@link PostExecutionThread} that provides a scheduler to the current thread.
  */
-@Singleton
+@Reusable
 final class BlockingPostExecutionThread implements PostExecutionThread {
 
     private final BlockingExecutor blockingExecutor;

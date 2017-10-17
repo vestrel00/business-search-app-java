@@ -22,12 +22,13 @@ import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 import com.vestrel00.business.search.data.entity.LocationEntity;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Validation for {@link BusinessEntity}.
  */
-@Singleton
+@Reusable
 final class BusinessEntityValidator implements EntityValidator<BusinessEntity> {
 
     private final EntityValidator<LocationEntity> locationEntityValidator;

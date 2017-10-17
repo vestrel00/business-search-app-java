@@ -29,10 +29,9 @@ import com.vestrel00.business.search.domain.BusinessTransactionType;
 import com.vestrel00.business.search.domain.Coordinates;
 import com.vestrel00.business.search.domain.Location;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
+import dagger.Reusable;
 
 /**
  * Provides entity mapper dependencies.
@@ -41,33 +40,33 @@ import dagger.Module;
 public abstract class EntityMapperModule {
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityMapper<BusinessEntity, Business>
     businessEntityMapper(BusinessEntityMapper businessEntityMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityMapper<BusinessTransactionTypeEntity, BusinessTransactionType>
     businessTransactionTypeEntityMapper(BusinessTransactionTypeEntityMapper
                                                 businessTransactionTypeEntityMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityMapper<BusinessHoursEntity, BusinessHours>
     businessHoursEntityMapper(BusinessHoursEntityMapper businessHoursEntityMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityMapper<BusinessHourEntity, BusinessHour>
     businessHourEntityMapper(BusinessHourEntityMapper businessHourEntityMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityMapper<LocationEntity, Location>
     locationEntityMapper(LocationEntityMapper locationEntityMapper);
 
     @Binds
-    @Singleton
+    @Reusable
     abstract EntityMapper<CoordinatesEntity, Coordinates>
     coordinatesEntityMapper(CoordinatesEntityMapper coordinatesEntityMapper);
 }

@@ -23,12 +23,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps lists of models.
  */
-@Singleton
+@Reusable
 final class ModelListMapper {
 
     @Inject

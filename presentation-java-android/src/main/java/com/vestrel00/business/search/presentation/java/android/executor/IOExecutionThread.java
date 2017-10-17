@@ -19,15 +19,15 @@ package com.vestrel00.business.search.presentation.java.android.executor;
 import com.vestrel00.business.search.domain.executor.ExecutionThread;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * An {@link ExecutionThread} that provides the {@link Schedulers#io()} scheduler.
  */
-@Singleton
+@Reusable
 final class IOExecutionThread implements ExecutionThread {
 
     @Inject

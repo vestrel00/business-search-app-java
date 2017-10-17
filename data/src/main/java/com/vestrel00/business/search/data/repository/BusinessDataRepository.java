@@ -29,8 +29,8 @@ import com.vestrel00.business.search.domain.Location;
 import com.vestrel00.business.search.domain.repository.BusinessRepository;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.annotations.NonNull;
@@ -41,7 +41,7 @@ import io.reactivex.functions.Predicate;
 /**
  * An implementation of {@link BusinessRepository}.
  */
-@Singleton
+@Reusable
 final class BusinessDataRepository implements BusinessRepository {
 
     private final BusinessDataStoreFactory dataStoreFactory;

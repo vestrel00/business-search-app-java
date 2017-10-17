@@ -19,12 +19,13 @@ package com.vestrel00.business.search.data.entity.validator;
 import com.vestrel00.business.search.data.entity.CoordinatesEntity;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Validation for {@link CoordinatesEntity}
  */
-@Singleton
+@Reusable
 final class CoordinatesEntityValidator implements EntityValidator<CoordinatesEntity> {
 
     @Inject

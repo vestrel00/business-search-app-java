@@ -20,12 +20,13 @@ import com.vestrel00.business.search.presentation.java.model.mapper.ModelMapperH
 import com.vestrel00.business.search.presentation.java.nogui.mvp.ui.business.common.view.BusinessView;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Creates instances of {@link BusinessObserver}.
  */
-@Singleton
+@Reusable
 public final class BusinessObserverFactory {
 
     private final ModelMapperHolder modelMapperHolder;

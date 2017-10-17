@@ -28,12 +28,13 @@ import com.vestrel00.business.search.presentation.java.model.CoordinatesModel;
 import com.vestrel00.business.search.presentation.java.model.LocationModel;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link BusinessModel} to {@link Business} and vice versa.
  */
-@Singleton
+@Reusable
 final class BusinessModelMapper implements ModelMapper<BusinessModel, Business> {
 
     private final ModelMapper<BusinessTransactionTypeModel, BusinessTransactionType>

@@ -19,15 +19,15 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.executor;
 import com.vestrel00.business.search.domain.executor.ExecutionThread;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * An {@link ExecutionThread} that provides a scheduler to the current thread.
  */
-@Singleton
+@Reusable
 final class BlockingExecutionThread implements ExecutionThread {
 
     private final BlockingExecutor blockingExecutor;

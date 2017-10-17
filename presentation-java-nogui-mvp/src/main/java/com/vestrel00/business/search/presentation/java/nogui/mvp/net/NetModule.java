@@ -18,10 +18,9 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.net;
 
 import com.vestrel00.business.search.data.net.NetworkStatus;
 
-import javax.inject.Singleton;
-
 import dagger.Binds;
 import dagger.Module;
+import dagger.Reusable;
 
 /**
  * Provides net dependencies.
@@ -30,6 +29,6 @@ import dagger.Module;
 public abstract class NetModule {
 
     @Binds
-    @Singleton
+    @Reusable
     abstract NetworkStatus networkStatus(DeviceNetworkStatus deviceNetworkStatus);
 }

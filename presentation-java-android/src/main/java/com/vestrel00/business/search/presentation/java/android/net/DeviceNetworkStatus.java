@@ -22,12 +22,13 @@ import android.net.NetworkInfo;
 import com.vestrel00.business.search.data.net.NetworkStatus;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Android implementation of {@link NetworkStatus}.
  */
-@Singleton
+@Reusable
 final class DeviceNetworkStatus implements NetworkStatus {
 
     private final ConnectivityManager connectivityManager;

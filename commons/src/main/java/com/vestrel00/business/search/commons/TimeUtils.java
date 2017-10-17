@@ -22,14 +22,14 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
+import dagger.Reusable;
 import io.reactivex.annotations.NonNull;
 
 /**
  * Provides utility methods for time.
  */
-@Singleton
+@Reusable
 public final class TimeUtils {
 
     private static final String RAW_24_HOUR_FORMAT = "HHmm";
@@ -51,9 +51,9 @@ public final class TimeUtils {
      * <p>
      * E.G.
      * <ul>
-     *      <li>0000 -> 12:00 AM</li>
-     *      <li>1200 -> 12:00 PM</li>
-     *      <li>2130 -> 9:30 PM</li>
+     * <li>0000 -> 12:00 AM</li>
+     * <li>1200 -> 12:00 PM</li>
+     * <li>2130 -> 9:30 PM</li>
      * </ul>
      *
      * @param raw24hrStr time string in 24-hour clock notation. See {@link #RAW_24_HOUR_FORMAT}.

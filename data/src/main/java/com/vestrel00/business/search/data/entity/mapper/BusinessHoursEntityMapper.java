@@ -22,12 +22,13 @@ import com.vestrel00.business.search.domain.BusinessHour;
 import com.vestrel00.business.search.domain.BusinessHours;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Maps {@link BusinessHoursEntity} to {@link BusinessHours} and vice versa.
  */
-@Singleton
+@Reusable
 final class BusinessHoursEntityMapper implements EntityMapper<BusinessHoursEntity, BusinessHours> {
 
     private final EntityMapper<BusinessHourEntity, BusinessHour> hoursEntityMapper;

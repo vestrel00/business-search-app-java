@@ -19,12 +19,13 @@ package com.vestrel00.business.search.presentation.java.nogui.mvp.display;
 import java.util.Scanner;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+
+import dagger.Reusable;
 
 /**
  * Uses {@link System#in} forprompting input from the input stream.
  */
-@Singleton
+@Reusable
 final class DisplayInput {
 
     @Inject
