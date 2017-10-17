@@ -148,7 +148,7 @@
                 android:layout_marginTop="@dimen/business_details_item_margin"
                 android:orientation="vertical" />
 
-            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            <com.vestrel00.business.search.presentation.java.android.widget.LabeledInfoField
                 android:id="@+id/phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                 auto:show_bottom_border="true"
                 auto:show_top_border="true" />
 
-            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            <com.vestrel00.business.search.presentation.java.android.widget.LabeledInfoField
                 android:id="@+id/website"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                 auto:label_text="@string/website"
                 auto:show_bottom_border="true" />
 
-            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            <com.vestrel00.business.search.presentation.java.android.widget.LabeledInfoField
                 android:id="@+id/pickup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
                 auto:label_text="@string/pickup"
                 auto:show_bottom_border="true" />
 
-            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            <com.vestrel00.business.search.presentation.java.android.widget.LabeledInfoField
                 android:id="@+id/delivery"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                 auto:label_text="@string/delivery"
                 auto:show_bottom_border="true" />
 
-            <com.vestrel00.business.search.presentation.android.widget.LabeledInfoField
+            <com.vestrel00.business.search.presentation.java.android.widget.LabeledInfoField
                 android:id="@+id/reservation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
