@@ -42,7 +42,7 @@ apply from: "$rootDir/config/testing/share-tests-java-library.gradle"
  * to frameworks like Android.
  *
  * Retrolambda and Jack does not fix this issue. However, this should be fixed soon in the upcoming
- * Android Studio 2.4 release. See the notes in the root project's *build.gradle*.
+ * Android Studio 3.0 release. See the notes in the root project's *build.gradle*.
  *
  * See https://issuetracker.google.com/issues/37101513
  */
