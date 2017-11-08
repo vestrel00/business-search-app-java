@@ -22,8 +22,8 @@ The goal is to showcase object oriented programming in Java, Java Swing, Kotlin,
 
 - Reactive programming with [RxJava 2](https://github.com/ReactiveX/RxJava/tree/2.x) and 
   [RxAndroid 2](https://github.com/ReactiveX/RxAndroid/tree/2.x)
-- Dependency injection with [Dagger 2](https://github.com/google/dagger/tree/dagger-2.11)
-- View binding with [Butterknife](https://github.com/JakeWharton/butterknife/tree/butterknife-parent-7.0.1)
+- Dependency injection with [Dagger 2](https://github.com/google/dagger)
+- View binding with [Butterknife](https://github.com/JakeWharton/butterknife/tree/master)
 - Networking with [Retrofit 2](https://github.com/square/retrofit/tree/parent-2.2.0)
 - De/serialization with [Jackson Databind 2](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.8.8)
 - Automatic code generation with [AutoValue](https://github.com/google/auto/tree/auto-value-1.4.1/value)
@@ -50,7 +50,7 @@ The goal is to showcase object oriented programming in Java, Java Swing, Kotlin,
 This project has the following derivative projects, which showcases / walks through different portions 
 of this project's architecture. 
 
-1. [Android Dagger (2.10/2.11) Butterknife (8.7) MVP](https://github.com/vestrel00/android-dagger-butterknife-mvp)
+1. [Android Dagger (2.11/2.12/2.13) Butterknife (8.7/8.8) MVP](https://github.com/vestrel00/android-dagger-butterknife-mvp)
 
 
 ## Application and Features
