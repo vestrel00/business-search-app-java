@@ -7,4 +7,4 @@ android:
     - build-tools-25.0.2
 
 script:
-  - ./gradlew :presentation-java-nogui-mvp:build :presentation-java-nogui-mvp:build :presentation-java-android-mvp:build
+  - ./gradlew :presentation-java-nogui-mvp:build :presentation-java-android-mvp:build
