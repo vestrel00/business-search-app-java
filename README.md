@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/vestrel00/business-search-app-java.svg?branch=develop)](https://travis-ci.org/vestrel00/business-search-app-java)
+
 # IMPORTANT!
 
 1. THE ONLY PRESENTATION APPLICATION THAT IS FULLY FUNCTIONAL IS *presentation-java-nogui-mvp*
@@ -8,7 +10,6 @@
 6. ONCE "COMPLETED", ALL CODE WILL BE RE-DONE PROPERLY WITH FEATURE BRANCHES, ISSUES, AND PULL REQUESTS.
 7. AT THAT POINT ALL WORK WILL BE LOGGED IN DOCS/DEVELOPMENT_LOGS.MD AND MERGED THROUGH WELL-DOCUMENTED 
    PULL REQUESTS. IT WILL BE LIKE A HOW-TO / GUIDE TO CLEAN ARCHITECTURE.
-8. TRAVIS CI IS COMING SOON.
 
 
 # Business Search App (Java)

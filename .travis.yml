@@ -1,0 +1,10 @@
+language: android
+jdk: oraclejdk8
+
+android:
+  components:
+    - android-25
+    - build-tools-25.0.2
+
+script:
+  - ./gradlew :presentation-java-nogui-mvp:build :presentation-java-nogui-mvp:build :presentation-java-android-mvp:build
