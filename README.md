@@ -384,7 +384,7 @@ the static analysis tool checkstyle. Read more in *docs/STYLE.md*.
 
 ## License
 
-    Copyright 2017 Vandolf Estrellado
+    Copyright 2018 Vandolf Estrellado
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
