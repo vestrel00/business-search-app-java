@@ -40,7 +40,7 @@ android {
             signingConfig signingConfigs.debug
         }
 
-        debug {
+        release {
             signingConfig signingConfigs.release
         }
     }
