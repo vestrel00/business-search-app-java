@@ -51,7 +51,7 @@ The goal is to showcase object oriented programming in Java, Java Swing, Kotlin,
 This project has the following derivative projects, which showcases / walks through different portions 
 of this project's architecture. 
 
-1. [Android Dagger (2.11-2.16) Butterknife (8.7-8.8) MVP](https://github.com/vestrel00/android-dagger-butterknife-mvp)
+1. [Android Dagger (2.11-2.17) Butterknife (8.7-8.8) MVP](https://github.com/vestrel00/android-dagger-butterknife-mvp)
 
 
 ## Application and Features
